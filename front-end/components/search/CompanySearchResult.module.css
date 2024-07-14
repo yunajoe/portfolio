@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+
+  background-color: #fff;
+  top: 80px;
+  z-index: 5;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.list_item {
+  width: 100%;
+  padding: 10px;
+  z-index: 5;
+}

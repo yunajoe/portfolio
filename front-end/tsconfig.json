@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": ["dom", "dom.iterable", "esnext", "es6"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/api": ["api/*"],
+      "@/components": ["components/*"],
+      "@/hooks": ["hooks/*"],
+      "@/public": ["public/*"],
+      "@/src": ["src/*"],
+      "@/types": ["types/*"],
+      "@/utils": ["utils/*"],
+      "@/styles": ["styles/*"]
+    },
+    "types": ["redux-persist"]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/date/EducationDatetsx"
+  ],
+  "exclude": ["node_modules"]
+}
