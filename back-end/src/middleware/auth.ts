@@ -2,18 +2,21 @@ import { NextFunction, Request, Response } from "express";
 import { UUID } from "mongodb";
 import qs from "qs";
 import { instance } from "../api";
-import { getAccessTokenOptions } from "../api/auth";
+import { getAccessTokenOptions, getUserInfoOptions } from "../api/auth";
 import { createInitPortPolioQuery } from "../db/portpolio";
 import {
   findUserByEmailQuery,
-  findUserByTokenKeyValueQuery,
+  findUserByIdQuery,
+  findUserByObjectIdQuery,
+  // findUserByTokenKeyValueQuery,
   findUserByTypeAndEmailQuery,
   insertUserQuery,
-  updateAccessAndRefreshTokenQuery,
+  // updateAccessAndRefreshTokenQuery,
   updateTokenKeyValueQuery,
 } from "../db/users";
 import { removeIdAndPassword } from "../utils/preprocessing";
 import { makeAccessToken, makeRefreshToken } from "../utils/token";
+import { updateAccessAndRefreshTokenQuery } from "./../db/users";
 
 // registerKaKao
 export const loginKaKao = async (
@@ -22,23 +25,65 @@ export const loginKaKao = async (
   next: NextFunction
 ) => {
   const { code } = req.body;
-  const data = {
+  const KaKaoData = {
     grant_type: "authorization_code",
     client_id: process.env.KAKAO_CLIENT_ID,
     redirect_uri: process.env.KAKAO_REDIRECT_URL,
     code: code,
   };
 
-  try {
-    const response = await instance({
-      ...getAccessTokenOptions,
-      data: qs.stringify(data),
-    });
+  const response = await instance({
+    ...getAccessTokenOptions,
+    data: qs.stringify(KaKaoData),
+  });
 
-    res.locals.response = response;
-  } catch (err) {
-    console.error(err);
-    next(err);
+  const { status, data } = response;
+  if (status === 200) {
+    const response = await instance({
+      ...getUserInfoOptions,
+      headers: {
+        ...getUserInfoOptions.headers,
+        Authorization: `Bearer ${data.access_token}`,
+      },
+    });
+    const { id, kakao_account } = response.data;
+    const kakaoUser = await findUserByIdQuery(id);
+
+    // 처음 가입하는 사람이면은
+    if (!kakaoUser) {
+      const newUserData = {
+        id: id,
+        username: kakao_account.profile.nickname,
+        email: kakao_account.email,
+        password: "",
+        type: "KaKao",
+        tokenKeyValue: String(new UUID()),
+        accessToken: "",
+        refreshToken: "",
+      };
+      await insertUserQuery(newUserData);
+
+      const targetUser = await findUserByTypeAndEmailQuery(
+        newUserData.type,
+        newUserData.email
+      );
+      const filteredTargetUser = removeIdAndPassword(targetUser);
+
+      await createInitPortPolioQuery({
+        user_table_id: targetUser._id,
+        username: targetUser.username,
+        email: targetUser.email,
+        type: targetUser.type,
+      });
+      res.locals.user_data = filteredTargetUser;
+    } else {
+      // 이미 가입된 사람
+      await updateTokenKeyValueQuery(kakaoUser._id);
+      const targetUser = await findUserByObjectIdQuery(kakaoUser._id);
+      const filteredTargetUser = removeIdAndPassword(targetUser);
+
+      res.locals.user_data = filteredTargetUser;
+    }
   }
 
   next();
@@ -167,12 +212,14 @@ export const updateTokenKeyValue = async (
 ) => {
   const user_data = res.locals.user_data;
 
-  const result = await updateTokenKeyValueQuery(user_data._id);
-
-  if (result) {
-    const targetUser = await findUserByTokenKeyValueQuery(user_data._id);
+  try {
+    await updateTokenKeyValueQuery(user_data._id);
+    const targetUser = await findUserByObjectIdQuery(user_data._id);
     const filteredTargetUser = removeIdAndPassword(targetUser);
     res.locals.user_data = filteredTargetUser;
+  } catch (err) {
+    return res.status(500).send("Server Error");
   }
+
   next();
 };

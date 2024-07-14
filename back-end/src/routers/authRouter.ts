@@ -1,10 +1,7 @@
 import dotenv from "dotenv";
 import { Request, Response, Router } from "express";
 import { UUID } from "mongodb";
-import { instance } from "../api";
-import { getUserInfoOptions } from "../api/auth";
-import { db } from "../db";
-import { insertUserQuery } from "../db/users";
+import { updateAccessToken } from "../db/users";
 import {
   createInitPortPolio,
   loginKaKao,
@@ -13,11 +10,7 @@ import {
   registerLocal,
   updateTokenKeyValue,
 } from "../middleware/auth";
-import {
-  makeAccessToken,
-  makeRefreshToken,
-  validationRefreshToken,
-} from "../utils/token";
+import { makeAccessToken, validationRefreshToken } from "../utils/token";
 dotenv.config();
 const authRouter = Router();
 
@@ -25,75 +18,7 @@ authRouter.get("/auth", (req: Request, res: Response) => {
   res.send("Auth페이지입니다");
 });
 
-authRouter.post(
-  "/auth/login/kakao",
-  loginKaKao,
-
-  async (req, res, next) => {
-    const { status, data } = res.locals.response;
-    // console.log("카카오데이터", status, data);
-    const { access_token } = data;
-    if (status === 200) {
-      const response = await instance({
-        ...getUserInfoOptions,
-        headers: {
-          ...getUserInfoOptions.headers,
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
-      const { id, kakao_account } = response.data;
-
-      const newUserData = {
-        id: id,
-        username: kakao_account.profile.nickname,
-        email: kakao_account.email,
-        password: "",
-        type: "KaKao",
-        tokenKeyValue: String(new UUID()),
-        accessToken: "",
-        refreshToken: "",
-      };
-
-      // 다음 middleward에 넘겨줄려구
-      // res.locals.kakaoId = id;
-      // res.locals.tokenKeyValue = newUserData.tokenKeyValue;
-      res.locals.user_data = newUserData;
-      console.log("res.locals.users_data", newUserData);
-
-      // 해당 id가 db에 있으면은 pass, 없으면은 insert 문
-      const userData = await db.collection("users").find({ id: id }).toArray();
-      if (userData.length === 0) {
-        await insertUserQuery(newUserData);
-      }
-    }
-
-    next();
-  },
-
-  // 우리반의 토큰을 생성하여서 보내기
-  (req, res) => {
-    const { status } = res.locals.result;
-    const payload = res.locals.tokenKeyValue;
-    const accessToken = makeAccessToken({ key: payload });
-    const refreshToken = makeRefreshToken({ key: payload });
-
-    console.log("accessToken와 refreshTOken");
-
-    if (status === 200) {
-      return res.status(200).send({
-        status: 200,
-        message: "success",
-        access_token: accessToken,
-        refresh_token: refreshToken,
-      });
-    } else {
-      return res.status(400).send({
-        status: 400,
-        message: "fail",
-      });
-    }
-  }
-);
+authRouter.post("/auth/login/kakao", loginKaKao, makeOwnAccessAndRefreshToken);
 
 // refreshToken으로 accessToken만들기
 authRouter.get(
@@ -105,17 +30,21 @@ authRouter.get(
       const result = await validationRefreshToken(refreshToken);
 
       if (result === 200) {
-        const newAccessToken = makeAccessToken({ key: new UUID() });
+        const tokenKeyValue = String(new UUID());
+        const newAccessToken = makeAccessToken({ key: tokenKeyValue });
+        // keyvalue랑 accessTOken저장하기
+        await updateAccessToken(tokenKeyValue, newAccessToken, refreshToken);
+
         return res.send({
           status: 200,
           message: "새로운 access 토큰이 발급되었습니다",
           accessToken: newAccessToken,
         });
-      } else if (result === 401) {
-        return res.status(401).send("refresh 토큰이 없습니다");
-      } else if (result === 402) {
+      } else if (result === 411) {
+        return res.status(411).send("refresh 토큰이 없습니다");
+      } else if (result === 412) {
         // res.send({ status: , message:}) => 이렇게 하면은 프론트의 인터셉터에서 안 받아와진다? ㅎ
-        return res.status(402).send("refresh 토큰이 유효하지 않습니다");
+        return res.status(412).send("refresh 토큰이 유효하지 않습니다");
       }
     } catch (err) {
       return res.status(500).send("Server Error");

@@ -11,7 +11,10 @@ import {
   updatedPortPolioNameQuery,
   updatedToDefaultResumeQuery,
 } from "../db/portpolio";
-import { findUserByIdQuery, updatePortPolioQuery } from "../db/users";
+import {
+  findUserByTokenKeyValueQuery,
+  updatePortPolioQuery,
+} from "../db/users";
 import { Item } from "../types/portpolio";
 import { decodeToken, validationAccessToken } from "../utils/token";
 const crypto = require("crypto");
@@ -26,15 +29,17 @@ portpolioRouter.get("/", (req: Request, res: Response) => {
 
 portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
   const accessToken = req.headers.authorization!;
+  // TODO: accessTOken  callbcak함수 만들깅 . 그래서 accessToken이 필요한 API에다가 넣기
   try {
     const result = validationAccessToken(accessToken);
-    console.log("result", result);
     if (result === 200) {
       const decodedTokenValue = decodeToken(accessToken);
       const key = decodedTokenValue.key;
+      console.log("keyy", key, decodedTokenValue);
 
       //  findUserByTokenKeyValueQuery222=
-      const targetUser = await findUserByIdQuery(key);
+      const targetUser = await findUserByTokenKeyValueQuery(key);
+      console.log("ta", targetUser);
 
       const uniquePortPolioId = crypto.randomBytes(16).toString("hex");
 
@@ -71,6 +76,7 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
       return res.status(402).send("토큰이 유효하지 않습니다");
     }
   } catch (err) {
+    console.log("err", err);
     return res.status(500).send("server error");
   }
 });
@@ -110,6 +116,8 @@ portpolioRouter.get(
             new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
           );
         });
+        return res.send(result);
+      } else {
         return res.send(result);
       }
     } catch (err) {
@@ -160,9 +168,12 @@ portpolioRouter.post("/portpolio/save", async (req: Request, res: Response) => {
 portpolioRouter.post(
   "/portpolio/changeToDefaultResume",
   async (req: Request, res: Response) => {
-    const { data } = req.body;
+    const { users_table_id, portpolio_id } = req.body.data;
     try {
-      const result = await updatedToDefaultResumeQuery(data);
+      const result = await updatedToDefaultResumeQuery(
+        users_table_id,
+        portpolio_id
+      );
       if (result) {
         return res.send({
           status: 200,
@@ -175,7 +186,10 @@ portpolioRouter.post(
         });
       }
     } catch (err) {
-      throw err;
+      return res.send({
+        status: 500,
+        message: "기본 이력서에 변경에 실패하였습니다",
+      });
     }
   }
 );

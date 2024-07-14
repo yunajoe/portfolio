@@ -34,16 +34,13 @@ export const insertUserQuery = async (newUserData: NewUserData) => {
 };
 
 // tokenKeyValue로 사람 찾기
-export const findUserByTokenKeyValueQuery222 = async (
-  tokenKeyValue: number
-) => {
+export const findUserByTokenKeyValueQuery = async (tokenKeyValue: number) => {
   try {
     const user = await db.collection("users").findOne({
       tokenKeyValue: tokenKeyValue,
     });
     return user;
   } catch (err) {
-    console.error("Error inserting user:", err);
     throw err;
   }
 };
@@ -54,7 +51,6 @@ export const findUserByEmailQuery = async (email: string) => {
     const user = await db.collection("users").findOne({ email: email });
     return user;
   } catch (err) {
-    console.error("Error inserting user:", err);
     throw err;
   }
 };
@@ -70,14 +66,28 @@ export const findUserByIdQuery = async (id: number) => {
 };
 
 // _id로 user찾기
-// export const findUserByTokenKeyValueQuery = async (_id: ObjectId) => {
-//   try {
-//     const user = await db.collection("users").findOne({ _id: _id });
-//     return user;
-//   } catch (err) {
-//     throw false;
-//   }
-// };
+export const findUserByObjectIdQuery = async (_id: ObjectId) => {
+  try {
+    const user = await db.collection("users").findOne({ _id: _id });
+    return user;
+  } catch (err) {
+    throw false;
+  }
+};
+
+// id로 tokenKeyValue 없데이뚜 하기
+
+export const kakaoUpdateTokenKeyValueQuery = async (id: number) => {
+  try {
+    const tokenKeyValue = String(new UUID()); // Generate new UUID
+    await db
+      .collection("users")
+      .updateOne({ id: id }, { $set: { tokenKeyValue: tokenKeyValue } });
+    return true;
+  } catch (err) {
+    throw false;
+  }
+};
 
 //  _id 로 tokenKeyValue 업데이뚜 하기
 
@@ -87,6 +97,26 @@ export const updateTokenKeyValueQuery = async (_id: ObjectId) => {
     await db
       .collection("users")
       .updateOne({ _id: _id }, { $set: { tokenKeyValue: tokenKeyValue } });
+    return true;
+  } catch (err) {
+    throw false;
+  }
+};
+
+//
+
+export const updateAccessToken = async (
+  tokenKeyValue: string,
+  accessToken: string,
+  refreshToken: string
+) => {
+  try {
+    await db
+      .collection("users")
+      .updateOne(
+        { refreshToken: refreshToken },
+        { $set: { tokenKeyValue: tokenKeyValue, accessToken: accessToken } }
+      );
     return true;
   } catch (err) {
     throw false;
@@ -120,7 +150,7 @@ export const isUserAlreadyExist = async (uniqueId: Object) => {
     });
     return result;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 
@@ -149,7 +179,6 @@ export const updatePortPolioQuery = async (
       { $push: { portpolio_ids: existPortPolioData.portpolio_id } } // $push 연산자를 사용하여 portpolio_ids 배열에 새로운 값을 추가
     );
   } catch (err) {
-    console.error("Error updating portpolio:", err);
     throw err;
   }
 };
@@ -166,7 +195,7 @@ export const findUserByUsersTableId = async (users_table_id: string) => {
       });
       return result;
     } catch (err) {
-      console.error(err);
+      throw err;
     }
   }
 };
@@ -183,7 +212,7 @@ export const findUserByTypeAndEmailQuery = async (
     });
     return result;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
 
@@ -196,6 +225,8 @@ export const findUserByRefreshToken = async (refreshToken: string) => {
     });
     return result;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 };
+
+//

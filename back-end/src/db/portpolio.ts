@@ -95,38 +95,32 @@ export const insertPortPolioContentsQuery = async (
   }
 };
 
-//  해당 포폴의 defulat resume로 업데이트 하기
-export const updatedToDefaultResumeQuery = async (portpolioId: string) => {
+export const updatedToDefaultResumeQuery = async (
+  users_table_id: string,
+  portpolioId: string
+) => {
   try {
     await db.collection("portpolio_contents").updateOne(
-      { portpolioId: portpolioId },
       {
-        $set: {
-          defaultResume: true,
-          updatedAt: new Date(),
-        },
-      }
+        users_table_id: new ObjectId(users_table_id),
+        portpolioId: portpolioId,
+      },
+      { $set: { defaultResume: true, updatedAt: new Date() } }
     );
-
-    //  해당 포폴이 아닌 포폴들의 defaultResue를 false로 업데이트하기
     await db.collection("portpolio_contents").updateMany(
       {
-        portpolioId: { $ne: portpolioId }, // 해당 포폴이 아닌 경우
+        users_table_id: new ObjectId(users_table_id),
+        portpolioId: { $ne: portpolioId },
       },
-      {
-        $set: {
-          defaultResume: false,
-        },
-      }
+      { $set: { defaultResume: false } }
     );
+
     return true;
   } catch (err) {
     return false;
   }
 };
 
-// edit portpolio
-// new ObjectId(users_table_id)
 export const updatedPortPolioNameQuery = async (
   users_table_id: string,
   portpolio_id: string,
@@ -192,7 +186,6 @@ export const deletePortPolioQuery = async (
 };
 
 // defaultResume:true인것만 가져오기
-
 export const getDefaultPortPolioQuery = async () => {
   try {
     const result = await db
