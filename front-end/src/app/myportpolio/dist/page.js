@@ -4,6 +4,7 @@ exports.__esModule = true;
 var CreatePortPolioCard_1 = require("@/components/card/CreatePortPolioCard");
 var PortPolioDate_1 = require("@/components/card/PortPolioCard/PortPolioDate");
 var PortPolioName_1 = require("@/components/card/PortPolioCard/PortPolioName");
+var Divider_1 = require("@/components/divider/Divider");
 var EditAndDeleteDropDown_1 = require("@/components/dropdown/EditAndDeleteDropDown");
 var ModalPortal_1 = require("@/components/modal/ModalPortal");
 var PortPolioDeleteModal_1 = require("@/components/modal/type/PortPolioDeleteModal");
@@ -73,16 +74,20 @@ function Page() {
         React.createElement(CreatePortPolioCard_1["default"], null),
         portpolio_detail_arr.map(function (data, index) {
             return (React.createElement(core_1.UnstyledButton, { onClick: function () { return navigateToDetailPage(data); }, key: index, bg: "blue", h: "200px", style: {
-                    border: "5px solid red",
                     cursor: "pointer",
                     position: "relative",
-                    zIndex: 5
+                    zIndex: 5,
+                    border: "1px solid #dbdbdb"
                 } },
                 React.createElement(core_1.Text, { style: { marginBottom: "5px" } }, data.defaultResume && React.createElement(core_1.Pill, { radius: 5 }, "\uAE30\uBCF8\uC774\uB825\uC11C")),
                 isResumeNameEdit && data._id === deleteDropDownId ? (React.createElement(PortPolioName_1["default"], { usersTableId: data.users_table_id, portpolioId: data.portpolioId, portpolioName: data.portpolio_name, isResumeNameEdit: isResumeNameEdit, setIsResumeNameEdit: setIsResumeNameEdit })) : (React.createElement(core_1.Text, null, data.portpolio_name)),
                 React.createElement(PortPolioDate_1["default"], { updatedAt: data.updatedAt }),
+                React.createElement(Divider_1["default"], { color: "white", customStyles: {
+                        position: "absolute",
+                        width: "100%",
+                        bottom: "25px"
+                    } }),
                 React.createElement(core_1.Flex, { justify: "flex-end", align: "center", style: {
-                        border: "5px solid blue",
                         position: "absolute",
                         bottom: "0px",
                         right: "0px"

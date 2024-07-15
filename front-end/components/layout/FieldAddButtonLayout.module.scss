@@ -1,0 +1,10 @@
+.container {
+  border-radius: 12px;
+  background-color: hsla(225, 5%, 46%, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  width: 100%;
+  cursor: pointer;
+}

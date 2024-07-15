@@ -3,6 +3,7 @@
 import CreatePortPolioCard from "@/components/card/CreatePortPolioCard";
 import PortPolioDate from "@/components/card/PortPolioCard/PortPolioDate";
 import PortPolioName from "@/components/card/PortPolioCard/PortPolioName";
+import Divider from "@/components/divider/Divider";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
@@ -99,10 +100,10 @@ function Page() {
             bg="blue"
             h="200px"
             style={{
-              border: "5px solid red",
               cursor: "pointer",
               position: "relative",
               zIndex: 5,
+              border: "1px solid #dbdbdb",
             }}
           >
             <Text style={{ marginBottom: "5px" }}>
@@ -120,11 +121,18 @@ function Page() {
               <Text>{data.portpolio_name}</Text>
             )}
             <PortPolioDate updatedAt={data.updatedAt} />
+            <Divider
+              color="white"
+              customStyles={{
+                position: "absolute",
+                width: "100%",
+                bottom: "25px",
+              }}
+            />
             <Flex
               justify="flex-end"
               align="center"
               style={{
-                border: "5px solid blue",
                 position: "absolute",
                 bottom: "0px",
                 right: "0px",

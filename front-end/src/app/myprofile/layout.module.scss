@@ -7,6 +7,8 @@
   display: grid;
   grid-template-columns: 1fr 2px 2fr;
   column-gap: 20px; /* 열과 열 사이의 간격을 20px로 설정 */
+  width: 80%;
+  margin: 0 auto;
 }
 
 .divider {
@@ -21,7 +23,15 @@
 
 // grid2
 .myprofile_container {
-  // border: 5px solid blue;
+  border: 5px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.addbutton_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 // munulist

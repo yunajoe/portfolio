@@ -36,7 +36,7 @@ function CreatePortPolioCard() {
         h="200px"
         shadow="sm"
         p="50px"
-        style={{ border: "5px solid red" }}
+        style={{ border: "1px solid #dbdbdb" }}
       >
         <UnstyledButton fw={800} ta="center" style={{ cursor: "pointer" }}>
           create new portpolio
