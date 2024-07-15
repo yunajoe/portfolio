@@ -12,12 +12,15 @@
 .navigation_container {
   width: 90%;
   margin: 0 auto;
-  //   @include mobile {
-  //   }
-  //   @include laptop {
-  //   }
-  //   @include desktop {
-  //   }
+  @include mobile {
+    width: 95%;
+  }
+  @include laptop {
+    width: 95%;
+  }
+  @include desktop {
+    width: 90%;
+  }
 }
 .navigation {
   display: flex;
@@ -33,13 +36,12 @@
   flex-direction: row;
   align-items: stretch;
   list-style: none;
-  border: 5px solid green;
 
   & li {
     margin-right: 40px;
     transition: color 0.3s ease;
     cursor: pointer;
-    border: 5px solid yellow;   
+    border: 5px solid yellow;
     padding: 10px;
 
     &:hover {

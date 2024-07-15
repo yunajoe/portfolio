@@ -15,7 +15,9 @@ function Page() {
           <li>
             <span className={cx("text")}>내 프로필</span>
           </li>
-          <Divider color="gray" />
+          <div className={cx("menu_list_divider")}>
+            <Divider color="gray" />
+          </div>
           <li>
             <span className={cx("text")}>로그아웃</span>
           </li>
@@ -25,8 +27,11 @@ function Page() {
       <Divider color="gray" />
       <div className={cx("myprofile_container")}>
         <section className={cx("myinfo_section")}>
-          <div>user계정의 이미지</div>
-          <span>현재 user의 계정의 닉네임</span>
+          <div className={cx("myinfo")}>
+            <span>user계정의 이미지</span>
+            <span>현재 user의 계정의 닉네임</span>
+          </div>
+          <div className={cx("settings")}>설정</div>
         </section>
         <section className={cx("addbutton_section")}>
           <EducationAddButton />
