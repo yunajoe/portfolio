@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+  /* 다른 변수 사용 예시 */
+  width: 100%;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  border: 5px solid red;
+}

@@ -15,12 +15,14 @@ import {
   updatePortPolioNameStatusReset,
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import MyPageListLayout from "@/src/app/myportpolio/layout";
 import { Item } from "@/types/portpolio";
-import { Flex, Grid, Pill, Text } from "@mantine/core";
+import { Flex, Pill, Text, UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import styles from "./layout.module.scss";
+const cx = classNames.bind(styles);
 
 function Page() {
   const [isEditAndDeleteDropDown, setIsEditAndDeleteDropDown] = useState(false);
@@ -82,84 +84,80 @@ function Page() {
   }, [useStatusSelector.updatePortPolioNameStatus]);
 
   const navigateToDetailPage = (data: Item) => {
-    if (deleteDropDownId !== "") return;  
+    if (deleteDropDownId !== "") return;
     router.push(`/myportpolio/edit/${data.portpolioId}`);
   };
 
-
   return (
-    <MyPageListLayout>
-      <Grid columns={20} bg="red" align="flex-start">
-        <CreatePortPolioCard />
-        {portpolio_detail_arr.map((data, index) => {
-          return (
-            <Grid.Col
-              onClick={() => navigateToDetailPage(data)}
-              key={index}
-              span={4}
-              bg="blue"
-              h="200px"
+    <div className={cx("grid_container")}>
+      <CreatePortPolioCard />
+      {portpolio_detail_arr.map((data, index) => {
+        return (
+          <UnstyledButton
+            onClick={() => navigateToDetailPage(data)}
+            key={index}
+            bg="blue"
+            h="200px"
+            style={{
+              border: "5px solid red",
+              cursor: "pointer",
+              position: "relative",
+              zIndex: 5,
+            }}
+          >
+            <Text style={{ marginBottom: "5px" }}>
+              {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
+            </Text>
+            {isResumeNameEdit && data._id === deleteDropDownId ? (
+              <PortPolioName
+                usersTableId={data.users_table_id}
+                portpolioId={data.portpolioId}
+                portpolioName={data.portpolio_name}
+                isResumeNameEdit={isResumeNameEdit}
+                setIsResumeNameEdit={setIsResumeNameEdit}
+              />
+            ) : (
+              <Text>{data.portpolio_name}</Text>
+            )}
+            <PortPolioDate updatedAt={data.updatedAt} />
+            <Flex
+              justify="flex-end"
+              align="center"
               style={{
-                border: "5px solid red",
-                cursor: "pointer",
-                position: "relative",
-                zIndex: 5,
+                border: "5px solid blue",
+                position: "absolute",
+                bottom: "0px",
+                right: "0px",
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeleteDropDownId(data._id);
+                setIsEditAndDeleteDropDown(true);
               }}
             >
-              <Text style={{ marginBottom: "5px" }}>
-                {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
-              </Text>
-              {isResumeNameEdit && data._id === deleteDropDownId ? (
-                <PortPolioName
-                  usersTableId={data.users_table_id}
-                  portpolioId={data.portpolioId}
-                  portpolioName={data.portpolio_name}
-                  isResumeNameEdit={isResumeNameEdit}
-                  setIsResumeNameEdit={setIsResumeNameEdit}
-                />
-              ) : (
-                <Text>{data.portpolio_name}</Text>
-              )}
-              <PortPolioDate updatedAt={data.updatedAt} />
-              <Flex
-                justify="flex-end"
-                align="center"
-                style={{
-                  border: "5px solid blue",
-                  position: "absolute",
-                  bottom: "0px",
-                  right: "0px",
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setDeleteDropDownId(data._id);
-                  setIsEditAndDeleteDropDown(true);
-                }}
-              >
-                <HamburgerIcon style={{ width: "30px" }} />
-              </Flex>
-              {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
-                <EditAndDeleteDropDown
+              <HamburgerIcon style={{ width: "30px" }} />
+            </Flex>
+            {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
+              <EditAndDeleteDropDown
+                setDeleteDropDownId={setDeleteDropDownId}
+                handleChangeResumeName={handleChangeResumeName}
+                handleDeleteResume={handleDeleteResume}
+              />
+            )}
+            {isDeleteModalOpen && data._id === deleteDropDownId && (
+              <ModalPortal>
+                <PortPolioDeleteModal
+                  onClose={handleDeleteModalClose}
+                  users_table_id={data.users_table_id}
+                  portpolio_id={data.portpolioId}
                   setDeleteDropDownId={setDeleteDropDownId}
-                  handleChangeResumeName={handleChangeResumeName}
-                  handleDeleteResume={handleDeleteResume}
                 />
-              )}
-              {isDeleteModalOpen && data._id === deleteDropDownId && (
-                <ModalPortal>
-                  <PortPolioDeleteModal
-                    onClose={handleDeleteModalClose}
-                    users_table_id={data.users_table_id}
-                    portpolio_id={data.portpolioId}
-                    setDeleteDropDownId={setDeleteDropDownId}
-                  />
-                </ModalPortal>
-              )}
-            </Grid.Col>
-          );
-        })}
-      </Grid>
-    </MyPageListLayout>
+              </ModalPortal>
+            )}
+          </UnstyledButton>
+        );
+      })}
+    </div>
   );
 }
 

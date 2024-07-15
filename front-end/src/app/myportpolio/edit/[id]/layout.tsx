@@ -4,11 +4,11 @@ import classNames from "classnames/bind";
 import React from "react";
 import styles from "./layout.module.css";
 const cx = classNames.bind(styles);
-type MyPageLayoutPros = {
+type MyPortPolioEditLayoutProps = {
   children: React.ReactNode;
 };
 
-function MyPageEditLayout({ children }: MyPageLayoutPros) {
+function MyPortPolioEditLayout({ children }: MyPortPolioEditLayoutProps) {
   return (
     <div className={cx("container")}>
       <ToastProvider>{children}</ToastProvider>
@@ -16,4 +16,4 @@ function MyPageEditLayout({ children }: MyPageLayoutPros) {
   );
 }
 
-export default MyPageEditLayout;
+export default MyPortPolioEditLayout;

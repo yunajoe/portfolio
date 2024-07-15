@@ -18,7 +18,7 @@ import {
   selectStatus,
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import MyPageEditLayout from "@/src/app/myportpolio/edit/[id]/layout";
+import MyPortPolioEditLayout from "@/src/app/myportpolio/edit/[id]/layout";
 import {
   preprocessingCompany,
   preprocessingMajor,
@@ -203,65 +203,67 @@ function PortPolioEdit() {
   }, [defaultPortPolioStatus]);
 
   return (
-    <MyPageEditLayout>
-      {defaultResumeBox}
-      <InputBox title="간단소개글" description={intro} />
-      <IntroduceBox introText={introText} />
-      <InputBox title="경력" description={career} />
-      <Flex justify="flex-start" align="center" gap="2px" mb="10px">
-        <AddIcon style={{ width: "15px", height: "20px" }} />
-        <Text
-          style={{ cursor: "pointer" }}
-          onClick={handleCareerAddButton}
-          c="blue"
-          fw={700}
-        >
-          추가
-        </Text>
-      </Flex>
-      <div style={{ marginBottom: "30px" }}>
-        {careerListMemo.length > 0 &&
-          careerListMemo.map((item, index) => {
+  
+      <MyPortPolioEditLayout>
+        {defaultResumeBox}
+        <InputBox title="간단소개글" description={intro} />
+        <IntroduceBox introText={introText} />
+        <InputBox title="경력" description={career} />
+        <Flex justify="flex-start" align="center" gap="2px" mb="10px">
+          <AddIcon style={{ width: "15px", height: "20px" }} />
+          <Text
+            style={{ cursor: "pointer" }}
+            onClick={handleCareerAddButton}
+            c="blue"
+            fw={700}
+          >
+            추가
+          </Text>
+        </Flex>
+        <div style={{ marginBottom: "30px" }}>
+          {careerListMemo.length > 0 &&
+            careerListMemo.map((item, index) => {
+              return (
+                <div key={item.id}>
+                  <CareerFieldBox
+                    item={item}
+                    portpolioId={portpolioId}
+                    index={index}
+                    companyList={filteredCompanyArr}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <InputBox title="학력" description={school} />
+        <Flex justify="flex-start" align="center" gap="2px" mb="10px">
+          <AddIcon style={{ width: "15px", height: "20px" }} />
+          <Text
+            style={{ cursor: "pointer" }}
+            onClick={handleEducationAddButton}
+            c="blue"
+            fw={700}
+          >
+            추가
+          </Text>
+        </Flex>
+        {educationListMemo.length > 0 &&
+          educationListMemo.map((item, index) => {
             return (
               <div key={item.id}>
-                <CareerFieldBox
+                <EducationFieldBox
                   item={item}
                   portpolioId={portpolioId}
                   index={index}
-                  companyList={filteredCompanyArr}
+                  majorList={filteredMajorArr}
                 />
               </div>
             );
           })}
-      </div>
-      <InputBox title="학력" description={school} />
-      <Flex justify="flex-start" align="center" gap="2px" mb="10px">
-        <AddIcon style={{ width: "15px", height: "20px" }} />
-        <Text
-          style={{ cursor: "pointer" }}
-          onClick={handleEducationAddButton}
-          c="blue"
-          fw={700}
-        >
-          추가
-        </Text>
-      </Flex>
-      {educationListMemo.length > 0 &&
-        educationListMemo.map((item, index) => {
-          return (
-            <div key={item.id}>
-              <EducationFieldBox
-                item={item}
-                portpolioId={portpolioId}
-                index={index}
-                majorList={filteredMajorArr}
-              />
-            </div>
-          );
-        })}
 
-      <Button onClick={handleCompleteButton}>작성 완료</Button>
-    </MyPageEditLayout>
+        <Button onClick={handleCompleteButton}>작성 완료</Button>
+      </MyPortPolioEditLayout>
+ 
   );
 }
 

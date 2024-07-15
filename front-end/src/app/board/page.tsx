@@ -21,9 +21,6 @@ export default async function Page() {
       <Suspense fallback={<div>Loading...</div>}>
         <DefaultPortPolio data={defaultPortPolios.data.result} />
       </Suspense>
-      {/* <div className={cx("container")}>
- 
-      </div> */}
     </BoardPageLayout>
   );
 }

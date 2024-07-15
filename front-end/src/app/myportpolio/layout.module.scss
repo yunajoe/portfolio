@@ -1,0 +1,28 @@
+@import "/styles/mixin.scss";
+
+.container {
+}
+.body {
+  background-color: var(--portpolio-background);
+}
+
+.grid_container {
+  display: grid;
+  border: 5px solid red;
+  width: 80%;
+  margin: 0 auto;
+  // height: 100vh;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+  }
+  @include laptop {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 30px;
+  }
+  @include desktop {
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 20px;
+  }
+}

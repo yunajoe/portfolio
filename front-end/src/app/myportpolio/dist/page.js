@@ -13,11 +13,13 @@ var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
 var portpolioResultSlice_1 = require("@/src/app/lib/features/portpolio/portpolioResultSlice");
 var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
-var layout_1 = require("@/src/app/myportpolio/layout");
 var core_1 = require("@mantine/core");
+var bind_1 = require("classnames/bind");
 var cookies_next_1 = require("cookies-next");
 var navigation_1 = require("next/navigation");
 var react_1 = require("react");
+var layout_module_scss_1 = require("./layout.module.scss");
+var cx = bind_1["default"].bind(layout_module_scss_1["default"]);
 function Page() {
     var _a = react_1.useState(false), isEditAndDeleteDropDown = _a[0], setIsEditAndDeleteDropDown = _a[1];
     var _b = react_1.useState(""), deleteDropDownId = _b[0], setDeleteDropDownId = _b[1];
@@ -67,33 +69,32 @@ function Page() {
             return;
         router.push("/myportpolio/edit/" + data.portpolioId);
     };
-    return (React.createElement(layout_1["default"], null,
-        React.createElement(core_1.Grid, { columns: 20, bg: "red", align: "flex-start" },
-            React.createElement(CreatePortPolioCard_1["default"], null),
-            portpolio_detail_arr.map(function (data, index) {
-                return (React.createElement(core_1.Grid.Col, { onClick: function () { return navigateToDetailPage(data); }, key: index, span: 4, bg: "blue", h: "200px", style: {
-                        border: "5px solid red",
-                        cursor: "pointer",
-                        position: "relative",
-                        zIndex: 5
+    return (React.createElement("div", { className: cx("grid_container") },
+        React.createElement(CreatePortPolioCard_1["default"], null),
+        portpolio_detail_arr.map(function (data, index) {
+            return (React.createElement(core_1.UnstyledButton, { onClick: function () { return navigateToDetailPage(data); }, key: index, bg: "blue", h: "200px", style: {
+                    border: "5px solid red",
+                    cursor: "pointer",
+                    position: "relative",
+                    zIndex: 5
+                } },
+                React.createElement(core_1.Text, { style: { marginBottom: "5px" } }, data.defaultResume && React.createElement(core_1.Pill, { radius: 5 }, "\uAE30\uBCF8\uC774\uB825\uC11C")),
+                isResumeNameEdit && data._id === deleteDropDownId ? (React.createElement(PortPolioName_1["default"], { usersTableId: data.users_table_id, portpolioId: data.portpolioId, portpolioName: data.portpolio_name, isResumeNameEdit: isResumeNameEdit, setIsResumeNameEdit: setIsResumeNameEdit })) : (React.createElement(core_1.Text, null, data.portpolio_name)),
+                React.createElement(PortPolioDate_1["default"], { updatedAt: data.updatedAt }),
+                React.createElement(core_1.Flex, { justify: "flex-end", align: "center", style: {
+                        border: "5px solid blue",
+                        position: "absolute",
+                        bottom: "0px",
+                        right: "0px"
+                    }, onClick: function (e) {
+                        e.stopPropagation();
+                        setDeleteDropDownId(data._id);
+                        setIsEditAndDeleteDropDown(true);
                     } },
-                    React.createElement(core_1.Text, { style: { marginBottom: "5px" } }, data.defaultResume && React.createElement(core_1.Pill, { radius: 5 }, "\uAE30\uBCF8\uC774\uB825\uC11C")),
-                    isResumeNameEdit && data._id === deleteDropDownId ? (React.createElement(PortPolioName_1["default"], { usersTableId: data.users_table_id, portpolioId: data.portpolioId, portpolioName: data.portpolio_name, isResumeNameEdit: isResumeNameEdit, setIsResumeNameEdit: setIsResumeNameEdit })) : (React.createElement(core_1.Text, null, data.portpolio_name)),
-                    React.createElement(PortPolioDate_1["default"], { updatedAt: data.updatedAt }),
-                    React.createElement(core_1.Flex, { justify: "flex-end", align: "center", style: {
-                            border: "5px solid blue",
-                            position: "absolute",
-                            bottom: "0px",
-                            right: "0px"
-                        }, onClick: function (e) {
-                            e.stopPropagation();
-                            setDeleteDropDownId(data._id);
-                            setIsEditAndDeleteDropDown(true);
-                        } },
-                        React.createElement(HamburgerIcon_1["default"], { style: { width: "30px" } })),
-                    isEditAndDeleteDropDown && data._id === deleteDropDownId && (React.createElement(EditAndDeleteDropDown_1["default"], { setDeleteDropDownId: setDeleteDropDownId, handleChangeResumeName: handleChangeResumeName, handleDeleteResume: handleDeleteResume })),
-                    isDeleteModalOpen && data._id === deleteDropDownId && (React.createElement(ModalPortal_1["default"], null,
-                        React.createElement(PortPolioDeleteModal_1["default"], { onClose: handleDeleteModalClose, users_table_id: data.users_table_id, portpolio_id: data.portpolioId, setDeleteDropDownId: setDeleteDropDownId })))));
-            }))));
+                    React.createElement(HamburgerIcon_1["default"], { style: { width: "30px" } })),
+                isEditAndDeleteDropDown && data._id === deleteDropDownId && (React.createElement(EditAndDeleteDropDown_1["default"], { setDeleteDropDownId: setDeleteDropDownId, handleChangeResumeName: handleChangeResumeName, handleDeleteResume: handleDeleteResume })),
+                isDeleteModalOpen && data._id === deleteDropDownId && (React.createElement(ModalPortal_1["default"], null,
+                    React.createElement(PortPolioDeleteModal_1["default"], { onClose: handleDeleteModalClose, users_table_id: data.users_table_id, portpolio_id: data.portpolioId, setDeleteDropDownId: setDeleteDropDownId })))));
+        })));
 }
 exports["default"] = Page;
