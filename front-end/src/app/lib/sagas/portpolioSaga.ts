@@ -10,7 +10,6 @@ import {
   updateDefaultPortPolio,
   updatePortPolioName,
 } from "@/api/portpolio";
-import { searchCompany, searchMajor } from "@/api/search";
 import {
   portpolioCreateFail,
   portpolioCreateSuccess,
@@ -26,12 +25,6 @@ import {
 } from "@/src/app/lib/features/portpolio/portpolioSlice";
 
 import {
-  getCompanyListFail,
-  getCompanyListSuccess,
-  getMajorListFail,
-  getMajorListSuccess,
-} from "@/src/app/lib/features/search/searchSlice";
-import {
   accessTokenStatus,
   defaultPortPolioStatus,
   deletePortPolioStatus,
@@ -46,26 +39,6 @@ import {
   UpdatePortPolioNameSaga,
 } from "@/types/portpolioSaga";
 import { call, put, takeEvery } from "redux-saga/effects";
-
-function* getMajorListSaga(): any {
-  try {
-    const data = yield call(searchMajor);
-    const result = data.data;
-    yield put(getMajorListSuccess(result));
-  } catch (err) {
-    yield put(getMajorListFail(err));
-  }
-}
-
-function* getCompanyListSaga(): any {
-  try {
-    const data = yield call(searchCompany);
-    const result = data.data;
-    yield put(getCompanyListSuccess(result));
-  } catch (err) {
-    yield put(getCompanyListFail(err));
-  }
-}
 
 function* getPortPolioListSaga(action: any): any {
   try {
@@ -145,8 +118,6 @@ function* updatePortPolioNameSaga(action: UpdatePortPolioNameSaga): any {
 }
 
 export function* portPolioSaga() {
-  yield takeEvery("MAJOR_LIST_REQUEST", getMajorListSaga);
-  yield takeEvery("COMPANY_LIST_REQUEST", getCompanyListSaga);
   yield takeEvery("GET_PORT_POLIO_LIST_REQUEST", getPortPolioListSaga);
   yield takeEvery("GET_PORT_POLIO_DETAIL_REQUEST", getPortPolioDetailSaga);
 

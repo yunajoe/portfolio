@@ -21,6 +21,7 @@ async function getUserData() {
 
 export default async function Page() {
   const userData = await getUserData();
+  // TODO: 데이터를 이렇게 가꼬오지말고, 컴퍼넌트에서 가져오기
 
   return (
     <div className={cx("grid_container")}>

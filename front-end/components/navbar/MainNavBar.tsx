@@ -1,9 +1,14 @@
+"use client";
+
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { useAppSelector } from "@/src/app/lib/hooks";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import styles from "./MainNavBar.module.scss";
 const cx = classNames.bind(styles);
 
 function MainNavBar() {
+  const useAuthSelector = useAppSelector(selectAuth);
   return (
     <div className={cx("container")}>
       <div className={cx("navigation_container")}>

@@ -1,10 +1,14 @@
+"use client";
 "use strict";
 exports.__esModule = true;
+var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
+var hooks_1 = require("@/src/app/lib/hooks");
 var bind_1 = require("classnames/bind");
 var link_1 = require("next/link");
 var MainNavBar_module_scss_1 = require("./MainNavBar.module.scss");
 var cx = bind_1["default"].bind(MainNavBar_module_scss_1["default"]);
 function MainNavBar() {
+    var useAuthSelector = hooks_1.useAppSelector(authSlice_1.selectAuth);
     return (React.createElement("div", { className: cx("container") },
         React.createElement("div", { className: cx("navigation_container") },
             React.createElement("nav", { className: cx("navigation") },

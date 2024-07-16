@@ -57,7 +57,7 @@ var FieldBox_module_scss_1 = require("./FieldBox.module.scss");
 var cx = bind_1["default"].bind(FieldBox_module_scss_1["default"]);
 function EducationFieldBox(_a) {
     var _this = this;
-    var item = _a.item, portpolioId = _a.portpolioId, index = _a.index, majorList = _a.majorList;
+    var item = _a.item, index = _a.index, majorList = _a.majorList;
     var _b = react_1.useState(""), searchValue = _b[0], setSearchValue = _b[1];
     var _c = react_1.useState([]), searchResult = _c[0], setSearchResult = _c[1];
     // 전공

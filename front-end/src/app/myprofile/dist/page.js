@@ -71,6 +71,7 @@ function Page() {
                 case 0: return [4 /*yield*/, getUserData()];
                 case 1:
                     userData = _a.sent();
+                    // TODO: 데이터를 이렇게 가꼬오지말고, 컴퍼넌트에서 가져오기
                     return [2 /*return*/, (React.createElement("div", { className: cx("grid_container") },
                             React.createElement(MyProfileBoxTwo_1["default"], { userData: userData.user_data }),
                             React.createElement(Divider_1["default"], { color: "gray" }),

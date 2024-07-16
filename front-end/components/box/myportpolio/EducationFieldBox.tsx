@@ -32,8 +32,7 @@ type FieldBoxProps = {
   majorList: string[];
 };
 function EducationFieldBox({
-  item,
-  portpolioId,
+  item,  
   index,
   majorList,
 }: FieldBoxProps) {

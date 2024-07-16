@@ -1,7 +1,7 @@
 "use client";
 import { RootState } from "@/src/app/lib/store";
 import { CompanyItem, MajorItem } from "@/types/api";
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 type PortPolioState = {
   majorData: MajorItem[];

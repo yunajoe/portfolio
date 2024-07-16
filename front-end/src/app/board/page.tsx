@@ -1,6 +1,5 @@
 import { getDefaultPortPolio } from "@/api/portpolio";
 import DefaultPortPolio from "@/components/data/DefaultPortPolio";
-import BoardPageLayout from "@/src/app/board/layout";
 import { Suspense } from "react";
 
 // https://velog.io/@miso1489/SassSCSS-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-mixin
@@ -17,10 +16,8 @@ export default async function Page() {
   const defaultPortPolios = await getDefaultPortPolios();
 
   return (
-    <BoardPageLayout>
-      <Suspense fallback={<div>Loading...</div>}>
-        <DefaultPortPolio data={defaultPortPolios.data.result} />
-      </Suspense>
-    </BoardPageLayout>
+    <Suspense fallback={<div>Loading...</div>}>
+      <DefaultPortPolio data={defaultPortPolios.data.result} />
+    </Suspense>
   );
 }
