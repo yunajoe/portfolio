@@ -32,3 +32,23 @@ export type CompanyItem = {
   afilCmpyCrno: string;
   lstgYn: string;
 };
+
+export type UserCollection = {
+  status: number;
+  message: string;
+  access_token: string;
+  refresh_token: string;
+  user_data: User;
+};
+
+export type User = {
+  _id: string;
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  type: string;
+  tokenKeyValue: string;
+  accessToken: string;
+  refreshToken: string;
+};

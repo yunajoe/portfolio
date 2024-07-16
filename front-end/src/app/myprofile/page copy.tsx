@@ -1,26 +1,19 @@
+"use client";
+
 import classNames from "classnames/bind";
 
-import { getUserInfoByRefreshToken } from "@/api/user";
-import MyProfileBox from "@/components/box/mypofile/MyProfileBox";
+import CareerAddButton from "@/components/button/CareerAddButton";
+import EducationAddButton from "@/components/button/EducationAddButton";
 import Divider from "@/components/divider/Divider";
-import { getCookie } from "cookies-next";
-import { cookies } from "next/headers";
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { useAppSelector } from "@/src/app/lib/hooks";
 import styles from "./layout.module.scss";
 
 const cx = classNames.bind(styles);
 
-async function getUserData() {
-  const refreshToken = await getCookie("refreshToken", { cookies });
-  if (refreshToken) {
-    const res = await getUserInfoByRefreshToken(refreshToken);
-
-    return res.data;
-  }
-}
-
-export default async function Page() {
-  const userData = await getUserData();
-
+function Page() {
+  const useAuthSelector = useAppSelector(selectAuth);
+  console.log("userAututh", useAuthSelector);
   return (
     <div className={cx("grid_container")}>
       <div className={cx("menu_container")}>
@@ -38,9 +31,7 @@ export default async function Page() {
       </div>
 
       <Divider color="gray" />
-      <MyProfileBox userData={userData.user_data} />
-
-      {/* <div className={cx("myprofile_container")}>
+      <div className={cx("myprofile_container")}>
         <section className={cx("myinfo_section")}>
           <div className={cx("myinfo")}>
             <span>user계정의 이미지</span>
@@ -52,9 +43,9 @@ export default async function Page() {
           <EducationAddButton />
           <CareerAddButton />
         </section>
-      </div> */}
+      </div>
     </div>
   );
 }
 
-// export default Page;
+export default Page;

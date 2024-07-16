@@ -1,6 +1,6 @@
 .container {
   border-radius: 12px;
-  background-color: hsla(225, 5%, 46%, 0.05);
+  background-color: var(--gray-button-background);
   display: flex;
   justify-content: space-between;
   align-items: center;

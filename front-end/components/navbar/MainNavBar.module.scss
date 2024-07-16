@@ -41,11 +41,10 @@
     margin-right: 40px;
     transition: color 0.3s ease;
     cursor: pointer;
-    border: 5px solid yellow;
     padding: 10px;
 
-    &:hover {
-      color: gray;
-    }
+    // &:hover {
+    //   color: gray;
+    // }
   }
 }

@@ -1,12 +1,13 @@
 @import "/styles/reset.scss";
 
 :root {
-  --primary-color: #007bff; /* 전역으로 사용할 색상 변수 정의 */
-  --secondary-color: #6c757d;
-
   //  navigation
   --white: #ffffff;
 
   // myportpolio
   --portpolio-background: #eeeeee;
+
+  // button
+  --gray-button-border: rgba(240, 236, 238, 0.8);
+  --gray-button-background: hsla(225, 5%, 46%, 0.05);
 }

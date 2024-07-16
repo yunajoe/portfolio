@@ -11,7 +11,7 @@ type MyProfileLayoutProps = {
 function MyProfileLayout({ children }: MyProfileLayoutProps) {
   return (
     <div className={cx("container")}>
-      <MainNavBar />  
+      <MainNavBar />
       {children}
     </div>
   );
