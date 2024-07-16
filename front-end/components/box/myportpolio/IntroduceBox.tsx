@@ -1,7 +1,7 @@
 import { introTextEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import classNames from "classnames/bind";
-import styles from "./IntroduceBox.module.css";
+import styles from "./IntroduceBox.module.scss";
 const cx = classNames.bind(styles);
 
 type IntroduceBoxProps = {

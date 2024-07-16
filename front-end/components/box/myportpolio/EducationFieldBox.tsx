@@ -22,7 +22,7 @@ import { IconX } from "@tabler/icons-react";
 import EducationFieldDeleteModal from "@/components/modal/type/EducationFieldDeleteModal";
 import classNames from "classnames/bind";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
-import styles from "./FieldBox.module.css";
+import styles from "./FieldBox.module.scss";
 const cx = classNames.bind(styles);
 
 type FieldBoxProps = {

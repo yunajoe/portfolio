@@ -1,7 +1,7 @@
 "use client";
 "use strict";
 exports.__esModule = true;
-var CreatePortPolioCard_1 = require("@/components/card/CreatePortPolioCard");
+var CreatePortPolioCard_1 = require("@/components/card/PortPolioCard/CreatePortPolioCard");
 var PortPolioDate_1 = require("@/components/card/PortPolioCard/PortPolioDate");
 var PortPolioName_1 = require("@/components/card/PortPolioCard/PortPolioName");
 var Divider_1 = require("@/components/divider/Divider");
@@ -60,6 +60,7 @@ function Page() {
         deletePortPolioStatus,
         savePortPolioStatus,
     ]);
+    // TODO: useEffect없이 그냥 if문으로 reset하기 => 안됨
     react_1.useEffect(function () {
         if (useStatusSelector.updatePortPolioNameStatus === 200) {
             dispatch(statusSlice_1.updatePortPolioNameStatusReset());

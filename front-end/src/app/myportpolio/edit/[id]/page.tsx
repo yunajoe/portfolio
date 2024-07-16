@@ -1,8 +1,8 @@
 "use client";
-import CareerFieldBox from "@/components/box/CareerFieldBox";
-import EducationFieldBox from "@/components/box/EducationFieldBox";
-import InputBox from "@/components/box/InputBox";
-import IntroduceBox from "@/components/box/IntroduceBox";
+import CareerFieldBox from "@/components/box/myportpolio/CareerFieldBox";
+import EducationFieldBox from "@/components/box/myportpolio/EducationFieldBox";
+import InputBox from "@/components/box/myportpolio/InputBox";
+import IntroduceBox from "@/components/box/myportpolio/IntroduceBox";
 import { career, intro, school } from "@/constant/text";
 import { ToastContext } from "@/context/ToastContext";
 import AddIcon from "@/public/icons/AddIcon";

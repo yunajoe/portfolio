@@ -4,8 +4,8 @@ var bind_1 = require("classnames/bind");
 var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
 var react_1 = require("react");
-var PortPolioName_module_css_1 = require("./PortPolioName.module.css");
-var cx = bind_1["default"].bind(PortPolioName_module_css_1["default"]);
+var PortPolioName_module_scss_1 = require("./PortPolioName.module.scss");
+var cx = bind_1["default"].bind(PortPolioName_module_scss_1["default"]);
 function PortPolioName(_a) {
     var usersTableId = _a.usersTableId, portpolioId = _a.portpolioId, portpolioName = _a.portpolioName, isResumeNameEdit = _a.isResumeNameEdit, setIsResumeNameEdit = _a.setIsResumeNameEdit;
     var ref = react_1.useRef(null);

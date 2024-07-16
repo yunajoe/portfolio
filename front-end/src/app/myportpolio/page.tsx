@@ -1,6 +1,6 @@
 "use client";
 
-import CreatePortPolioCard from "@/components/card/CreatePortPolioCard";
+import CreatePortPolioCard from "@/components/card/PortPolioCard/CreatePortPolioCard";
 import PortPolioDate from "@/components/card/PortPolioCard/PortPolioDate";
 import PortPolioName from "@/components/card/PortPolioCard/PortPolioName";
 import Divider from "@/components/divider/Divider";
@@ -78,6 +78,7 @@ function Page() {
     savePortPolioStatus,
   ]);
 
+  // TODO: useEffect없이 그냥 if문으로 reset하기 => 안됨
   useEffect(() => {
     if (useStatusSelector.updatePortPolioNameStatus === 200) {
       dispatch(updatePortPolioNameStatusReset());

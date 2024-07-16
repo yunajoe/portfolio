@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import styles from "./PortPolioName.module.css";
+import styles from "./PortPolioName.module.scss";
 const cx = classNames.bind(styles);
 
 type PorPolioNameProps = {

@@ -15,7 +15,7 @@ import { IconX } from "@tabler/icons-react";
 import CareerFieldDeleteModal from "@/components/modal/type/CareerFieldDeleteModal";
 import classNames from "classnames/bind";
 import { ChangeEvent, useCallback, useState } from "react";
-import styles from "./FieldBox.module.css";
+import styles from "./FieldBox.module.scss";
 const cx = classNames.bind(styles);
 
 type FieldBoxProps = {

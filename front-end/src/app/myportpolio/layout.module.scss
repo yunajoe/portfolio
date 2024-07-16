@@ -3,6 +3,7 @@
 .grid_container {
   display: grid;
   border: 5px solid red;
+  row-gap: 10px;
   width: 80%;
   margin: 0 auto;
 
@@ -12,10 +13,10 @@
   }
   @include laptop {
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 30px;
+    column-gap: 20px;
   }
   @include desktop {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 20px;
   }
 }
