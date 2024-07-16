@@ -229,4 +229,24 @@ export const findUserByRefreshToken = async (refreshToken: string) => {
   }
 };
 
-//
+// 로그아웃시 ,accessToken, refreshToken, keyValue다 없애기
+
+export const deleteAccessAndRefreshToken = async (_id: ObjectId) => {
+  try {
+    await db.collection("users").updateOne(
+      {
+        _id: _id,
+      },
+      {
+        $set: {
+          tokenKeyValue: "",
+          accessToken: "",
+          refreshToken: "",
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    throw err;
+  }
+};

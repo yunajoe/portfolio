@@ -29,6 +29,14 @@ userRouter.get(
 );
 
 userRouter.get(
+  "/user/findByAccessToken",
+  async (req: Request, res: Response) => {
+    const accessToken = req.query.accessToken as string;
+    console.log("AccessToken", accessToken);
+  }
+);
+
+userRouter.get(
   "/user/findByRefreshToken",
   async (req: Request, res: Response) => {
     const refreshToken = req.query.refreshToken as string;

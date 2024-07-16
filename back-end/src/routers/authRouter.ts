@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
-import { Request, Response, Router } from "express";
-import { UUID } from "mongodb";
-import { updateAccessToken } from "../db/users";
+import { NextFunction, Request, Response, Router } from "express";
+import { ObjectId, UUID } from "mongodb";
+
+import { deleteAccessAndRefreshToken, updateAccessToken } from "../db/users";
 import {
   createInitPortPolio,
   loginKaKao,
@@ -17,8 +18,6 @@ const authRouter = Router();
 authRouter.get("/auth", (req: Request, res: Response) => {
   res.send("Auth페이지입니다");
 });
-
-authRouter.post("/auth/login/kakao", loginKaKao, makeOwnAccessAndRefreshToken);
 
 // refreshToken으로 accessToken만들기
 authRouter.get(
@@ -52,6 +51,9 @@ authRouter.get(
   }
 );
 
+// kakao 회원가입 && 로그인
+authRouter.post("/auth/login/kakao", loginKaKao, makeOwnAccessAndRefreshToken);
+
 // 일반 회원가입
 
 authRouter.post(
@@ -67,6 +69,30 @@ authRouter.post(
   loginLocal,
   updateTokenKeyValue,
   makeOwnAccessAndRefreshToken
+);
+
+// 로그아웃
+authRouter.post(
+  "/auth/logout",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { data } = req.body;
+    try {
+      const objectId = new ObjectId(data._id);
+      const result = await deleteAccessAndRefreshToken(objectId);
+      if (result) {
+        return res.send({
+          status: 200,
+          message: "로그아웃이 성공적으로 되었습니다",
+        });
+      }
+      return res.send({
+        status: 400,
+        message: "로그아웃에 실패하였습니다",
+      });
+    } catch (err) {
+      return res.status(500).send("Server Error");
+    }
+  }
 );
 
 module.exports = authRouter;
