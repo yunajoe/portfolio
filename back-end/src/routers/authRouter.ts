@@ -77,7 +77,7 @@ authRouter.post(
   async (req: Request, res: Response, next: NextFunction) => {
     const { data } = req.body;
     try {
-      const objectId = new ObjectId(data._id);
+      const objectId = new ObjectId(data);
       const result = await deleteAccessAndRefreshToken(objectId);
       if (result) {
         return res.send({
