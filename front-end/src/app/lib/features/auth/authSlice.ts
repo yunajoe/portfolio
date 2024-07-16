@@ -9,10 +9,14 @@ export type AuthState = {
   message: string;
   userData: {
     _id: string;
+    id: number;
     username: string;
     email: string;
+    password: string;
     type: string;
     tokenKeyValue: string;
+    accessToken: string;
+    refreshToken: string;
   };
 };
 
@@ -22,10 +26,14 @@ const initialState: AuthState = {
   message: "",
   userData: {
     _id: "",
+    id: 0,
     username: "",
     email: "",
+    password: "",
     type: "",
     tokenKeyValue: "",
+    accessToken: "",
+    refreshToken: "",
   },
 };
 

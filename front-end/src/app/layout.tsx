@@ -1,6 +1,6 @@
 // https://mantine.dev/styles/responsive/
-import { searchCompany, searchMajor } from "@/api/search";
 import { getUserInfoByRefreshToken } from "@/api/user";
+import MainNavBar from "@/components/navbar/MainNavBar";
 import AutoLoginProvider from "@/components/provider/AutoLoginProvider";
 import { notoSansKrMedium } from "@/public/fonts/notoSansKr";
 import StoreProvider from "@/src/app/StoreProvider";
@@ -19,16 +19,6 @@ const userDataFetchFunc = async () => {
   }
 };
 
-// https://nextjs.org/docs/app/building-your-application/data-fetching/patterns
-async function getMajor() {
-  const result = await searchMajor();
-  return result;
-}
-
-async function getCompany() {
-  const result = await searchCompany();
-  return result;
-}
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -36,17 +26,15 @@ export default async function RootLayout({
 }>) {
   const user = await userDataFetchFunc();
 
-  // const majorData = getMajor();
-  // const companyData = getCompany();
-
-  // const [majorList, companyList] = await Promise.all([majorData, companyData]);
-
   return (
     <html lang="en" className={`${notoSansKrMedium}`}>
       <body>
         <StoreProvider>
           <MantineProvider>
-            <AutoLoginProvider user={user?.data}>{children}</AutoLoginProvider>
+            <AutoLoginProvider user={user?.data}>
+              <MainNavBar />
+              {children}
+            </AutoLoginProvider>
           </MantineProvider>
         </StoreProvider>
       </body>

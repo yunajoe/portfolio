@@ -3,17 +3,21 @@ import Divider from "@/components/divider/Divider";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
+import { User } from "@/types/api";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
 import styles from "./MyProfileBoxTwo.module.scss";
 const cx = classNames.bind(styles);
+type MyProfileBoxProps = {
+  userData: User;
+};
 
-function MyProfileBoxTwo() {
+function MyProfileBoxTwo({ userData }: MyProfileBoxProps) {
   const dispatch = useAppDispatch();
-  const { userData } = useAppSelector(selectAuth);
+  const useAuthSelector = useAppSelector(selectAuth);
   const useStatusSelector = useAppSelector(selectStatus);
   const { logOutStatus } = useStatusSelector;
-  const router = useRouter(); 
+  const router = useRouter(); // useRouter 훅 사용
 
   const handleLogOut = () => {
     dispatch({ type: "LOGOUT_REQUEST", _id: userData._id });

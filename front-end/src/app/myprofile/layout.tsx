@@ -1,4 +1,3 @@
-import MainNavBar from "@/components/navbar/MainNavBar";
 import classNames from "classnames/bind";
 import React from "react";
 import styles from "./layout.module.scss";
@@ -12,7 +11,7 @@ export default async function MyProfileLayout({
 }: MyProfileLayoutProps) {
   return (
     <div className={cx("container")}>
-      <MainNavBar />
+      {/* <MainNavBar /> */}
       {children}
     </div>
   );

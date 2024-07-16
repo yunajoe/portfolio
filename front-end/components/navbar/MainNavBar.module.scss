@@ -32,9 +32,10 @@
 
 //
 .menubar_list {
+  border: 5px solid blue;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   list-style: none;
 
   & li {
@@ -42,9 +43,5 @@
     transition: color 0.3s ease;
     cursor: pointer;
     padding: 10px;
-
-    // &:hover {
-    //   color: gray;
-    // }
   }
 }

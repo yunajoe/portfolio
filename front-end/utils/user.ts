@@ -1,5 +1,5 @@
 export const convertAvatarLetter = (name: string) => {
-  return name[0].toUpperCase();
+  return name[0]?.toUpperCase();
 };
 
 export const avatarColor: { [key: string]: string } = {

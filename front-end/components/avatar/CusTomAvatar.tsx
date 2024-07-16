@@ -4,14 +4,15 @@ import { Avatar } from "@mantine/core";
 
 type CusTomAvatarProps = {
   userData: User;
+  size?: string;
 };
 
-function CusTomAvatar({ userData }: CusTomAvatarProps) {
+function CusTomAvatar({ userData, size = "35px" }: CusTomAvatarProps) {
   const initLetter = convertAvatarLetter(userData.username);
   const color = avatarColor[initLetter];
 
   return (
-    <Avatar size="100px" color={color}>
+    <Avatar size={size} color={color}>
       {initLetter}
     </Avatar>
   );

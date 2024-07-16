@@ -1,3 +1,4 @@
+"use";
 "use strict";
 exports.__esModule = true;
 var CusTomAvatar_1 = require("@/components/avatar/CusTomAvatar");
@@ -8,6 +9,8 @@ var bind_1 = require("classnames/bind");
 var MyProfileBox_module_scss_1 = require("./MyProfileBox.module.scss");
 var cx = bind_1["default"].bind(MyProfileBox_module_scss_1["default"]);
 function MyProfileBox(_a) {
+    // const useAuthSelector = useAppSelector(selectAuth);
+    // console.log("userAuth", useAuthSelector);
     var userData = _a.userData;
     return (React.createElement("div", { className: cx("myprofile_container") },
         React.createElement("section", { className: cx("myinfo_section") },
