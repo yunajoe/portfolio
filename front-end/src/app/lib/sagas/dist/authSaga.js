@@ -31,6 +31,7 @@ exports.__esModule = true;
 exports.authSaga = void 0;
 var auth_1 = require("@/api/auth");
 var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
+var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var effects_1 = require("redux-saga/effects");
 function kakaoLoginUser(action) {
     var result, err_1;
@@ -41,7 +42,6 @@ function kakaoLoginUser(action) {
                 return [4 /*yield*/, effects_1.call(auth_1.getKaKaoAccessToken, action.code)];
             case 1:
                 result = _a.sent();
-                console.log("result", result.data);
                 return [4 /*yield*/, effects_1.put(authSlice_1.loginSuccess(result.data))];
             case 2:
                 _a.sent();
@@ -103,6 +103,29 @@ function localLoginUser(action) {
         }
     });
 }
+function logoutUser(action) {
+    var result, err_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 4, , 5]);
+                return [4 /*yield*/, effects_1.call(auth_1.logout, action)];
+            case 1:
+                result = _a.sent();
+                return [4 /*yield*/, effects_1.put(authSlice_1.logoutSuccess(result.data))];
+            case 2:
+                _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.logOutStatus(result.data))];
+            case 3:
+                _a.sent();
+                return [3 /*break*/, 5];
+            case 4:
+                err_4 = _a.sent();
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
+        }
+    });
+}
 // refresh토큰으로 accessToken
 function authSaga() {
     return __generator(this, function (_a) {
@@ -115,6 +138,9 @@ function authSaga() {
                 _a.sent();
                 return [4 /*yield*/, effects_1.takeEvery("LOCAL_LOGIN_REQUEST", localLoginUser)];
             case 3:
+                _a.sent();
+                return [4 /*yield*/, effects_1.takeLatest("LOGOUT_REQUEST", logoutUser)];
+            case 4:
                 _a.sent();
                 return [2 /*return*/];
         }

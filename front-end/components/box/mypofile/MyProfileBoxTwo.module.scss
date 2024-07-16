@@ -1,0 +1,47 @@
+@import "/styles/mixin.scss";
+
+// grid 1
+.menu_container {
+  // border: 5px solid blue;
+}
+
+// munulist
+.menu_list {
+  @include mobile {
+    display: flex;
+  }
+  @include laptop {
+    display: flex;
+  }
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+  }
+  & li {
+    cursor: pointer;
+    padding: 10px;
+    // border: 5px solid blue;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: rgba(55, 56, 60, 0.1);
+      transition: opacity 0.2s ease;
+      border-radius: 5px;
+    }
+  }
+}
+
+.menu_list_divider {
+  @include mobile {
+    display: none;
+  }
+  @include laptop {
+    display: none;
+  }
+  @include desktop {
+    display: black;
+  }
+}
+.text {
+  font-size: 20px;
+}

@@ -13,7 +13,7 @@ var __assign = (this && this.__assign) || function () {
 };
 var _a;
 exports.__esModule = true;
-exports.selectAuth = exports.loginFail = exports.loginSuccess = exports.registerFail = exports.registerSuccess = void 0;
+exports.selectAuth = exports.logoutSuccess = exports.loginFail = exports.loginSuccess = exports.registerFail = exports.registerSuccess = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var cookies_next_1 = require("cookies-next");
 var initialState = {
@@ -62,11 +62,20 @@ var authSlice = toolkit_1.createSlice({
         loginFail: function (state, action) {
             // status는  payload값으로 안 넘어옴 와이?
             return __assign({}, initialState);
-        }
+        },
+        logoutSuccess: function (state, action) {
+            var _a = action.payload, status = _a.status, message = _a.message;
+            if (status === 200) {
+                cookies_next_1.deleteCookie("accessToken");
+                cookies_next_1.deleteCookie("refreshToken");
+                return __assign({}, initialState);
+            }
+        },
+        logoutFail: function (state, action) { }
     }
 });
 // 액션
-exports.registerSuccess = (_a = authSlice.actions, _a.registerSuccess), exports.registerFail = _a.registerFail, exports.loginSuccess = _a.loginSuccess, exports.loginFail = _a.loginFail;
+exports.registerSuccess = (_a = authSlice.actions, _a.registerSuccess), exports.registerFail = _a.registerFail, exports.loginSuccess = _a.loginSuccess, exports.loginFail = _a.loginFail, exports.logoutSuccess = _a.logoutSuccess;
 // selectore
 exports.selectAuth = function (state) { return state.auth; };
 exports["default"] = authSlice;

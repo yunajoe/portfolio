@@ -39,6 +39,7 @@ exports.__esModule = true;
 var bind_1 = require("classnames/bind");
 var user_1 = require("@/api/user");
 var MyProfileBox_1 = require("@/components/box/mypofile/MyProfileBox");
+var MyProfileBoxTwo_1 = require("@/components/box/mypofile/MyProfileBoxTwo");
 var Divider_1 = require("@/components/divider/Divider");
 var cookies_next_1 = require("cookies-next");
 var headers_1 = require("next/headers");
@@ -71,14 +72,7 @@ function Page() {
                 case 1:
                     userData = _a.sent();
                     return [2 /*return*/, (React.createElement("div", { className: cx("grid_container") },
-                            React.createElement("div", { className: cx("menu_container") },
-                                React.createElement("ul", { className: cx("menu_list") },
-                                    React.createElement("li", null,
-                                        React.createElement("span", { className: cx("text") }, "\uB0B4 \uD504\uB85C\uD544")),
-                                    React.createElement("div", { className: cx("menu_list_divider") },
-                                        React.createElement(Divider_1["default"], { color: "gray" })),
-                                    React.createElement("li", null,
-                                        React.createElement("span", { className: cx("text") }, "\uB85C\uADF8\uC544\uC6C3")))),
+                            React.createElement(MyProfileBoxTwo_1["default"], { userData: userData.user_data }),
                             React.createElement(Divider_1["default"], { color: "gray" }),
                             React.createElement(MyProfileBox_1["default"], { userData: userData.user_data })))];
             }

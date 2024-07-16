@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.loginLocal = exports.registerLocal = exports.getKaKaoAccessToken = void 0;
+exports.logout = exports.loginLocal = exports.registerLocal = exports.getKaKaoAccessToken = void 0;
 var _1 = require(".");
 exports.getKaKaoAccessToken = function (kakaoAuthCode) { return __awaiter(void 0, void 0, void 0, function () {
     var response;
@@ -72,6 +72,21 @@ exports.loginLocal = function (data) { return __awaiter(void 0, void 0, void 0, 
             case 0: return [4 /*yield*/, _1["default"].post("auth/login/local", {
                     data: data
                 })];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, response];
+        }
+    });
+}); };
+exports.logout = function (data) { return __awaiter(void 0, void 0, void 0, function () {
+    var _id, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _id = data._id;
+                return [4 /*yield*/, _1["default"].post("auth/logout", {
+                        data: _id
+                    })];
             case 1:
                 response = _a.sent();
                 return [2 /*return*/, response];

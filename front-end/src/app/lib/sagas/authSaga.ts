@@ -1,19 +1,25 @@
 "use client";
 
-import { getKaKaoAccessToken, loginLocal, registerLocal } from "@/api/auth";
+import {
+  getKaKaoAccessToken,
+  loginLocal,
+  logout,
+  registerLocal,
+} from "@/api/auth";
 import {
   loginFail,
   loginSuccess,
+  logoutSuccess,
   registerFail,
   registerSuccess,
 } from "@/src/app/lib/features/auth/authSlice";
-import { kakaoLoginUserSaga } from "@/types/authSaga";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { logOutStatus } from "@/src/app/lib/features/status/statusSlice";
+import { KaKaoLoginUserSaga, LogoutUserSaga } from "@/types/authSaga";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
-function* kakaoLoginUser(action: kakaoLoginUserSaga): any {
+function* kakaoLoginUser(action: KaKaoLoginUserSaga): any {
   try {
     const result = yield call(getKaKaoAccessToken, action.code);
-    console.log("result", result.data);
     yield put(loginSuccess(result.data));
   } catch (err) {
     yield put(loginFail(err));
@@ -39,10 +45,19 @@ function* localLoginUser(action: any): any {
   }
 }
 
+function* logoutUser(action: LogoutUserSaga): any {
+  try {
+    const result = yield call(logout, action);
+    yield put(logoutSuccess(result.data));
+    yield put(logOutStatus(result.data));  
+  } catch (err) {}
+}
+
 // refresh토큰으로 accessToken
 
 export function* authSaga() {
   yield takeEvery("KAKAO_LOGIN_REQUEST", kakaoLoginUser);
   yield takeEvery("LOCAL_REGISTER_REQUEST", localRegisterUser);
   yield takeEvery("LOCAL_LOGIN_REQUEST", localLoginUser);
+  yield takeLatest("LOGOUT_REQUEST", logoutUser);
 }

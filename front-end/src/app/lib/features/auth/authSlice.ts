@@ -1,7 +1,7 @@
 "use client";
 import { RootState } from "@/src/app/lib/store";
 import { createSlice } from "@reduxjs/toolkit";
-import { setCookie } from "cookies-next";
+import { deleteCookie, setCookie } from "cookies-next";
 
 export type AuthState = {
   isLogin: boolean;
@@ -75,12 +75,29 @@ const authSlice = createSlice({
         ...initialState,
       };
     },
+
+    logoutSuccess: (state, action) => {
+      const { status, message } = action.payload;
+      if (status === 200) {
+        deleteCookie("accessToken");
+        deleteCookie("refreshToken");
+        return {
+          ...initialState,
+        };
+      }
+    },
+    logoutFail: (state, action) => {},
   },
 });
 
 // 액션
-export const { registerSuccess, registerFail, loginSuccess, loginFail } =
-  authSlice.actions;
+export const {
+  registerSuccess,
+  registerFail,
+  loginSuccess,
+  loginFail,
+  logoutSuccess,
+} = authSlice.actions;
 
 // selectore
 export const selectAuth = (state: RootState) => state.auth;

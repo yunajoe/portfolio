@@ -16,6 +16,10 @@ type StatusState = {
   savePortPolioMessage: string;
   deletePortPolioStatus: number | null;
   deletePortPolioMessage: string;
+
+  // logout
+  logOutStatus: number | null;
+  logOutMessage: string;
 };
 
 const initialState: StatusState = {
@@ -31,6 +35,8 @@ const initialState: StatusState = {
   savePortPolioMessage: "",
   deletePortPolioStatus: null,
   deletePortPolioMessage: "",
+  logOutStatus: null,
+  logOutMessage: "",
 };
 
 const statusSlice = createSlice({
@@ -75,6 +81,12 @@ const statusSlice = createSlice({
       state.defaultPortPolioMessage = message;
     },
 
+    // logout
+    logOutStatus: (state, action) => {
+      const { status, message } = action.payload;
+      state.logOutStatus = status;
+      state.logOutMessage = message;
+    },
     // reset
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
@@ -83,6 +95,11 @@ const statusSlice = createSlice({
     updatePortPolioNameStatusReset: (state) => {
       state.updatePortPolioNameStatus = null;
       state.updatePortPolioNameMessage = "";
+    },
+
+    logOutStatusReset: (state) => {
+      state.logOutStatus = null;
+      state.logOutMessage = "";
     },
   },
 });
@@ -95,8 +112,10 @@ export const {
   savePortPolioStatus,
   deletePortPolioStatus,
   defaultPortPolioStatus,
+  logOutStatus,
   defaultPortPolioReset,
   updatePortPolioNameStatusReset,
+  logOutStatusReset,
 } = statusSlice.actions;
 
 // selectore

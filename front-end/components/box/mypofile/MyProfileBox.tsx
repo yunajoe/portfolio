@@ -1,4 +1,5 @@
 import CusTomAvatar from "@/components/avatar/CusTomAvatar";
+import MyProfileName from "@/components/box/mypofile/MyProfileName";
 import CareerAddButton from "@/components/button/CareerAddButton";
 import EducationAddButton from "@/components/button/EducationAddButton";
 import { User } from "@/types/api";
@@ -12,14 +13,12 @@ type MyProfileBoxProps = {
 };
 
 function MyProfileBox({ userData }: MyProfileBoxProps) {
-  console.log("ㅎㅎㅎ", userData);
-
   return (
     <div className={cx("myprofile_container")}>
       <section className={cx("myinfo_section")}>
         <div className={cx("myinfo")}>
           <CusTomAvatar userData={userData} />
-          <span>{userData.username}</span>
+          <MyProfileName userData={userData} />
         </div>
         <div className={cx("settings")}>설정</div>
       </section>

@@ -9,15 +9,14 @@ export const getKaKaoAccessToken = async (kakaoAuthCode: string) => {
   return response;
 };
 
-export interface GetAccessToken {
-  type: string;
-  accessToken: string;
-  refreshToken: string;
-}
-
 export type registerLocalType = {
   email: string;
   password: string;
+};
+
+export type logoutType = {
+  type: string;
+  _id: string;
 };
 
 export const registerLocal = async (data: registerLocalType) => {
@@ -30,6 +29,14 @@ export const registerLocal = async (data: registerLocalType) => {
 export const loginLocal = async (data: registerLocalType) => {
   const response = await instance.post("auth/login/local", {
     data,
+  });
+  return response;
+};
+
+export const logout = async (data: logoutType) => {
+  const { _id } = data;
+  const response = await instance.post("auth/logout", {
+    data: _id,
   });
   return response;
 };

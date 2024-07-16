@@ -2,7 +2,7 @@
 "use strict";
 var _a;
 exports.__esModule = true;
-exports.selectStatus = exports.updatePortPolioNameStatusReset = exports.defaultPortPolioReset = exports.defaultPortPolioStatus = exports.deletePortPolioStatus = exports.savePortPolioStatus = exports.updatePortPolioNameStatus = exports.refreshTokenStatus = exports.accessTokenStatus = void 0;
+exports.selectStatus = exports.logOutStatusReset = exports.updatePortPolioNameStatusReset = exports.defaultPortPolioReset = exports.logOutStatus = exports.defaultPortPolioStatus = exports.deletePortPolioStatus = exports.savePortPolioStatus = exports.updatePortPolioNameStatus = exports.refreshTokenStatus = exports.accessTokenStatus = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var cookies_next_1 = require("cookies-next");
 var initialState = {
@@ -17,7 +17,9 @@ var initialState = {
     savePortPolioStatus: null,
     savePortPolioMessage: "",
     deletePortPolioStatus: null,
-    deletePortPolioMessage: ""
+    deletePortPolioMessage: "",
+    logOutStatus: null,
+    logOutMessage: ""
 };
 var statusSlice = toolkit_1.createSlice({
     name: "status",
@@ -60,6 +62,12 @@ var statusSlice = toolkit_1.createSlice({
             state.defaultPortPolioStatus = status;
             state.defaultPortPolioMessage = message;
         },
+        // logout
+        logOutStatus: function (state, action) {
+            var _a = action.payload, status = _a.status, message = _a.message;
+            state.logOutStatus = status;
+            state.logOutMessage = message;
+        },
         // reset
         defaultPortPolioReset: function (state) {
             state.defaultPortPolioStatus = null;
@@ -68,11 +76,15 @@ var statusSlice = toolkit_1.createSlice({
         updatePortPolioNameStatusReset: function (state) {
             state.updatePortPolioNameStatus = null;
             state.updatePortPolioNameMessage = "";
+        },
+        logOutStatusReset: function (state) {
+            state.logOutStatus = null;
+            state.logOutMessage = "";
         }
     }
 });
 // 액션
-exports.accessTokenStatus = (_a = statusSlice.actions, _a.accessTokenStatus), exports.refreshTokenStatus = _a.refreshTokenStatus, exports.updatePortPolioNameStatus = _a.updatePortPolioNameStatus, exports.savePortPolioStatus = _a.savePortPolioStatus, exports.deletePortPolioStatus = _a.deletePortPolioStatus, exports.defaultPortPolioStatus = _a.defaultPortPolioStatus, exports.defaultPortPolioReset = _a.defaultPortPolioReset, exports.updatePortPolioNameStatusReset = _a.updatePortPolioNameStatusReset;
+exports.accessTokenStatus = (_a = statusSlice.actions, _a.accessTokenStatus), exports.refreshTokenStatus = _a.refreshTokenStatus, exports.updatePortPolioNameStatus = _a.updatePortPolioNameStatus, exports.savePortPolioStatus = _a.savePortPolioStatus, exports.deletePortPolioStatus = _a.deletePortPolioStatus, exports.defaultPortPolioStatus = _a.defaultPortPolioStatus, exports.logOutStatus = _a.logOutStatus, exports.defaultPortPolioReset = _a.defaultPortPolioReset, exports.updatePortPolioNameStatusReset = _a.updatePortPolioNameStatusReset, exports.logOutStatusReset = _a.logOutStatusReset;
 // selectore
 exports.selectStatus = function (state) { return state.status; };
 exports["default"] = statusSlice;

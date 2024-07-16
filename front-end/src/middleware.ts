@@ -7,5 +7,5 @@ export default function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  matcher: "/myportpolio/:path*",
+  matcher: ["/myportpolio/:path*", "/myprofile/:path*"],
 };
