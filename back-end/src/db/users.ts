@@ -233,7 +233,7 @@ export const findUserByRefreshToken = async (refreshToken: string) => {
 
 export const deleteAccessAndRefreshToken = async (_id: ObjectId) => {
   try {
-    const result = await db.collection("users").updateOne(
+    await db.collection("users").updateOne(
       {
         _id: _id,
       },
@@ -245,7 +245,6 @@ export const deleteAccessAndRefreshToken = async (_id: ObjectId) => {
         },
       }
     );
-    console.log("result", result);
     return true;
   } catch (err) {
     throw err;

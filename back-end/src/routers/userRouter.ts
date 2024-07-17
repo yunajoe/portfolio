@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { Request, Response, Router } from "express";
 import { findUserByRefreshToken, findUserByUsersTableId } from "../db/users";
+import { fileStorage, multer } from "../utils/multer";
 
 dotenv.config();
 
@@ -29,14 +30,6 @@ userRouter.get(
 );
 
 userRouter.get(
-  "/user/findByAccessToken",
-  async (req: Request, res: Response) => {
-    const accessToken = req.query.accessToken as string;
-    console.log("AccessToken", accessToken);
-  }
-);
-
-userRouter.get(
   "/user/findByRefreshToken",
   async (req: Request, res: Response) => {
     const refreshToken = req.query.refreshToken as string;
@@ -48,6 +41,22 @@ userRouter.get(
       refresh_token: result.refreshToken,
       user_data: result,
     });
+  }
+);
+
+// req는 요청에 대한 정보
+// file은 업로드한 파일에 대한 정보
+// cb는 함수다
+// cb는 2개의 인자를 받는다
+// 첫 번째 인수에는 에러가 있다면 에러를 넣고, 두 번째 인수에는 실제 경로나 파일 이름을 넣어주면 된다.
+
+const upload = multer({ storage: fileStorage });
+
+userRouter.post(
+  "/user/uploadProfileImage",
+  upload.single("image"),
+  async (req: Request, res: Response) => {
+    console.log(req.file, req.body);
   }
 );
 
