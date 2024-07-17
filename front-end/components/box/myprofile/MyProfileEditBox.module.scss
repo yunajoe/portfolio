@@ -1,0 +1,33 @@
+@import "/styles/mixin.scss";
+
+.first_section {
+  border: 5px solid red;
+  @include mobile {
+    display: none;
+  }
+  @include laptop {
+    display: none;
+  }
+  @include desktop {
+    display: block;
+  }
+}
+
+.profile {
+  display: flex;
+}
+
+//  두번째
+.second_section {
+  border: 5px solid blue;
+}
+
+.profile_initial_image {
+  position: relative;
+}
+
+.add_icon {
+  position: absolute;
+  bottom: 0;
+  left: 78px;
+}

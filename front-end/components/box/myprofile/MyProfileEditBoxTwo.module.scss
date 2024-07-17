@@ -1,0 +1,13 @@
+@import "/styles/mixin.scss";
+
+.menu_list {
+  @include mobile {
+    display: none;
+  }
+  @include laptop {
+    display: none;
+  }
+  @include desktop {
+    display: block;
+  }
+}

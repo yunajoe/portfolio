@@ -1,6 +1,5 @@
 // https://mantine.dev/styles/responsive/
 import { getUserInfoByRefreshToken } from "@/api/user";
-import MainNavBar from "@/components/navbar/MainNavBar";
 import AutoLoginProvider from "@/components/provider/AutoLoginProvider";
 import { notoSansKrMedium } from "@/public/fonts/notoSansKr";
 import StoreProvider from "@/src/app/StoreProvider";
@@ -32,7 +31,7 @@ export default async function RootLayout({
         <StoreProvider>
           <MantineProvider>
             <AutoLoginProvider user={user?.data}>
-              <MainNavBar />
+              {/* <MainNavBar /> */}
               {children}
             </AutoLoginProvider>
           </MantineProvider>

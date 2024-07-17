@@ -3,9 +3,7 @@
 .container {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background-color: var(--white); /* 다른 변수 사용 예시 */
-  //   position: fixed;
-  //   top: 0;
-  //   z-index: 800;
+
   width: 100%;
 }
 
@@ -28,20 +26,43 @@
   justify-content: space-between;
   align-items: center;
   border: 5px solid red;
-}
 
-//
-.menubar_list {
-  border: 5px solid blue;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-
+  & ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+  }
   & li {
-    margin-right: 40px;
+    margin-right: 20px;
     transition: color 0.3s ease;
     cursor: pointer;
     padding: 10px;
   }
 }
+
+.first_navigation_section {
+  @include mobile {
+    visibility: hidden;
+  }
+  @include laptop {
+    visibility: hidden;
+  }
+  @include desktop {
+  }
+}
+//
+// .menubar_list {
+//   border: 5px solid blue;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   list-style: none;
+
+//   & li {
+//     margin-right: 20px;
+//     transition: color 0.3s ease;
+//     cursor: pointer;
+//     padding: 10px;
+//   }
+// }

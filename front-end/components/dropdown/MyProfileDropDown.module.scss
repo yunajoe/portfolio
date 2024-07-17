@@ -1,16 +1,15 @@
 @import "/styles/mixin.scss";
 
 .container {
-  // border: 5px solid red;
   position: absolute;
   width: 250px;
   @include mobile {
-    top: 49%;
+    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   @include laptop {
-    top: 49%;
+    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
   }

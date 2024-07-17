@@ -1,5 +1,6 @@
 "use client";
 
+import MainNavBar from "@/components/navbar/MainNavBar";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import {
   logOutStatusReset,
@@ -47,13 +48,16 @@ export default function Home() {
   );
 
   return (
-    <Center bg="blue" h="100vh">
-      <Stack justify="center" gap="30" w="300px">
-        <Button variant="default" onClick={navigateToBoardPage}>
-          portpolio보러가기
-        </Button>
-        {useAuthSelector.isLogin ? gotoMyPortPolio : gotoCreatePortPolio}
-      </Stack>
-    </Center>
+    <>    
+      <MainNavBar />
+      <Center bg="blue" h="100vh">
+        <Stack justify="center" gap="30" w="300px">
+          <Button variant="default" onClick={navigateToBoardPage}>
+            portpolio보러가기
+          </Button>
+          {useAuthSelector.isLogin ? gotoMyPortPolio : gotoCreatePortPolio}
+        </Stack>
+      </Center>
+    </>
   );
 }
