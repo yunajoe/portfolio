@@ -9,10 +9,5 @@ type MyProfileLayoutProps = {
 export default async function MyProfileLayout({
   children,
 }: MyProfileLayoutProps) {
-  return (
-    <div className={cx("container")}>
-      {/* <MainNavBar /> */}
-      {children}
-    </div>
-  );
+  return <div className={cx("container")}>{children}</div>;
 }

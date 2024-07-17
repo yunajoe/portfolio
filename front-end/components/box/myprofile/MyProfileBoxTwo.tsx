@@ -13,7 +13,7 @@ function MyProfileBoxTwo() {
   const { userData } = useAppSelector(selectAuth);
   const useStatusSelector = useAppSelector(selectStatus);
   const { logOutStatus } = useStatusSelector;
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleLogOut = () => {
     dispatch({ type: "LOGOUT_REQUEST", _id: userData._id });
@@ -30,7 +30,7 @@ function MyProfileBoxTwo() {
           <span className={cx("text")}>내 프로필</span>
         </li>
         <div className={cx("menu_list_divider")}>
-          <Divider color="gray" />
+          <Divider />
         </div>
         <li onClick={handleLogOut}>
           <span className={cx("text")}>로그아웃</span>

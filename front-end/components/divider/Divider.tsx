@@ -4,11 +4,10 @@ import styles from "./Divider.module.scss";
 const cx = classNames.bind(styles);
 
 type DividerProps = {
-  color: "white" | "gray";
   customStyles?: React.CSSProperties;
 };
 
-function Divider({ customStyles, color }: DividerProps) {
+function Divider({ customStyles }: DividerProps) {
   //  prop이 white로 고정되어 있땨.. 왜쥬?
 
   const combinedStyles = {

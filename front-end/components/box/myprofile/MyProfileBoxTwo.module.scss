@@ -3,23 +3,26 @@
 // grid 1
 .menu_container {
   // border: 5px solid blue;
+
+  // margin-bottom: 10px;
 }
 
 // munulist
 .menu_list {
+  display: flex;
   @include mobile {
-    display: flex;
+    flex-direction: row;
   }
   @include laptop {
-    display: flex;
+    flex-direction: row;
   }
   @include desktop {
-    display: flex;
     flex-direction: column;
   }
   & li {
     cursor: pointer;
     padding: 10px;
+    text-align: start;
     // border: 5px solid blue;
     margin-left: 5px;
     margin-bottom: 10px;

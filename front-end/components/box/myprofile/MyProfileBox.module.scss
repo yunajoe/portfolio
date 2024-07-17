@@ -1,0 +1,58 @@
+@import "/styles/mixin.scss";
+
+.myprofile_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.myinfo_section {
+  display: flex;
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  @include laptop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  @include desktop {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.myinfo {
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.settings {
+  border: 1px solid var(--gray-button-border);
+  box-shadow: 0 0 0 1px hsla(225, 5%, 46%, 0.16);
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--gray-button-background);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+  @include laptop {
+    width: 100%;
+  }
+  @include desktop {
+    align-self: center;
+  }
+}
+
+.addbutton_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
