@@ -35,13 +35,8 @@ app.use(portpolioRouter);
 app.use(userRouter);
 
 // multure적용
-// C:\Users\yunaj\OneDrive\바탕 화면\yunaProject\back-end\src\public\images
-const publicPath = path.join(__dirname, "public/images");
-
 app.use("/static/images", express.static("src/public/images"));
 
-// app.use(multer({ storage: fileStorage, fileFilter: fileFilter }));
-//  app.use('/static/images', express.static('public/images'));
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });

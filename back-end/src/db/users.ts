@@ -67,9 +67,11 @@ export const findUserByIdQuery = async (id: number) => {
 };
 
 // _id로 user찾기
-export const findUserByObjectIdQuery = async (_id: ObjectId) => {
+export const findUserByObjectIdQuery = async (_id: string) => {
   try {
-    const user = await db.collection("users").findOne({ _id: _id });
+    const user = await db
+      .collection("users")
+      .findOne({ _id: new ObjectId(_id) });
     return user;
   } catch (err) {
     throw false;
@@ -252,7 +254,7 @@ export const deleteAccessAndRefreshTokenQuery = async (_id: string) => {
   }
 };
 
-// user 이미지 경로를 db에 넣는거
+// user테이블테 이미지  업데이트
 export const updatedProfileImageQuery = async (
   _id: string,
   userprofile: string
@@ -265,6 +267,25 @@ export const updatedProfileImageQuery = async (
       {
         $set: {
           userprofile: userprofile,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    throw false;
+  }
+};
+
+// user테이블에 닉네임 업데이트
+export const updatedNickNameQuery = async (_id: string, username: string) => {
+  try {
+    await db.collection("users").updateOne(
+      {
+        _id: new ObjectId(_id),
+      },
+      {
+        $set: {
+          username: username,
         },
       }
     );

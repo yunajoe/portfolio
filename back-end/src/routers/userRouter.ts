@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
 import { Request, Response, Router } from "express";
 import {
+  findUserByObjectIdQuery,
   findUserByRefreshToken,
   findUserByUsersTableId,
+  updatedNickNameQuery,
   updatedProfileImageQuery,
 } from "../db/users";
 import { fileFilter, fileStorage, multer } from "../utils/multer";
@@ -12,7 +14,34 @@ dotenv.config();
 const userRouter = Router();
 
 userRouter.get(
-  "/user/findByUserTableID",
+  "/user/findUserByObjectID",
+  async (req: Request, res: Response) => {
+    const _id = req.query._id as string;
+
+    try {
+      const result = await findUserByObjectIdQuery(_id);
+      if (result) {
+        return res.send({
+          status: 200,
+          message: "해당 user정보를 찾았습니다",
+          userInfo: result,
+        });
+      }
+      return res.send({
+        status: 400,
+        message: "프로필 이미지가 변경에 실패하였습니다",
+      });
+    } catch (err) {
+      return res.send({
+        status: 500,
+        message: "internal server error",
+      });
+    }
+  }
+);
+
+userRouter.get(
+  "/user/findUserByUserTableID",
   async (req: Request, res: Response) => {
     const users_table_id = req.query.users_table_id as string;
     try {
@@ -90,4 +119,28 @@ userRouter.post(
   }
 );
 
+// "/portpolio/editPortPolioName
+
+userRouter.post("/user/editUserName", async (req: Request, res: Response) => {
+  const { data } = req.body;
+
+  try {
+    const result = await updatedNickNameQuery(data._id, data.username);
+    if (result) {
+      return res.send({
+        status: 200,
+        message: "닉네임이 변경 되었습니다",
+      });
+    }
+    return res.send({
+      status: 401,
+      message: "닉네임 변경에 실패하였습니다",
+    });
+  } catch (err) {
+    return res.send({
+      status: 500,
+      message: "internal server error",
+    });
+  }
+});
 module.exports = userRouter;
