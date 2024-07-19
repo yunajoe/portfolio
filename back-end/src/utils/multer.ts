@@ -1,6 +1,7 @@
 import { FileFilterCallback } from "multer";
-
+// # 인파블로그으
 // https://stackoverflow.com/questions/59097119/using-multer-diskstorage-with-typescript
+// https://wayhome25.github.io/nodejs/2017/02/21/nodejs-15-file-upload/
 export const multer = require("multer");
 
 type DestinationCallback = (error: Error | null, destination: string) => void;
@@ -13,16 +14,17 @@ export const fileStorage = multer.diskStorage({
     callback: DestinationCallback
   ) {
     // 저장위치
-    callback(null, "/uploads");
+    callback(null, "src/public/images");
   },
   filename: function (
     req: Request,
     file: Express.Multer.File,
     callback: FileNameCallback
   ) {
-    console.log("파일이닷", file);
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    callback(null, file.fieldname + "-" + uniqueSuffix);
+    const uniqueSuffix = file.originalname + "-" + Date.now();
+    callback(null, file.originalname);
+    // const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    // callback(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
 
@@ -41,3 +43,9 @@ export const fileFilter = (
     callback(null, false);
   }
 };
+
+export const multerUpload = multer({
+  storage: fileStorage,
+  fileFilter: fileFilter,
+  limits: { fileSize: 1000000 },
+});

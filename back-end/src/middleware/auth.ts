@@ -54,6 +54,7 @@ export const loginKaKao = async (
       const newUserData = {
         id: id,
         username: kakao_account.profile.nickname,
+        userprofile: "",
         email: kakao_account.email,
         password: "",
         type: "KaKao",
@@ -107,6 +108,7 @@ export const registerLocal = async (
     const newUserData = {
       id: 1,
       username: username,
+      userprofile: "",
       email: email,
       password: password,
       type: "Local",

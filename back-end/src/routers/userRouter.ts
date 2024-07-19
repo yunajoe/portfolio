@@ -1,7 +1,11 @@
 import dotenv from "dotenv";
 import { Request, Response, Router } from "express";
-import { findUserByRefreshToken, findUserByUsersTableId } from "../db/users";
-import { fileStorage, multer } from "../utils/multer";
+import {
+  findUserByRefreshToken,
+  findUserByUsersTableId,
+  updatedProfileImageQuery,
+} from "../db/users";
+import { fileFilter, fileStorage, multer } from "../utils/multer";
 
 dotenv.config();
 
@@ -44,19 +48,45 @@ userRouter.get(
   }
 );
 
-// req는 요청에 대한 정보
-// file은 업로드한 파일에 대한 정보
-// cb는 함수다
-// cb는 2개의 인자를 받는다
-// 첫 번째 인수에는 에러가 있다면 에러를 넣고, 두 번째 인수에는 실제 경로나 파일 이름을 넣어주면 된다.
-
-const upload = multer({ storage: fileStorage });
+export const multerUpload = multer({
+  storage: fileStorage,
+  fileFilter: fileFilter,
+});
 
 userRouter.post(
   "/user/uploadProfileImage",
-  upload.single("image"),
+  multerUpload.single("file"),
   async (req: Request, res: Response) => {
-    console.log(req.file, req.body);
+    if (!req.file) {
+      return res.send({
+        status: 400,
+        message: "이미지를 업로드해주세요",
+      });
+    }
+
+    try {
+      const file = req.file;
+      const result = await updatedProfileImageQuery(
+        req.body._id,
+        file.filename
+      );
+      if (result) {
+        return res.send({
+          status: 200,
+          message: "프로필이미지가 변경 되었습니다",
+          file,
+        });
+      }
+      return res.send({
+        status: 401,
+        message: "프로필 이미지가 변경에 실패하였습니다",
+      });
+    } catch (err) {
+      return res.send({
+        status: 500,
+        message: "internal server error",
+      });
+    }
   }
 );
 

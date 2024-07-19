@@ -35,11 +35,8 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
     if (result === 200) {
       const decodedTokenValue = decodeToken(accessToken);
       const key = decodedTokenValue.key;
-      console.log("keyy", key, decodedTokenValue);
 
-      //  findUserByTokenKeyValueQuery222=
       const targetUser = await findUserByTokenKeyValueQuery(key);
-      console.log("ta", targetUser);
 
       const uniquePortPolioId = crypto.randomBytes(16).toString("hex");
 

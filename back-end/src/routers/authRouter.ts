@@ -1,8 +1,11 @@
 import dotenv from "dotenv";
 import { NextFunction, Request, Response, Router } from "express";
-import { ObjectId, UUID } from "mongodb";
+import { UUID } from "mongodb";
 
-import { deleteAccessAndRefreshToken, updateAccessToken } from "../db/users";
+import {
+  deleteAccessAndRefreshTokenQuery,
+  updateAccessToken,
+} from "../db/users";
 import {
   createInitPortPolio,
   loginKaKao,
@@ -77,8 +80,7 @@ authRouter.post(
   async (req: Request, res: Response, next: NextFunction) => {
     const { data } = req.body;
     try {
-      const objectId = new ObjectId(data);
-      const result = await deleteAccessAndRefreshToken(objectId);
+      const result = await deleteAccessAndRefreshTokenQuery(data);
       if (result) {
         return res.send({
           status: 200,

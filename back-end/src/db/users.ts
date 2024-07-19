@@ -6,6 +6,7 @@ import { db } from ".";
 type NewUserData = {
   id: number;
   username: string;
+  userprofile: string;
   email: string;
   password: string;
   type: string;
@@ -231,11 +232,11 @@ export const findUserByRefreshToken = async (refreshToken: string) => {
 
 // 로그아웃시 ,accessToken, refreshToken, keyValue다 없애기
 
-export const deleteAccessAndRefreshToken = async (_id: ObjectId) => {
+export const deleteAccessAndRefreshTokenQuery = async (_id: string) => {
   try {
     await db.collection("users").updateOne(
       {
-        _id: _id,
+        _id: new ObjectId(_id),
       },
       {
         $set: {
@@ -248,5 +249,27 @@ export const deleteAccessAndRefreshToken = async (_id: ObjectId) => {
     return true;
   } catch (err) {
     throw err;
+  }
+};
+
+// user 이미지 경로를 db에 넣는거
+export const updatedProfileImageQuery = async (
+  _id: string,
+  userprofile: string
+) => {
+  try {
+    await db.collection("users").updateOne(
+      {
+        _id: new ObjectId(_id),
+      },
+      {
+        $set: {
+          userprofile: userprofile,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    throw false;
   }
 };
