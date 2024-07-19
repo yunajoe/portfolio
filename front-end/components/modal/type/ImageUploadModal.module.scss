@@ -1,0 +1,50 @@
+@import "/styles/mixin.scss";
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  min-height: 200px;
+  height: 500px;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  border: 5px solid blue;
+  margin-bottom: 20px;
+  // padding: 0px 20px;
+}
+
+.image_container {
+  margin-bottom: 20px;
+}
+.title {
+  font-size: 25px;
+  font-weight: 900;
+  margin-left: 183px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: right;
+}
+
+.button {
+  text-align: center;
+  min-height: 48px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: var(--theme-palette-primary-normal);
+  border: 1px solid rgba(112, 115, 124, 0.22);
+  height: 50px;
+  margin-right: 8px;
+  margin-bottom: 0px;
+  width: 92px;
+}

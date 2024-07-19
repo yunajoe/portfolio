@@ -2,7 +2,7 @@ import ModalBase from "@/components/modal/ModalBase";
 import { Divider, Stack, Text } from "@mantine/core";
 import classNames from "classnames/bind";
 import { ReactNode } from "react";
-import styles from "./DeleteModalLayout.module.css";
+import styles from "./DeleteModalLayout.module.scss";
 const cx = classNames.bind(styles);
 type DeleteModalLayoutProps = {
   children: ReactNode;

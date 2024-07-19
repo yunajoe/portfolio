@@ -1,7 +1,6 @@
 @import "/styles/mixin.scss";
 
 .first_section {
-  border: 5px solid red;
   @include mobile {
     display: none;
   }
@@ -19,7 +18,10 @@
 
 //  두번째
 .second_section {
-  border: 5px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile_initial_image {

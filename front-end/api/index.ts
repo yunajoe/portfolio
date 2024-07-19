@@ -6,6 +6,11 @@ const AuthAPI = axios.create({
   headers: { "content-type": "application/json" },
 });
 
+const FormDataAPI = axios.create({
+  baseURL: "http://localhost:8080/",
+  headers: { "content-Type": "multipart/form-data" },
+});
+
 AuthAPI.interceptors.response.use(
   // accessToken이 유효할때
   (response) => {
@@ -13,9 +18,11 @@ AuthAPI.interceptors.response.use(
   },
 
   async (error) => {
-    console.log(error.response.status);
+    // console.log(error.response.status);
     // config안에 headers.. 가 있땨
     const originalConfig = error.config;
+    console.log("original", originalConfig);
+    console.log(error.response);
     console.log("originConfig", originalConfig);
     if (error.response.status === 401) {
       window.location.href = "/";

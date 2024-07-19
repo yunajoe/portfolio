@@ -11,6 +11,7 @@ export type AuthState = {
     _id: string;
     id: number;
     username: string;
+    userprofile: string;
     email: string;
     password: string;
     type: string;
@@ -28,6 +29,7 @@ const initialState: AuthState = {
     _id: "",
     id: 0,
     username: "",
+    userprofile: "",
     email: "",
     password: "",
     type: "",
@@ -95,6 +97,11 @@ const authSlice = createSlice({
       }
     },
     logoutFail: (state, action) => {},
+
+    userProfileImageUpdateSuccess: (state, action) => {
+      const { file } = action.payload;
+      state.userData.userprofile = file.filename;
+    },
   },
 });
 
@@ -105,6 +112,7 @@ export const {
   loginSuccess,
   loginFail,
   logoutSuccess,
+  userProfileImageUpdateSuccess,
 } = authSlice.actions;
 
 // selectore

@@ -1,8 +1,8 @@
-import React, { ReactNode, SetStateAction, useContext } from "react";
-import classNames from "classnames/bind";
-import styles from "./SearchModal.module.css";
 import ModalBase from "@/components/modal/ModalBase";
 import ModalHeader from "@/components/modal/header/ModalHeader";
+import classNames from "classnames/bind";
+import React, { ReactNode, SetStateAction } from "react";
+import styles from "./SearchModal.module.scss";
 const cx = classNames.bind(styles);
 
 type SearchModalProps = {

@@ -8,6 +8,9 @@ import path from "path";
 
 const nextConfig = {
   reactStrictMode: false,
+  images: {
+    domains: ["localhost"], // 사용하는 호스트 이름을 추가하세요
+  },
   sassOptions: {
     includePaths: [path.join(process.cwd(), "styles")],
     // prependData:
