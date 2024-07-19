@@ -102,6 +102,11 @@ const authSlice = createSlice({
       const { file } = action.payload;
       state.userData.userprofile = file.filename;
     },
+
+    userNameUpdateSuccess: (state, action) => {
+      // console.log("action이다아앙아아", action.payload);
+      state.userData.username = action.payload.username;
+    },
   },
 });
 
@@ -113,6 +118,7 @@ export const {
   loginFail,
   logoutSuccess,
   userProfileImageUpdateSuccess,
+  userNameUpdateSuccess,
 } = authSlice.actions;
 
 // selectore

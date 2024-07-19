@@ -3,11 +3,11 @@ import styles from "./FieldAddButtonLayout.module.scss";
 
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
-type FieldAddButtonLayout = {
+type FieldAddButtonLayoutProps = {
   children: ReactNode;
 };
 
-function FieldAddButtonLayout({ children }: FieldAddButtonLayout) {
+function FieldAddButtonLayout({ children }: FieldAddButtonLayoutProps) {
   return <div className={cx("container")}>{children}</div>;
 }
 

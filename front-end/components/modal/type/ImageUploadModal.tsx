@@ -1,33 +1,29 @@
-import ImageUploadButton from "@/components/button/ImageUploadButton";
-import ModalBase from "@/components/modal/ModalBase";
-import CloseIcon from "@/public/icons/CloseIcon";
-import { Text, UnstyledButton } from "@mantine/core";
+import MyProfileEditModalButton from "@/components/button/MyProfileEditModalButton";
+import MyProfileEditModalLayout from "@/components/layout/MyProfileEditModalLayout";
+import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditModalContent";
+import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
 import classNames from "classnames/bind";
 import Image from "next/image";
 import styles from "./ImageUploadModal.module.scss";
 const cx = classNames.bind(styles);
 
-// https://www.geeksforgeeks.org/how-to-crop-images-in-reactjs/
 type ImageUploadModalProps = {
+  title: string;
   profileImageUrl: string;
   close: () => void;
-  handleImageUpload: () => void;
+  save: () => void;
 };
 
 function ImageUploadModal({
+  title,
   profileImageUrl,
   close,
-  handleImageUpload,
+  save,
 }: ImageUploadModalProps) {
   return (
-    <ModalBase>
-      <div className={cx("container")}>
-        <div className={cx("header")}>
-          <Text className={cx("title")}>프로필사진</Text>
-          <UnstyledButton>
-            <CloseIcon style={{ width: "30px" }} close={close} />
-          </UnstyledButton>
-        </div>
+    <MyProfileEditModalLayout>
+      <MyProfileEditModalHeader title={title} close={close} />
+      <MyProfileEditModalContent>
         <div className={cx("image_container")}>
           <Image
             src={profileImageUrl}
@@ -36,12 +32,9 @@ function ImageUploadModal({
             height={300}
           />
         </div>
-        <div className={cx("button_container")}>
-          <ImageUploadButton type="cancel" onClick={close} />
-          <ImageUploadButton type="save" onClick={handleImageUpload} />
-        </div>
-      </div>
-    </ModalBase>
+      </MyProfileEditModalContent>
+      <MyProfileEditModalButton close={close} save={save} />
+    </MyProfileEditModalLayout>
   );
 }
 

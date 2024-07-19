@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
 import classNames from "classnames/bind";
-import styles from "./ModalBase.module.css";
+import { ReactNode } from "react";
+import styles from "./ModalBase.module.scss";
 const cx = classNames.bind(styles);
 
 type ModalBaseProps = {

@@ -1,7 +1,8 @@
-import React, { SetStateAction } from "react";
-import classNames from "classnames/bind";
-import styles from "./ModalHeader.module.css";
 import CloseIcon from "@/public/icons/CloseIcon";
+import { UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
+import React, { SetStateAction } from "react";
+import styles from "./ModalHeader.module.scss";
 const cx = classNames.bind(styles);
 
 // title과 close버튼을 prop으로 받는다
@@ -32,16 +33,18 @@ function ModalHeader({
     <>
       <div className={cx("container")}>
         <span className={cx("title")}>{title}</span>
-        <CloseIcon
-          close={handleClose}
-          style={{
-            width: "20px",
-            position: "absolute",
-            top: "10px",
-            right: "5px",
-            cursor: "pointer",
-          }}
-        />
+        <UnstyledButton onClick={handleClose}>
+          <CloseIcon
+            // close={handleClose}
+            style={{
+              width: "20px",
+              position: "absolute",
+              top: "10px",
+              right: "5px",
+              cursor: "pointer",
+            }}
+          />
+        </UnstyledButton>
       </div>
     </>
   );

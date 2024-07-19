@@ -1,0 +1,66 @@
+import MyProfileEditModalButton from "@/components/button/MyProfileEditModalButton";
+import MyProfileEditModalLayout from "@/components/layout/MyProfileEditModalLayout";
+import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditModalContent";
+import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
+import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
+import { TextInput } from "@mantine/core";
+import classNames from "classnames/bind";
+import { useState } from "react";
+import styles from "./UserNickNameEditModal.module.scss";
+
+const cx = classNames.bind(styles);
+
+type UserNickNameEditModalProps = {
+  title: string;
+  close: () => void;
+};
+
+function UserNickNameEditModal({ title, close }: UserNickNameEditModalProps) {
+  const { userData } = useAppSelector(selectAuth);
+  const [newUserName, setNewUserName] = useState(userData.username);
+  const { updateUserNickNameStatus } = useAppSelector(selectStatus);
+
+  const dispatch = useAppDispatch();
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewUserName(e.target.value);
+  };
+
+  const handleValueSave = () => {
+    dispatch({
+      type: "UPDATE_USER_NAME",
+      _id: userData._id,
+      username: newUserName,
+    });
+    close();
+  };
+
+  // useEffect(() => {
+  //   if (updateUserNickNameStatus === 200) {
+  //     setNewUserName(userData.username);
+  //   }
+  // }, [updateUserNickNameStatus]);
+
+  return (
+    <MyProfileEditModalLayout>
+      <MyProfileEditModalHeader title={title} close={close} />
+      <MyProfileEditModalContent>
+        <TextInput
+          onChange={handleValueChange}
+          value={newUserName}
+          className={cx("user_nickname_input")}
+          size="lg"
+        />
+        {/* <ModalEditInput
+          handleValueChange={handleValueChange}
+          newUserName={newUserName}
+        ></ModalEditInput> */}
+      </MyProfileEditModalContent>
+      <MyProfileEditModalButton close={close} save={handleValueSave} />
+    </MyProfileEditModalLayout>
+  );
+}
+
+export default UserNickNameEditModal;

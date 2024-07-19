@@ -24,6 +24,10 @@ type StatusState = {
   // updateProfileImage
   updateProfileImageStatus: number | null;
   updateProfileImageMessage: string;
+
+  // updateProfileName
+  updateUserNickNameStatus: number | null;
+  updateUserNickNameMessage: string;
 };
 
 const initialState: StatusState = {
@@ -43,6 +47,8 @@ const initialState: StatusState = {
   logOutMessage: "",
   updateProfileImageStatus: null,
   updateProfileImageMessage: "",
+  updateUserNickNameStatus: null,
+  updateUserNickNameMessage: "",
 };
 
 const statusSlice = createSlice({
@@ -99,6 +105,11 @@ const statusSlice = createSlice({
       state.updatePortPolioNameStatus = status;
       state.updatePortPolioNameMessage = message;
     },
+    updateUserNickNameStatus: (state, action) => {
+      const { status, message } = action.payload;
+      state.updateUserNickNameStatus = status;
+      state.updateUserNickNameMessage = message;
+    },
     // reset
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
@@ -126,6 +137,7 @@ export const {
   defaultPortPolioStatus,
   logOutStatus,
   updateProfileImageStatus,
+  updateUserNickNameStatus,
   defaultPortPolioReset,
   updatePortPolioNameStatusReset,
   logOutStatusReset,

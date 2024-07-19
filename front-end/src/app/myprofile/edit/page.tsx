@@ -6,7 +6,7 @@ import styles from "./layout.module.scss";
 
 const cx = classNames.bind(styles);
 
-function page() {
+function Page() {
   return (
     <div className={cx("grid_container")}>
       <div className={cx("myportpolio_two")}>
@@ -20,4 +20,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

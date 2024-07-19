@@ -1,11 +1,11 @@
 import ConfirmButton from "@/components/button/ConfirmButton";
 import SearchInput from "@/components/input/SearchInput";
 import SchoolSearchResult from "@/components/search/SchoolSearchResult";
-import { EducationType } from "@/types/portpolio";
-import React, { ChangeEvent, SetStateAction } from "react";
-import styles from "./SearchModalContent.module.css";
-import classNames from "classnames/bind";
 import { SchoolItem } from "@/types/api";
+import { EducationType } from "@/types/portpolio";
+import classNames from "classnames/bind";
+import React, { ChangeEvent, SetStateAction } from "react";
+import styles from "./SearchModalContent.module.scss";
 
 const cx = classNames.bind(styles);
 

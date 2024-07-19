@@ -6,7 +6,7 @@ import { CareerType } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import React, { ChangeEvent, SetStateAction } from "react";
 import DropdownInput from "../../input/DropdownInput";
-import styles from "./SearchModalContent.module.css";
+import styles from "./SearchModalContent.module.scss";
 
 const cx = classNames.bind(styles);
 

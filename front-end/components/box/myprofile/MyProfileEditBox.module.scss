@@ -1,6 +1,8 @@
 @import "/styles/mixin.scss";
 
 .first_section {
+  // border: 5px solid blue;
+
   @include mobile {
     display: none;
   }
@@ -14,22 +16,51 @@
 
 .profile {
   display: flex;
+  align-items: center;
 }
 
 //  두번째
 .second_section {
+  border: 5px solid blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: 20px;
 }
 
-.profile_initial_image {
+// user_image
+.user_profile_image {
+  // border: 5px solid blue;
   position: relative;
+  border-radius: 999px;
 }
 
 .add_icon {
   position: absolute;
   bottom: 0;
   left: 78px;
+}
+
+//
+.user_nickname_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user_nickname {
+  color: var(--gray-text);
+  font-weight: 700;
+}
+
+.user_nickname_button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+
+  &:hover {
+    background-color: var(--hover-background);
+    transition: opacity 0.2s ease;
+  }
 }

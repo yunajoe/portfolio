@@ -24,19 +24,17 @@ function MyProfileBoxTwo() {
   }
 
   return (
-    <div className={cx("menu_container")}>
-      <ul className={cx("menu_list")}>
-        <li>
-          <span className={cx("text")}>내 프로필</span>
-        </li>
-        <div className={cx("menu_list_divider")}>
-          <Divider />
-        </div>
-        <li onClick={handleLogOut}>
-          <span className={cx("text")}>로그아웃</span>
-        </li>
-      </ul>
-    </div>
+    <ul className={cx("menu_list")}>
+      <li>
+        <span className={cx("text")}>내 프로필</span>
+      </li>
+      <div className={cx("menu_list_divider")}>
+        <Divider />
+      </div>
+      <li onClick={handleLogOut}>
+        <span className={cx("text")}>로그아웃</span>
+      </li>
+    </ul>
   );
 }
 
