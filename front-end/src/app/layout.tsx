@@ -26,14 +26,11 @@ export default async function RootLayout({
   const user = await userDataFetchFunc();
 
   return (
-    <html lang="en" className={`${notoSansKrMedium}`}>
+    <html lang="ko" className={`${notoSansKrMedium}`}>
       <body>
         <StoreProvider>
           <MantineProvider>
-            <AutoLoginProvider user={user?.data}>
-              {/* <MainNavBar /> */}
-              {children}
-            </AutoLoginProvider>
+            <AutoLoginProvider user={user?.data}>{children}</AutoLoginProvider>
           </MantineProvider>
         </StoreProvider>
       </body>

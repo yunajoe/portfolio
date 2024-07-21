@@ -17,7 +17,7 @@ function MainNavBar() {
     <>
       {isLogin ? (
         <Link href="/myprofile" style={{ textDecoration: "none" }}>
-          <ConditionCusTomAvatar userData={userData} width={30} height={30}/>
+          <ConditionCusTomAvatar userData={userData} width={30} height={30} />
         </Link>
       ) : (
         <Link href="/auth/login" style={{ textDecoration: "none" }}>

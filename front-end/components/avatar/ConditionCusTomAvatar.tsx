@@ -25,7 +25,7 @@ function ConditionCusTomAvatar({
           />
         </div>
       ) : (
-        <CusTomAvatar userData={userData} size="100px" />
+        <CusTomAvatar userData={userData} size="50px" />
       )}
     </div>
   );
