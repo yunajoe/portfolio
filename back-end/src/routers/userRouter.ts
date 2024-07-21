@@ -7,6 +7,11 @@ import {
   updatedNickNameQuery,
   updatedProfileImageQuery,
 } from "../db/users";
+import {
+  BadRequestError,
+  CustomError,
+  InternalServerError,
+} from "../utils/error";
 import { fileFilter, fileStorage, multer } from "../utils/multer";
 
 dotenv.config();
@@ -26,16 +31,11 @@ userRouter.get(
           message: "해당 user정보를 찾았습니다",
           userInfo: result,
         });
+      } else {
+        throw new BadRequestError("해당 회원이 없습니다");
       }
-      return res.send({
-        status: 400,
-        message: "프로필 이미지가 변경에 실패하였습니다",
-      });
     } catch (err) {
-      return res.send({
-        status: 500,
-        message: "internal server error",
-      });
+      throw new InternalServerError();
     }
   }
 );
@@ -46,18 +46,16 @@ userRouter.get(
     const users_table_id = req.query.users_table_id as string;
     try {
       const result = await findUserByUsersTableId(users_table_id);
-      if (result !== null) {
+      if (result) {
         return res.send({
           status: 200,
           result,
         });
+      } else {
+        throw new BadRequestError("해당 회원이 없습니다");
       }
-      return res.send({
-        status: 400,
-        message: "해당 회원이 없습니다",
-      });
     } catch (err) {
-      console.log(err);
+      throw new InternalServerError();
     }
   }
 );
@@ -87,10 +85,7 @@ userRouter.post(
   multerUpload.single("file"),
   async (req: Request, res: Response) => {
     if (!req.file) {
-      return res.send({
-        status: 400,
-        message: "이미지를 업로드해주세요",
-      });
+      throw new CustomError(401, "이미지를 업로드해주세요");
     }
 
     try {
@@ -105,25 +100,17 @@ userRouter.post(
           message: "프로필이미지가 변경 되었습니다",
           file,
         });
+      } else {
+        throw new BadRequestError("프로필 이미지 변경에 실패하였습니다");
       }
-      return res.send({
-        status: 401,
-        message: "프로필 이미지가 변경에 실패하였습니다",
-      });
     } catch (err) {
-      return res.send({
-        status: 500,
-        message: "internal server error",
-      });
+      throw new InternalServerError();
     }
   }
 );
 
-// "/portpolio/editPortPolioName
-
 userRouter.post("/user/editUserName", async (req: Request, res: Response) => {
   const { data } = req.body;
-
   try {
     const result = await updatedNickNameQuery(data._id, data.username);
     if (result) {
@@ -131,16 +118,11 @@ userRouter.post("/user/editUserName", async (req: Request, res: Response) => {
         status: 200,
         message: "닉네임이 변경 되었습니다",
       });
+    } else {
+      throw new BadRequestError("닉네임 변경에 실패하였습니다");
     }
-    return res.send({
-      status: 401,
-      message: "닉네임 변경에 실패하였습니다",
-    });
   } catch (err) {
-    return res.send({
-      status: 500,
-      message: "internal server error",
-    });
+    throw new InternalServerError();
   }
 });
 module.exports = userRouter;
