@@ -4,7 +4,6 @@ import EducationFieldBox from "@/components/box/myportpolio/EducationFieldBox";
 import InputBox from "@/components/box/myportpolio/InputBox";
 import IntroduceBox from "@/components/box/myportpolio/IntroduceBox";
 import { career, intro, school } from "@/constant/text";
-import { ToastContext } from "@/context/ToastContext";
 import useToast from "@/hooks/useToast";
 import AddIcon from "@/public/icons/AddIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -22,7 +21,7 @@ import {
 } from "@/utils/preprecessingApiData";
 import { Box, Button, Flex, Text, UnstyledButton } from "@mantine/core";
 import { usePathname, useRouter } from "next/navigation";
-import { useContext, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 type MyPortPolioEditContents = {
   majorList: MajorItem[];
@@ -45,7 +44,7 @@ function MyPortPolioEditContents({
 
   const filteredCompanyArr = preprocessingCompany(companyList);
 
-  const toast = useContext(ToastContext);
+
 
   const router = useRouter();
   const pathname = usePathname();

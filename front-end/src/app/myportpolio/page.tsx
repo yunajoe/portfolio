@@ -1,15 +1,15 @@
 "use client";
 
 import CreatePortPolioCard from "@/components/card/PortPolioCard/CreatePortPolioCard";
-import PortPolioDate from "@/components/card/PortPolioCard/PortPolioDate";
-import PortPolioName from "@/components/card/PortPolioCard/PortPolioName";
+import PortPolioCardBody from "@/components/card/PortPolioCard/PortPolioCardBody";
+import PortPolioCardBottom from "@/components/card/PortPolioCard/PortPolioCardBottom";
+import PortPolioCardHeader from "@/components/card/PortPolioCard/PortPolioCardHeader";
 import Divider from "@/components/divider/Divider";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
 import MainNavBar from "@/components/navbar/MainNavBar";
 import useModal from "@/hooks/useModal";
-import HamburgerIcon from "@/public/icons/HamburgerIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectPortPolioResult } from "@/src/app/lib/features/portpolio/portpolioResultSlice";
 import {
@@ -18,7 +18,7 @@ import {
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
-import { Flex, Pill, Text, UnstyledButton } from "@mantine/core";
+import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -75,7 +75,6 @@ function Page() {
     savePortPolioStatus,
   ]);
 
-  // TODO: useEffect없이 그냥 if문으로 reset하기 => 안됨
   useEffect(() => {
     if (useStatusSelector.updatePortPolioNameStatus === 200) {
       dispatch(updatePortPolioNameStatusReset());
@@ -106,21 +105,13 @@ function Page() {
                 border: "1px solid #dbdbdb",
               }}
             >
-              <Text style={{ marginBottom: "5px" }}>
-                {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
-              </Text>
-              {isResumeNameEdit && data._id === deleteDropDownId ? (
-                <PortPolioName
-                  usersTableId={data.users_table_id}
-                  portpolioId={data.portpolioId}
-                  portpolioName={data.portpolio_name}
-                  isResumeNameEdit={isResumeNameEdit}
-                  setIsResumeNameEdit={setIsResumeNameEdit}
-                />
-              ) : (
-                <Text>{data.portpolio_name}</Text>
-              )}
-              <PortPolioDate updatedAt={data.updatedAt} />
+              <PortPolioCardHeader data={data} />
+              <PortPolioCardBody
+                data={data}
+                deleteDropDownId={deleteDropDownId}
+                isResumeNameEdit={isResumeNameEdit}
+                setIsResumeNameEdit={setIsResumeNameEdit}
+              />
               <Divider
                 customStyles={{
                   position: "absolute",
@@ -128,22 +119,11 @@ function Page() {
                   bottom: "25px",
                 }}
               />
-              <Flex
-                justify="flex-end"
-                align="center"
-                style={{
-                  position: "absolute",
-                  bottom: "0px",
-                  right: "0px",
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setDeleteDropDownId(data._id);
-                  setIsEditAndDeleteDropDown(true);
-                }}
-              >
-                <HamburgerIcon style={{ width: "30px" }} />
-              </Flex>
+              <PortPolioCardBottom
+                data={data}
+                setDeleteDropDownId={setDeleteDropDownId}
+                setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
+              />
               {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
                 <EditAndDeleteDropDown
                   setDeleteDropDownId={setDeleteDropDownId}

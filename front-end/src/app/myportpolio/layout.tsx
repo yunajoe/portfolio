@@ -10,11 +10,7 @@ type MyPortPolioListLayoutProps = {
 function MyPortPolioListLayout({ children }: MyPortPolioListLayoutProps) {
   return (
     <div className={cx("container")}>
-      <div className={cx("body")}>
-        {/* <MainNavBar /> */}
-        {/* <Banner /> */}
-        {children}
-      </div>
+      <div className={cx("body")}>{children}</div>
     </div>
   );
 }
