@@ -1,6 +1,6 @@
 "use client";
 
-import CusTomAvatar from "@/components/avatar/CusTomAvatar";
+import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import SearchIcon from "@/public/icons/SearchIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
@@ -17,7 +17,7 @@ function MainNavBar() {
     <>
       {isLogin ? (
         <Link href="/myprofile" style={{ textDecoration: "none" }}>
-          <CusTomAvatar userData={userData} />
+          <ConditionCusTomAvatar userData={userData} width={30} height={30}/>
         </Link>
       ) : (
         <Link href="/auth/login" style={{ textDecoration: "none" }}>

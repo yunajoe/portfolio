@@ -1,5 +1,5 @@
 "use client";
-import CusTomAvatar from "@/components/avatar/CusTomAvatar";
+import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import MyProfileName from "@/components/box/myprofile/MyProfileName";
 import CareerAddButton from "@/components/button/CareerAddButton";
 import EducationAddButton from "@/components/button/EducationAddButton";
@@ -8,7 +8,6 @@ import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
-import Image from "next/image";
 import { useState } from "react";
 import styles from "./MyProfileBox.module.scss";
 
@@ -31,18 +30,7 @@ function MyProfileBox() {
       <div className={cx("myprofile_container")}>
         <section className={cx("myinfo_section")}>
           <div className={cx("myinfo")}>
-            {userData.userprofile.length > 0 ? (
-              <div style={{ borderRadius: "999px", overflow: "hidden" }}>
-                <Image
-                  alt="profile_image"
-                  src={`http://localhost:8080/static/images/${userData.userprofile}`}
-                  width={100}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <CusTomAvatar userData={userData} size="100px" />
-            )}
+            <ConditionCusTomAvatar userData={userData} />
             <MyProfileName userData={userData} />
           </div>
           <UnstyledButton

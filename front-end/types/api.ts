@@ -45,6 +45,7 @@ export type User = {
   _id: string;
   id: number;
   username: string;
+  userprofile: string;
   email: string;
   password: string;
   type: string;

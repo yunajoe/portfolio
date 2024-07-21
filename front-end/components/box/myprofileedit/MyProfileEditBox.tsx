@@ -20,12 +20,6 @@ function MyProfileEditBox() {
   const { updateUserNickNameStatus, updateUserNickNameMessage } =
     useAppSelector(selectStatus);
 
-  console.log(
-    " updateUserNickNameStatus, updateUserNickNameMessage ",
-    updateUserNickNameStatus,
-    updateUserNickNameMessage
-  );
-
   const [profileImageUrl, setProfileImageUrl] = useState("");
   // 아래처럼 하면은 왜 안될까유?
   // const [newUserName, setNewUserName] = useState(userData.username);

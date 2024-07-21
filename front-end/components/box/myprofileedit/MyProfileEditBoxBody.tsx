@@ -1,11 +1,10 @@
-import CusTomAvatar from "@/components/avatar/CusTomAvatar";
+import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import AddIcon from "@/public/icons/AddIcon";
 import RightChevronIcon from "@/public/icons/RightChevronIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { Badge, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
-import Image from "next/image";
 import { SetStateAction } from "react";
 import styles from "./MyProfileEditBoxBody.module.scss";
 
@@ -39,18 +38,7 @@ function MyProfileEditBoxBody({
   return (
     <section className={cx("second_section")}>
       <div className={cx("user_profile_image_container")}>
-        {userData.userprofile.length > 0 ? (
-          <div>
-            <Image
-              alt="profile_image"
-              src={`http://localhost:8080/static/images/${userData.userprofile}`}
-              width={100}
-              height={100}
-            />
-          </div>
-        ) : (
-          <CusTomAvatar userData={userData} size="100px" />
-        )}
+        <ConditionCusTomAvatar userData={userData} />  
         <div className={cx("user_profile_image")}>
           <label htmlFor="profile_image_uploads">
             <input
