@@ -8,7 +8,11 @@ import { useRouter } from "next/navigation";
 import styles from "./MyProfileBoxTwo.module.scss";
 const cx = classNames.bind(styles);
 
-function MyProfileBoxTwo() {
+type MyProfileBoxTwoProps = {
+  show?: boolean;
+};
+
+function MyProfileBoxTwo({ show = true }: MyProfileBoxTwoProps) {
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(selectAuth);
   const useStatusSelector = useAppSelector(selectStatus);
@@ -24,7 +28,7 @@ function MyProfileBoxTwo() {
   }
 
   return (
-    <ul className={cx("menu_list")}>
+    <ul className={cx("menu_list", { remove: !show })}>
       <li>
         <span className={cx("text")}>내 프로필</span>
       </li>

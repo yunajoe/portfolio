@@ -7,6 +7,7 @@ import Divider from "@/components/divider/Divider";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
+import MainNavBar from "@/components/navbar/MainNavBar";
 import useModal from "@/hooks/useModal";
 import HamburgerIcon from "@/public/icons/HamburgerIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -19,7 +20,6 @@ import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import { Flex, Pill, Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
-import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./layout.module.scss";
@@ -45,9 +45,6 @@ function Page() {
     updatePortPolioNameStatus,
   } = useStatusSelector;
   const { portpolio_detail_arr } = usePortPolioResultSelector;
-
-  const accessToken = getCookie("accessToken");
-  const refreshToken = getCookie("refreshToken");
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -91,82 +88,84 @@ function Page() {
   };
 
   return (
-    <div className={cx("grid_container")}>
-      <CreatePortPolioCard />
-      {portpolio_detail_arr.map((data, index) => {
-        return (
-          <UnstyledButton
-            onClick={() => navigateToDetailPage(data)}
-            key={index}
-            bg="blue"
-            h="200px"
-            style={{
-              cursor: "pointer",
-              position: "relative",
-              zIndex: 5,
-              border: "1px solid #dbdbdb",
-            }}
-          >
-            <Text style={{ marginBottom: "5px" }}>
-              {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
-            </Text>
-            {isResumeNameEdit && data._id === deleteDropDownId ? (
-              <PortPolioName
-                usersTableId={data.users_table_id}
-                portpolioId={data.portpolioId}
-                portpolioName={data.portpolio_name}
-                isResumeNameEdit={isResumeNameEdit}
-                setIsResumeNameEdit={setIsResumeNameEdit}
-              />
-            ) : (
-              <Text>{data.portpolio_name}</Text>
-            )}
-            <PortPolioDate updatedAt={data.updatedAt} />
-            <Divider
-              color="white"
-              customStyles={{
-                position: "absolute",
-                width: "100%",
-                bottom: "25px",
-              }}
-            />
-            <Flex
-              justify="flex-end"
-              align="center"
+    <>
+      <MainNavBar />
+      <div className={cx("grid_container")}>
+        <CreatePortPolioCard />
+        {portpolio_detail_arr.map((data, index) => {
+          return (
+            <UnstyledButton
+              onClick={() => navigateToDetailPage(data)}
+              key={index}
+              bg="blue"
+              h="200px"
               style={{
-                position: "absolute",
-                bottom: "0px",
-                right: "0px",
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                setDeleteDropDownId(data._id);
-                setIsEditAndDeleteDropDown(true);
+                cursor: "pointer",
+                position: "relative",
+                zIndex: 5,
+                border: "1px solid #dbdbdb",
               }}
             >
-              <HamburgerIcon style={{ width: "30px" }} />
-            </Flex>
-            {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
-              <EditAndDeleteDropDown
-                setDeleteDropDownId={setDeleteDropDownId}
-                handleChangeResumeName={handleChangeResumeName}
-                handleDeleteResume={handleDeleteResume}
-              />
-            )}
-            {isDeleteModalOpen && data._id === deleteDropDownId && (
-              <ModalPortal>
-                <PortPolioDeleteModal
-                  onClose={handleDeleteModalClose}
-                  users_table_id={data.users_table_id}
-                  portpolio_id={data.portpolioId}
-                  setDeleteDropDownId={setDeleteDropDownId}
+              <Text style={{ marginBottom: "5px" }}>
+                {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
+              </Text>
+              {isResumeNameEdit && data._id === deleteDropDownId ? (
+                <PortPolioName
+                  usersTableId={data.users_table_id}
+                  portpolioId={data.portpolioId}
+                  portpolioName={data.portpolio_name}
+                  isResumeNameEdit={isResumeNameEdit}
+                  setIsResumeNameEdit={setIsResumeNameEdit}
                 />
-              </ModalPortal>
-            )}
-          </UnstyledButton>
-        );
-      })}
-    </div>
+              ) : (
+                <Text>{data.portpolio_name}</Text>
+              )}
+              <PortPolioDate updatedAt={data.updatedAt} />
+              <Divider
+                customStyles={{
+                  position: "absolute",
+                  width: "100%",
+                  bottom: "25px",
+                }}
+              />
+              <Flex
+                justify="flex-end"
+                align="center"
+                style={{
+                  position: "absolute",
+                  bottom: "0px",
+                  right: "0px",
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDeleteDropDownId(data._id);
+                  setIsEditAndDeleteDropDown(true);
+                }}
+              >
+                <HamburgerIcon style={{ width: "30px" }} />
+              </Flex>
+              {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
+                <EditAndDeleteDropDown
+                  setDeleteDropDownId={setDeleteDropDownId}
+                  handleChangeResumeName={handleChangeResumeName}
+                  handleDeleteResume={handleDeleteResume}
+                />
+              )}
+              {isDeleteModalOpen && data._id === deleteDropDownId && (
+                <ModalPortal>
+                  <PortPolioDeleteModal
+                    onClose={handleDeleteModalClose}
+                    users_table_id={data.users_table_id}
+                    portpolio_id={data.portpolioId}
+                    setDeleteDropDownId={setDeleteDropDownId}
+                  />
+                </ModalPortal>
+              )}
+            </UnstyledButton>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

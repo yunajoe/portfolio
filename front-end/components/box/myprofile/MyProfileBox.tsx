@@ -8,6 +8,7 @@ import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
+import Image from "next/image";
 import { useState } from "react";
 import styles from "./MyProfileBox.module.scss";
 
@@ -30,11 +31,22 @@ function MyProfileBox() {
       <div className={cx("myprofile_container")}>
         <section className={cx("myinfo_section")}>
           <div className={cx("myinfo")}>
-            <CusTomAvatar userData={userData} size="100px" />
+            {userData.userprofile.length > 0 ? (
+              <div style={{ borderRadius: "999px", overflow: "hidden" }}>
+                <Image
+                  alt="profile_image"
+                  src={`http://localhost:8080/static/images/${userData.userprofile}`}
+                  width={100}
+                  height={100}
+                />
+              </div>
+            ) : (
+              <CusTomAvatar userData={userData} size="100px" />
+            )}
             <MyProfileName userData={userData} />
           </div>
           <UnstyledButton
-            className={cx("settings")}      
+            className={cx("settings")}
             onClick={handleOpenSetting}
           >
             설정
@@ -45,11 +57,7 @@ function MyProfileBox() {
           <CareerAddButton />
         </section>
       </div>
-      {setting && (
-        <>
-          <MyProfileDropDown handleCloseSetting={handleCloseSetting} />
-        </>
-      )}
+      {setting && <MyProfileDropDown handleCloseSetting={handleCloseSetting} />}
     </>
   );
 }

@@ -104,7 +104,6 @@ const authSlice = createSlice({
     },
 
     userNameUpdateSuccess: (state, action) => {
-      // console.log("action이다아앙아아", action.payload);
       state.userData.username = action.payload.username;
     },
   },

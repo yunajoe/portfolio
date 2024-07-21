@@ -1,5 +1,5 @@
-import MyProfileEditBox from "@/components/box/myprofile/MyProfileEditBox";
-import MyProfileEditBoxTwo from "@/components/box/myprofile/MyProfileEditBoxTwo";
+import MyProfileBoxTwo from "@/components/box/myprofile/MyProfileBoxTwo";
+import MyProfileEditBox from "@/components/box/myprofileedit/MyProfileEditBox";
 import Divider from "@/components/divider/Divider";
 import classNames from "classnames/bind";
 import styles from "./layout.module.scss";
@@ -9,13 +9,9 @@ const cx = classNames.bind(styles);
 function Page() {
   return (
     <div className={cx("grid_container")}>
-      <div className={cx("myportpolio_two")}>
-        <MyProfileEditBoxTwo />
-      </div>
+      <MyProfileBoxTwo show={false} />
       <Divider />
-      <div className={cx("myportpolio_one")}>
-        <MyProfileEditBox />
-      </div>
+      <MyProfileEditBox />
     </div>
   );
 }

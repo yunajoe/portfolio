@@ -107,6 +107,7 @@ const statusSlice = createSlice({
     },
     updateUserNickNameStatus: (state, action) => {
       const { status, message } = action.payload;
+
       state.updateUserNickNameStatus = status;
       state.updateUserNickNameMessage = message;
     },
@@ -114,6 +115,11 @@ const statusSlice = createSlice({
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
       state.defaultPortPolioMessage = "";
+    },
+
+    updateUserNickNameStatusReset: (state) => {
+      state.updateUserNickNameStatus = null;
+      state.updateUserNickNameMessage = "";
     },
     updatePortPolioNameStatusReset: (state) => {
       state.updatePortPolioNameStatus = null;
@@ -138,7 +144,9 @@ export const {
   logOutStatus,
   updateProfileImageStatus,
   updateUserNickNameStatus,
+  // reset
   defaultPortPolioReset,
+  updateUserNickNameStatusReset,
   updatePortPolioNameStatusReset,
   logOutStatusReset,
 } = statusSlice.actions;

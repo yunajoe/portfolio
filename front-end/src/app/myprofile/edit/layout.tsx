@@ -1,4 +1,6 @@
+"use client";
 import MyProfileEditNavBar from "@/components/navbar/MyProfileEditNavBar";
+import { ToastProvider } from "@/context/ToastContext";
 import classNames from "classnames/bind";
 import React from "react";
 import styles from "./layout.module.scss";
@@ -7,13 +9,14 @@ type MyProfileEditLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function MyProfileEditLayout({
-  children,
-}: MyProfileEditLayoutProps) {
+function MyProfileEditLayout({ children }: MyProfileEditLayoutProps) {
   return (
     <div className={cx("container")}>
-      <MyProfileEditNavBar />
-      {children}
+      <ToastProvider>
+        <MyProfileEditNavBar />
+        {children}
+      </ToastProvider>
     </div>
   );
 }
+export default MyProfileEditLayout;

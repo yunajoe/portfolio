@@ -17,13 +17,9 @@ AuthAPI.interceptors.response.use(
     return response;
   },
 
-  async (error) => {
-    // console.log(error.response.status);
-    // config안에 headers.. 가 있땨
-    const originalConfig = error.config;
-    console.log("original", originalConfig);
-    console.log(error.response);
-    console.log("originConfig", originalConfig);
+  async (error) => {   
+    const originalConfig = error.config;  
+
     if (error.response.status === 401) {
       window.location.href = "/";
     } else if (error.response.status === 402) {
@@ -46,6 +42,7 @@ AuthAPI.interceptors.response.use(
         if (error.response.status === 412) {
           console.log("refresh토큰이유효하지 않습니다");
           // 자동로그아웃기능?
+          // window.location.href = "/";
         }
       }
     }

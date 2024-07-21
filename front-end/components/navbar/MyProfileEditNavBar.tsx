@@ -15,7 +15,7 @@ function MyProfileEditNavBar() {
             <div>
               <LeftChevronIcon />
             </div>
-            <div>프로필편집</div>
+            <span className={cx("text")}>프로필편집</span>
           </nav>
         </div>
       </div>

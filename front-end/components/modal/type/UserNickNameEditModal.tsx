@@ -3,7 +3,6 @@ import MyProfileEditModalLayout from "@/components/layout/MyProfileEditModalLayo
 import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditModalContent";
 import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { TextInput } from "@mantine/core";
 import classNames from "classnames/bind";
@@ -20,7 +19,6 @@ type UserNickNameEditModalProps = {
 function UserNickNameEditModal({ title, close }: UserNickNameEditModalProps) {
   const { userData } = useAppSelector(selectAuth);
   const [newUserName, setNewUserName] = useState(userData.username);
-  const { updateUserNickNameStatus } = useAppSelector(selectStatus);
 
   const dispatch = useAppDispatch();
 
@@ -36,12 +34,6 @@ function UserNickNameEditModal({ title, close }: UserNickNameEditModalProps) {
     });
     close();
   };
-
-  // useEffect(() => {
-  //   if (updateUserNickNameStatus === 200) {
-  //     setNewUserName(userData.username);
-  //   }
-  // }, [updateUserNickNameStatus]);
 
   return (
     <MyProfileEditModalLayout>

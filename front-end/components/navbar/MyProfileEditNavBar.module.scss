@@ -13,6 +13,14 @@
 }
 
 .myprofile_edit_navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #fff;
+  width: 100%;
+  z-index: 800;
   @include mobile {
     display: block;
   }
@@ -27,20 +35,35 @@
 //
 
 .navigation_container {
-  margin: 0 auto;
-  border: 5px solid red;
+  position: absolute;
+
+  width: 100%;
+  border: 5px solid green;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @include mobile {
-    width: 95%;
   }
   @include laptop {
-    width: 95%;
+    // width: 95%;
   }
   @include desktop {
-    width: 90%;
+    // width: 90%;
   }
 }
 
 .navigation {
   display: flex;
+  align-items: center;
+  border: 5px solid pink;
+  padding: 10px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 900;
+  position: absolute;
+  left: 43%;
 }

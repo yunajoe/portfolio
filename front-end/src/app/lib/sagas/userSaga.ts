@@ -23,7 +23,6 @@ import {
   UpdateUserNameSaga,
 } from "@/types/userSaga";
 import { call, put, takeEvery } from "redux-saga/effects";
-// getUserInfoByUserObjectId
 
 function* getUserInfoByObjectIdSaga(action: GetUserInfoByObjectIdSaga): any {
   try {

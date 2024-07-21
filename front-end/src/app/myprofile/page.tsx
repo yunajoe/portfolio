@@ -10,16 +10,12 @@ const cx = classNames.bind(styles);
 
 function Page() {
   return (
-    <>        
+    <>
       <MainNavBar />
       <div className={cx("grid_container")}>
-        <div>
-          <MyProfileBoxTwo />
-        </div>
+        <MyProfileBoxTwo />
         <Divider />
-        <div>
-          <MyProfileBox />
-        </div>
+        <MyProfileBox />
       </div>
     </>
   );

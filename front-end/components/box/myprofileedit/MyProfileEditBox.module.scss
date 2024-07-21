@@ -1,7 +1,8 @@
 @import "/styles/mixin.scss";
 
 .first_section {
-  // border: 5px solid blue;
+  border: 5px solid black;
+  padding: 10px;
 
   @include mobile {
     display: none;
@@ -15,6 +16,11 @@
 }
 
 .profile {
+  display: flex;
+  align-items: center;
+}
+
+.right_chevron_icon {
   display: flex;
   align-items: center;
 }

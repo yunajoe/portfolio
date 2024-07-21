@@ -1,5 +1,3 @@
-import Banner from "@/components/banner/Banner";
-import MainNavBar from "@/components/navbar/MainNavBar";
 import classNames from "classnames/bind";
 import React from "react";
 import styles from "./layout.module.scss";
@@ -13,8 +11,8 @@ function MyPortPolioListLayout({ children }: MyPortPolioListLayoutProps) {
   return (
     <div className={cx("container")}>
       <div className={cx("body")}>
-        <MainNavBar />
-        <Banner />
+        {/* <MainNavBar /> */}
+        {/* <Banner /> */}
         {children}
       </div>
     </div>

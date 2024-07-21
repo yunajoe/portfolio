@@ -1,0 +1,37 @@
+@import "/styles/mixin.scss";
+
+.first_section {
+  border: 5px solid black;
+  padding: 10px;
+
+  @include mobile {
+    display: none;
+  }
+  @include laptop {
+    display: none;
+  }
+  @include desktop {
+    display: block;
+  }
+}
+
+.profile_container {
+  display: flex;
+  align-items: center;
+}
+
+.profile_text {
+  color: var(--gray-text);
+  text-decoration: none;
+}
+
+.right_chevron_icon {
+  display: flex;
+  align-items: center;
+  color: var(--gray-text);
+}
+.profile_edit_text {
+  color: var(--black-text);
+  text-decoration: none;
+  font-weight: 700;
+}

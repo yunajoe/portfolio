@@ -5,6 +5,7 @@ import InputBox from "@/components/box/myportpolio/InputBox";
 import IntroduceBox from "@/components/box/myportpolio/IntroduceBox";
 import { career, intro, school } from "@/constant/text";
 import { ToastContext } from "@/context/ToastContext";
+import useToast from "@/hooks/useToast";
 import AddIcon from "@/public/icons/AddIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import {
@@ -12,10 +13,7 @@ import {
   educationFieldAdd,
   selectPortPolio,
 } from "@/src/app/lib/features/portpolio/portpolioSlice";
-import {
-  defaultPortPolioReset,
-  selectStatus,
-} from "@/src/app/lib/features/status/statusSlice";
+import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { CompanyItem, MajorItem } from "@/types/api";
 import {
@@ -53,6 +51,8 @@ function MyPortPolioEditContents({
   const pathname = usePathname();
 
   const portpolioId = pathname.split("edit/")[1];
+
+  useToast("portpolio", defaultPortPolioStatus, defaultPortPolioMessage);
 
   const defaultResumeBox = (
     <>
@@ -175,12 +175,6 @@ function MyPortPolioEditContents({
   };
 
   useEffect(() => {
-    return () => {
-      dispatch(defaultPortPolioReset());
-    };
-  }, []);
-
-  useEffect(() => {
     dispatch({
       type: "GET_PORT_POLIO_DETAIL_REQUEST",
       portpolioId: portpolioId,
@@ -197,12 +191,6 @@ function MyPortPolioEditContents({
       portpolio_id: portpolioId,
     });
   };
-
-  useEffect(() => {
-    if (defaultPortPolioStatus === 200) {
-      toast?.open(defaultPortPolioMessage);
-    }
-  }, [defaultPortPolioStatus]);
 
   return (
     <>

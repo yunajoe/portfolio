@@ -2,16 +2,24 @@
 
 // munulist
 .menu_list {
+  border: 5px solid pink;
   display: flex;
   @include mobile {
     flex-direction: row;
+    &.remove {
+      display: none;
+    }
   }
   @include laptop {
     flex-direction: row;
+    &.remove {
+      display: none;
+    }
   }
   @include desktop {
     flex-direction: column;
   }
+
   & li {
     cursor: pointer;
     padding: 10px;
