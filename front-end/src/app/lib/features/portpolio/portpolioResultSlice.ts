@@ -14,6 +14,9 @@ type PortPolioResultState = {
   type: string;
   // portpolio_detail_request
   portpolio_detail_arr: Item[];
+
+  // default poporlio
+  default_portpolio: Item;
 };
 
 const initialState: PortPolioResultState = {
@@ -29,6 +32,20 @@ const initialState: PortPolioResultState = {
 
   // getListPortPolioDetail
   portpolio_detail_arr: [],
+
+  // default portpolio
+  default_portpolio: {
+    _id: "",
+    users_table_id: "",
+    portpolio_name: "",
+    portpolioId: "",
+    introText: "",
+    careerList: [],
+    educationList: [],
+    createdAt: "",
+    updatedAt: "",
+    defaultResume: false,
+  },
 };
 
 const portPolioResultSlice = createSlice({
@@ -77,32 +94,23 @@ const portPolioResultSlice = createSlice({
       };
     },
 
-    //  포폴저장 성공 여부
-    // portpolioSaveSuccess: (state, action) => {
-    //   console.log("actopn", action.payload);
-    //   const { data, status } = action.payload;
-    //   const { portpolioId } = data;
+    getDefaultPortPolioSuccess: (state, action) => {
+      state.default_portpolio = action.payload;
+    },
 
-    //   const updatePortfolios = state.portpolio_detail_arr.map((item) => {
-    //     if (item.portpolioId === portpolioId) {
-    //       return {
-    //         ...item,
-    //         introText: data.introText,
-    //         careerList: data.careerList,
-    //         educationList: data.educationList,
-    //       };
-    //     }
-    //     return item;
-    //   });
-
-    //   return {
-    //     ...state,
-    //     portpolio_detail_arr: updatePortfolios,
-    //   };
-    // },
-    portpolioSaveFail: () => {
-      return {
-        ...initialState,
+    // reset
+    getDefaultPortPolioReset: (state) => {
+      state.default_portpolio = {
+        _id: "",
+        users_table_id: "",
+        portpolio_name: "",
+        portpolioId: "",
+        introText: "",
+        careerList: [],
+        educationList: [],
+        createdAt: "",
+        updatedAt: "",
+        defaultResume: false,
       };
     },
   },
@@ -115,8 +123,8 @@ export const {
   portpolioListFail,
   portpolioDetailListSuccess,
   portpolioDetailListFail,
-  // portpolioSaveSuccess,
-  portpolioSaveFail,
+  getDefaultPortPolioSuccess,
+  getDefaultPortPolioReset,
 } = portPolioResultSlice.actions;
 
 export const selectPortPolioResult = (state: RootState) =>

@@ -128,9 +128,20 @@ export const updatePortPolioName = async (data: UpdatePortPolioName) => {
   return response;
 };
 
-// default 포폴 가져오기
+// default 포폴 list로  가져오기
 
 export const getDefaultPortPolio = async () => {
   const response = await instance.get("portpolio/default/list");
+  return response;
+};
+
+// 해당 user의 default 가져오기
+
+export const getUserDefaultPortPolio = async (_id: string) => {
+  const response = await instance.get("portpolio/default", {
+    params: {
+      _id: _id,
+    },
+  });
   return response;
 };

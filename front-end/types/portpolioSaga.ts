@@ -5,6 +5,11 @@ export type GetPortPolioDetailListSaga = {
   users_table_id: string;
 };
 
+export type GetPortPolioDefaultSaga = {
+  type: string;
+  _id: string;
+};
+
 export type DeletePortPolioSaga = {
   type: string;
   users_table_id: string;

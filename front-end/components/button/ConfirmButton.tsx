@@ -1,12 +1,12 @@
 import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { EducationType } from "@/types/portpolio";
-import { Button, UnstyledButton } from "@mantine/core";
+import { UnstyledButton } from "@mantine/core";
 import React, { SetStateAction } from "react";
-import styles from "./CareerConfirmButton.module.css";
+import styles from "./CareerConfirmButton.module.scss";
 
-import classNames from "classnames/bind";
 import { SchoolItem } from "@/types/api";
+import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type ConFirmButtonProps = {

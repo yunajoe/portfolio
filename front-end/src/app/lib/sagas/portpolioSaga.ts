@@ -6,11 +6,13 @@ import {
   getDetailPortPolio,
   getListPortPolioDetail,
   getPortPolioList,
+  getUserDefaultPortPolio,
   savePortPolio,
   updateDefaultPortPolio,
   updatePortPolioName,
 } from "@/api/portpolio";
 import {
+  getDefaultPortPolioSuccess,
   portpolioCreateFail,
   portpolioCreateSuccess,
   portpolioDetailListFail,
@@ -33,6 +35,7 @@ import {
 } from "@/src/app/lib/features/status/statusSlice";
 import {
   DeletePortPolioSaga,
+  GetPortPolioDefaultSaga,
   GetPortPolioDetailListSaga,
   SavePortPolioSaga,
   UpdateDefaultPortPolioSaga,
@@ -64,6 +67,23 @@ function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
     yield put(portpolioDetailListFail());
   }
 }
+function* getPortPolioDetailSaga(action: any): any {
+  try {
+    const data = yield call(getDetailPortPolio, action.portpolioId);
+    const result = data.data;
+    yield put(portpolioDetailSuccess(result));
+  } catch (err) {
+    yield put(portpolioDetailFail());
+  }
+}
+
+function* getDefaultPortPolioSaga(action: GetPortPolioDefaultSaga): any {
+  try {
+    const data = yield call(getUserDefaultPortPolio, action._id);
+    const result = data.data;
+    yield put(getDefaultPortPolioSuccess(result.result));
+  } catch (err) {}
+}
 
 function* createPortPolioSaga(action: any): any {
   try {
@@ -81,16 +101,6 @@ function* savePortPolioSaga(action: SavePortPolioSaga): any {
     const result = data.data;
     yield put(savePortPolioStatus(result));
   } catch (err) {}
-}
-
-function* getPortPolioDetailSaga(action: any): any {
-  try {
-    const data = yield call(getDetailPortPolio, action.portpolioId);
-    const result = data.data;
-    yield put(portpolioDetailSuccess(result));
-  } catch (err) {
-    yield put(portpolioDetailFail());
-  }
 }
 
 function* deletePortPolioSaga(action: DeletePortPolioSaga): any {
@@ -125,6 +135,7 @@ export function* portPolioSaga() {
     "GET_PORT_POLIO_DETAIL_LIST_REQUEST",
     getPortPolioDetailListSaga
   );
+  yield takeEvery("GET_PORT_POLIO_DEFAULT_REQUEST", getDefaultPortPolioSaga);
   yield takeEvery("CREATE_PORT_POLIO_REQUEST", createPortPolioSaga);
   yield takeEvery("SAVE_PORT_POLIO_REQUEST", savePortPolioSaga);
   yield takeEvery("DELETE_PORT_POLIO_REQUEST", deletePortPolioSaga);

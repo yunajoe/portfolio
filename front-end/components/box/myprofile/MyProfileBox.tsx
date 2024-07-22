@@ -41,8 +41,8 @@ function MyProfileBox() {
           </UnstyledButton>
         </section>
         <section className={cx("addbutton_section")}>
-          <EducationAddButton />
-          <CareerAddButton />
+          <EducationAddButton userData={userData} />
+          <CareerAddButton userData={userData} />
         </section>
       </div>
       {setting && <MyProfileDropDown handleCloseSetting={handleCloseSetting} />}

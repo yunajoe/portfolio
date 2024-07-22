@@ -1,4 +1,4 @@
-import styles from "@/components/button/DeleteModalButton.module.css";
+import styles from "@/components/button/DeleteModalButton.module.scss";
 import { Flex, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 

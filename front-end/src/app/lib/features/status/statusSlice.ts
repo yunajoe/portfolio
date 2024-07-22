@@ -28,6 +28,8 @@ type StatusState = {
   // updateProfileName
   updateUserNickNameStatus: number | null;
   updateUserNickNameMessage: string;
+
+  // defaultPortPlio
 };
 
 const initialState: StatusState = {
