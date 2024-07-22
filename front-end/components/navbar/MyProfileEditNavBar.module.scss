@@ -1,17 +1,5 @@
 @import "/styles/mixin.scss";
 
-.main_navbar {
-  @include mobile {
-    display: none;
-  }
-  @include laptop {
-    display: none;
-  }
-  @include desktop {
-    display: block;
-  }
-}
-
 .myprofile_edit_navbar {
   position: fixed;
   top: 0;
@@ -19,30 +7,26 @@
   right: 0;
   height: 50px;
   background-color: #fff;
-  width: 100%;
+  margin: 0 auto;
+
   z-index: 800;
   @include mobile {
     display: block;
+    width: 100%;
   }
   @include laptop {
     display: block;
+    width: 95%;
   }
   @include desktop {
     display: none;
   }
 }
 
-//
-
 .navigation_container {
   position: absolute;
-
   width: 100%;
-  border: 5px solid green;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border: 5px solid blue;
 
   @include mobile {
   }
@@ -57,7 +41,7 @@
 .navigation {
   display: flex;
   align-items: center;
-  border: 5px solid pink;
+
   padding: 10px;
 }
 

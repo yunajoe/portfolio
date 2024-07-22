@@ -6,15 +6,11 @@ const cx = classNames.bind(styles);
 function MyProfileEditNavBar() {
   return (
     <>
-      <div className={cx("main_navbar")}>
-        <MainNavBar />
-      </div>
+      <MainNavBar edit={true}/>
       <div className={cx("myprofile_edit_navbar")}>
         <div className={cx("navigation_container")}>
           <nav className={cx("navigation")}>
-            <div>
-              <LeftChevronIcon />
-            </div>
+            <LeftChevronIcon />
             <span className={cx("text")}>프로필편집</span>
           </nav>
         </div>

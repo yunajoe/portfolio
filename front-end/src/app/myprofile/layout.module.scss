@@ -2,6 +2,7 @@
 
 .grid_container {
   display: grid;
+  border: 5px solid blue;
   grid-template-columns: 1fr 2px 2fr;
   column-gap: 20px; /* 열과 열 사이의 간격을 20px로 설정 */
   row-gap: 10px;
@@ -9,7 +10,7 @@
 
   @include mobile {
     grid-template-columns: 1fr;
-    width: 95%;
+    width: 100%;
     column-gap: 30px;
   }
   @include laptop {
@@ -19,7 +20,7 @@
   }
   @include desktop {
     grid-template-columns: 1fr 2px 2fr;
-    width: 90%;
+    width: 80%;
     column-gap: 20px;
   }
 }

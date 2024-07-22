@@ -10,7 +10,11 @@ import Link from "next/link";
 import styles from "./MainNavBar.module.scss";
 const cx = classNames.bind(styles);
 
-function MainNavBar() {
+type MainNavBarProps = {
+  edit?: boolean;
+};
+
+function MainNavBar({ edit = false }: MainNavBarProps) {
   const { isLogin, userData } = useAppSelector(selectAuth);
 
   const changeMenu = (
@@ -31,7 +35,7 @@ function MainNavBar() {
 
   return (
     <div className={cx("container")}>
-      <div className={cx("navigation_container")}>
+      <div className={cx("navigation_container", { hidden: edit })}>
         <nav className={cx("navigation")}>
           <ul className={cx("first_navigation_section")}>
             <li>test1</li>
