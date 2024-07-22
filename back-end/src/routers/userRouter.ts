@@ -111,6 +111,7 @@ userRouter.post(
 
 userRouter.post("/user/editUserName", async (req: Request, res: Response) => {
   const { data } = req.body;
+
   try {
     const result = await updatedNickNameQuery(data._id, data.username);
     if (result) {

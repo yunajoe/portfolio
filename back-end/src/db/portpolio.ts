@@ -200,3 +200,18 @@ export const getDefaultPortPolioQuery = async () => {
     return false;
   }
 };
+
+// users테이블의 _id로 portpolioconetns_의 users_table_idf에서
+// 그 중 defaultResusme한 데이터 (object를)가져온당
+
+export const getCurrentUserDefaultPortPolio = async (_id: string) => {
+  try {
+    const result = await db.collection("portpolio_contents").findOne({
+      users_table_id: new ObjectId(_id),
+      defaultResume: true,
+    });
+    return result;
+  } catch (err) {
+    return false;
+  }
+};

@@ -3,6 +3,7 @@ import { Request, Response, Router } from "express";
 import {
   deletePortPolioContentsQuery,
   deletePortPolioQuery,
+  getCurrentUserDefaultPortPolio,
   getDefaultPortPolioQuery,
   getPortPolioContentsList,
   getPortPolioContentsQuery,
@@ -16,6 +17,7 @@ import {
   updatePortPolioQuery,
 } from "../db/users";
 import { Item } from "../types/portpolio";
+import { BadRequestError, InternalServerError } from "../utils/error";
 import { decodeToken, validationAccessToken } from "../utils/token";
 const crypto = require("crypto");
 
@@ -266,3 +268,26 @@ portpolioRouter.get(
   }
 );
 module.exports = portpolioRouter;
+
+portpolioRouter.get(
+  "/portpolio/default",
+  async (req: Request, res: Response) => {
+    const _id = req.query._id as string;
+    try {
+      const result = await getCurrentUserDefaultPortPolio(_id);
+      if (result) {
+        return res.send({
+          status: 200,
+          message: "default 포트폴리오를 가지고 오는데 성공하였습니다",
+          result,
+        });
+      } else {
+        throw new BadRequestError(
+          "default 포트폴리오를 가지고 오는데 실패하였습니다"
+        );
+      }
+    } catch (err) {
+      throw new InternalServerError();
+    }
+  }
+);
