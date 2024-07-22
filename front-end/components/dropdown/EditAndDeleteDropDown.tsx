@@ -2,7 +2,7 @@ import useOnClickOutside from "@/hooks/useOnClickOutside";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { SetStateAction, useRef } from "react";
-import styles from "./DeleteDropDown.module.css";
+import styles from "./EditAndDeleteDropDown.module.scss";
 const cx = classNames.bind(styles);
 
 type EditAndDeleteDropDownProps = {

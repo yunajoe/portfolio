@@ -1,8 +1,8 @@
+import useDate from "@/hooks/useDate";
+import { EducationType } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import classNames from "classnames/bind";
 import { useState } from "react";
-import styles from "./DateBox.module.css";
-import { EducationType } from "@/src/app/lib/features/portpolio/portpolioSlice";
-import useDate from "@/hooks/useDate";
+import styles from "./DateBox.module.scss";
 
 const cx = classNames.bind(styles);
 

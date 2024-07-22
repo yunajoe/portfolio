@@ -2,7 +2,7 @@ import { CareerType } from "@/types/portpolio";
 import { List, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { SetStateAction, useCallback, useState } from "react";
-import styles from "./StatusDropdown.module.css";
+import styles from "./StatusDropdown.module.scss";
 const cx = classNames.bind(styles);
 
 type PositionDropdownProps = {

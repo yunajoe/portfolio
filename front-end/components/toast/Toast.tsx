@@ -1,8 +1,7 @@
-import React from "react";
-import styles from "./Toast.module.css";
+import styles from "./Toast.module.scss";
 
-import classNames from "classnames/bind";
 import useTimeout from "@/hooks/useTimeout";
+import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type ToastProps = {

@@ -1,6 +1,6 @@
 import Toast from "@/components/toast/Toast";
 import { createContext, useMemo, useState } from "react";
-import styles from "../components/toast/Toast.module.css";
+import styles from "../components/toast/Toast.module.scss";
 
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);

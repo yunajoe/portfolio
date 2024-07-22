@@ -2,7 +2,7 @@ import useDate from "@/hooks/useDate";
 import { CareerType } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useState } from "react";
-import styles from "./DateBox.module.css";
+import styles from "./DateBox.module.scss";
 
 const cx = classNames.bind(styles);
 
