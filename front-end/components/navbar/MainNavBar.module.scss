@@ -3,10 +3,23 @@
 .container {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background-color: var(--white); /* 다른 변수 사용 예시 */
+  // border: 5px solid red;
+  position: fixed;
+  width: 100%;
+
+  z-index: 1000;
+
+  // height: 0px;
+
+  // margin: 0 auto;
 }
 
 .navigation_container {
   margin: 0 auto;
+  border: 5px solid blue;
+
+  // width: 100%;
+  // top: 0;
 
   @include mobile {
     width: 100%;
@@ -62,18 +75,3 @@
   @include desktop {
   }
 }
-//
-// .menubar_list {
-//   border: 5px solid blue;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   list-style: none;
-
-//   & li {
-//     margin-right: 20px;
-//     transition: color 0.3s ease;
-//     cursor: pointer;
-//     padding: 10px;
-//   }
-// }
