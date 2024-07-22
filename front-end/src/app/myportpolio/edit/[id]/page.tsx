@@ -18,12 +18,7 @@ async function page() {
   const [majorList, companyList] = await Promise.all([majorData, companyData]);
 
   return (
-    <div>
-      <MyPortPolioEditContents
-        majorList={majorList}
-        companyList={companyList}
-      />
-    </div>
+    <MyPortPolioEditContents majorList={majorList} companyList={companyList} />
   );
 }
 

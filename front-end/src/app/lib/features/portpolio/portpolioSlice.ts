@@ -28,6 +28,9 @@ export type EducationType = {
 };
 
 export type PortPolioState = {
+  userTableId: string;
+  portpolioId: string;
+  portpolioName: string;
   introText: string;
   careerList: CareerType[];
   educationList: EducationType[];
@@ -39,6 +42,9 @@ export type PortPolioState = {
 };
 
 const initialState: PortPolioState = {
+  userTableId: "",
+  portpolioId: "",
+  portpolioName: "",
   introText: "",
   careerList: [],
   educationList: [],
@@ -119,9 +125,24 @@ const portPolioSlice = createSlice({
     },
 
     portpolioDetailSuccess: (state, action) => {
-      const { _id, portpolioId, introText, careerList, educationList } =
-        action.payload;
+      const {
+        _id,
+        users_table_id,
+        portpolioId,
+        portpolio_name,
+        introText,
+        careerList,
+        educationList,
+      } = action.payload;
 
+      // user_table_id
+      state.userTableId = users_table_id;
+
+      //portpolioId
+      state.portpolioId = portpolioId;
+
+      // portpolioname
+      state.portpolioName = portpolio_name;
       // introText
       state.introText = introText;
 

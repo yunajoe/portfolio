@@ -1,0 +1,25 @@
+@import "/styles/mixin.scss";
+
+.container {
+  border: 5px solid blue;
+
+  margin: 0 auto;
+  margin-bottom: 100px;
+  @include mobile {
+    width: 100%;
+  }
+  @include laptop {
+    width: 95%;
+  }
+  @include desktop {
+    width: 80%;
+  }
+}
+
+.portpolio_name_container {
+  margin-bottom: 30px;
+}
+
+.profile_container {
+  margin-bottom: 50px;
+}

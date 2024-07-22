@@ -1,12 +1,11 @@
-import React from "react";
-import { Box, Container, Divider, Stack, Text, Textarea } from "@mantine/core";
+import { Box, Divider, Text } from "@mantine/core";
 
 type InputBoxProps = {
   title: string;
   description: string[];
 };
 
-function InputBox({ title, description }: InputBoxProps) {
+function DescriptionBox({ title, description }: InputBoxProps) {
   const containerProps = {
     bg: "var(--mantine-color-blue-light)",
     mb: "10",
@@ -32,4 +31,4 @@ function InputBox({ title, description }: InputBoxProps) {
   );
 }
 
-export default InputBox;
+export default DescriptionBox;

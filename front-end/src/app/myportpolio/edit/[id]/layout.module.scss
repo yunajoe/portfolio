@@ -1,0 +1,10 @@
+@import "/styles/mixin.scss";
+
+.container {
+  @include mobile {
+  }
+  @include laptop {
+  }
+  @include desktop {
+  }
+}

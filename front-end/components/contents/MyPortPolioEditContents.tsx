@@ -1,17 +1,17 @@
 "use client";
 import CareerFieldBox from "@/components/box/myportpolio/CareerFieldBox";
+import DescriptionBox from "@/components/box/myportpolio/DescriptionBox";
 import EducationFieldBox from "@/components/box/myportpolio/EducationFieldBox";
-import InputBox from "@/components/box/myportpolio/InputBox";
 import IntroduceBox from "@/components/box/myportpolio/IntroduceBox";
+import PortPolioNameBox from "@/components/box/myportpolio/PortPolioNameBox";
+import ProfileBox from "@/components/box/myportpolio/ProfileBox";
+import MyPortPolioEditButton from "@/components/button/MyPortPolioEditButton";
 import { career, intro, school } from "@/constant/text";
+import useFieldAdd from "@/hooks/useFieldAdd";
 import useToast from "@/hooks/useToast";
 import AddIcon from "@/public/icons/AddIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import {
-  careerFieldAdd,
-  educationFieldAdd,
-  selectPortPolio,
-} from "@/src/app/lib/features/portpolio/portpolioSlice";
+import { selectPortPolio } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { CompanyItem, MajorItem } from "@/types/api";
@@ -19,9 +19,12 @@ import {
   preprocessingCompany,
   preprocessingMajor,
 } from "@/utils/preprecessingApiData";
-import { Box, Button, Flex, Text, UnstyledButton } from "@mantine/core";
+import { Box, Flex, Text, UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
+import styles from "./MyPortPolioListContents.module.scss";
+const cx = classNames.bind(styles);
 
 type MyPortPolioEditContents = {
   majorList: MajorItem[];
@@ -36,15 +39,14 @@ function MyPortPolioEditContents({
   const useStatusSelector = useAppSelector(selectStatus);
   const useAuthSelector = useAppSelector(selectAuth);
 
-  const { introText, careerList, educationList } = usePortPolioSelector;
+  const { portpolioName, introText, careerList, educationList } =
+    usePortPolioSelector;
   const { defaultPortPolioStatus, defaultPortPolioMessage } = useStatusSelector;
   const { userData } = useAuthSelector;
 
   const filteredMajorArr = preprocessingMajor(majorList);
 
   const filteredCompanyArr = preprocessingCompany(companyList);
-
-
 
   const router = useRouter();
   const pathname = usePathname();
@@ -105,80 +107,29 @@ function MyPortPolioEditContents({
     return usePortPolioSelector.careerList;
   }, [usePortPolioSelector.careerList]);
 
+  const { careerAddFunction, educationAddFunction } = useFieldAdd();
+
   const handleCareerAddButton = () => {
     if (careerListMemo.length === 0) {
-      dispatch(
-        careerFieldAdd({
-          companyName: "",
-          status: "정규직",
-          position: "",
-          companyDate: {
-            startYear: "",
-            startMonth: "",
-            endYear: "",
-            endMonth: "",
-          },
-        })
-      );
+      careerAddFunction();
     } else if (
       careerListMemo.at(0)?.companyName &&
       careerListMemo.at(0)?.position
     ) {
-      dispatch(
-        careerFieldAdd({
-          companyName: "",
-          status: "정규직",
-          position: "",
-          companyDate: {
-            startYear: "",
-            startMonth: "",
-            endYear: "",
-            endMonth: "",
-          },
-        })
-      );
+      careerAddFunction();
     }
   };
 
   const handleEducationAddButton = () => {
     if (educationListMemo.length === 0) {
-      dispatch(
-        educationFieldAdd({
-          schoolName: "",
-          major: "",
-          schoolDate: {
-            startYear: "",
-            startMonth: "",
-            endYear: "",
-            endMonth: "",
-          },
-        })
-      );
+      educationAddFunction();
     } else if (
       educationListMemo.at(0)?.schoolName &&
       educationListMemo.at(0)?.major
     ) {
-      dispatch(
-        educationFieldAdd({
-          schoolName: "",
-          major: "",
-          schoolDate: {
-            startYear: "",
-            startMonth: "",
-            endYear: "",
-            endMonth: "",
-          },
-        })
-      );
+      educationAddFunction();
     }
   };
-
-  useEffect(() => {
-    dispatch({
-      type: "GET_PORT_POLIO_DETAIL_REQUEST",
-      portpolioId: portpolioId,
-    });
-  }, [portpolioId, defaultPortPolioStatus]);
 
   const handleChangeToDefaultResume = (
     users_table_id: string,
@@ -191,65 +142,84 @@ function MyPortPolioEditContents({
     });
   };
 
+  useEffect(() => {
+    dispatch({
+      type: "GET_PORT_POLIO_DETAIL_REQUEST",
+      portpolioId: portpolioId,
+    });
+  }, [portpolioId, defaultPortPolioStatus]);
+
   return (
     <>
-      {defaultResumeBox}
-      <InputBox title="간단소개글" description={intro} />
-      <IntroduceBox introText={introText} />
-      <InputBox title="경력" description={career} />
-      <Flex justify="flex-start" align="center" gap="2px" mb="10px">
-        <AddIcon style={{ width: "15px", height: "20px" }} />
-        <Text
-          style={{ cursor: "pointer" }}
-          onClick={handleCareerAddButton}
-          c="blue"
-          fw={700}
-        >
-          추가
-        </Text>
-      </Flex>
-      <div style={{ marginBottom: "30px" }}>
-        {careerListMemo.length > 0 &&
-          careerListMemo.map((item, index) => {
+      <div className={cx("container")}>
+        {defaultResumeBox}
+        <div className={cx("portpolio_name_container")}>
+          <PortPolioNameBox portpolioName={portpolioName} />
+        </div>
+        <div className={cx("profile_container")}>
+          <ProfileBox userData={userData} />
+        </div>
+        <DescriptionBox title="간단소개글" description={intro} />
+        <IntroduceBox introText={introText} />
+        <DescriptionBox title="경력" description={career} />
+        <Flex justify="flex-start" align="center" gap="2px" mb="10px">
+          <AddIcon style={{ width: "15px", height: "20px" }} />
+          <Text
+            style={{ cursor: "pointer" }}
+            onClick={handleCareerAddButton}
+            c="blue"
+            fw={700}
+          >
+            추가
+          </Text>
+        </Flex>
+        <div style={{ marginBottom: "30px" }}>
+          {careerListMemo.length > 0 &&
+            careerListMemo.map((item, index) => {
+              return (
+                <div key={item.id}>
+                  <CareerFieldBox
+                    item={item}
+                    portpolioId={portpolioId}
+                    index={index}
+                    companyList={filteredCompanyArr}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <DescriptionBox title="학력" description={school} />
+        <Flex justify="flex-start" align="center" gap="2px" mb="10px">
+          <AddIcon style={{ width: "15px", height: "20px" }} />
+          <Text
+            style={{ cursor: "pointer" }}
+            onClick={handleEducationAddButton}
+            c="blue"
+            fw={700}
+          >
+            추가
+          </Text>
+        </Flex>
+        {educationListMemo.length > 0 &&
+          educationListMemo.map((item, index) => {
             return (
               <div key={item.id}>
-                <CareerFieldBox
+                <EducationFieldBox
                   item={item}
                   portpolioId={portpolioId}
                   index={index}
-                  companyList={filteredCompanyArr}
+                  majorList={filteredMajorArr}
                 />
               </div>
             );
           })}
       </div>
-      <InputBox title="학력" description={school} />
-      <Flex justify="flex-start" align="center" gap="2px" mb="10px">
-        <AddIcon style={{ width: "15px", height: "20px" }} />
-        <Text
-          style={{ cursor: "pointer" }}
-          onClick={handleEducationAddButton}
-          c="blue"
-          fw={700}
-        >
-          추가
-        </Text>
-      </Flex>
-      {educationListMemo.length > 0 &&
-        educationListMemo.map((item, index) => {
-          return (
-            <div key={item.id}>
-              <EducationFieldBox
-                item={item}
-                portpolioId={portpolioId}
-                index={index}
-                majorList={filteredMajorArr}
-              />
-            </div>
-          );
-        })}
-
-      <Button onClick={handleCompleteButton}>작성 완료</Button>
+      <MyPortPolioEditButton
+        introText={introText}
+        careerList={careerList}
+        educationList={educationList}
+        onClick={handleCompleteButton}
+      />
     </>
   );
 }
