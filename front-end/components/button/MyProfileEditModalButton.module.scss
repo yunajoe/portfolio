@@ -28,4 +28,9 @@
     color: #0066ff;
     background-color: rgb(255, 255, 255);
   }
+
+  &.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 }

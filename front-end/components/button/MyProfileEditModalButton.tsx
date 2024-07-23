@@ -6,6 +6,7 @@ const cx = classNames.bind(styles);
 type MyProfileEditModalButtonProps = {
   close: () => void;
   save: () => void;
+  disabled?: false;
 };
 
 function MyProfileEditModalButton({

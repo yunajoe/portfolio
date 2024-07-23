@@ -45,10 +45,6 @@ function UserNickNameEditModal({ title, close }: UserNickNameEditModalProps) {
           className={cx("user_nickname_input")}
           size="lg"
         />
-        {/* <ModalEditInput
-          handleValueChange={handleValueChange}
-          newUserName={newUserName}
-        ></ModalEditInput> */}
       </MyProfileEditModalContent>
       <MyProfileEditModalButton close={close} save={handleValueSave} />
     </MyProfileEditModalLayout>

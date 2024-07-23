@@ -26,7 +26,7 @@ function MyProfileDropDown({ handleCloseSetting }: MyProfileDropDownProps) {
           </Link>
         </li>
         <li>
-          <Link href="/myprofile/edit" className={cx("item")}>
+          <Link href="/myprofile/setting" className={cx("item")}>
             <PersonIcon />
             <Text>계정설정</Text>
           </Link>

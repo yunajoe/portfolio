@@ -19,7 +19,8 @@ AuthAPI.interceptors.response.use(
 
   async (error) => {
     const originalConfig = error.config;
-    console.log("나는에러다아아아err", error.response);
+    console.log("나는에러다아아아err", error);
+    console.log(error.response);
 
     if (error.response.status === 401) {
       window.location.href = "/";

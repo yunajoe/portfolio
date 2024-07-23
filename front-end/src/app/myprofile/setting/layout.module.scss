@@ -1,0 +1,17 @@
+@import "/styles/mixin.scss";
+
+.container {
+  border: 5px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 50px;
+
+  @include mobile {
+  }
+  @include laptop {
+  }
+  @include desktop {
+  }
+}

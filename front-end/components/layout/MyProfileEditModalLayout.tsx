@@ -6,12 +6,19 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 type MyProfileEditModalLayoutProps = {
   children: ReactNode;
+  style?: React.CSSProperties;
 };
 
-function MyProfileEditModalLayout({ children }: MyProfileEditModalLayoutProps) {
+function MyProfileEditModalLayout({
+  children,
+  style,
+}: MyProfileEditModalLayoutProps) {
   return (
     <ModalBase>
-      <div className={cx("container")}>{children}</div>;
+      <div className={cx("container")} style={{ ...style }}>
+        {children}
+      </div>
+      ;
     </ModalBase>
   );
 }

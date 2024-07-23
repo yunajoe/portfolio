@@ -29,7 +29,9 @@ type StatusState = {
   updateUserNickNameStatus: number | null;
   updateUserNickNameMessage: string;
 
-  // defaultPortPlio
+  // checkPassword
+  checkUserPasswordStatus: number | null;
+  checkUserPasswordMessage: string;
 };
 
 const initialState: StatusState = {
@@ -51,6 +53,8 @@ const initialState: StatusState = {
   updateProfileImageMessage: "",
   updateUserNickNameStatus: null,
   updateUserNickNameMessage: "",
+  checkUserPasswordStatus: null,
+  checkUserPasswordMessage: "",
 };
 
 const statusSlice = createSlice({
@@ -109,10 +113,17 @@ const statusSlice = createSlice({
     },
     updateUserNickNameStatus: (state, action) => {
       const { status, message } = action.payload;
-
       state.updateUserNickNameStatus = status;
       state.updateUserNickNameMessage = message;
     },
+
+    //
+    checkUserPasswordStatus: (state, action) => {
+      const { status, message } = action.payload;
+      state.checkUserPasswordStatus = status;
+      state.checkUserPasswordMessage = message;
+    },
+
     // reset
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
@@ -132,6 +143,10 @@ const statusSlice = createSlice({
       state.logOutStatus = null;
       state.logOutMessage = "";
     },
+    checkUserPasswordStatusReset: (state) => {
+      state.checkUserPasswordStatus = null;
+      state.checkUserPasswordMessage  = ""
+    }
   },
 });
 
@@ -146,11 +161,14 @@ export const {
   logOutStatus,
   updateProfileImageStatus,
   updateUserNickNameStatus,
+  checkUserPasswordStatus,
+
   // reset
   defaultPortPolioReset,
   updateUserNickNameStatusReset,
   updatePortPolioNameStatusReset,
   logOutStatusReset,
+  checkUserPasswordStatusReset,
 } = statusSlice.actions;
 
 // selectore

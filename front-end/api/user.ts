@@ -1,6 +1,25 @@
 import axios from "axios";
 import instance from ".";
 
+type CheckUserCurrentPassword = {
+  type: string;
+  _id: string;
+  currentPassword: string;
+};
+
+export const checkUserCurrentPassword = async (
+  data: CheckUserCurrentPassword
+) => {
+  const { _id, currentPassword } = data;
+  const response = await instance.post("user/checkCurrentPassword", {
+    data: {
+      _id,
+      currentPassword,
+    },
+  });
+  return response;
+};
+
 export const getUserInfoByUserObjectId = async (_id: string) => {
   const response = await instance.get("user/findUserByObjectID", {
     params: {

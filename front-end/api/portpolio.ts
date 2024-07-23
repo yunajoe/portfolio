@@ -13,14 +13,14 @@ export const createPortPolio = async (accessToken: string) => {
 };
 
 // SAVE 포폴
-export type SavePortPolioType = {
+export type SavePortPolio = {
   type: string;
   portpolioId: string;
   introText: string;
   careerList: CareerList[];
   educationList: EducationList[];
 };
-export const savePortPolio = async (data: SavePortPolioType) => {
+export const savePortPolio = async (data: SavePortPolio) => {
   const { portpolioId, introText, careerList, educationList } = data;
   const response = await instance.post("portpolio/save", {
     data: {

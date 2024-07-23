@@ -16,7 +16,7 @@ function ConditionCusTomAvatar({
   return (
     <div>
       {userData.userprofile.length > 0 ? (
-        <div style={{ borderRadius: "999px", overflow: "hidden" }}>
+        <div style={{ borderRadius: "50%", overflow: "hidden" }}>
           <Image
             alt="profile_image"
             src={`http://localhost:8080/static/images/${userData.userprofile}`}
