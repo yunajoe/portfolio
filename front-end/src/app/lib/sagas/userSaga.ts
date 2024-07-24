@@ -65,9 +65,7 @@ function* updateUserNameSaga(action: UpdateUserNameSaga): any {
 function* updateUserPasswordSaga(action: UpdateUserPasswordSaga): any {
   try {
     const data = yield call(updateUserPassword, action);
-    console.log("data입니다아아앙", data);
     const result = data.data;
-    console.log("result", result);
     yield put(updateUserPasswordStatus(result));
   } catch (err) {}
 }

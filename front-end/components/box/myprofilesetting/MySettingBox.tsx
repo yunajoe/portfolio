@@ -10,6 +10,7 @@ import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { Text } from "@mantine/core";
 import classNames from "classnames/bind";
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./MySettingBox.module.scss";
 const cx = classNames.bind(styles);
@@ -46,8 +47,13 @@ function MySettingBox() {
             <RightChevronIcon style={{ width: "30px" }} />
           </li>
           <li>
-            <p>회원탈퇴</p>
-            <RightChevronIcon style={{ width: "30px" }} />
+            <Link
+              href="/myprofile/withdrawal"
+              className={cx("user_withdrawal_text")}
+            >
+              <p>회원탈퇴</p>
+              <RightChevronIcon style={{ width: "30px" }} />
+            </Link>
           </li>
         </ul>
       </div>

@@ -10,3 +10,30 @@ export const career = [
 ];
 
 export const school = ["• 최신순으로 작성해주세요. "];
+
+export const warning_text_one = [
+  {
+    title: "탈퇴하기전에",
+    description: [
+      "• 탈퇴 시 포트폴리오사이트를 통해 등록한 서비스의 모든 정보가 영구적으로 삭제되며, 복구가 불가능합니다.",
+    ],
+  },
+];
+
+export const warning_text_two = [
+  {
+    title: "미리 백업하기",
+    description: [
+      "• '포트폴리오 사이트' 로 등록한 서비스의 정보 백업은 탈퇴 이전에 진행해 주세요.",
+    ],
+  },
+];
+
+export const warning_text_three = [
+  {
+    title: "미리 관리하기",
+    description: [
+      "• 서비스 이용 중 '포트폴리오 사이트 로그인' 계정에 귀속되지 않는 정보는 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다. '원티드 통합 로그인' 계정에 귀속되지 않은 정보의 경우 회원 탈퇴 이전에 수정 또는 삭제해 주세요.",
+    ],
+  },
+];

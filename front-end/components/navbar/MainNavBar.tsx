@@ -38,7 +38,9 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
       <div className={cx("navigation_container", { hidden: edit })}>
         <nav className={cx("navigation")}>
           <ul className={cx("first_navigation_section")}>
-            <li>test1</li>
+            <Link className={cx("link")} href="/board">
+              People&apos;s Portpolio
+            </Link>
             <li>test2</li>
             <li>test3</li>
           </ul>

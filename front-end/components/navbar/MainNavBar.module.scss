@@ -8,10 +8,6 @@
   width: 100%;
 
   z-index: 1000;
-
-  // height: 0px;
-
-  // margin: 0 auto;
 }
 
 .navigation_container {
@@ -74,4 +70,9 @@
   }
   @include desktop {
   }
+}
+
+.link {
+  text-decoration: none;
+  color: #000000;
 }
