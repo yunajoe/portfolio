@@ -76,3 +76,22 @@ export const updateUserName = async (data: UpdateUserName) => {
   });
   return response;
 };
+
+type UpdateUserPassword = {
+  type: string;
+  _id: string;
+  current_password: string;
+  new_password: string;
+};
+export const updateUserPassword = async (data: UpdateUserPassword) => {
+  const { _id, current_password, new_password } = data;
+
+  const response = await instance.post("/user/updateUserPassword", {
+    data: {
+      _id,
+      current_password,
+      new_password,
+    },
+  });
+  return response;
+};

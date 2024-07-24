@@ -9,11 +9,7 @@ import useToast from "@/hooks/useToast";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
-import styles from "./MyProfileEditBox.module.scss";
-
-const cx = classNames.bind(styles);
 
 function MyProfileEditBox() {
   const { userData } = useAppSelector(selectAuth);

@@ -1,13 +1,10 @@
-import {
-  doubleCheckNewPassword,
-  passwordRegexFunc,
-} from "@/utils/formInputRegex";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import styles from "./MyProfileEditModalButton.module.scss";
 const cx = classNames.bind(styles);
 
 type PassWordChangeButtonProps = {
+  isDisabled: boolean;
   currentPassword: string;
   newPassword: string;
   reNewPassword: string;
@@ -17,17 +14,13 @@ type PassWordChangeButtonProps = {
 };
 
 function PassWordChangeButton({
+  isDisabled,
   currentPassword,
   newPassword,
   reNewPassword,
   close,
   save,
 }: PassWordChangeButtonProps) {
-  const isDisabled =
-    !passwordRegexFunc(newPassword) ||
-    !doubleCheckNewPassword(newPassword, reNewPassword) ||
-    currentPassword.trim().length === 0;
-
   return (
     <div className={cx("button_container")}>
       <UnstyledButton className={cx("button", "cancel")} onClick={close}>

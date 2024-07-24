@@ -14,8 +14,9 @@ export type UpdateUserNameSaga = {
   username: string;
 };
 
-export type CheckUserCurrentPasswordSaga = {
+export type UpdateUserPasswordSaga = {
   type: string;
   _id: string;
-  currentPassword: string;
+  current_password: string;
+  new_password: string;
 };

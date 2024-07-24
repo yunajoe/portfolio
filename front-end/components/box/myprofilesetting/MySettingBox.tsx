@@ -3,8 +3,10 @@
 import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PassWordChangeModal from "@/components/modal/type/PassWordChangeModal";
+import useToast from "@/hooks/useToast";
 import RightChevronIcon from "@/public/icons/RightChevronIcon";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { Text } from "@mantine/core";
 import classNames from "classnames/bind";
@@ -13,12 +15,20 @@ import styles from "./MySettingBox.module.scss";
 const cx = classNames.bind(styles);
 function MySettingBox() {
   const { userData } = useAppSelector(selectAuth);
+  const { updateUserPasswordStatus, updateUserPasswordMessage } =
+    useAppSelector(selectStatus);
 
   const [passwordChangeButton, setPasswordChangeButton] = useState(false);
 
-  const handlePassword = () => {
+  const handleOpenPasswordModal = () => {
     setPasswordChangeButton(true);
   };
+
+  const handleClosePasswordModal = () => {
+    setPasswordChangeButton(false);
+  };
+
+  useToast("password", updateUserPasswordStatus, updateUserPasswordMessage);
 
   return (
     <>
@@ -31,7 +41,7 @@ function MySettingBox() {
           개인정보보호
         </Text>
         <ul>
-          <li onClick={handlePassword}>
+          <li onClick={handleOpenPasswordModal}>
             <p>비밀번호 변경</p>
             <RightChevronIcon style={{ width: "30px" }} />
           </li>
@@ -46,7 +56,7 @@ function MySettingBox() {
           <PassWordChangeModal
             userData={userData}
             title="비밀번호 변경"
-            close={() => console.log("하이")}
+            close={handleClosePasswordModal}
           />
         </ModalPortal>
       )}

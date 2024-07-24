@@ -1,9 +1,9 @@
 "use client";
 import {
-  checkUserCurrentPassword,
   getUserInfoByUserObjectId,
   getUserInfoByUserTableId,
   updateUserName,
+  updateUserPassword,
   uploadUserProfileImage,
 } from "@/api/user";
 import {
@@ -11,19 +11,19 @@ import {
   userProfileImageUpdateSuccess,
 } from "@/src/app/lib/features/auth/authSlice";
 import {
-  checkUserPasswordStatus,
   updateProfileImageStatus,
   updateUserNickNameStatus,
+  updateUserPasswordStatus,
 } from "@/src/app/lib/features/status/statusSlice";
 import {
   getUserInfoFail,
   getUserInfoSuccess,
 } from "@/src/app/lib/features/user/userSlice";
 import {
-  CheckUserCurrentPasswordSaga,
   GetUserInfoByObjectIdSaga,
   UpdateProfileImageSaga,
   UpdateUserNameSaga,
+  UpdateUserPasswordSaga,
 } from "@/types/userSaga";
 import { call, put, takeEvery } from "redux-saga/effects";
 
@@ -62,22 +62,20 @@ function* updateUserNameSaga(action: UpdateUserNameSaga): any {
   } catch (err) {}
 }
 
-function* checkUserCurrentPasswordSaga(
-  action: CheckUserCurrentPasswordSaga
-): any {
+function* updateUserPasswordSaga(action: UpdateUserPasswordSaga): any {
   try {
-    const data = yield call(checkUserCurrentPassword, action);
+    const data = yield call(updateUserPassword, action);
+    console.log("data입니다아아앙", data);
     const result = data.data;
-    yield put(checkUserPasswordStatus(result));
+    console.log("result", result);
+    yield put(updateUserPasswordStatus(result));
   } catch (err) {}
 }
-
-//  checkUserCurrentPassword
 
 export function* userSaga() {
   yield takeEvery("USER_FIND_BY_OBJECT_ID", getUserInfoByObjectIdSaga);
   yield takeEvery("USER_FIND_BY_USER_TABLE_ID", getUserInfoByUserTableIdSaga);
   yield takeEvery("UPDATE_USER_PROFILE_IMAGE", updateProfileImageSaga);
   yield takeEvery("UPDATE_USER_NAME", updateUserNameSaga);
-  yield takeEvery("CHECK_USER_CURRENT_PASSWORD", checkUserCurrentPasswordSaga);
+  yield takeEvery("UPDATE_USER_PASSWORD", updateUserPasswordSaga);
 }

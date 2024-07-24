@@ -4,22 +4,23 @@ import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditM
 import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
 import ProgressBar from "@/components/style/ProgressBar";
 import {
-  checkUserPasswordStatusReset,
   selectStatus,
+  updateUserPasswordStatusReset,
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
+import { User } from "@/types/api";
 import {
   doubleCheckNewPassword,
   passwordRegexFunc,
 } from "@/utils/formInputRegex";
 import { PasswordInput, Text } from "@mantine/core";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./PassWordChangeModal.module.scss";
 const cx = classNames.bind(styles);
 
 type PassWordChangeModalProps = {
-  userData: any;
+  userData: User;
   title: string;
   close: () => void;
 };
@@ -34,11 +35,12 @@ function PassWordChangeModal({
   const [reNewPassword, setReNewPassword] = useState("");
 
   const dispatch = useAppDispatch();
-  const { checkUserPasswordStatus } = useAppSelector(selectStatus);
+  const { updateUserPasswordStatus, updateUserPasswordMessage } =
+    useAppSelector(selectStatus);
 
   const handleCurrentPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentPassword(e.target.value);
-    dispatch(checkUserPasswordStatusReset());
+    dispatch(updateUserPasswordStatusReset());
   };
   const handleNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPassword(e.target.value);
@@ -48,19 +50,24 @@ function PassWordChangeModal({
   ) => {
     setReNewPassword(e.target.value);
   };
+  const isDisabled =
+    !passwordRegexFunc(newPassword) ||
+    !doubleCheckNewPassword(newPassword, reNewPassword) ||
+    currentPassword.trim().length === 0;
 
   const handleSave = () => {
     dispatch({
-      type: "CHECK_USER_CURRENT_PASSWORD",
+      type: "UPDATE_USER_PASSWORD",
       _id: userData._id,
-      currentPassword: currentPassword,
+      current_password: currentPassword,
+      new_password: newPassword,
     });
   };
 
   const currentPasswordWarning = (
     <>
-      {checkUserPasswordStatus === 400 && (
-        <p className={cx("password_warning")}>비밀번호가 틀렸습니다</p>
+      {updateUserPasswordStatus !== 200 && (
+        <p className={cx("password_warning")}>{updateUserPasswordMessage}</p>
       )}
     </>
   );
@@ -70,7 +77,6 @@ function PassWordChangeModal({
       {!passwordRegexFunc(newPassword) ? (
         <p>올바르지 않은 비밀번호 입니다</p>
       ) : (
-        // <p>{measurePasswordStrength(newPassword)}</p>
         <ProgressBar newPassword={newPassword} />
       )}
     </div>
@@ -83,6 +89,12 @@ function PassWordChangeModal({
       )}
     </div>
   );
+
+  useEffect(() => {
+    if (updateUserPasswordStatus === 200 && !isDisabled) {
+      close();
+    }
+  }, [updateUserPasswordStatus, isDisabled]);
   return (
     <MyProfileEditModalLayout style={{ padding: "10px" }}>
       <MyProfileEditModalHeader title={title} close={close} />
@@ -124,6 +136,7 @@ function PassWordChangeModal({
         </div>
       </MyProfileEditModalContent>
       <PassWordChangeButton
+        isDisabled={isDisabled}
         currentPassword={currentPassword}
         newPassword={newPassword}
         reNewPassword={reNewPassword}

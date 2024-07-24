@@ -30,8 +30,8 @@ type StatusState = {
   updateUserNickNameMessage: string;
 
   // checkPassword
-  checkUserPasswordStatus: number | null;
-  checkUserPasswordMessage: string;
+  updateUserPasswordStatus: number | null;
+  updateUserPasswordMessage: string;
 };
 
 const initialState: StatusState = {
@@ -53,8 +53,8 @@ const initialState: StatusState = {
   updateProfileImageMessage: "",
   updateUserNickNameStatus: null,
   updateUserNickNameMessage: "",
-  checkUserPasswordStatus: null,
-  checkUserPasswordMessage: "",
+  updateUserPasswordStatus: null,
+  updateUserPasswordMessage: "",
 };
 
 const statusSlice = createSlice({
@@ -117,11 +117,11 @@ const statusSlice = createSlice({
       state.updateUserNickNameMessage = message;
     },
 
-    //
-    checkUserPasswordStatus: (state, action) => {
+    updateUserPasswordStatus: (state, action) => {
       const { status, message } = action.payload;
-      state.checkUserPasswordStatus = status;
-      state.checkUserPasswordMessage = message;
+      // console.log("업데이트", status);
+      state.updateUserPasswordStatus = status;
+      state.updateUserPasswordMessage = message;
     },
 
     // reset
@@ -139,14 +139,15 @@ const statusSlice = createSlice({
       state.updatePortPolioNameMessage = "";
     },
 
+    updateUserPasswordStatusReset: (state) => {
+      state.updateUserPasswordStatus = null;
+      state.updateUserPasswordMessage = "";
+    },
+
     logOutStatusReset: (state) => {
       state.logOutStatus = null;
       state.logOutMessage = "";
     },
-    checkUserPasswordStatusReset: (state) => {
-      state.checkUserPasswordStatus = null;
-      state.checkUserPasswordMessage  = ""
-    }
   },
 });
 
@@ -161,14 +162,14 @@ export const {
   logOutStatus,
   updateProfileImageStatus,
   updateUserNickNameStatus,
-  checkUserPasswordStatus,
+  updateUserPasswordStatus,
 
   // reset
   defaultPortPolioReset,
   updateUserNickNameStatusReset,
   updatePortPolioNameStatusReset,
+  updateUserPasswordStatusReset,
   logOutStatusReset,
-  checkUserPasswordStatusReset,
 } = statusSlice.actions;
 
 // selectore
