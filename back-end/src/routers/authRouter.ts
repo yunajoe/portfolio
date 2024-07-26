@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { NextFunction, Request, Response, Router } from "express";
-import { UUID } from "mongodb";
 
+import { UUID } from "mongodb";
 import {
   deleteAccessAndRefreshTokenQuery,
   updateAccessToken,
@@ -14,7 +14,7 @@ import {
   registerLocal,
   updateTokenKeyValue,
 } from "../middleware/auth";
-import { makeAccessToken, validationRefreshToken } from "../utils/token";
+import { makeAccessToken, refreshTokenValidationError } from "../utils/token";
 dotenv.config();
 const authRouter = Router();
 
@@ -27,32 +27,51 @@ authRouter.get(
   "/auth/tokens/refreshToken",
   async (req: Request, res: Response) => {
     const refreshToken = req.query.refreshToken as string;
-
     try {
-      const result = await validationRefreshToken(refreshToken);
-
-      if (result === 200) {
+      const validationStatus = refreshTokenValidationError(refreshToken);
+      if (validationStatus === 200) {
         const tokenKeyValue = String(new UUID());
         const newAccessToken = makeAccessToken({ key: tokenKeyValue });
-        // keyvalue랑 accessTOken저장하기
         await updateAccessToken(tokenKeyValue, newAccessToken, refreshToken);
-
         return res.send({
           status: 200,
           message: "새로운 access 토큰이 발급되었습니다",
           accessToken: newAccessToken,
         });
-      } else if (result === 411) {
-        return res.status(411).send("refresh 토큰이 없습니다");
-      } else if (result === 412) {
-        // res.send({ status: , message:}) => 이렇게 하면은 프론트의 인터셉터에서 안 받아와진다? ㅎ
-        return res.status(412).send("refresh 토큰이 유효하지 않습니다");
       }
-    } catch (err) {
-      return res.status(500).send("Server Error");
+    } catch (error) {
+      if (error instanceof Error) {
+        const jsonParse = JSON.parse(error.message);
+        return res.status(jsonParse.status).send(jsonParse);
+      }
+      return res.status(500).send("internal server error");
     }
   }
 );
+
+// authRouter.get(
+//   "/auth/tokens/refreshToken",
+//   async (req: Request, res: Response) => {
+//     const refreshToken = req.query.refreshToken as string;
+//     const validationStatus = validationRefreshToken(refreshToken);
+//     // const validationStatus = refreshTokenValidationError(refreshToken);
+//     if (validationStatus === 200) {
+//       const tokenKeyValue = String(new UUID());
+//       const newAccessToken = makeAccessToken({ key: tokenKeyValue });
+//       await updateAccessToken(tokenKeyValue, newAccessToken, refreshToken);
+//       return res.send({
+//         status: 200,
+//         message: "새로운 access 토큰이 발급되었습니다",
+//         accessToken: newAccessToken,
+//       });
+//     } else if (validationStatus === 411) {
+//       return res.status(411).send({
+//         status: validationStatus,
+//         message: "refresh Token이 유효하지 않습니다",
+//       });
+//     }
+//   }
+// );
 
 // kakao 회원가입 && 로그인
 authRouter.post("/auth/login/kakao", loginKaKao, makeOwnAccessAndRefreshToken);

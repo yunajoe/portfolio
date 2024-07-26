@@ -226,6 +226,7 @@ export const findUserByRefreshToken = async (refreshToken: string) => {
     const result = await db.collection("users").findOne({
       refreshToken: refreshToken,
     });
+
     return result;
   } catch (err) {
     throw err;
@@ -286,6 +287,29 @@ export const updatedNickNameQuery = async (_id: string, username: string) => {
       {
         $set: {
           username: username,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    throw false;
+  }
+};
+
+// user
+
+export const updatedPassWordQuery = async (
+  _id: string,
+  new_password: string
+) => {
+  try {
+    await db.collection("users").updateOne(
+      {
+        _id: new ObjectId(_id),
+      },
+      {
+        $set: {
+          password: new_password,
         },
       }
     );

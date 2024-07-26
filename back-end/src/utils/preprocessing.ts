@@ -13,3 +13,8 @@ export const removeIdAndPassword = (obj: User) => {
   const { id, password, ...rest } = obj;
   return rest;
 };
+
+export const getOnlyAccessToken = (authorization: string) => {
+  const onlyAccessToken = authorization.split("Bearer")[1].trim();
+  return onlyAccessToken;
+};

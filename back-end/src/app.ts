@@ -9,7 +9,6 @@ const homeRouter = require("./routers/homeRouter");
 const userRouter = require("./routers/userRouter");
 const portpolioRouter = require("./routers/portpolioRouter");
 const bodyParser = require("body-parser");
-const path = require("path");
 
 const port = process.env.PORT || 8080;
 const app: Express = express();

@@ -17,8 +17,8 @@ import {
   updatePortPolioQuery,
 } from "../db/users";
 import { Item } from "../types/portpolio";
-import { BadRequestError, InternalServerError } from "../utils/error";
-import { decodeToken, validationAccessToken } from "../utils/token";
+import { getOnlyAccessToken } from "../utils/preprocessing";
+import { accessTokenValidationError, decodeToken } from "../utils/token";
 const crypto = require("crypto");
 
 dotenv.config();
@@ -30,23 +30,19 @@ portpolioRouter.get("/", (req: Request, res: Response) => {
 });
 
 portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
-  const accessToken = req.headers.authorization!;
-  // TODO: accessTOken  callbcak함수 만들깅 . 그래서 accessToken이 필요한 API에다가 넣기
+  if (!req.headers.authorization) return;
+  const accessToken = getOnlyAccessToken(req.headers.authorization);
   try {
-    const result = validationAccessToken(accessToken);
-    if (result === 200) {
+    const validationStatus = accessTokenValidationError(accessToken);
+    if (validationStatus === 200) {
       const decodedTokenValue = decodeToken(accessToken);
       const key = decodedTokenValue.key;
-
       const targetUser = await findUserByTokenKeyValueQuery(key);
-
       const uniquePortPolioId = crypto.randomBytes(16).toString("hex");
-
       await updatePortPolioQuery({
         users_table_id: targetUser._id,
         portpolio_id: uniquePortPolioId,
       });
-
       const initialData = {
         users_table_id: targetUser._id,
         portpolioId: uniquePortPolioId,
@@ -68,38 +64,32 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
         key: uniquePortPolioId,
         status: 200,
       });
-    } else if (result === 401) {
-      return res.status(401).send("토큰이 없습니다");
-    } else if (result === 402) {
-      // res.send({ status: , message:}) => 이렇게 하면은 프론트의 인터셉터에서 안 받아와진다? ㅎ
-      return res.status(402).send("토큰이 유효하지 않습니다");
     }
-  } catch (err) {
-    console.log("err", err);
-    return res.status(500).send("server error");
+  } catch (error) {
+    if (error instanceof Error) {
+      const jsonParse = JSON.parse(error.message);
+      return res.status(jsonParse.status).send(jsonParse);
+    }
+    return res.status(500).send("internal server error");
   }
 });
 
-//  저장된 포트폴리오 리스트로 가져오기
 portpolioRouter.post("/portpolio/list", async (req: Request, res: Response) => {
   const { data } = req.body;
-  const validationStatus = validationAccessToken(data.accessToken);
-  if (validationStatus === 200) {
-    const result = await getPortPolioList(data.users_table_id);
-    return res.send({
-      status: 200,
-      result,
-    });
-  } else if (validationStatus === 401) {
-    return res.send({
-      status: 401,
-      message: "accessToken이 없습니다",
-    });
-  } else if (validationStatus === 402) {
-    return res.send({
-      status: 402,
-      message: "accessToken이 유효하지 않습니다",
-    });
+  try {
+    const validationStatus = accessTokenValidationError(data.accessToken);
+    if (validationStatus === 200) {
+      const result = await getPortPolioList(data.users_table_id);
+      return res.send({
+        status: 200,
+        result,
+      });
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      const jsonParse = JSON.parse(error.message);
+      return res.status(jsonParse.status).send(jsonParse);
+    }
   }
 });
 
@@ -282,12 +272,11 @@ portpolioRouter.get(
           result,
         });
       } else {
-        throw new BadRequestError(
-          "default 포트폴리오를 가지고 오는데 실패하였습니다"
-        );
+        return res.send({
+          status: 400,
+          message: "default 포트폴리오를 가지고 오는데실패",
+        });
       }
-    } catch (err) {
-      throw new InternalServerError();
-    }
+    } catch (err) {}
   }
 );

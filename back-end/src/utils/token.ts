@@ -1,3 +1,6 @@
+import { AuthError } from "./error";
+import invariant from "./invariant";
+
 // createToken
 const jwt = require("jsonwebtoken");
 
@@ -12,32 +15,71 @@ export const makeRefreshToken = (data: any) => {
   return token;
 };
 
-// 토큰 검증
+// accessToken 검증
 export const validationAccessToken = (accessToken: string) => {
   if (!accessToken) {
-    return 401;
+    return 420;
   }
   try {
     jwt.verify(accessToken, SECRET_KEY);
     return 200;
   } catch (err) {
-    return 402;
+    return 421;
   }
 };
-// refreshToken이 유효하지 않을때
+// refreshToken 검증
 export const validationRefreshToken = (refreshToken: string) => {
   if (!refreshToken) {
-    return 411;
+    return 410;
   }
 
   try {
     jwt.verify(refreshToken, SECRET_KEY);
     return 200;
   } catch (err) {
-    return 412;
+    return 411;
   }
 };
 
 export const decodeToken = (token: string) => {
   return jwt.verify(token, SECRET_KEY);
+};
+
+//  onlyAccess
+export const accessTokenValidationError = (accessToken: string) => {
+  const validationStatus = validationAccessToken(accessToken);
+  const authErrorResponse = new AuthError("accessToken");
+
+  // 420 (즉, accessToken이 없을떄)
+  invariant(
+    validationStatus === 200 || validationStatus === 421,
+    JSON.stringify(authErrorResponse.print420Error())
+  );
+
+  //  421 (accessToken이 유효하지 않을떄)
+  invariant(
+    validationStatus === 200,
+    JSON.stringify(authErrorResponse.print421Error())
+  );
+
+  return validationStatus;
+};
+
+export const refreshTokenValidationError = (refreshToken: string) => {
+  const validationStatus = validationRefreshToken(refreshToken);
+  const authErrorResponse = new AuthError("refreshToken");
+
+  // 410 (즉, refreshToken이 없을떄)
+  invariant(
+    validationStatus === 200 || validationStatus === 411,
+    JSON.stringify(authErrorResponse.print410Error())
+  );
+
+  //  411 (refreshToken이 유효하지 않을떄)
+  invariant(
+    validationStatus === 200,
+    JSON.stringify(authErrorResponse.print411Error())
+  );
+
+  return validationStatus;
 };
