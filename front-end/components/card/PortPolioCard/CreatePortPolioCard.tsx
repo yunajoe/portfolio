@@ -2,12 +2,8 @@
 import { selectPortPolioResult } from "@/src/app/lib/features/portpolio/portpolioResultSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Card, UnstyledButton } from "@mantine/core";
-import classNames from "classnames/bind";
-import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import styles from "./CreatePortPolioCard.module.scss";
-const cx = classNames.bind(styles);
 function CreatePortPolioCard() {
   const dispatch = useAppDispatch();
   const usePortPolioResultSelector = useAppSelector(selectPortPolioResult);
@@ -17,10 +13,8 @@ function CreatePortPolioCard() {
   const router = useRouter();
   const handleCreatePortPoilo = async () => {
     setIsCreateButtonClick(true);
-    const accessToken = getCookie("accessToken");
     dispatch({
       type: "CREATE_PORT_POLIO_REQUEST",
-      accessToken: accessToken,
     });
   };
 

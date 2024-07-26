@@ -1,15 +1,33 @@
 import { CareerList, EducationList } from "@/types/portpolio";
 import instance from ".";
+// export const createPortPolio = async (accessToken: string) => {
+//   console.log(" createPortPolio", accessToken);
+//   try {
+//     const response = await instance.get("createPortPolio", {
+//       headers: {
+//         Authorization: accessToken,
+//       },
+//     });
+
+//     console.log("resonse", response);
+
+//     return response;
+//   } catch (err) {
+//     console.log("err", err);
+//     return err;
+//   }
+// };
 
 // CREATE 포폴
-export const createPortPolio = async (accessToken: string) => {
-  const response = await instance.get("createPortPolio", {
-    headers: {
-      Authorization: accessToken,
-    },
-  });
-
-  return response;
+export const createPortPolio = async () => {
+  try {
+    const response = await instance.get("createPortPolio");
+    console.log("resonse", response);
+    return response;
+  } catch (err) {
+    console.log("err", err);
+    return err;
+  }
 };
 
 // SAVE 포폴

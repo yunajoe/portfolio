@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 const AuthAPI = axios.create({
   baseURL: "http://localhost:8080/",
@@ -55,35 +55,26 @@ AuthAPI.interceptors.response.use(
       console.log("엑세수카 유효하지 않아여!", status);
       const refreshToken = await getCookie("refreshToken");
 
-      try {
-        const result = await axios.get(
-          "http://localhost:8080/auth/tokens/refreshToken",
-          {
-            params: {
-              refreshToken,
-            },
-          }
-        );
-        if (!result.data) return Promise.reject();
-
-        setCookie("accessToken", result.data.accessToken);
-        originalConfig.headers.Authorization = `Bearer ${result.data.accessToken}`;
-        return axios(originalConfig);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          if (!error.response) return Promise.reject("unexpected Error");
-          if (error.response.status !== 200) {
-            deleteCookie("accessToken");
-            deleteCookie("refreshToken");
-            window.location.href = "http://localhost:3000/auth/login";
-          }
+      const result = await axios.get(
+        "http://localhost:8080/auth/tokens/refreshToken",
+        {
+          params: {
+            refreshToken,
+          },
         }
-      }
+      );
 
-      // const refetchAPI = await axios(originalConfig);
-      // if (refetchAPI.status === 200) return Promise.resolve(refetchAPI);
-      // console.log("refetchAPI", refetchAPI);
-      // return Promise.reject("unexpected Error");
+      console.log("ㅎㅎㅎㅎ", result);
+
+      if (!result.data) return Promise.reject();
+
+      setCookie("accessToken", result.data.accessToken);
+      originalConfig.headers.Authorization = `Bearer ${result.data.accessToken}`;
+
+      const refetchAPI = await axios(originalConfig);
+      if (refetchAPI.status === 200) return Promise.resolve(refetchAPI);
+      console.log("refetchAPI", refetchAPI);
+      return Promise.reject("unexpected Error");
     }
 
     const errResponse = onErrorResponse(error);

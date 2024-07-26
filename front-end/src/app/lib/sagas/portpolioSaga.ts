@@ -87,7 +87,7 @@ function* getDefaultPortPolioSaga(action: GetPortPolioDefaultSaga): any {
 
 function* createPortPolioSaga(action: any): any {
   try {
-    const data = yield call(createPortPolio, action.accessToken);
+    const data = yield call(createPortPolio);
     const result = data.data;
     yield put(portpolioCreateSuccess(result));
   } catch (err) {

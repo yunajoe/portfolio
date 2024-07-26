@@ -95,45 +95,53 @@ function PassWordChangeModal({
       close();
     }
   }, [updateUserPasswordStatus, isDisabled]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(updateUserPasswordStatusReset());
+    };
+  }, []);
   return (
     <MyProfileEditModalLayout style={{ padding: "10px" }}>
       <MyProfileEditModalHeader title={title} close={close} />
       <MyProfileEditModalContent>
-        <div className={cx("current_password_container")}>
-          <PasswordInput
-            className={cx("text_input")}
-            label="현재비밀번호"
-            placeholder="비밀번호를 입력해주세요"
-            size="lg"
-            value={currentPassword}
-            onChange={(e) => handleCurrentPassword(e)}
-          />
-          {currentPassword.length > 0 && currentPasswordWarning}
-        </div>
-        <div className={cx("new_password_container")}>
-          <PasswordInput
-            label="새 비밀번호"
-            placeholder="새 비밀번호를 입력해주세요"
-            className={cx("text_input")}
-            size="lg"
-            value={newPassword}
-            onChange={handleNewPassword}
-          />
-          {newPassword.length > 0 && newPasswordWarning}
+        <form>
+          <div className={cx("current_password_container")}>
+            <PasswordInput
+              className={cx("text_input")}
+              label="현재비밀번호"
+              placeholder="비밀번호를 입력해주세요"
+              size="lg"
+              value={currentPassword}
+              onChange={(e) => handleCurrentPassword(e)}
+            />
+            {currentPassword.length > 0 && currentPasswordWarning}
+          </div>
+          <div className={cx("new_password_container")}>
+            <PasswordInput
+              label="새 비밀번호"
+              placeholder="새 비밀번호를 입력해주세요"
+              className={cx("text_input")}
+              size="lg"
+              value={newPassword}
+              onChange={handleNewPassword}
+            />
+            {newPassword.length > 0 && newPasswordWarning}
 
-          <PasswordInput
-            placeholder="새 비밀번호를 다시 한번 입력해주세요"
-            className={cx("text_input")}
-            size="lg"
-            value={reNewPassword}
-            onChange={handleDoubleCheckNewPassword}
-          />
-          {reNewPassword.length > 0 && reNewPasswordWarning}
-          <Text c="gray" className={cx("password_rule")}>
-            영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합해 8자 이상 16자
-            이하로 입력해주세요.
-          </Text>
-        </div>
+            <PasswordInput
+              placeholder="새 비밀번호를 다시 한번 입력해주세요"
+              className={cx("text_input")}
+              size="lg"
+              value={reNewPassword}
+              onChange={handleDoubleCheckNewPassword}
+            />
+            {reNewPassword.length > 0 && reNewPasswordWarning}
+            <Text c="gray" className={cx("password_rule")}>
+              영문 대소문자, 숫자, 특수문자를 3가지 이상으로 조합해 8자 이상
+              16자 이하로 입력해주세요.
+            </Text>
+          </div>
+        </form>
       </MyProfileEditModalContent>
       <PassWordChangeButton
         isDisabled={isDisabled}

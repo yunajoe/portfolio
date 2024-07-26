@@ -108,8 +108,8 @@ const statusSlice = createSlice({
 
     updateProfileImageStatus: (state, action) => {
       const { status, message } = action.payload;
-      state.updatePortPolioNameStatus = status;
-      state.updatePortPolioNameMessage = message;
+      state.updateProfileImageStatus = status;
+      state.updateProfileImageMessage = message;
     },
     updateUserNickNameStatus: (state, action) => {
       const { status, message } = action.payload;
@@ -119,7 +119,6 @@ const statusSlice = createSlice({
 
     updateUserPasswordStatus: (state, action) => {
       const { status, message } = action.payload;
-      // console.log("업데이트", status);
       state.updateUserPasswordStatus = status;
       state.updateUserPasswordMessage = message;
     },
@@ -128,6 +127,11 @@ const statusSlice = createSlice({
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
       state.defaultPortPolioMessage = "";
+    },
+
+    updateProfileImageStatusReset: (state) => {
+      state.updateProfileImageStatus = null;
+      state.updateProfileImageMessage = "";
     },
 
     updateUserNickNameStatusReset: (state) => {
@@ -170,6 +174,7 @@ export const {
   updatePortPolioNameStatusReset,
   updateUserPasswordStatusReset,
   logOutStatusReset,
+  updateProfileImageStatusReset,
 } = statusSlice.actions;
 
 // selectore

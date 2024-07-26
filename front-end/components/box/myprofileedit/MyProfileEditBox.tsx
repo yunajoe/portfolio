@@ -13,8 +13,18 @@ import { useEffect, useState } from "react";
 
 function MyProfileEditBox() {
   const { userData } = useAppSelector(selectAuth);
-  const { updateUserNickNameStatus, updateUserNickNameMessage } =
-    useAppSelector(selectStatus);
+  const {
+    updateUserNickNameStatus,
+    updateUserNickNameMessage,
+    updateProfileImageStatus,
+    updateProfileImageMessage,
+  } = useAppSelector(selectStatus);
+
+  console.log(
+    " updatePortPolioNameStatus",
+    updateProfileImageStatus,
+    updateProfileImageMessage
+  );
 
   const [profileImageUrl, setProfileImageUrl] = useState("");
   // 아래처럼 하면은 왜 안될까유?
@@ -26,6 +36,8 @@ function MyProfileEditBox() {
   const [profileFormData, setProfileFormData] = useState<File | null>(null);
 
   useToast("username", updateUserNickNameStatus, updateUserNickNameMessage);
+
+  useToast("profileImage", updateProfileImageStatus, updateProfileImageMessage);
 
   const dispatch = useAppDispatch();
 

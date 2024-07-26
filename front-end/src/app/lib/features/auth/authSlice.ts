@@ -46,6 +46,9 @@ const authSlice = createSlice({
     registerSuccess: (state, action) => {
       const { status, message, access_token, refresh_token, user_data } =
         action.payload;
+
+      // cookie이는 비휘발성 => 그래서 자동 로그인으로 쓰일 수 있음
+      // reqeust.headers (api..) 휘발성 => 그래서 자동 로그인으로 쓰이지 못함
       setCookie("accessToken", access_token);
       setCookie("refreshToken", refresh_token);
 
@@ -80,7 +83,6 @@ const authSlice = createSlice({
       }
     },
     loginFail: (state, action) => {
-      // status는  payload값으로 안 넘어옴 와이?
       return {
         ...initialState,
       };

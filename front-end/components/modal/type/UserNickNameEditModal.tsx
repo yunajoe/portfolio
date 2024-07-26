@@ -20,6 +20,7 @@ function UserNickNameEditModal({ title, close }: UserNickNameEditModalProps) {
   const { userData } = useAppSelector(selectAuth);
   const [newUserName, setNewUserName] = useState(userData.username);
 
+
   const dispatch = useAppDispatch();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {

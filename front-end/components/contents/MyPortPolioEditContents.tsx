@@ -42,6 +42,7 @@ function MyPortPolioEditContents({
   const { portpolioName, introText, careerList, educationList } =
     usePortPolioSelector;
   const { defaultPortPolioStatus, defaultPortPolioMessage } = useStatusSelector;
+
   const { userData } = useAuthSelector;
 
   const filteredMajorArr = preprocessingMajor(majorList);

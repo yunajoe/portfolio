@@ -39,7 +39,7 @@ function* getUserInfoByUserTableIdSaga(action: any): any {
   try {
     const data = yield call(getUserInfoByUserTableId, action.users_table_id);
     const result = data.data;
-    yield put(getUserInfoSuccess(result));
+    yield put(getUserInfoSuccess(result.userInfo));
   } catch (err) {
     yield put(getUserInfoFail());
   }
