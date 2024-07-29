@@ -142,6 +142,30 @@ export const updatedPortPolioNameQuery = async (
     return false;
   }
 };
+// delete PortPolio using user_table_id
+export const deletePortPolioByUsersTableId = async (users_table_id: string) => {
+  try {
+    await db.collection("portpolio").deleteOne({
+      users_table_id: new ObjectId(users_table_id),
+    });
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
+// delete PortPolio using user_table_id
+export const deleteAllPortPolioContents = async (users_table_id: string) => {
+  try {
+    await db.collection("portpolio").deleteMany({
+      users_table_id: new ObjectId(users_table_id),
+    });
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
 // delete PortPolioContent
 export const deletePortPolioContentsQuery = async (
   users_table_id: string,
@@ -215,3 +239,5 @@ export const getCurrentUserDefaultPortPolio = async (_id: string) => {
     return false;
   }
 };
+
+// portpolio

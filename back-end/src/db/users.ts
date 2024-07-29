@@ -318,3 +318,15 @@ export const updatedPassWordQuery = async (
     throw false;
   }
 };
+
+// _id를 받아서 users테이블 삭제하기
+export const deleteUserQuery = async (_id: string) => {
+  try {
+    await db.collection("users").deleteOne({
+      _id: new ObjectId(_id),
+    });
+    return true;
+  } catch (err) {
+    throw false;
+  }
+};

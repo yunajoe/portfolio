@@ -3,7 +3,12 @@ import { NextFunction, Request, Response, Router } from "express";
 
 import { UUID } from "mongodb";
 import {
+  deleteAllPortPolioContents,
+  deletePortPolioByUsersTableId,
+} from "../db/portpolio";
+import {
   deleteAccessAndRefreshTokenQuery,
+  deleteUserQuery,
   updateAccessToken,
 } from "../db/users";
 import {
@@ -49,30 +54,6 @@ authRouter.get(
   }
 );
 
-// authRouter.get(
-//   "/auth/tokens/refreshToken",
-//   async (req: Request, res: Response) => {
-//     const refreshToken = req.query.refreshToken as string;
-//     const validationStatus = validationRefreshToken(refreshToken);
-//     // const validationStatus = refreshTokenValidationError(refreshToken);
-//     if (validationStatus === 200) {
-//       const tokenKeyValue = String(new UUID());
-//       const newAccessToken = makeAccessToken({ key: tokenKeyValue });
-//       await updateAccessToken(tokenKeyValue, newAccessToken, refreshToken);
-//       return res.send({
-//         status: 200,
-//         message: "새로운 access 토큰이 발급되었습니다",
-//         accessToken: newAccessToken,
-//       });
-//     } else if (validationStatus === 411) {
-//       return res.status(411).send({
-//         status: validationStatus,
-//         message: "refresh Token이 유효하지 않습니다",
-//       });
-//     }
-//   }
-// );
-
 // kakao 회원가입 && 로그인
 authRouter.post("/auth/login/kakao", loginKaKao, makeOwnAccessAndRefreshToken);
 
@@ -111,6 +92,31 @@ authRouter.post(
         message: "로그아웃에 실패하였습니다",
       });
     } catch (err) {
+      return res.status(500).send("Server Error");
+    }
+  }
+);
+
+authRouter.delete(
+  "/auth/delete",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const _id = req.body._id;
+      const result1 = await deleteUserQuery(_id);
+      const result2 = await deletePortPolioByUsersTableId(_id);
+      const result3 = await deleteAllPortPolioContents(_id);
+      if (result1 && result2 && result3) {
+        return res.send({
+          status: 200,
+          message: "탈퇴에 성공하였습니다",
+        });
+      }
+      return res.send({
+        status: 400,
+        message: "탈퇴를 성공적으로 못하였습니다",
+      });
+    } catch (error) {
+      console.log("err", error);
       return res.status(500).send("Server Error");
     }
   }
