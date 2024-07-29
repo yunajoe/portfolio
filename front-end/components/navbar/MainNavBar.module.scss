@@ -3,19 +3,14 @@
 .container {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background-color: var(--white); /* 다른 변수 사용 예시 */
-  // border: 5px solid red;
   position: fixed;
   width: 100%;
-
   z-index: 1000;
+  margin-bottom: 30px;
 }
 
 .navigation_container {
   margin: 0 auto;
-  border: 5px solid blue;
-
-  // width: 100%;
-  // top: 0;
 
   @include mobile {
     width: 100%;

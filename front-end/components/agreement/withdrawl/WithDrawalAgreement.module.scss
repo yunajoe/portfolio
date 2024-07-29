@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
   @include mobile {
     width: 100%;
   }
@@ -13,6 +12,7 @@
     width: 95%;
   }
   @include desktop {
+    width: 80%;
   }
 }
 

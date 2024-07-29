@@ -14,6 +14,7 @@ export default async function Page() {
   // 사람들의 default resume를 볼 수 있댜
 
   const defaultPortPolios = await getDefaultPortPolios();
+  console.log("기본 포트폴리오", defaultPortPolios.data.result);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

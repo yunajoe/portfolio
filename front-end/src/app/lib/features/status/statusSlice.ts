@@ -119,6 +119,7 @@ const statusSlice = createSlice({
     },
     updateUserNickNameStatus: (state, action) => {
       const { status, message } = action.payload;
+      console.log("updataUsericset", status, message);
       state.updateUserNickNameStatus = status;
       state.updateUserNickNameMessage = message;
     },
@@ -130,7 +131,7 @@ const statusSlice = createSlice({
     },
 
     deleteUserStatus: (state, action) => {
-      const { status, message } = action.payload;      
+      const { status, message } = action.payload;
       state.deleteUserStatus = status;
       state.deleteUserMessage = message;
     },

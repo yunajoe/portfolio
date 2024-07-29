@@ -16,7 +16,7 @@ import {
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { SchoolItem } from "@/types/api";
 import { removeDuplicatedSchool } from "@/utils/preprecessingApiData";
-import { Flex, Stack, TextInput } from "@mantine/core";
+import { Box, Flex, Stack, TextInput } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 
 import EducationFieldDeleteModal from "@/components/modal/type/EducationFieldDeleteModal";
@@ -136,11 +136,11 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
 
   return (
     <>
-      <div className={cx("container")}>
+      <Flex className={cx("container")}>
         <Stack className={cx("date")}>
           <EducationDate item={item} />
         </Stack>
-        <div className={cx("education_container")}>
+        <Box w="100%">
           <Flex w="100%" justify="space-between" align="center">
             <ModalInput
               placeholder="학교명"
@@ -154,7 +154,7 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
             />
           </Flex>
 
-          <div>
+          <div className={cx("major_input_container")}>
             <TextInput
               variant="unstyled"
               placeholder="전공 및 학위(ex: 경제학과 학사)"
@@ -172,8 +172,8 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
               />
             )}
           </div>
-        </div>
-      </div>
+        </Box>
+      </Flex>
 
       {/* 모달 나오는거 */}
       {isOpen && (

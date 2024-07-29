@@ -59,6 +59,7 @@ function* updateUserNameSaga(action: UpdateUserNameSaga): any {
     const data = yield call(updateUserName, action);
     const result = data.data;
     yield put(updateUserNickNameStatus(result));
+    // yield put(userNameUpdateSuccess(action.username));
   } catch (err) {}
 }
 

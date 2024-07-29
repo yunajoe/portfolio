@@ -1,7 +1,7 @@
-import { List, ScrollArea, Text, UnstyledButton } from "@mantine/core";
-import React, { SetStateAction, useCallback, useState } from "react";
+import { List, ScrollArea, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
-import styles from "./CompanySearchResult.module.css";
+import React, { SetStateAction, useCallback, useState } from "react";
+import styles from "./CompanySearchResult.module.scss";
 
 const cx = classNames.bind(styles);
 

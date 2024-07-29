@@ -35,7 +35,6 @@ function WithDrawlModal({ userData, title, close }: WithDrawlModalProps) {
   const showTextArea = selectedValue === "기타의견";
 
   const handleConfirmWithDrawl = () => {
-    console.log("회원탈퇴가 되었어여");
     dispatch({ type: "WITHDRAWAL_REQUEST", _id: userData._id });
   };
 

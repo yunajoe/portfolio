@@ -1,0 +1,27 @@
+@import "/styles/mixin.scss";
+
+.container {
+  // position: absolute;
+  width: 50%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 5;
+  height: 300px;
+  overflow-y: auto;
+  border: 5px solid green;
+  @include mobile {
+    width: 100%;
+  }
+  @include laptop {
+    width: 95%;
+  }
+  @include desktop {
+    width: 80%;
+  }
+}
+
+.list_item {
+  width: 100%;
+  padding: 10px;
+  z-index: 5;
+}

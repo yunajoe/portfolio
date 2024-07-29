@@ -1,10 +1,10 @@
-import React, { SetStateAction, useCallback, useState } from "react";
-import classNames from "classnames/bind";
-import styles from "./MajorSearch.module.css";
-import { List, ScrollArea, UnstyledButton } from "@mantine/core";
-import { EducationType } from "@/types/portpolio";
-import { useAppDispatch } from "@/src/app/lib/hooks";
 import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
+import { useAppDispatch } from "@/src/app/lib/hooks";
+import { EducationType } from "@/types/portpolio";
+import { List, ScrollArea, UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
+import React, { SetStateAction, useCallback, useState } from "react";
+import styles from "./MajorSearch.module.scss";
 const cx = classNames.bind(styles);
 
 type MajorSearchResultProps = {

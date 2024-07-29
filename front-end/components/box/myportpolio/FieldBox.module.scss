@@ -1,8 +1,19 @@
+@import "/styles/mixin.scss";
+
 .container {
   background-color: #fbfbfb;
   border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  @include mobile {
+    flex-direction: column;
+  }
+  @include laptop {
+    flex-direction: column;
+  }
+  @include desktop {
+  }
 }
 
-.major_input_container {
-  position: "relative";
+.education_container {
+  width: 100%;
 }

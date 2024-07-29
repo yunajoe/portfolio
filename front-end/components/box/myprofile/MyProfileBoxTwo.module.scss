@@ -1,8 +1,6 @@
 @import "/styles/mixin.scss";
 
-// munulist
 .menu_list {
-  border: 5px solid pink;
   display: flex;
   @include mobile {
     flex-direction: row;

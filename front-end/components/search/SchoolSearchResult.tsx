@@ -1,8 +1,8 @@
-import { List, ScrollArea, UnstyledButton } from "@mantine/core";
-import React, { SetStateAction, useCallback, useState } from "react";
-import classNames from "classnames/bind";
-import styles from "./CompanySearchResult.module.css";
 import { SchoolItem } from "@/types/api";
+import { List, ScrollArea, UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
+import React, { SetStateAction, useCallback, useState } from "react";
+import styles from "./CompanySearchResult.module.scss";
 const cx = classNames.bind(styles);
 type SchoolSearchResultProps = {
   data: SchoolItem[];

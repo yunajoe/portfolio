@@ -1,3 +1,4 @@
+import MyProfileWithDrawalNavBar from "@/components/navbar/MyProfileWithDrawalNavBar";
 import classNames from "classnames/bind";
 import styles from "./layout.module.scss";
 const cx = classNames.bind(styles);
@@ -10,8 +11,8 @@ function MyProfileWidthDrawlLayout({
   children,
 }: MyProfileWidthDrawlLayoutProps) {
   return (
-    <>   
-      <p>헤더</p>
+    <>
+      <MyProfileWithDrawalNavBar />
       <div className={cx("container")}>{children}</div>
     </>
   );

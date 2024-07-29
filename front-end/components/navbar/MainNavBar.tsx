@@ -24,10 +24,11 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
           <ConditionCusTomAvatar userData={userData} width={30} height={30} />
         </Link>
       ) : (
-        <Link href="/auth/login" style={{ textDecoration: "none" }}>
-          <UnstyledButton style={{ border: "5px solid red" }}>
-            회원가입/로그인
-          </UnstyledButton>
+        <Link
+          href="/auth/login"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <UnstyledButton>회원가입/로그인</UnstyledButton>
         </Link>
       )}
     </>
@@ -45,9 +46,7 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
             <li>test3</li>
           </ul>
           <ul className={cx("second_navigation_section")}>
-            <li>
-              <SearchIcon style={{ width: "20px" }} />
-            </li>
+            <SearchIcon style={{ width: "20px" }} />
             <li>{changeMenu}</li>
           </ul>
         </nav>
