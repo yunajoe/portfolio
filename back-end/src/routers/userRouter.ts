@@ -23,10 +23,7 @@ userRouter.get(
     try {
       const userErrorResponse = new UserError("findUserByOjectID");
       const result = await findUserByObjectIdQuery(_id);
-      invariant(
-        result === true,
-        JSON.stringify(userErrorResponse.print400Error())
-      );
+      invariant(result, JSON.stringify(userErrorResponse.print400Error()));
       return res.send({
         status: 200,
         message: "해당 user정보를 찾았습니다",
@@ -48,10 +45,7 @@ userRouter.get(
     try {
       const userErrorResponse = new UserError("findUserByUserTableID");
       const result = await findUserByUsersTableId(users_table_id);
-      invariant(
-        result === true,
-        JSON.stringify(userErrorResponse.print400Error())
-      );
+      invariant(result, JSON.stringify(userErrorResponse.print400Error()));
       return res.send({
         status: 200,
         message: "해당 user정보를 찾았습니다",
