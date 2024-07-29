@@ -5,6 +5,7 @@ import {
   loginLocal,
   logout,
   registerLocal,
+  withDrawal,
 } from "@/api/auth";
 import {
   loginFail,
@@ -12,9 +13,17 @@ import {
   logoutSuccess,
   registerFail,
   registerSuccess,
+  withDrawalSuccess,
 } from "@/src/app/lib/features/auth/authSlice";
-import { logOutStatus } from "@/src/app/lib/features/status/statusSlice";
-import { KaKaoLoginUserSaga, LogoutUserSaga } from "@/types/authSaga";
+import {
+  deleteUserStatus,
+  logoutStatus,
+} from "@/src/app/lib/features/status/statusSlice";
+import {
+  KaKaoLoginUserSaga,
+  LogoutUserSaga,
+  WithDrawlUserSaga,
+} from "@/types/authSaga";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 function* kakaoLoginUser(action: KaKaoLoginUserSaga): any {
@@ -49,7 +58,15 @@ function* logoutUser(action: LogoutUserSaga): any {
   try {
     const result = yield call(logout, action);
     yield put(logoutSuccess(result.data));
-    yield put(logOutStatus(result.data));  
+    yield put(logoutStatus(result.data));
+  } catch (err) {}
+}
+
+function* withDrawalUser(action: WithDrawlUserSaga): any {
+  try {
+    const result = yield call(withDrawal, action);
+    yield put(deleteUserStatus(result.data));
+    yield put(withDrawalSuccess(result.data));
   } catch (err) {}
 }
 
@@ -60,4 +77,5 @@ export function* authSaga() {
   yield takeEvery("LOCAL_REGISTER_REQUEST", localRegisterUser);
   yield takeEvery("LOCAL_LOGIN_REQUEST", localLoginUser);
   yield takeLatest("LOGOUT_REQUEST", logoutUser);
+  yield takeLatest("WITHDRAWAL_REQUEST", withDrawalUser);
 }

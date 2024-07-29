@@ -37,7 +37,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/date/EducationDatetsx"
+    "components/date/EducationDatetsx",
+    "components/modal/type/WithDrawlModal.module.scsss"
   ],
   "exclude": ["node_modules"]
 }

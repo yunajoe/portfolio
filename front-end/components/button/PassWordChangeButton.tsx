@@ -15,9 +15,6 @@ type PassWordChangeButtonProps = {
 
 function PassWordChangeButton({
   isDisabled,
-  currentPassword,
-  newPassword,
-  reNewPassword,
   close,
   save,
 }: PassWordChangeButtonProps) {

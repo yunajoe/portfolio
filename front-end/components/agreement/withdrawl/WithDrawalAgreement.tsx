@@ -10,9 +10,14 @@ import {
   warning_text_two,
 } from "@/constant/text";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import { useAppSelector } from "@/src/app/lib/hooks";
+import {
+  deleteUserStatusReset,
+  selectStatus,
+} from "@/src/app/lib/features/status/statusSlice";
+import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import styles from "./WithDrawalAgreement.module.scss";
 const cx = classNames.bind(styles);
 
@@ -21,8 +26,21 @@ function WithDrawalAgreement() {
     first_option: false,
     second_option: false,
   });
+  const [withDrawlButton, setWithDrawlButton] = useState(false);
   const useAuthSelector = useAppSelector(selectAuth);
+  const useStatusSelector = useAppSelector(selectStatus);
   const { userData } = useAuthSelector;
+  const { deleteUserStatus, deleteUserMessage } = useStatusSelector;
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  useEffect(() => {
+    if (deleteUserStatus === 200) {
+      router.push("/auth/login");
+    }
+    return () => {
+      dispatch(deleteUserStatusReset());
+    };
+  }, [deleteUserStatus]);
 
   return (
     <form className={cx("form")}>
@@ -40,7 +58,12 @@ function WithDrawalAgreement() {
           agreeSelectOptions={agreeSelectOptions}
           setAgreeSelectOptions={setAgreeSelectOptions}
         />
-        <WithDrawalButton agreeSelectOptions={agreeSelectOptions} />
+        <WithDrawalButton
+          agreeSelectOptions={agreeSelectOptions}
+          withDrawlButton={withDrawlButton}
+          setWithDrawlButton={setWithDrawlButton}
+          userData={userData}
+        />
       </fieldset>
     </form>
   );

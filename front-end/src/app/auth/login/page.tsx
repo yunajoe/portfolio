@@ -16,6 +16,7 @@ function LoginPage() {
   const router = useRouter();
 
   const useAuthSelector = useAppSelector(selectAuth);
+  console.log("ㅎㅎㅎㅎㅎㅎ", useAuthSelector);
 
   const handleKaKaoButton = async () => {
     window.location.href = getAuthCode;

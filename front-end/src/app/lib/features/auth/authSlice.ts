@@ -47,8 +47,6 @@ const authSlice = createSlice({
       const { status, message, access_token, refresh_token, user_data } =
         action.payload;
 
-      // cookie이는 비휘발성 => 그래서 자동 로그인으로 쓰일 수 있음
-      // reqeust.headers (api..) 휘발성 => 그래서 자동 로그인으로 쓰이지 못함
       setCookie("accessToken", access_token);
       setCookie("refreshToken", refresh_token);
 
@@ -58,9 +56,7 @@ const authSlice = createSlice({
       state.userData = user_data;
     },
     registerFail: (state, action) => {
-      return {
-        ...initialState,
-      };
+      return initialState;
     },
 
     loginSuccess: (state, action) => {
@@ -68,7 +64,6 @@ const authSlice = createSlice({
         action.payload;
 
       if (status === 200) {
-        // 로그인성공할때 쿠키저장
         setCookie("accessToken", access_token);
         setCookie("refreshToken", refresh_token);
         (state.isLogin = true),
@@ -78,14 +73,13 @@ const authSlice = createSlice({
       } else {
         return {
           ...initialState,
-          status: action.payload.status,
+          status: status,
+          message: message,
         };
       }
     },
     loginFail: (state, action) => {
-      return {
-        ...initialState,
-      };
+      return initialState;
     },
 
     logoutSuccess: (state, action) => {
@@ -95,6 +89,14 @@ const authSlice = createSlice({
         deleteCookie("refreshToken");
         return {
           ...initialState,
+          status: status,
+          message: message,
+        };
+      } else {
+        return {
+          ...state,
+          status: status,
+          message: message,
         };
       }
     },
@@ -108,6 +110,15 @@ const authSlice = createSlice({
     userNameUpdateSuccess: (state, action) => {
       state.userData.username = action.payload.username;
     },
+
+    withDrawalSuccess: (state, action) => {
+      const { status, message } = action.payload;
+      if (status === 200) {
+        deleteCookie("accessToken");
+        deleteCookie("refreshToken");
+        return initialState;
+      }
+    },
   },
 });
 
@@ -120,6 +131,7 @@ export const {
   logoutSuccess,
   userProfileImageUpdateSuccess,
   userNameUpdateSuccess,
+  withDrawalSuccess,
 } = authSlice.actions;
 
 // selectore

@@ -2,7 +2,7 @@
 
 :root {
   //  navigation
-  --white: #ffffff;
+  --white: rgb(255, 255, 255);
 
   // myportpolio
   --portpolio-background: #eeeeee;
@@ -21,6 +21,7 @@
 
   //border
   --gray-border: #e0e0e0;
+  --light-gray-border: rgba(112, 115, 124, 0.22);
 
   // field-
   --gray-field-background: rgba(112, 115, 124, 0.05);

@@ -32,6 +32,10 @@ type StatusState = {
   // checkPassword
   updateUserPasswordStatus: number | null;
   updateUserPasswordMessage: string;
+
+  // delete user
+  deleteUserStatus: number | null;
+  deleteUserMessage: string;
 };
 
 const initialState: StatusState = {
@@ -55,6 +59,8 @@ const initialState: StatusState = {
   updateUserNickNameMessage: "",
   updateUserPasswordStatus: null,
   updateUserPasswordMessage: "",
+  deleteUserStatus: null,
+  deleteUserMessage: "",
 };
 
 const statusSlice = createSlice({
@@ -100,7 +106,7 @@ const statusSlice = createSlice({
     },
 
     // logout
-    logOutStatus: (state, action) => {
+    logoutStatus: (state, action) => {
       const { status, message } = action.payload;
       state.logOutStatus = status;
       state.logOutMessage = message;
@@ -121,6 +127,12 @@ const statusSlice = createSlice({
       const { status, message } = action.payload;
       state.updateUserPasswordStatus = status;
       state.updateUserPasswordMessage = message;
+    },
+
+    deleteUserStatus: (state, action) => {
+      const { status, message } = action.payload;      
+      state.deleteUserStatus = status;
+      state.deleteUserMessage = message;
     },
 
     // reset
@@ -147,7 +159,9 @@ const statusSlice = createSlice({
       state.updateUserPasswordStatus = null;
       state.updateUserPasswordMessage = "";
     },
-
+    deleteUserStatusReset: (state) => {
+      (state.deleteUserStatus = null), (state.deleteUserMessage = "");
+    },
     logOutStatusReset: (state) => {
       state.logOutStatus = null;
       state.logOutMessage = "";
@@ -163,10 +177,11 @@ export const {
   savePortPolioStatus,
   deletePortPolioStatus,
   defaultPortPolioStatus,
-  logOutStatus,
+  logoutStatus,
   updateProfileImageStatus,
   updateUserNickNameStatus,
   updateUserPasswordStatus,
+  deleteUserStatus,
 
   // reset
   defaultPortPolioReset,
@@ -175,6 +190,7 @@ export const {
   updateUserPasswordStatusReset,
   logOutStatusReset,
   updateProfileImageStatusReset,
+  deleteUserStatusReset,
 } = statusSlice.actions;
 
 // selectore

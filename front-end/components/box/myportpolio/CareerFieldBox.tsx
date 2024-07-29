@@ -105,25 +105,23 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
   };
 
   const content = (
-    <div>
-      <SearchModalContent
-        data={searchResult}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        item={item}
-        statusValue={statusValue}
-        setStatusValue={setStatusValue}
-        setSearchResult={setSearchResult}
-        isClick={isClick}
-        setIsClick={setIsClick}
-        isCompanyItemClick={isCompanyItemClick}
-        setIsCompanyItemClick={setIsCompanyItemClick}
-        isStatusClick={isStatusClick}
-        setIsStatusClick={setIsStatusClick}
-        handleChangeFunc={handleInputChange}
-        close={handleClose}
-      />
-    </div>
+    <SearchModalContent
+      data={searchResult}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      item={item}
+      statusValue={statusValue}
+      setStatusValue={setStatusValue}
+      setSearchResult={setSearchResult}
+      isClick={isClick}
+      setIsClick={setIsClick}
+      isCompanyItemClick={isCompanyItemClick}
+      setIsCompanyItemClick={setIsCompanyItemClick}
+      isStatusClick={isStatusClick}
+      setIsStatusClick={setIsStatusClick}
+      handleChangeFunc={handleInputChange}
+      close={handleClose}
+    />
   );
 
   return (

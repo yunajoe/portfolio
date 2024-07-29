@@ -19,6 +19,9 @@ export type logoutType = {
   _id: string;
 };
 
+export type WithDrawlType = {
+  _id: string;
+};
 export const registerLocal = async (data: registerLocalType) => {
   const response = await instance.post("auth/register/local", {
     data,
@@ -37,6 +40,16 @@ export const logout = async (data: logoutType) => {
   const { _id } = data;
   const response = await instance.post("auth/logout", {
     data: _id,
+  });
+  return response;
+};
+
+export const withDrawal = async (data: WithDrawlType) => {
+  const { _id } = data;
+  const response = await instance.delete("auth/delete", {
+    data: {
+      _id,
+    },
   });
   return response;
 };
