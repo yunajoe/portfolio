@@ -12,7 +12,10 @@ import useModal from "@/hooks/useModal";
 import useToast from "@/hooks/useToast";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectPortPolioResult } from "@/src/app/lib/features/portpolio/portpolioResultSlice";
-import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
+import {
+  deletePortPolioStatusReset,
+  selectStatus,
+} from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import { UnstyledButton } from "@mantine/core";
@@ -66,6 +69,9 @@ function Page() {
         users_table_id: userData._id,
       });
     }
+    return () => {
+      dispatch(deletePortPolioStatusReset());
+    };
   }, [
     userData._id,
     updatePortPolioNameStatus,

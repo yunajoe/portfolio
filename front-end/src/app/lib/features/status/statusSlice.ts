@@ -150,6 +150,11 @@ const statusSlice = createSlice({
     },
 
     // reset
+    deletePortPolioStatusReset: (state) => {
+      state.deletePortPolioStatus = null;
+      state.deletePortPolioMessage = "";
+    },
+
     defaultPortPolioReset: (state) => {
       state.defaultPortPolioStatus = null;
       state.defaultPortPolioMessage = "";
@@ -199,6 +204,7 @@ export const {
 
   // reset
   defaultPortPolioReset,
+  deletePortPolioStatusReset,
   updateUserNickNameStatusReset,
   updatePortPolioNameStatusReset,
   updateUserPasswordStatusReset,
