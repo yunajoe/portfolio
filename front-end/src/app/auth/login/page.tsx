@@ -16,7 +16,7 @@ function LoginPage() {
   const router = useRouter();
 
   const useAuthSelector = useAppSelector(selectAuth);
-  console.log("ㅎㅎㅎㅎㅎㅎ", useAuthSelector);
+  console.log("login/auth페이지입니다", useAuthSelector);
 
   const handleKaKaoButton = async () => {
     window.location.href = getAuthCode;
@@ -26,7 +26,7 @@ function LoginPage() {
     if (useAuthSelector.isLogin) {
       router.push("/");
     }
-  });
+  }, [useAuthSelector.isLogin]);
 
   return (
     <Stack {...demoProps}>

@@ -52,7 +52,6 @@ AuthAPI.interceptors.response.use(
 
     // accessToken이 유효하지 않을때
     if (status == 421) {
-      console.log("엑세수카 유효하지 않아여!", status);
       const refreshToken = await getCookie("refreshToken");
 
       try {

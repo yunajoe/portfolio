@@ -22,7 +22,7 @@ import {
 import { Box, Flex, Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./MyPortPolioListContents.module.scss";
 const cx = classNames.bind(styles);
 
@@ -35,6 +35,7 @@ function MyPortPolioEditContents({
   majorList,
   companyList,
 }: MyPortPolioEditContents) {
+  const [isCompletedButton, setIsCompletedButton] = useState(false);
   const usePortPolioSelector = useAppSelector(selectPortPolio);
   const useStatusSelector = useAppSelector(selectStatus);
   const useAuthSelector = useAppSelector(selectAuth);
@@ -51,7 +52,6 @@ function MyPortPolioEditContents({
 
   const router = useRouter();
   const pathname = usePathname();
-
   const portpolioId = pathname.split("edit/")[1];
 
   useToast("portpolio", defaultPortPolioStatus, defaultPortPolioMessage);
@@ -83,6 +83,7 @@ function MyPortPolioEditContents({
   const dispatch = useAppDispatch();
 
   const handleCompleteButton = () => {
+    // setIsCompletedButton(true);
     if (
       introText.length !== 0 &&
       careerList.length !== 0 &&
@@ -220,6 +221,8 @@ function MyPortPolioEditContents({
         careerList={careerList}
         educationList={educationList}
         onClick={handleCompleteButton}
+        isCompletedButton={isCompletedButton}
+        setIsCompletedButton={setIsCompletedButton}
       />
     </>
   );

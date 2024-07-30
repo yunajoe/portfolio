@@ -1,6 +1,8 @@
 "use client";
 import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import styles from "./DefaultPortPolio.module.scss";
 
 const cx = classNames.bind(styles);
@@ -10,6 +12,11 @@ type DefaultPortPolioProps = {
 };
 
 function DefaultPortPolio({ data }: DefaultPortPolioProps) {
+  const router = useRouter();
+  useEffect(() => {
+    router.refresh();
+  }, []);
+
   return (
     <div className={cx("container")}>
       {data.map((item) => {

@@ -1,10 +1,10 @@
 "use client";
 import Divider from "@/components/divider/Divider";
-import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
+import { authReset, selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import styles from "./MyProfileBoxTwo.module.scss";
 const cx = classNames.bind(styles);
 
@@ -14,18 +14,23 @@ type MyProfileBoxTwoProps = {
 
 function MyProfileBoxTwo({ show = true }: MyProfileBoxTwoProps) {
   const dispatch = useAppDispatch();
-  const { userData } = useAppSelector(selectAuth);
-  const useStatusSelector = useAppSelector(selectStatus);
-  const { logOutStatus } = useStatusSelector;
+  const aaaa = useAppSelector(selectAuth);
+  const { userData, logoutStatus } = useAppSelector(selectAuth);
+;
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaa", aaaa);
   const router = useRouter();
 
   const handleLogOut = () => {
     dispatch({ type: "LOGOUT_REQUEST", _id: userData._id });
   };
 
-  if (logOutStatus === 200) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (logoutStatus === 200) {
+      router.push("/");
+      dispatch(authReset());
+    }
+  }, [logoutStatus]);
+ 
 
   return (
     <ul className={cx("menu_list", { remove: !show })}>

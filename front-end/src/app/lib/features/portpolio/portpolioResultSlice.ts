@@ -63,35 +63,34 @@ const portPolioResultSlice = createSlice({
     },
 
     // 포폴 읽기 성공 여부..
-    portpolioListSuccess: (state, action) => {
-      const { _id, users_table_id, username, email, portpolio_ids, type } =
-        action.payload[0];
-      return {
-        ...state,
-        _id: _id,
-        username: username,
-        email: email,
-        users_table_id: users_table_id,
-        portpolio_ids: portpolio_ids,
-        type: type,
-      };
-    },
-    portpolioListFail: () => {
-      return {
-        ...initialState,
-      };
-    },
+    // portpolioListSuccess: (state, action) => {
+    //   const { _id, users_table_id, username, email, portpolio_ids, type } =
+    //     action.payload[0];
+    //   return {
+    //     ...state,
+    //     _id: _id,
+    //     username: username,
+    //     email: email,
+    //     users_table_id: users_table_id,
+    //     portpolio_ids: portpolio_ids,
+    //     type: type,
+    //   };
+    // },
+    // portpolioListFail: () => {
+    //   return {
+    //     ...initialState,
+    //   };
+    // },
 
     portpolioDetailListSuccess: (state, action) => {
+      const { status, message, result } = action.payload;
       return {
         ...state,
-        portpolio_detail_arr: action.payload,
+        portpolio_detail_arr: result,
       };
     },
-    portpolioDetailListFail: () => {
-      return {
-        ...initialState,
-      };
+    portpolioDetailListFail: (state, action) => {
+      return initialState;
     },
 
     getDefaultPortPolioSuccess: (state, action) => {
@@ -119,8 +118,8 @@ const portPolioResultSlice = createSlice({
 export const {
   portpolioCreateSuccess,
   portpolioCreateFail,
-  portpolioListSuccess,
-  portpolioListFail,
+  // portpolioListSuccess,
+  // portpolioListFail,
   portpolioDetailListSuccess,
   portpolioDetailListFail,
   getDefaultPortPolioSuccess,

@@ -9,12 +9,10 @@ import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
 import useModal from "@/hooks/useModal";
+import useToast from "@/hooks/useToast";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectPortPolioResult } from "@/src/app/lib/features/portpolio/portpolioResultSlice";
-import {
-  selectStatus,
-  updatePortPolioNameStatusReset,
-} from "@/src/app/lib/features/status/statusSlice";
+import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import { UnstyledButton } from "@mantine/core";
@@ -42,6 +40,7 @@ function Page() {
     savePortPolioStatus,
     deletePortPolioStatus,
     updatePortPolioNameStatus,
+    updatePortPolioNameMessage,
   } = useStatusSelector;
   const { portpolio_detail_arr } = usePortPolioResultSelector;
 
@@ -74,16 +73,16 @@ function Page() {
     savePortPolioStatus,
   ]);
 
-  useEffect(() => {
-    if (useStatusSelector.updatePortPolioNameStatus === 200) {
-      dispatch(updatePortPolioNameStatusReset());
-    }
-  }, [useStatusSelector.updatePortPolioNameStatus]);
-
   const navigateToDetailPage = (data: Item) => {
     if (deleteDropDownId !== "") return;
     router.push(`/myportpolio/edit/${data.portpolioId}`);
   };
+
+  useToast(
+    "portpolio_name",
+    updatePortPolioNameStatus,
+    updatePortPolioNameMessage
+  );
 
   return (
     <div className={cx("grid_container")}>

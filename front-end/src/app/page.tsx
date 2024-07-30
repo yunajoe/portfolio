@@ -2,10 +2,7 @@
 
 import MainNavBar from "@/components/navbar/MainNavBar";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import {
-  logOutStatusReset,
-  selectStatus,
-} from "@/src/app/lib/features/status/statusSlice";
+import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Button, Center, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
@@ -16,7 +13,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const useStatusSelector = useAppSelector(selectStatus);
-  const { logOutStatus } = useStatusSelector;
+  // const { logOutStatus } = useStatusSelector;
 
   const useAuthSelector = useAppSelector(selectAuth);
   const navigateToMyPortPolioPage = () => {
@@ -31,9 +28,9 @@ export default function Home() {
     router.push("/board");
   };
 
-  if (logOutStatus === 200) {
-    dispatch(logOutStatusReset());
-  }
+  // if (logOutStatus === 200) {
+  //   dispatch(logOutStatusReset());
+  // }
 
   const gotoMyPortPolio = (
     <Button variant="default" onClick={navigateToMyPortPolioPage}>
@@ -48,7 +45,7 @@ export default function Home() {
   );
 
   return (
-    <>    
+    <>
       <MainNavBar />
       <Center bg="blue" h="100vh">
         <Stack justify="center" gap="30" w="300px">

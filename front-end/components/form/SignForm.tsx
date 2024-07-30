@@ -1,11 +1,16 @@
 "use client";
 
 import LoginFormNavigationButton from "@/components/button/LoginFormNavigationButton";
+import LoginError from "@/components/error/LoginError";
+import CheckBoxInput from "@/components/input/CheckBoxInput";
 import useCustomForm from "@/hooks/useCustomForm";
+import { authReset } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
-import { memo, SetStateAction } from "react";
-
+import classNames from "classnames/bind";
+import { memo, SetStateAction, useCallback } from "react";
+import styles from "./SignForm.module.scss";
+const cx = classNames.bind(styles);
 type SignFormProps = {
   type: string;
   emailLabel: string;
@@ -33,6 +38,7 @@ const SignForm = memo(function SignForm({
 
   const form = useCustomForm(type);
 
+  // 로그인하기 버튼
   const handleSubmit = async (values: FormValue) => {
     const { username, email, password } = values;
     if (type === "login") {
@@ -81,9 +87,20 @@ const SignForm = memo(function SignForm({
     </Stack>
   );
 
+  const formHandleChange = useCallback(() => {
+    const isTouched = form.isTouched();
+    if (isTouched) {
+      dispatch(authReset());
+    }
+  }, []);
   return (
     <>
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <form
+        onChange={formHandleChange}
+        onSubmit={form.onSubmit((values, event) => {
+          handleSubmit(values);
+        })}
+      >
         {type === "register" && (
           <TextInput
             withAsterisk
@@ -112,6 +129,18 @@ const SignForm = memo(function SignForm({
           w="300"
           mb="10"
         />
+        {type === "register" && (
+          <>
+            <LoginError />
+          </>
+        )}
+        {type === "login" && (
+          <>
+            <CheckBoxInput />
+            <LoginError />
+          </>
+        )}
+
         <Button w="300" type="submit">
           {buttonText}
         </Button>

@@ -8,6 +8,13 @@ type StatusState = {
   accessTokenMessage: string;
   refreshTokenStatus: number | null;
   refreshTokenMessage: string;
+
+  // portpolio
+  portpolioListStatus: number | null;
+  portpolioListMessage: string;
+  portpolioDetailStatus: number | null;
+  portpolioDetailMessage: string;
+
   defaultPortPolioStatus: number | null;
   defaultPortPolioMessage: string;
   updatePortPolioNameStatus: number | null;
@@ -16,10 +23,6 @@ type StatusState = {
   savePortPolioMessage: string;
   deletePortPolioStatus: number | null;
   deletePortPolioMessage: string;
-
-  // logout
-  logOutStatus: number | null;
-  logOutMessage: string;
 
   // updateProfileImage
   updateProfileImageStatus: number | null;
@@ -43,6 +46,13 @@ const initialState: StatusState = {
   accessTokenMessage: "",
   refreshTokenStatus: null,
   refreshTokenMessage: "",
+
+  // porpolio
+  portpolioListStatus: null,
+  portpolioListMessage: "",
+  portpolioDetailStatus: null,
+  portpolioDetailMessage: "",
+
   defaultPortPolioStatus: null,
   defaultPortPolioMessage: "",
   updatePortPolioNameStatus: null,
@@ -51,8 +61,7 @@ const initialState: StatusState = {
   savePortPolioMessage: "",
   deletePortPolioStatus: null,
   deletePortPolioMessage: "",
-  logOutStatus: null,
-  logOutMessage: "",
+
   updateProfileImageStatus: null,
   updateProfileImageMessage: "",
   updateUserNickNameStatus: null,
@@ -83,6 +92,17 @@ const statusSlice = createSlice({
       state.refreshTokenStatus = status;
       state.refreshTokenMessage = message;
     },
+    portpolioListStatus: (state, action) => {
+      const { status, message } = action.payload;
+      state.portpolioListStatus = status;
+      state.portpolioListMessage = message;
+    },
+    portpolioDetailStatus: (state, action) => {
+      const { status, message } = action.payload;
+      state.portpolioDetailStatus = status;
+      state.portpolioDetailMessage = message;
+    },
+
     deletePortPolioStatus: (state, action) => {
       const { status, message } = action.payload;
       state.deletePortPolioStatus = status;
@@ -94,6 +114,7 @@ const statusSlice = createSlice({
       state.savePortPolioMessage = message;
     },
     updatePortPolioNameStatus: (state, action) => {
+      console.log("state", action.payload);
       const { status, message } = action.payload;
       state.updatePortPolioNameStatus = status;
       state.updatePortPolioNameMessage = message;
@@ -105,13 +126,6 @@ const statusSlice = createSlice({
       state.defaultPortPolioMessage = message;
     },
 
-    // logout
-    logoutStatus: (state, action) => {
-      const { status, message } = action.payload;
-      state.logOutStatus = status;
-      state.logOutMessage = message;
-    },
-
     updateProfileImageStatus: (state, action) => {
       const { status, message } = action.payload;
       state.updateProfileImageStatus = status;
@@ -119,7 +133,6 @@ const statusSlice = createSlice({
     },
     updateUserNickNameStatus: (state, action) => {
       const { status, message } = action.payload;
-      console.log("updataUsericset", status, message);
       state.updateUserNickNameStatus = status;
       state.updateUserNickNameMessage = message;
     },
@@ -163,10 +176,6 @@ const statusSlice = createSlice({
     deleteUserStatusReset: (state) => {
       (state.deleteUserStatus = null), (state.deleteUserMessage = "");
     },
-    logOutStatusReset: (state) => {
-      state.logOutStatus = null;
-      state.logOutMessage = "";
-    },
   },
 });
 
@@ -174,11 +183,15 @@ const statusSlice = createSlice({
 export const {
   accessTokenStatus,
   refreshTokenStatus,
+
+  // porpolio
+  portpolioListStatus,
+  portpolioDetailStatus,
   updatePortPolioNameStatus,
   savePortPolioStatus,
   deletePortPolioStatus,
   defaultPortPolioStatus,
-  logoutStatus,
+
   updateProfileImageStatus,
   updateUserNickNameStatus,
   updateUserPasswordStatus,
@@ -189,7 +202,6 @@ export const {
   updateUserNickNameStatusReset,
   updatePortPolioNameStatusReset,
   updateUserPasswordStatusReset,
-  logOutStatusReset,
   updateProfileImageStatusReset,
   deleteUserStatusReset,
 } = statusSlice.actions;

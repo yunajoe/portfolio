@@ -30,7 +30,11 @@ function MyProfileEditBox() {
 
   useToast("username", updateUserNickNameStatus, updateUserNickNameMessage);
 
-  useToast("profileImage", updateProfileImageStatus, updateProfileImageMessage);
+  useToast(
+    "profile_image",
+    updateProfileImageStatus,
+    updateProfileImageMessage
+  );
 
   const dispatch = useAppDispatch();
 

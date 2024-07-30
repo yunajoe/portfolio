@@ -10,15 +10,14 @@ import {
 import {
   loginFail,
   loginSuccess,
+  logoutFail,
   logoutSuccess,
   registerFail,
   registerSuccess,
+  withDrawalFail,
   withDrawalSuccess,
 } from "@/src/app/lib/features/auth/authSlice";
-import {
-  deleteUserStatus,
-  logoutStatus,
-} from "@/src/app/lib/features/status/statusSlice";
+import { deleteUserStatus } from "@/src/app/lib/features/status/statusSlice";
 import {
   KaKaoLoginUserSaga,
   LogoutUserSaga,
@@ -40,17 +39,18 @@ function* localRegisterUser(action: any): any {
   try {
     const result = yield call(registerLocal, action);
     yield put(registerSuccess(result.data));
-  } catch (err) {
-    yield put(registerFail(err));
+  } catch (error: any) {
+    yield put(registerFail(error.data));
   }
 }
 
+// 일반으로 로그인할떄
 function* localLoginUser(action: any): any {
   try {
     const result = yield call(loginLocal, action);
     yield put(loginSuccess(result.data));
-  } catch (err) {
-    yield put(loginFail(err));
+  } catch (error: any) {
+    yield put(loginFail(error.data));
   }
 }
 
@@ -58,16 +58,20 @@ function* logoutUser(action: LogoutUserSaga): any {
   try {
     const result = yield call(logout, action);
     yield put(logoutSuccess(result.data));
-    yield put(logoutStatus(result.data));
-  } catch (err) {}
+  } catch (error: any) {
+    yield put(logoutFail(error.data));
+  }
 }
 
 function* withDrawalUser(action: WithDrawlUserSaga): any {
   try {
     const result = yield call(withDrawal, action);
-    yield put(deleteUserStatus(result.data));
     yield put(withDrawalSuccess(result.data));
-  } catch (err) {}
+    yield put(deleteUserStatus(result.data));
+  } catch (error: any) {
+    yield put(withDrawalFail(error.data));
+    yield put(deleteUserStatus(error.data));
+  }
 }
 
 // refresh토큰으로 accessToken

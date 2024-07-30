@@ -7,6 +7,8 @@ export type AuthState = {
   isLogin: boolean;
   status: number | null;
   message: string;
+  logoutStatus: number | null;
+  logoutMessage: string;
   userData: {
     _id: string;
     id: number;
@@ -25,6 +27,8 @@ const initialState: AuthState = {
   isLogin: false,
   status: null,
   message: "",
+  logoutStatus: null,
+  logoutMessage: "",
   userData: {
     _id: "",
     id: 0,
@@ -56,51 +60,64 @@ const authSlice = createSlice({
       state.userData = user_data;
     },
     registerFail: (state, action) => {
-      return initialState;
+      const { status, message } = action.payload;
+      return {
+        ...initialState,
+        status,
+        message,
+      };
     },
 
     loginSuccess: (state, action) => {
       const { status, message, access_token, refresh_token, user_data } =
         action.payload;
 
-      if (status === 200) {
-        setCookie("accessToken", access_token);
-        setCookie("refreshToken", refresh_token);
-        (state.isLogin = true),
-          (state.status = status),
-          (state.message = message);
-        state.userData = user_data;
-      } else {
-        return {
-          ...initialState,
-          status: status,
-          message: message,
-        };
-      }
+      setCookie("accessToken", access_token);
+      setCookie("refreshToken", refresh_token);
+      (state.isLogin = true),
+        (state.status = status),
+        (state.message = message);
+      state.userData = user_data;
     },
     loginFail: (state, action) => {
-      return initialState;
+      const { status, message } = action.payload;
+      return {
+        ...initialState,
+        status,
+        message,
+      };
     },
 
     logoutSuccess: (state, action) => {
       const { status, message } = action.payload;
-      if (status === 200) {
-        deleteCookie("accessToken");
-        deleteCookie("refreshToken");
-        return {
-          ...initialState,
-          status: status,
-          message: message,
-        };
-      } else {
-        return {
-          ...state,
-          status: status,
-          message: message,
-        };
-      }
+      deleteCookie("accessToken");
+      deleteCookie("refreshToken");
+      return {
+        ...initialState,
+        logoutStatus: status,
+        logoutMessage: message,
+      };
     },
-    logoutFail: (state, action) => {},
+    logoutFail: (state, action) => {
+      const { status, message } = action.payload;
+      return {
+        ...initialState,
+        logoutStatus: status,
+        logoutMessage: message,
+      };
+    },
+    withDrawalSuccess: (state, action) => {
+      // const { status, message } = action.payload;
+      deleteCookie("accessToken");
+      deleteCookie("refreshToken");
+      return initialState;
+    },
+    withDrawalFail: (state, action) => {
+      // const { status, message } = action.payload;
+      return {
+        ...state,
+      };
+    },
 
     userProfileImageUpdateSuccess: (state, action) => {
       const { file } = action.payload;
@@ -111,13 +128,8 @@ const authSlice = createSlice({
       state.userData.username = action.payload.username;
     },
 
-    withDrawalSuccess: (state, action) => {
-      const { status, message } = action.payload;
-      if (status === 200) {
-        deleteCookie("accessToken");
-        deleteCookie("refreshToken");
-        return initialState;
-      }
+    authReset: () => {
+      return initialState;
     },
   },
 });
@@ -129,9 +141,12 @@ export const {
   loginSuccess,
   loginFail,
   logoutSuccess,
+  logoutFail,
+  withDrawalSuccess,
+  withDrawalFail,
   userProfileImageUpdateSuccess,
   userNameUpdateSuccess,
-  withDrawalSuccess,
+  authReset,
 } = authSlice.actions;
 
 // selectore
