@@ -1,3 +1,4 @@
+"use client";
 import { ToastProvider } from "@/context/ToastContext";
 import classNames from "classnames/bind";
 import React from "react";
@@ -7,12 +8,12 @@ type MyProfileLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function MyProfileLayout({
-  children,
-}: MyProfileLayoutProps) {
+function MyProfileLayout({ children }: MyProfileLayoutProps) {
   return (
     <div className={cx("container")}>
       <ToastProvider>{children}</ToastProvider>
     </div>
   );
 }
+
+export default MyProfileLayout;

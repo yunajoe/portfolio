@@ -1,7 +1,10 @@
 "use client";
 
 import CreatePortPolioCard from "@/components/card/PortPolioCard/CreatePortPolioCard";
-import PortPolioCard from "@/components/card/PortPolioCard/PortPolioCard";
+import PortPolioCardBody from "@/components/card/PortPolioCard/PortPolioCardBody";
+import PortPolioCardBottom from "@/components/card/PortPolioCard/PortPolioCardBottom";
+import PortPolioCardHeader from "@/components/card/PortPolioCard/PortPolioCardHeader";
+import Divider from "@/components/divider/Divider";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
@@ -104,8 +107,7 @@ function Page() {
               border: "1px solid #dbdbdb",
             }}
           >
-            <PortPolioCard data={data} deleteDropDownId={deleteDropDownId} setDeleteDropDownId={setDeleteDropDownId} isResumeNameEdit={isResumeNameEdit} setIsResumeNameEdit={setIsResumeNameEdit} setIsEditAndDeleteDropDown={ setIsEditAndDeleteDropDown}/>
-            {/* <PortPolioCardHeader data={data} />
+            <PortPolioCardHeader data={data} />
             <PortPolioCardBody
               data={data}
               deleteDropDownId={deleteDropDownId}
@@ -123,7 +125,7 @@ function Page() {
               data={data}
               setDeleteDropDownId={setDeleteDropDownId}
               setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
-            /> */}
+            />
             {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
               <EditAndDeleteDropDown
                 setDeleteDropDownId={setDeleteDropDownId}

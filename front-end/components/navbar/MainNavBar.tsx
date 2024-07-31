@@ -42,7 +42,9 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
             <Link className={cx("link")} href="/board">
               People&apos;s Portpolio
             </Link>
-            <li>test2</li>
+            <Link className={cx("link")} href="/myportpolio">
+              My Portpolio
+            </Link>
             <li>test3</li>
           </ul>
           <ul className={cx("second_navigation_section")}>

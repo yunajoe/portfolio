@@ -114,7 +114,6 @@ const statusSlice = createSlice({
       state.savePortPolioMessage = message;
     },
     updatePortPolioNameStatus: (state, action) => {
-      console.log("state", action.payload);
       const { status, message } = action.payload;
       state.updatePortPolioNameStatus = status;
       state.updatePortPolioNameMessage = message;

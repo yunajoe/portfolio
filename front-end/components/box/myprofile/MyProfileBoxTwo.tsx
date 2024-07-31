@@ -16,8 +16,6 @@ function MyProfileBoxTwo({ show = true }: MyProfileBoxTwoProps) {
   const dispatch = useAppDispatch();
   const aaaa = useAppSelector(selectAuth);
   const { userData, logoutStatus } = useAppSelector(selectAuth);
-;
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaa", aaaa);
   const router = useRouter();
 
   const handleLogOut = () => {
@@ -30,7 +28,6 @@ function MyProfileBoxTwo({ show = true }: MyProfileBoxTwoProps) {
       dispatch(authReset());
     }
   }, [logoutStatus]);
- 
 
   return (
     <ul className={cx("menu_list", { remove: !show })}>
