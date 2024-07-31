@@ -14,7 +14,7 @@ function ConditionCusTomAvatar({
   height = 100,
 }: ConditionCusTomAvatarProps) {
   return (
-    <div>
+    <>
       {userData.userprofile.length > 0 ? (
         <div style={{ borderRadius: "50%", overflow: "hidden" }}>
           <Image
@@ -28,7 +28,7 @@ function ConditionCusTomAvatar({
       ) : (
         <CusTomAvatar userData={userData} size="50px" />
       )}
-    </div>
+    </>
   );
 }
 

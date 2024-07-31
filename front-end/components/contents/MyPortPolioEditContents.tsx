@@ -19,11 +19,12 @@ import {
   preprocessingCompany,
   preprocessingMajor,
 } from "@/utils/preprecessingApiData";
+import { getPortPolioId } from "@/utils/preprocessing";
 import { Box, Flex, Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import styles from "./MyPortPolioListContents.module.scss";
+import styles from "./MyPortPolioEditContents.module.scss";
 const cx = classNames.bind(styles);
 
 type MyPortPolioEditContents = {
@@ -52,7 +53,8 @@ function MyPortPolioEditContents({
 
   const router = useRouter();
   const pathname = usePathname();
-  const portpolioId = pathname.split("edit/")[1];
+  const portpolioId = getPortPolioId(pathname, "edit");
+  // const portpolioId = pathname.split("edit/")[1];
 
   useToast("portpolio", defaultPortPolioStatus, defaultPortPolioMessage);
 
@@ -83,7 +85,6 @@ function MyPortPolioEditContents({
   const dispatch = useAppDispatch();
 
   const handleCompleteButton = () => {
-    // setIsCompletedButton(true);
     if (
       introText.length !== 0 &&
       careerList.length !== 0 &&

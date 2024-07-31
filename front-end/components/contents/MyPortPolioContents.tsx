@@ -1,10 +1,7 @@
 "use client";
 
 import CreatePortPolioCard from "@/components/card/PortPolioCard/CreatePortPolioCard";
-import PortPolioCardBody from "@/components/card/PortPolioCard/PortPolioCardBody";
-import PortPolioCardBottom from "@/components/card/PortPolioCard/PortPolioCardBottom";
-import PortPolioCardHeader from "@/components/card/PortPolioCard/PortPolioCardHeader";
-import Divider from "@/components/divider/Divider";
+import PortPolioCard from "@/components/card/PortPolioCard/PortPolioCard";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
@@ -18,14 +15,13 @@ import {
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
-import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import styles from "./layout.module.scss";
+import styles from "./MyPortPolioContents.module.scss";
 const cx = classNames.bind(styles);
 
-function Page() {
+function MyPortPolioContents() {
   const [isEditAndDeleteDropDown, setIsEditAndDeleteDropDown] = useState(false);
   const [deleteDropDownId, setDeleteDropDownId] = useState("");
   const [isResumeNameEdit, setIsResumeNameEdit] = useState(false);
@@ -95,37 +91,21 @@ function Page() {
       <CreatePortPolioCard />
       {portpolio_detail_arr.map((data, index) => {
         return (
-          <UnstyledButton
+          <div
             onClick={() => navigateToDetailPage(data)}
             key={index}
-            bg="blue"
-            h="200px"
-            style={{
-              cursor: "pointer",
-              position: "relative",
-              zIndex: 5,
-              border: "1px solid #dbdbdb",
-            }}
+            role="button"
+            className={cx("card_container")}
           >
-            <PortPolioCardHeader data={data} />
-            <PortPolioCardBody
+            <PortPolioCard
               data={data}
               deleteDropDownId={deleteDropDownId}
+              setDeleteDropDownId={setDeleteDropDownId}
               isResumeNameEdit={isResumeNameEdit}
               setIsResumeNameEdit={setIsResumeNameEdit}
-            />
-            <Divider
-              customStyles={{
-                position: "absolute",
-                width: "100%",
-                bottom: "25px",
-              }}
-            />
-            <PortPolioCardBottom
-              data={data}
-              setDeleteDropDownId={setDeleteDropDownId}
               setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
             />
+
             {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
               <EditAndDeleteDropDown
                 setDeleteDropDownId={setDeleteDropDownId}
@@ -143,11 +123,11 @@ function Page() {
                 />
               </ModalPortal>
             )}
-          </UnstyledButton>
+          </div>
         );
       })}
     </div>
   );
 }
 
-export default Page;
+export default MyPortPolioContents;

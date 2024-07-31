@@ -43,6 +43,7 @@ AuthAPI.interceptors.response.use(
     const originalConfig = error.config;
 
     const status = error.response ? error.response.status : null;
+   
 
     // accessToken이 없을떄
     if (status === 420) {

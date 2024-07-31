@@ -1,8 +1,8 @@
-type HamburgerIconTypes = {
+type HamburgerIconProps = {
   style?: React.CSSProperties;
 };
 
-function HamburgerIcon({ style }: HamburgerIconTypes) {
+function HamburgerIcon({ style }: HamburgerIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

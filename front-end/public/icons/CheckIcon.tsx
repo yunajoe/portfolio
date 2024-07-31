@@ -1,8 +1,8 @@
-type CheckIconTypes = {
+type CheckIconProps = {
   style?: React.CSSProperties;
 };
 
-function CheckIcon({ style }: CheckIconTypes) {
+function CheckIcon({ style }: CheckIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

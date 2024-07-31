@@ -9,11 +9,7 @@ type MyProfileLayoutProps = {
 };
 
 function MyProfileLayout({ children }: MyProfileLayoutProps) {
-  return (
-    <div className={cx("container")}>
-      <ToastProvider>{children}</ToastProvider>
-    </div>
-  );
+  return <ToastProvider>{children}</ToastProvider>;
 }
 
 export default MyProfileLayout;

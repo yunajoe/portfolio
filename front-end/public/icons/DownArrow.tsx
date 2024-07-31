@@ -1,10 +1,10 @@
 import React from "react";
 
-type DownArrowTypes = {
+type DownArrowProps = {
   style?: React.CSSProperties;
 };
 
-function DownArrow({ style }: DownArrowTypes) {
+function DownArrow({ style }: DownArrowProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

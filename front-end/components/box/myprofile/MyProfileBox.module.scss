@@ -29,6 +29,18 @@
   column-gap: 10px;
 }
 .settings {
+  position: relative;
+  @include mobile {
+    width: 100%;
+  }
+  @include laptop {
+    width: 100%;
+  
+  }
+  @include desktop {
+  }
+}
+.settings_button {
   border: 1px solid var(--gray-button-border);
   box-shadow: 0 0 0 1px hsla(225, 5%, 46%, 0.16);
   padding: 10px;
@@ -39,7 +51,6 @@
   &:hover {
     background-color: var(--gray-button-background);
   }
-
   @include mobile {
     width: 100%;
   }

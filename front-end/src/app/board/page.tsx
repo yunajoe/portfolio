@@ -1,5 +1,5 @@
 import { getDefaultPortPolioList } from "@/api/portpolio";
-import DefaultPortPolio from "@/components/data/DefaultPortPolio";
+import BoardContents from "@/components/contents/BoardContents";
 import { Suspense } from "react";
 
 async function getDefaultPortPolios() {
@@ -9,13 +9,10 @@ async function getDefaultPortPolios() {
 }
 
 export default async function Page() {
-  // 사람들의 홈페이지를 볼 수 있는 곳
-  // 사람들의 default resume를 볼 수 있댜
-
   const data = await getDefaultPortPolios();
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <DefaultPortPolio data={data.result} />
+      <BoardContents data={data.result} />
     </Suspense>
   );
 }

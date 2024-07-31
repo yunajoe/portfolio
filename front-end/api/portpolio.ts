@@ -48,7 +48,7 @@ export const getPortPolioList = async (data: GetPortPolioList) => {
 };
 
 // Detail List 포폴
-export const getListPortPolioDetail = async (users_table_id: string) => {
+export const getPortPolioDetailList = async (users_table_id: string) => {
   const response = await instance.get("portpolio/detail/list", {
     params: {
       users_table_id: users_table_id,

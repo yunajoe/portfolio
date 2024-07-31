@@ -19,18 +19,15 @@ function MyProfileDropDown({ handleCloseSetting }: MyProfileDropDownProps) {
   return (
     <div className={cx("container")} ref={ref}>
       <ul className={cx("myprofile_edit_container")}>
-        <li>
-          <Link className={cx("item")} href="/myprofile/edit">
-            <PencilIcon />
-            <Text>프로필편집</Text>
-          </Link>
-        </li>
-        <li>
-          <Link href="/myprofile/setting" className={cx("item")}>
-            <PersonIcon />
-            <Text>계정설정</Text>
-          </Link>
-        </li>
+        <Link className={cx("item")} href="/myprofile/edit">
+          <PencilIcon />
+          <Text>프로필편집</Text>
+        </Link>
+
+        <Link href="/myprofile/setting" className={cx("item")}>
+          <PersonIcon />
+          <Text>계정설정</Text>
+        </Link>
       </ul>
     </div>
   );

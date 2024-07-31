@@ -1,8 +1,8 @@
-type PersonIconTypes = {
+type PersonIconProps = {
   style?: React.CSSProperties;
 };
 
-function PersonIcon({ style }: PersonIconTypes) {
+function PersonIcon({ style }: PersonIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

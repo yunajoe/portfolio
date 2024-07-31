@@ -1,10 +1,10 @@
 import React from "react";
 
-type AddIconTypes = {
+type AddIconProps = {
   style?: React.CSSProperties;
 };
 
-function AddIcon({ style }: AddIconTypes) {
+function AddIcon({ style }: AddIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

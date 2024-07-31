@@ -1,8 +1,8 @@
-type RightChevronIconTypes = {
+type RightChevronIconProps = {
   style?: React.CSSProperties;
 };
 
-function RightChevronIcon({ style }: RightChevronIconTypes) {
+function RightChevronIcon({ style }: RightChevronIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

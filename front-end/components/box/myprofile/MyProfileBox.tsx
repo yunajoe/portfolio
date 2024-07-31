@@ -33,19 +33,23 @@ function MyProfileBox() {
             <ConditionCusTomAvatar userData={userData} />
             <MyProfileName userData={userData} />
           </div>
-          <UnstyledButton
-            className={cx("settings")}
-            onClick={handleOpenSetting}
-          >
-            설정
-          </UnstyledButton>
+          <div className={cx("settings")}>
+            <UnstyledButton
+              className={cx("settings_button")}
+              onClick={handleOpenSetting}
+            >
+              설정
+            </UnstyledButton>
+            {setting && (
+              <MyProfileDropDown handleCloseSetting={handleCloseSetting} />
+            )}
+          </div>
         </section>
         <section className={cx("addbutton_section")}>
           <EducationAddButton userData={userData} />
           <CareerAddButton userData={userData} />
         </section>
       </div>
-      {setting && <MyProfileDropDown handleCloseSetting={handleCloseSetting} />}
     </>
   );
 }

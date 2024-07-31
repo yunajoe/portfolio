@@ -1,8 +1,8 @@
-type PencilIconTypes = {
+type PencilIconProps = {
   style?: React.CSSProperties;
 };
 
-function PencilIcon({ style }: PencilIconTypes) {
+function PencilIcon({ style }: PencilIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

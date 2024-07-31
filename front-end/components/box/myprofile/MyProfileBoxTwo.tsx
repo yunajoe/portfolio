@@ -14,8 +14,7 @@ type MyProfileBoxTwoProps = {
 
 function MyProfileBoxTwo({ show = true }: MyProfileBoxTwoProps) {
   const dispatch = useAppDispatch();
-  const aaaa = useAppSelector(selectAuth);
-  const { userData, logoutStatus } = useAppSelector(selectAuth);
+  const { userData, logoutStatus, logoutMessage } = useAppSelector(selectAuth);
   const router = useRouter();
 
   const handleLogOut = () => {

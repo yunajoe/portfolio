@@ -2,20 +2,20 @@
 
 .container {
   position: absolute;
+
   width: 250px;
+
   @include mobile {
-    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   @include laptop {
-    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   @include desktop {
-    top: 150px;
-    right: 5%;
+    top: 73%;
+    right: -3px;
   }
 }
 

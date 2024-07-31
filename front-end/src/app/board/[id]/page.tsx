@@ -1,7 +1,7 @@
-import React from "react";
+import BoardDetailContents from "@/components/contents/BoardDetailContents";
 
-function BoardDetailPage() {
-  return <div></div>;
+function BoardDetailPage({ params }: { params: { id: string } }) {
+  return <BoardDetailContents portpolioId={params.id} />;
 }
 
 export default BoardDetailPage;

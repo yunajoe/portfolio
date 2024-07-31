@@ -46,15 +46,14 @@ function MySettingBox() {
             <p>비밀번호 변경</p>
             <RightChevronIcon style={{ width: "30px" }} />
           </li>
-          <li>
-            <Link
-              href="/myprofile/withdrawal"
-              className={cx("user_withdrawal_text")}
-            >
-              <p>회원탈퇴</p>
-              <RightChevronIcon style={{ width: "30px" }} />
-            </Link>
-          </li>
+
+          <Link
+            href="/myprofile/withdrawal"
+            className={cx("user_withdrawal_text")}
+          >
+            <p>회원탈퇴</p>
+            <RightChevronIcon style={{ width: "30px" }} />
+          </Link>
         </ul>
       </div>
       {passwordChangeButton && (

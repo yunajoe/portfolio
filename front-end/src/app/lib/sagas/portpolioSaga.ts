@@ -4,7 +4,7 @@ import {
   createPortPolio,
   deletePortPolio,
   getDetailPortPolio,
-  getListPortPolioDetail,
+  getPortPolioDetailList,
   getUserDefaultPortPolio,
   savePortPolio,
   updateDefaultPortPolio,
@@ -58,7 +58,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
   try {
-    const data = yield call(getListPortPolioDetail, action.users_table_id);
+    const data = yield call(getPortPolioDetailList, action.users_table_id);
     const result = data.data;
     yield put(portpolioDetailListSuccess(result));
     yield put(portpolioListStatus(result));
