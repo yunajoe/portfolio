@@ -1,0 +1,59 @@
+.menu_item {
+  cursor: pointer;
+}
+
+// .icon_container {
+//   border: 5px solid green;
+//   display: flex;
+//   align-items: center;
+//   column-gap: 10px;
+//   padding: 3px;
+//   text-shadow: none;
+//   position: relative;
+// }
+
+.icon_container {
+  border: 5px solid green;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  padding: 3px;
+  text-shadow: none;
+  position: relative;
+
+  &:hover {
+    &::before {
+      position: absolute;
+      padding: 0 25px;
+      top: 30%;
+      left: 20%;
+      overflow: hidden;
+      font-weight: 800;
+      max-height: 0;
+      content: attr(data-text) " " attr(data-color);
+      transition: 0.35s;
+    }
+
+    .icon {
+      background-color: #4dabf7;
+    }
+
+    .icon_name {
+      display: none;
+    }
+  }
+}
+
+.icon_container:hover::before {
+  max-height: 100%;
+  transition: 0.5s;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 70%;
+  border: 2px solid #adb5bd;
+  text-align: center;
+  padding-top: 10px;
+}
