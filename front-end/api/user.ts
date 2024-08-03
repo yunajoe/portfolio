@@ -2,16 +2,12 @@ import axios from "axios";
 import instance from ".";
 
 export const getUserInfoByUserObjectId = async (_id: string) => {
-  try {
-    const response = await instance.get("user/findUserByObjectID", {
-      params: {
-        _id: _id,
-      },
-    });
-    return response;
-  } catch (err) {
-    return err;
-  }
+  const response = await instance.get("user/findUserByObjectID", {
+    params: {
+      _id: _id,
+    },
+  });
+  return response;
 };
 
 export const getUserInfoByUserTableId = async (users_table_id: string) => {

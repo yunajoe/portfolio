@@ -22,7 +22,6 @@ async function BoardDetailPage({ params }: { params: { id: string } }) {
 
   return (
     <BoardDetailContents
-      portpolioId={params.id}
       userData={userData.userInfo}
       portpolioData={portpolioData.result}
     />

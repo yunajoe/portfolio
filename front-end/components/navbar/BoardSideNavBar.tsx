@@ -5,10 +5,13 @@ import classNames from "classnames/bind";
 import styles from "./BoardSideNavBar.module.scss";
 const cx = classNames.bind(styles);
 type BoardSideNavBarProps = {
-  userData: User;
+  userData: User; 
+  mergedRefs: any;
 };
-
-function BoardSideNavBar({ userData }: BoardSideNavBarProps) {
+function BoardSideNavBar({
+  userData, 
+  mergedRefs,
+}: BoardSideNavBarProps) {
   return (
     <div className={cx("slide_menu_container")}>
       <div className={cx("slide_menu")}>
@@ -16,13 +19,13 @@ function BoardSideNavBar({ userData }: BoardSideNavBarProps) {
           <div className={cx("image_box")}>
             <ConditionCusTomAvatar
               userData={userData}
-              width={250}
-              height={160}
+              width={200}
+              height={200}
             />
           </div>
         </div>
         <div className={cx("menu_name")}>
-          <BoardSideBar />
+          <BoardSideBar mergedRefs={mergedRefs} />
         </div>
       </div>
     </div>

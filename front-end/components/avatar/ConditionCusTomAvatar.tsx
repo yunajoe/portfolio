@@ -22,11 +22,11 @@ function ConditionCusTomAvatar({
             src={`http://localhost:8080/static/images/${userData.userprofile}`}
             width={width}
             height={height}
-            priority
+            // sizes="100vw"
           />
         </div>
       ) : (
-        <CusTomAvatar userData={userData} size="50px" />
+        <CusTomAvatar userData={userData} size="100%" />
       )}
     </>
   );
