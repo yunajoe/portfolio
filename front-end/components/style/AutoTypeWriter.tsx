@@ -22,7 +22,6 @@ function AutoTypeWriter({ userData }: AutoTypeWriterProps) {
     if (currentIndex === 0) {
       setLoop(false);
     }
-    // if (currentIndex >= emailText.length) return;
     if (currentIndex < emailText.length && !oneLoop) {
       timeout = setTimeout(() => {
         setCurrentIndex((prev) => prev + 1);
@@ -34,7 +33,6 @@ function AutoTypeWriter({ userData }: AutoTypeWriterProps) {
       timeout = setTimeout(() => {
         setCurrentIndex((prev) => prev - 1);
         const reducedText = currentText.slice(0, currentIndex - 1);
-        console.log("reducedType", reducedText);
         setCurrentText(reducedText);
       }, 500);
     }

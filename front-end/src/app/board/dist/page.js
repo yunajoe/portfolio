@@ -37,32 +37,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var portpolio_1 = require("@/api/portpolio");
-var DefaultPortPolio_1 = require("@/components/data/DefaultPortPolio");
+var BoardContents_1 = require("@/components/contents/BoardContents");
 var react_1 = require("react");
-// https://velog.io/@miso1489/SassSCSS-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-mixin
 function getDefaultPortPolios() {
     return __awaiter(this, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, portpolio_1.getDefaultPortPolio()];
+                case 0: return [4 /*yield*/, portpolio_1.getDefaultPortPolioList()];
                 case 1:
                     result = _a.sent();
-                    return [2 /*return*/, result];
+                    return [2 /*return*/, result.data];
             }
         });
     });
 }
 function Page() {
     return __awaiter(this, void 0, void 0, function () {
-        var defaultPortPolios;
+        var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, getDefaultPortPolios()];
                 case 1:
-                    defaultPortPolios = _a.sent();
-                    return [2 /*return*/, (React.createElement(react_1.Suspense, { fallback: React.createElement("div", null, "Loading...") },
-                            React.createElement(DefaultPortPolio_1["default"], { data: defaultPortPolios.data.result })))];
+                    data = _a.sent();
+                    return [2 /*return*/, (React.createElement(react_1.Suspense, null,
+                            React.createElement(BoardContents_1["default"], { data: data.result })))];
             }
         });
     });

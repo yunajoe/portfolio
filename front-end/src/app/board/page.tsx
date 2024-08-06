@@ -11,7 +11,7 @@ async function getDefaultPortPolios() {
 export default async function Page() {
   const data = await getDefaultPortPolios();
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <BoardContents data={data.result} />
     </Suspense>
   );

@@ -1,8 +1,15 @@
+import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
+import { RefObject } from "react";
 import styles from "./AboutMeSection.module.scss";
 const cx = classNames.bind(styles);
 
-function AboutMeSection({ aboutMeRef }) {
+type AboutMeSectionProps = {
+  portpolioData: Item;
+  aboutMeRef: RefObject<HTMLElement> | null;
+};
+
+function AboutMeSection({ portpolioData, aboutMeRef }: AboutMeSectionProps) {
   return (
     <section className={cx("section")} id="aboutMe" ref={aboutMeRef}>
       <div className={cx("aboutMe", "overlay_container")}>

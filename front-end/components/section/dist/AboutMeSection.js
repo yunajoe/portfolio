@@ -4,7 +4,7 @@ var bind_1 = require("classnames/bind");
 var AboutMeSection_module_scss_1 = require("./AboutMeSection.module.scss");
 var cx = bind_1["default"].bind(AboutMeSection_module_scss_1["default"]);
 function AboutMeSection(_a) {
-    var aboutMeRef = _a.aboutMeRef;
+    var portpolioData = _a.portpolioData, aboutMeRef = _a.aboutMeRef;
     return (React.createElement("section", { className: cx("section"), id: "aboutMe", ref: aboutMeRef },
         React.createElement("div", { className: cx("aboutMe", "overlay_container") },
             React.createElement("div", { className: cx("overlay") },
