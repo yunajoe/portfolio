@@ -14,6 +14,6 @@ function BoardDetailContents(_a) {
     var portFolioRef = react_1.useRef(null);
     return (React.createElement("div", null,
         React.createElement(BoardSideNavBar_1["default"], { userData: userData, mergedRefs: [{ homeRef: homeRef }, { aboutMeRef: aboutMeRef }, { portFolioRef: portFolioRef }] }),
-        React.createElement(BoardDetailMainBox_1["default"], { mergedRefs: [{ homeRef: homeRef }, { aboutMeRef: aboutMeRef }, { portFolioRef: portFolioRef }] })));
+        React.createElement(BoardDetailMainBox_1["default"], { userData: userData, mergedRefs: [{ homeRef: homeRef }, { aboutMeRef: aboutMeRef }, { portFolioRef: portFolioRef }] })));
 }
 exports["default"] = BoardDetailContents;

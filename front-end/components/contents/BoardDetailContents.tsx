@@ -28,6 +28,7 @@ function BoardDetailContents({
         mergedRefs={[{ homeRef }, { aboutMeRef }, { portFolioRef }]}
       />
       <BoardDetailMainBox
+        userData={userData}
         mergedRefs={[{ homeRef }, { aboutMeRef }, { portFolioRef }]}
       />
     </div>

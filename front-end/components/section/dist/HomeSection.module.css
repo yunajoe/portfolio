@@ -1,27 +1,9 @@
-.container {
-  width: calc(100% - 325px);
-  margin-left: 300px;
-  margin-right: 25px;
-  transition: all 0.5s ease-in-out 0s;
-}
-
 .section {
   height: 100vh;
   overflow: visible !important;
 }
 
-.display_table {
-  display: table;
-  width: 100%;
-}
-
-.user_container {
-  padding: 0 60px;
-  background-color: blue;
-}
-
 .home {
-  background-color: red;
   background-size: cover;
 }
 
@@ -38,6 +20,36 @@
   height: 100%;
 }
 
-.aboutMe {
+.intro_section {
+  padding: 0 60px;
+  height: 100%;
+  margin: auto;
+  background-color: blue;
+}
+
+.display_user_info {
   background-color: green;
+  height: 250px;
+}
+
+.greeting_text {
+  text-transform: uppercase;
+  font-size: 22px;
+  color: #bbb;
+}
+
+.user_name_text {
+  font-size: 90px;
+  margin: 10px 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
+.user_email_text {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #bbb;
 }

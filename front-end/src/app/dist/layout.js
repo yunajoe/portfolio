@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 // https://mantine.dev/styles/responsive/
-var search_1 = require("@/api/search");
 var user_1 = require("@/api/user");
 var AutoLoginProvider_1 = require("@/components/provider/AutoLoginProvider");
 var notoSansKr_1 = require("@/public/fonts/notoSansKr");
@@ -64,33 +63,6 @@ var userDataFetchFunc = function () { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); };
-// https://nextjs.org/docs/app/building-your-application/data-fetching/patterns
-function getMajor() {
-    return __awaiter(this, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, search_1.searchMajor()];
-                case 1:
-                    result = _a.sent();
-                    return [2 /*return*/, result];
-            }
-        });
-    });
-}
-function getCompany() {
-    return __awaiter(this, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, search_1.searchCompany()];
-                case 1:
-                    result = _a.sent();
-                    return [2 /*return*/, result];
-            }
-        });
-    });
-}
 function RootLayout(_a) {
     var children = _a.children;
     return __awaiter(this, void 0, void 0, function () {
@@ -100,10 +72,7 @@ function RootLayout(_a) {
                 case 0: return [4 /*yield*/, userDataFetchFunc()];
                 case 1:
                     user = _b.sent();
-                    // const majorData = getMajor();
-                    // const companyData = getCompany();
-                    // const [majorList, companyList] = await Promise.all([majorData, companyData]);
-                    return [2 /*return*/, (React.createElement("html", { lang: "en", className: "" + notoSansKr_1.notoSansKrMedium },
+                    return [2 /*return*/, (React.createElement("html", { lang: "ko", className: "" + notoSansKr_1.notoSansKrMedium },
                             React.createElement("body", null,
                                 React.createElement(StoreProvider_1["default"], null,
                                     React.createElement(core_1.MantineProvider, null,
