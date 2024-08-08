@@ -3,18 +3,20 @@ import HomeIcon from "@/public/icons/HomeIcon";
 import UserIcon from "@/public/icons/UserIcon";
 import WorkIcon from "@/public/icons/WorkIcon";
 import { getTargetRef } from "@/utils/preprocessing";
-import classNames from "classnames/bind";
-import { useEffect, useState } from "react";
-import styles from "./BoardSideBar.module.scss";
-const cx = classNames.bind(styles);
+import { RefObject, useEffect, useState } from "react";
 type BoardSideBarProps = {
-  mergedRefs: any;
+  mergedRefs: [
+    { homeRef: RefObject<HTMLElement> | null },
+    { aboutMeRef: RefObject<HTMLElement> | null },
+    { portFolioRef: RefObject<HTMLElement> | null }
+  ];
 };
 function BoardSideBar({ mergedRefs }: BoardSideBarProps) {
   const { homeRef, aboutMeRef, portFolioRef } = getTargetRef(mergedRefs);
-  const [navigateRef, setNavigateRef] = useState(null);
+  const [navigateRef, setNavigateRef] = useState<RefObject<HTMLElement> | null>(
+    null
+  );
   const handleClick = (itemName: string) => {
-    console.log("클릭됬었어유", itemName);
     if ("HOME" === itemName) {
       setNavigateRef(homeRef);
     } else if ("ABOUT ME" === itemName) {
@@ -22,11 +24,10 @@ function BoardSideBar({ mergedRefs }: BoardSideBarProps) {
     } else if ("PORTFOLIO" === itemName) {
       setNavigateRef(portFolioRef);
     }
-    // setSelectedMenu(itemName);
   };
 
   useEffect(() => {
-    if (!navigateRef) return;
+    if (!navigateRef || !navigateRef.current) return;
     navigateRef.current.scrollIntoView({
       behavior: "smooth",
     });

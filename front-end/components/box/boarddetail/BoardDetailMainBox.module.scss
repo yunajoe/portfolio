@@ -1,3 +1,4 @@
+@import "/styles/mixin.scss";
 .container {
   width: calc(100% - 325px);
   margin-left: 300px;
@@ -17,7 +18,7 @@
 
 .user_container {
   padding: 0 60px;
-  background-color: blue;
+  // background-color: var(--home-section-background);
 }
 
 .home {

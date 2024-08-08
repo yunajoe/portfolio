@@ -28,7 +28,11 @@ function BoardDetailMainBox({
   return (
     <main className={cx("container")}>
       <HomeSection userData={userData} homeRef={homeRef} />
-      <AboutMeSection portpolioData={portpolioData} aboutMeRef={aboutMeRef} />
+      <AboutMeSection
+        userData={userData}
+        portpolioData={portpolioData}
+        aboutMeRef={aboutMeRef}
+      />
       <PortFolioSection portFolioRef={portFolioRef} />
     </main>
   );

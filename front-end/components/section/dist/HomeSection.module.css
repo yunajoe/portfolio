@@ -5,11 +5,11 @@
 
 .home {
   background-size: cover;
+  background-color: var(--section-background);
 }
 
 .overlay_container {
   height: 100%;
-  border: 5px solid #3a4a5d;
   border-radius: 3px;
   overflow: hidden;
   outline: none;
@@ -20,22 +20,21 @@
   height: 100%;
 }
 
-.intro_section {
-  padding: 0 60px;
+.section_head {
   height: 100%;
   margin: auto;
-  background-color: blue;
+  background-color: #4a5167;
 }
 
-.display_user_info {
-  background-color: green;
-  height: 250px;
+.user_info {
+  padding: 60px;
 }
 
 .greeting_text {
   text-transform: uppercase;
+  font-weight: 500;
   font-size: 22px;
-  color: #bbb;
+  color: black;
 }
 
 .user_name_text {
@@ -45,11 +44,4 @@
   text-transform: uppercase;
   letter-spacing: 4px;
   line-height: 1;
-}
-
-.user_email_text {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 20px;
-  color: #bbb;
 }

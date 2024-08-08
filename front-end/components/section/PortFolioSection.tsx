@@ -1,7 +1,13 @@
 import classNames from "classnames/bind";
+import { RefObject } from "react";
 import styles from "./PortFolioSection.module.scss";
 const cx = classNames.bind(styles);
-function PortFolioSection({ portFolioRef }) {
+
+type PortFolioSectionProps = {
+  portFolioRef: RefObject<HTMLElement> | null;
+};
+
+function PortFolioSection({ portFolioRef }: PortFolioSectionProps) {
   return (
     <section className={cx("section")} id="PortPolio" ref={portFolioRef}>
       <div className={cx("aboutMe", "overlay_container")}>

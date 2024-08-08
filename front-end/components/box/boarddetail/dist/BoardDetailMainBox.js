@@ -12,7 +12,7 @@ function BoardDetailMainBox(_a) {
     var _b = preprocessing_1.getTargetRef(mergedRefs), homeRef = _b.homeRef, aboutMeRef = _b.aboutMeRef, portFolioRef = _b.portFolioRef;
     return (React.createElement("main", { className: cx("container") },
         React.createElement(HomeSection_1["default"], { userData: userData, homeRef: homeRef }),
-        React.createElement(AboutMeSection_1["default"], { portpolioData: portpolioData, aboutMeRef: aboutMeRef }),
+        React.createElement(AboutMeSection_1["default"], { userData: userData, portpolioData: portpolioData, aboutMeRef: aboutMeRef }),
         React.createElement(PortFolioSection_1["default"], { portFolioRef: portFolioRef })));
 }
 exports["default"] = BoardDetailMainBox;

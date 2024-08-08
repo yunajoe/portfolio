@@ -8,9 +8,7 @@ type LinkButtonProps = {
 function LinkButton({ name }: LinkButtonProps) {
   return (
     <Link href="/auth/login" style={{ textDecoration: "none", color: "black" }}>
-      <UnstyledButton style={{ border: "3px solid #696969" }}>
-        {name}
-      </UnstyledButton>
+      <UnstyledButton>{name}</UnstyledButton>
     </Link>
   );
 }

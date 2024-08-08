@@ -17,7 +17,7 @@
 
 .user_container {
   padding: 0 60px;
-  background-color: blue;
+  background-color: var(--home-section-background);
 }
 
 .home {

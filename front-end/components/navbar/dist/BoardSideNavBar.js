@@ -11,7 +11,7 @@ function BoardSideNavBar(_a) {
         React.createElement("div", { className: cx("slide_menu") },
             React.createElement("div", { className: cx("user_info") },
                 React.createElement("div", { className: cx("image_box") },
-                    React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, width: 200, height: 200 }))),
+                    React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, width: 200, height: 200, borderRadius: "50%" }))),
             React.createElement("div", { className: cx("menu_name") },
                 React.createElement(BoardSideBar_1["default"], { mergedRefs: mergedRefs })))));
 }

@@ -1,44 +1,61 @@
-.container {
-  width: calc(100% - 325px);
-  margin-left: 300px;
-  margin-right: 25px;
-  transition: all 0.5s ease-in-out 0s;
-}
-
 .section {
   height: 100vh;
   overflow: visible !important;
 }
-
-.display_table {
-  display: table;
-  width: 100%;
-}
-
-.user_container {
-  padding: 0 60px;
-  background-color: blue;
-}
-
-.home {
-  background-color: red;
-  background-size: cover;
+.aboutMe {
+  background-color: var(--section-background);
 }
 
 .overlay_container {
   height: 100%;
-  border: 5px solid #3a4a5d;
-  border-radius: 3px;
   overflow: hidden;
   outline: none;
 }
 
-.overlay {
-  background: rgba(44, 62, 80, 0.5);
-  height: 100%;
+
+
+// body
+.section_body {
+  background-color: var(--section-background);
+  height: 2000px;
 }
 
-// aboutMe
-.aboutMe {
-  background-color: green;
+.sub_section {
+  background-color: #5f7cb8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  row-gap: 15px;
+}
+.sub_title {
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+}
+.intro_content {
+  display: flex;
+  column-gap: 20px;
+  width: 80%;
+}
+.image_box {
+  width: 300px;
+}
+
+.intro_text {
+  padding-top: 20px;
+  font-size: 25px;
+  & p:first-of-type {
+    font-size: 30px;
+    color: white;
+    font-weight: 700;
+  }
+
+  & p:nth-of-type(2) {
+    font-style: italic;
+    color: white;
+  }
 }

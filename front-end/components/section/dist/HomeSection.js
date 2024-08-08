@@ -9,12 +9,11 @@ function HomeSection(_a) {
     return (React.createElement("section", { className: cx("section"), id: "home", ref: homeRef },
         React.createElement("div", { className: cx("home", "overlay_container") },
             React.createElement("div", { className: cx("overlay") },
-                React.createElement("div", { className: cx("intro_section", "user_container") },
-                    React.createElement("div", { className: cx("display_user_info") },
+                React.createElement("div", { className: cx("section_head") },
+                    React.createElement("div", { className: cx("user_info") },
                         React.createElement("h3", { className: cx("greeting_text") }, "HI, IAM"),
                         React.createElement("h1", { className: cx("user_name_text") }, userData.username),
                         React.createElement("h3", { className: cx("description") },
-                            React.createElement(AutoTypeWriter_1["default"], { userData: userData }),
-                            React.createElement("span", { className: cx("typed_cursor") }))))))));
+                            React.createElement(AutoTypeWriter_1["default"], { userData: userData }))))))));
 }
 exports["default"] = HomeSection;

@@ -3,6 +3,7 @@
 :root {
   //  navigation
   --white: rgb(255, 255, 255);
+  --navigation-background: #f2f4f7;
   // background
   --main-background: #228be6;
 
@@ -27,4 +28,8 @@
 
   // field-
   --gray-field-background: rgba(112, 115, 124, 0.05);
+
+  // section
+  --section-background: #656a7e;
+  --section-head: #e2dad6;
 }
