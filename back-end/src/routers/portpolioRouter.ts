@@ -60,7 +60,7 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
         initialData.defaultResume = true;
       }
       await insertPortPolioContentsQuery(initialData);
-      return res.send({
+      return res.status(200).send({
         key: uniquePortPolioId,
         status: 200,
       });
@@ -74,47 +74,35 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
   }
 });
 
-portpolioRouter.post("/portpolio/list", async (req: Request, res: Response) => {
-  const { data } = req.body;
-  try {
-    const validationStatus = accessTokenValidationError(data.accessToken);
-    if (validationStatus === 200) {
-      const result = await getPortPolioList(data.users_table_id);
-      return res.send({
-        status: 200,
-        result,
-      });
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      const jsonParse = JSON.parse(error.message);
-      return res.status(jsonParse.status).send(jsonParse);
-    }
-  }
-});
-
 portpolioRouter.get(
   "/portpolio/detail/list",
   async (req: Request, res: Response) => {
     const users_table_id = req.query.users_table_id as string;
     try {
       const result = await getPortPolioContentsList(users_table_id);
-      if (result.length > 0) {
+      if (!result) {
+        return res.status(400).send({
+          status: 400,
+          message: "포트폴리오 리스트를 가지고 오는데 실패하였습니다",
+        });
+      }
+      if (result && result.length > 0) {
         result.sort((a: Item, b: Item) => {
           return (
             new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
           );
         });
-        return res.send(result);
-      } else {
-        return res.send(result);
       }
+      return res.status(200).send({
+        status: 200,
+        message: "포트폴리오 리스트를 가지고 왔습니다",
+        result,
+      });
     } catch (err) {
-      throw err;
+      return res.status(500).send("internal server error");
     }
   }
 );
-
 //  포트폴리오 상세 내용 가져오기
 portpolioRouter.get(
   "/portpolio/detail",
@@ -122,9 +110,19 @@ portpolioRouter.get(
     const portpolioId = req.query.portpolio_id as string;
     try {
       const result = await getPortPolioContentsQuery(portpolioId);
-      return res.send(result);
+      if (result) {
+        return res.status(200).send({
+          status: 200,
+          message: "상세 포트폴리오를 가지고 왔습니다",
+          result,
+        });
+      }
+      return res.status(400).send({
+        status: 400,
+        message: "상세 포트폴리오를 가지고 오는데 실패하였습니다",
+      });
     } catch (err) {
-      throw err;
+      return res.status(500).send("internal server error");
     }
   }
 );
@@ -135,21 +133,17 @@ portpolioRouter.post("/portpolio/save", async (req: Request, res: Response) => {
   try {
     const result = await insertPortPolioContentsQuery(data);
     if (result) {
-      return res.send({
+      return res.status(200).send({
         status: 200,
         message: "포트폴리오 저장에 성공하였습니다",
       });
-    } else {
-      return res.send({
-        status: 400,
-        message: "포트폴리오 저장에 실패하였습니다",
-      });
     }
-  } catch (err) {
-    return res.send({
-      status: 500,
-      message: "Internal Server Error",
+    return res.status(400).send({
+      status: 400,
+      message: "포트폴리오 저장에 실패하였습니다",
     });
+  } catch (err) {
+    return res.status(500).send("Server Error");
   }
 });
 
@@ -164,21 +158,17 @@ portpolioRouter.post(
         portpolio_id
       );
       if (result) {
-        return res.send({
+        return res.status(200).send({
           status: 200,
           message: "기본 이력서가 변경되었습니다",
         });
-      } else {
-        return res.send({
-          status: 400,
-          message: "기본 이력서에 변경에 실패하였습니다",
-        });
       }
-    } catch (err) {
-      return res.send({
-        status: 500,
+      return res.status(400).send({
+        status: 400,
         message: "기본 이력서에 변경에 실패하였습니다",
       });
+    } catch (err) {
+      return res.status(500).send("internal server error");
     }
   }
 );
@@ -196,17 +186,17 @@ portpolioRouter.post(
         portpolio_name
       );
       if (result) {
-        return res.send({
+        return res.status(200).send({
           status: 200,
           message: "포트폴리오 이름이 변경되었습니다",
         });
       }
-      return res.send({
+      return res.status(400).send({
         status: 400,
         message: "포트폴리오 이름 변경에 실패하였습니다",
       });
     } catch (err) {
-      throw err;
+      return res.status(500).send("internal server error");
     }
   }
 );
@@ -217,25 +207,23 @@ portpolioRouter.delete(
   async (req: Request, res: Response) => {
     try {
       const { users_table_id, portpolio_id } = req.body;
-
       const result1 = await deletePortPolioQuery(users_table_id, portpolio_id);
       const result2 = await deletePortPolioContentsQuery(
         users_table_id,
         portpolio_id
       );
-
       if (result1 && result2) {
-        return res.send({
+        return res.status(200).send({
           status: 200,
           message: "포트폴리오가 삭제 되었습니다",
         });
       }
-      return res.send({
+      return res.status(400).send({
         status: 400,
         message: "포트폴리오 삭제에 실패하였습니다",
       });
     } catch (err) {
-      throw err;
+      return res.status(500).send("internal server error");
     }
   }
 );
@@ -246,18 +234,22 @@ portpolioRouter.get(
   async (req: Request, res: Response) => {
     try {
       const result = await getDefaultPortPolioQuery();
-      return res.send({
-        status: 200,
-        result,
+      if (result) {
+        return res.status(200).send({
+          status: 200,
+          message: "default portpolio list를 가져오는데 성공하였습닌다",
+          result,
+        });
+      }
+      return res.status(400).send({
+        status: 400,
+        message: "default portpolio list를 가져오는데 실패하였습니다",
       });
     } catch (err) {
-      return res.send({
-        status: 500,
-      });
+      return res.status(500).send("internal server error");
     }
   }
 );
-module.exports = portpolioRouter;
 
 portpolioRouter.get(
   "/portpolio/default",
@@ -280,3 +272,4 @@ portpolioRouter.get(
     } catch (err) {}
   }
 );
+module.exports = portpolioRouter;

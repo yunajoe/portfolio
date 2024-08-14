@@ -157,7 +157,7 @@ export const deletePortPolioByUsersTableId = async (users_table_id: string) => {
 // delete PortPolio using user_table_id
 export const deleteAllPortPolioContents = async (users_table_id: string) => {
   try {
-    await db.collection("portpolio").deleteMany({
+    await db.collection("portpolio_contents").deleteMany({
       users_table_id: new ObjectId(users_table_id),
     });
     return true;
@@ -218,7 +218,6 @@ export const getDefaultPortPolioQuery = async () => {
         defaultResume: true,
       })
       .toArray();
-
     return result;
   } catch (err) {
     return false;
@@ -239,5 +238,3 @@ export const getCurrentUserDefaultPortPolio = async (_id: string) => {
     return false;
   }
 };
-
-// portpolio

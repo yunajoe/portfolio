@@ -82,12 +82,12 @@ authRouter.post(
     try {
       const result = await deleteAccessAndRefreshTokenQuery(data);
       if (result) {
-        return res.send({
+        return res.status(200).send({
           status: 200,
           message: "로그아웃이 성공적으로 되었습니다",
         });
       }
-      return res.send({
+      return res.status(400).send({
         status: 400,
         message: "로그아웃에 실패하였습니다",
       });
@@ -106,17 +106,16 @@ authRouter.delete(
       const result2 = await deletePortPolioByUsersTableId(_id);
       const result3 = await deleteAllPortPolioContents(_id);
       if (result1 && result2 && result3) {
-        return res.send({
+        return res.status(200).send({
           status: 200,
           message: "탈퇴에 성공하였습니다",
         });
       }
-      return res.send({
+      return res.status(400).send({
         status: 400,
         message: "탈퇴를 성공적으로 못하였습니다",
       });
     } catch (error) {
-      console.log("err", error);
       return res.status(500).send("Server Error");
     }
   }

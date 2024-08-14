@@ -100,7 +100,7 @@ export const registerLocal = async (
   const result = await findUserByEmailQuery(email);
 
   if (result) {
-    return res.send({
+    return res.status(400).send({
       status: 400,
       message: "해당 이메일로 이미 가입이 되었습니다",
     });
@@ -190,14 +190,14 @@ export const loginLocal = async (
   const targetUser = await findUserByEmailQuery(email);
 
   if (!targetUser) {
-    return res.send({
+    return res.status(400).send({
       status: 400,
       message: "해당 이메일로 가입된 적이 없습니다",
     });
   }
 
   if (targetUser.password !== password) {
-    return res.send({
+    return res.status(401).send({
       status: 401,
       message: "패스워드가 잘못 되었습니다",
     });
@@ -222,6 +222,5 @@ export const updateTokenKeyValue = async (
   } catch (err) {
     return res.status(500).send("Server Error");
   }
-
   next();
 };

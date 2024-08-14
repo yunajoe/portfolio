@@ -11,9 +11,9 @@ const homeRouter = Router();
 homeRouter.get("/school/list", async (req: Request, res: Response) => {
   try {
     const data = await getSchoolListQuery();
-    return res.send(data);
+    return res.status(200).send(data);
   } catch (err) {
-    throw err;
+    return res.status(500).send("internal server error");
   }
 });
 homeRouter.get("/school/list/search", async (req: Request, res: Response) => {
@@ -29,26 +29,26 @@ homeRouter.get("/school/list/search", async (req: Request, res: Response) => {
       }
       return isValid;
     });
-    return res.send(filteredData);
+    return res.status(200).send(filteredData);
   } catch (err) {
-    throw err;
+    return res.status(500).send("internal server error");
   }
 });
 
 homeRouter.get("/major/list", async (req: Request, res: Response) => {
   try {
     const result = await getMajorListQuery();
-    return res.send(result);
+    return res.status(200).send(result);
   } catch (err) {
-    throw err;
+    return res.status(500).send("internal server error");
   }
 });
 homeRouter.get("/company/list", async (req: Request, res: Response) => {
   try {
     const result = await getCompanyListQuery();
-    return res.send(result);
+    return res.status(200).send(result);
   } catch (err) {
-    throw err;
+    return res.status(500).send("internal server error");
   }
 });
 
