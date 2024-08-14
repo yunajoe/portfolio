@@ -14,7 +14,6 @@ export default async function Page() {
   return (
     <Suspense>
       <MainNavBar />
-      <div>포트폴리오 모음</div>
       <BoardContents data={data.result} />
     </Suspense>
   );

@@ -63,7 +63,6 @@ function Page() {
                     data = _a.sent();
                     return [2 /*return*/, (React.createElement(react_1.Suspense, null,
                             React.createElement(MainNavBar_1["default"], null),
-                            React.createElement("div", null, "\uD3EC\uD2B8\uD3F4\uB9AC\uC624 \uBAA8\uC74C"),
                             React.createElement(BoardContents_1["default"], { data: data.result })))];
             }
         });

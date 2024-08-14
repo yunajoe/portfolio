@@ -2,9 +2,10 @@
 
 .container {
   display: grid;
-  // border: 5px solid red;
+  margin: 0 auto;
   margin-top: 100px;
   grid-template-columns: repeat(4, 1fr);
+  width: 80%;
 
   @include mobile {
     grid-template-columns: repeat(2, 1fr);

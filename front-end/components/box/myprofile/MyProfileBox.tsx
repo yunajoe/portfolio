@@ -36,7 +36,11 @@ function MyProfileBox() {
     <div className={cx("myprofile_container")}>
       <section className={cx("myinfo_section")}>
         <div className={cx("myinfo")}>
-          <ProfileAvatar userData={userData} size="100px" />
+          <ProfileAvatar
+            userData={userData}
+            size="100px"
+            borderRadius="9999px"
+          />
           <MyProfileName userData={userData} />
         </div>
         <div className={cx("settings")}>

@@ -5,8 +5,13 @@
   max-width: 250px;
   transition: all 0.5s ease-in-out 0s;
   position: fixed;
-  left: 44px;
+  left: 22px;
   border-radius: 5px;
+}
+.go-back-page {
+  position: fixed;
+  bottom: 10px;
+  background-color: green;
 }
 
 .slide_menu {
@@ -16,12 +21,11 @@
 }
 
 .image_box {
-  padding: 15px;
   height: 250px;
-  // width: 100%;
+  padding: 10px;
+  border: 3px solid var(--blue-border);
 }
 
 .menu_name {
-  // border: 5px solid black;
   list-style: none;
 }

@@ -24,9 +24,6 @@ function MyPortPolioContents() {
     var useSelectAuth = hooks_1.useAppSelector(authSlice_1.selectAuth);
     var usePortPolioResultSelector = hooks_1.useAppSelector(portpolioResultSlice_1.selectPortPolioResult);
     var useStatusSelector = hooks_1.useAppSelector(statusSlice_1.selectStatus);
-    // 모달
-    // const { isDeleteModalOpen, handleDeleteModalOpen, handleDeleteModalClose } =
-    //   useModal();
     var _d = useModal_1["default"](), isDeleteModalOpen = _d.isDeleteModalOpen, setIsDeleteModalOpen = _d.setIsDeleteModalOpen;
     var userData = useSelectAuth.userData;
     var savePortPolioStatus = useStatusSelector.savePortPolioStatus, deletePortPolioStatus = useStatusSelector.deletePortPolioStatus, updatePortPolioNameStatus = useStatusSelector.updatePortPolioNameStatus, updatePortPolioNameMessage = useStatusSelector.updatePortPolioNameMessage;

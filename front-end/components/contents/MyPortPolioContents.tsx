@@ -30,9 +30,6 @@ function MyPortPolioContents() {
   const usePortPolioResultSelector = useAppSelector(selectPortPolioResult);
   const useStatusSelector = useAppSelector(selectStatus);
 
-  // 모달
-  // const { isDeleteModalOpen, handleDeleteModalOpen, handleDeleteModalClose } =
-  //   useModal();
   const { isDeleteModalOpen, setIsDeleteModalOpen } = useModal();
 
   const { userData } = useSelectAuth;

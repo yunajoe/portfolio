@@ -3,10 +3,7 @@ import BoardDetailMainBox from "@/components/box/boarddetail/BoardDetailMainBox"
 import BoardSideNavBar from "@/components/navbar/BoardSideNavBar";
 import { User } from "@/types/api";
 import { Item } from "@/types/portpolio";
-import classNames from "classnames/bind";
 import { useRef } from "react";
-import styles from "./BoardDetailContents.module.scss";
-const cx = classNames.bind(styles);
 
 type BoardDetailContentsProps = {
   userData: User;
@@ -21,6 +18,7 @@ function BoardDetailContents({
   const aboutMeRef = useRef(null);
   const portFolioRef = useRef(null);
   const resumeRef = useRef(null);
+  const contactRef = useRef(null);
 
   return (
     <div>

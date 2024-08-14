@@ -26,7 +26,7 @@ function MyProfileEditBoxBody(_a) {
     };
     return (React.createElement("section", { className: cx("second_section") },
         React.createElement("div", { className: cx("user_profile_image_container") },
-            React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, size: "150px" }),
+            React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, size: "150px", borderRadius: "9999px" }),
             React.createElement("div", { className: cx("user_profile_image") },
                 React.createElement("label", { htmlFor: "profile_image_uploads" },
                     React.createElement("input", { id: "profile_image_uploads", name: "profile_image_uploads", accept: "image/png, image/jpeg, image/jpg", type: "file", style: { display: "none" }, onChange: handleImageChange }),

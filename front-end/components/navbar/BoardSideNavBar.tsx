@@ -16,24 +16,25 @@ type BoardSideNavBarProps = {
 };
 function BoardSideNavBar({ userData, mergedRefs }: BoardSideNavBarProps) {
   return (
-    <div className={cx("slide_menu_container")}>
-      <div className={cx("slide_menu")}>
-        <div className={cx("user_info")}>
-          <div className={cx("image_box")}>
-            <ConditionCusTomAvatar
-              userData={userData}
-              size="200px"
-              // width={200}
-              // height={200}
-              // borderRadius="50%"
-            />
+    <>
+      <div className={cx("slide_menu_container")}>
+        <div className={cx("slide_menu")}>
+          <div className={cx("user_info")}>
+            <div className={cx("image_box")}>
+              <ConditionCusTomAvatar
+                userData={userData}
+                size="200px"
+                width={230}
+                height={230}
+              />
+            </div>
+          </div>
+          <div className={cx("menu_name")}>
+            <BoardSideBar mergedRefs={mergedRefs} />
           </div>
         </div>
-        <div className={cx("menu_name")}>
-          <BoardSideBar mergedRefs={mergedRefs} />
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 

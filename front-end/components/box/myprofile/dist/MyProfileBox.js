@@ -26,7 +26,7 @@ function MyProfileBox() {
     return (React.createElement("div", { className: cx("myprofile_container") },
         React.createElement("section", { className: cx("myinfo_section") },
             React.createElement("div", { className: cx("myinfo") },
-                React.createElement(ProfileAvatar, { userData: userData, size: "100px" }),
+                React.createElement(ProfileAvatar, { userData: userData, size: "100px", borderRadius: "9999px" }),
                 React.createElement(MyProfileName, { userData: userData })),
             React.createElement("div", { className: cx("settings") },
                 React.createElement(core_1.UnstyledButton, { className: cx("settings_button"), onClick: handleOpenSetting }, "\uC124\uC815"),
