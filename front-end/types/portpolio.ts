@@ -3,7 +3,7 @@ export type CareerType = {
   companyName: string;
   status: string;
   position: string;
-  companyDate?: {
+  companyDate: {
     startYear: string;
     startMonth: string;
     endYear: string;
@@ -16,7 +16,7 @@ export type EducationType = {
   id: number;
   schoolName: string;
   major: string;
-  schoolDate?: {
+  schoolDate: {
     startYear: string;
     startMonth: string;
     endYear: string;
@@ -24,12 +24,14 @@ export type EducationType = {
   };
   isCurrent: false;
 };
-export type CareerList = {
-  id: number;
-  companyName: string;
-  position: string;
-  companyDate: CompanyDate;
-};
+// export type CareerList = {
+//   id: number;
+//   companyName: string;
+//   companyDate: CompanyDate;
+//   position: string;
+//   status: string;
+//   isCurrent: boolean;
+// };
 
 export type CompanyDate = {
   startYear: string;
@@ -38,12 +40,13 @@ export type CompanyDate = {
   endMonth: string;
 };
 
-export type EducationList = {
-  id: number;
-  schoolName: string;
-  major: string;
-  schoolDate: SchoolDate;
-};
+// export type EducationList = {
+//   id: number;
+//   schoolName: string;
+//   schoolDate: SchoolDate;
+//   major: string;
+//   isCurrent: boolean;
+// };
 
 export type SchoolDate = {
   startYear: string;
@@ -58,8 +61,8 @@ export type Item = {
   portpolio_name: string;
   portpolioId: string;
   introText: string;
-  careerList: CareerList[];
-  educationList: EducationList[];
+  careerList: CareerType[];
+  educationList: EducationType[];
   createdAt: string;
   updatedAt: string;
   defaultResume: boolean;

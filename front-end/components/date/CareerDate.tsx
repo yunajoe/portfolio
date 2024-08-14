@@ -13,7 +13,6 @@ type DataBoxProps = {
 
 function CareerDate({ item }: DataBoxProps) {
   const dispatch = useDispatch();
-  console.log("Carreeritem", item);
 
   const handleChangeCurrent = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(

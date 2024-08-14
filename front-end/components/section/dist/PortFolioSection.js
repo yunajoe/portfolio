@@ -11,7 +11,6 @@ function PortFolioSection(_a) {
         React.createElement("div", { className: cx("overlay_container") },
             React.createElement("div", { className: cx("overlay") },
                 React.createElement("div", { className: cx("contents") },
-                    React.createElement(SectionHead_1["default"], { targetIcon: React.createElement(WorkIcon_1["default"], { style: { width: "300px", height: "300px" } }), title: "MY WORK" }),
-                    React.createElement("div", { className: cx("intro_section") }, "workwork"))))));
+                    React.createElement(SectionHead_1["default"], { targetIcon: React.createElement(WorkIcon_1["default"], { style: { width: "300px", height: "300px" } }), title: "MY WORK" }))))));
 }
 exports["default"] = PortFolioSection;

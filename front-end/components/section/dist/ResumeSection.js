@@ -1,5 +1,7 @@
 "use strict";
 exports.__esModule = true;
+var EnrolledCareerDate_1 = require("@/components/date/EnrolledCareerDate");
+var EnrolledSchoolDate_1 = require("@/components/date/EnrolledSchoolDate");
 var SectionHead_1 = require("@/components/section/SectionHead");
 var ResumeIcon_1 = require("@/public/icons/ResumeIcon");
 var core_1 = require("@mantine/core");
@@ -19,21 +21,13 @@ function ResumeSection(_a) {
                             React.createElement("div", { className: cx("education_and_work_container") },
                                 React.createElement("div", { className: cx("education_container") }, careerList.map(function (item, index) {
                                     return (React.createElement("li", { key: index, className: cx("item") },
-                                        React.createElement("div", null,
-                                            React.createElement("span", null, item.companyDate.startYear),
-                                            React.createElement("span", null, item.companyDate.startMonth),
-                                            React.createElement("span", null, item.companyDate.endYear),
-                                            React.createElement("span", null, item.companyDate.endMonth)),
+                                        React.createElement(EnrolledCareerDate_1["default"], { item: item }),
                                         React.createElement("span", { className: cx("company_name") }, item.companyName),
                                         React.createElement("span", { className: cx("position") }, item.position)));
                                 })),
                                 React.createElement("div", { className: cx("work_container") }, educationList.map(function (item, index) {
                                     return (React.createElement("li", { key: index, className: cx("item") },
-                                        React.createElement("div", null,
-                                            React.createElement("span", null, item.schoolDate.startYear),
-                                            React.createElement("span", null, item.schoolDate.startMonth),
-                                            React.createElement("span", null, item.schoolDate.endYear),
-                                            React.createElement("span", null, item.schoolDate.endMonth)),
+                                        React.createElement(EnrolledSchoolDate_1["default"], { item: item }),
                                         React.createElement("span", { className: cx("school_name") }, item.schoolName),
                                         React.createElement("span", { className: cx("major") }, item.major)));
                                 }))))))))));

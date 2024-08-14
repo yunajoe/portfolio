@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  border: 3px solid #3a4a5d;
+  width: 200px;
+  color: white;
+  padding: 5px;
+}
+
+.start {
+  display: flex;
+  column-gap: 5px;
+  font-size: 20px;
+}
+
+.end {
+  display: flex;
+  column-gap: 5px;
+  font-size: 20px;
+}

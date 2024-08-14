@@ -1,6 +1,5 @@
 "use client";
 import WithDrawalWarningText from "@/components/agreement/withdrawl/WidthDrawlWarningText";
-import WithDrawalAccount from "@/components/agreement/withdrawl/WithDrawalAccount";
 import WithDrawalSign from "@/components/agreement/withdrawl/WithDrawalSign";
 import WithDrawalButton from "@/components/button/WithDrawalButton";
 import Divider from "@/components/divider/Divider";
@@ -16,6 +15,7 @@ import {
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import classNames from "classnames/bind";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./WithDrawalAgreement.module.scss";
@@ -42,6 +42,11 @@ function WithDrawalAgreement() {
     };
   }, [deleteUserStatus]);
 
+  const WithDrawlAccount = dynamic(
+    () => import("@/components/agreement/withdrawl/WithDrawalAccount"),
+    { ssr: false }
+  );
+
   return (
     <form className={cx("form")}>
       <fieldset>
@@ -52,7 +57,7 @@ function WithDrawalAgreement() {
         <WithDrawalWarningText warningArray={warning_text_two} />
         <WithDrawalWarningText warningArray={warning_text_three} />
         <Divider />
-        <WithDrawalAccount userData={userData} />
+        <WithDrawlAccount userData={userData} />
         <Divider />
         <WithDrawalSign
           agreeSelectOptions={agreeSelectOptions}

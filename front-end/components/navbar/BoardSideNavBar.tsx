@@ -22,9 +22,10 @@ function BoardSideNavBar({ userData, mergedRefs }: BoardSideNavBarProps) {
           <div className={cx("image_box")}>
             <ConditionCusTomAvatar
               userData={userData}
-              width={200}
-              height={200}
-              borderRadius="50%"
+              size="200px"
+              // width={200}
+              // height={200}
+              // borderRadius="50%"
             />
           </div>
         </div>

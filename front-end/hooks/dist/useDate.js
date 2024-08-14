@@ -8,7 +8,6 @@ function useDate(dispatchname, item) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
         if (dispatchname === "career/date") {
             var _o = e.target, name = _o.name, value = _o.value;
-            console.log("handleStartDate", name, value);
             var nonNumberValue = value.replace(/[^0-9]/g, "");
             switch (name) {
                 case "startYear":

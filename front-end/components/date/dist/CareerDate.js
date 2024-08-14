@@ -10,7 +10,6 @@ function CareerDate(_a) {
     var _b, _c, _d, _e;
     var item = _a.item;
     var dispatch = react_redux_1.useDispatch();
-    console.log("Carreeritem", item);
     var handleChangeCurrent = function (event) {
         var _a, _b, _c, _d;
         dispatch(portpolioSlice_1.careerFieldEdit({

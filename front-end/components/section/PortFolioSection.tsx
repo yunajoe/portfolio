@@ -21,7 +21,6 @@ function PortFolioSection({ portFolioRef }: PortFolioSectionProps) {
               }
               title="MY WORK"
             />
-            <div className={cx("intro_section")}>workwork</div>
           </div>
         </div>
       </div>

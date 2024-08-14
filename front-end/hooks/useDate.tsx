@@ -11,7 +11,6 @@ function useDate(dispatchname: string, item: any) {
   const handleStartDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (dispatchname === "career/date") {
       const { name, value } = e.target;
-      console.log("handleStartDate", name, value);
 
       const nonNumberValue = value.replace(/[^0-9]/g, "");
       switch (name) {

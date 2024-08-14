@@ -10,7 +10,6 @@ function EducationDate(_a) {
     var _b, _c, _d, _e;
     var item = _a.item;
     var dispatch = react_redux_1.useDispatch();
-    console.log("EducationItem", item);
     var handleChangeCurrent = function (event) {
         dispatch(portpolioSlice_1.educationFieldEdit({
             id: item.id,

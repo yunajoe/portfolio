@@ -8,6 +8,12 @@
   row-gap: 15px;
 }
 
+.profile_name_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile_setting_container {
   display: flex;
   flex-direction: column;

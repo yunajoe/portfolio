@@ -1,7 +1,6 @@
 "use client";
 "use strict";
 exports.__esModule = true;
-var ConditionCusTomAvatar_1 = require("@/components/avatar/ConditionCusTomAvatar");
 var ModalPortal_1 = require("@/components/modal/ModalPortal");
 var PassWordChangeModal_1 = require("@/components/modal/type/PassWordChangeModal");
 var useToast_1 = require("@/hooks/useToast");
@@ -11,6 +10,7 @@ var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
 var core_1 = require("@mantine/core");
 var bind_1 = require("classnames/bind");
+var dynamic_1 = require("next/dynamic");
 var link_1 = require("next/link");
 var react_1 = require("react");
 var MySettingBox_module_scss_1 = require("./MySettingBox.module.scss");
@@ -26,12 +26,14 @@ function MySettingBox() {
         setPasswordChangeButton(false);
     };
     useToast_1["default"]("password", updateUserPasswordStatus, updateUserPasswordMessage);
+    var ProfileAvatar = dynamic_1["default"](function () { return Promise.resolve().then(function () { return require("@/components/avatar/ConditionCusTomAvatar"); }); }, { ssr: false });
+    var MyProfileName = dynamic_1["default"](function () { return Promise.resolve().then(function () { return require("@/components/box/myprofile/MyProfileName"); }); }, { ssr: false });
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: cx("profile_container") },
-            React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, size: "150px" }),
-            React.createElement(core_1.Text, { size: "30px", fw: 600 },
-                userData.username,
-                "\uB2D8, \uD658\uC601\uD574\uC694")),
+            React.createElement(ProfileAvatar, { userData: userData, size: "150px" }),
+            React.createElement("div", { className: cx("profile_name_container") },
+                React.createElement(MyProfileName, { userData: userData }),
+                React.createElement(core_1.Text, { size: "30px", fw: 600 }, "\uB2D8, \uD658\uC601\uD574\uC694"))),
         React.createElement("div", { className: cx("profile_setting_container") },
             React.createElement(core_1.Text, { fw: 900, size: "24px", p: "15px" }, "\uAC1C\uC778\uC815\uBCF4\uBCF4\uD638"),
             React.createElement("ul", null,

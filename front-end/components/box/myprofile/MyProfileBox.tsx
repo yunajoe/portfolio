@@ -1,6 +1,4 @@
 "use client";
-import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
-import MyProfileName from "@/components/box/myprofile/MyProfileName";
 import CareerAddButton from "@/components/button/CareerAddButton";
 import EducationAddButton from "@/components/button/EducationAddButton";
 import MyProfileDropDown from "@/components/dropdown/MyProfileDropDown";
@@ -8,6 +6,7 @@ import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import styles from "./MyProfileBox.module.scss";
 
@@ -24,12 +23,20 @@ function MyProfileBox() {
   const handleCloseSetting = () => {
     setSettings(false);
   };
+  const MyProfileName = dynamic(
+    () => import("@/components/box/myprofile/MyProfileName"),
+    { ssr: false }
+  );
+  const ProfileAvatar = dynamic(
+    () => import("@/components/avatar/ConditionCusTomAvatar"),
+    { ssr: false }
+  );
 
   return (
     <div className={cx("myprofile_container")}>
       <section className={cx("myinfo_section")}>
         <div className={cx("myinfo")}>
-          <ConditionCusTomAvatar userData={userData} size="100px" />
+          <ProfileAvatar userData={userData} size="100px" />
           <MyProfileName userData={userData} />
         </div>
         <div className={cx("settings")}>

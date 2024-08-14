@@ -1,3 +1,5 @@
+import EnrolledCareerDate from "@/components/date/EnrolledCareerDate";
+import EnrolledSchoolDate from "@/components/date/EnrolledSchoolDate";
 import SectionHead from "@/components/section/SectionHead";
 import ResumeIcon from "@/public/icons/ResumeIcon";
 import { Item } from "@/types/portpolio";
@@ -12,6 +14,7 @@ type ResumeSectionProps = {
 };
 function ResumeSection({ portpolioData, resumeRef }: ResumeSectionProps) {
   const { careerList, educationList } = portpolioData;
+
   return (
     <section className={cx("section")} id="home" ref={resumeRef}>
       <div className={cx("overlay_container")}>
@@ -30,12 +33,7 @@ function ResumeSection({ portpolioData, resumeRef }: ResumeSectionProps) {
                     {careerList.map((item, index) => {
                       return (
                         <li key={index} className={cx("item")}>
-                          <div>
-                            <span>{item.companyDate.startYear}</span>
-                            <span>{item.companyDate.startMonth}</span>
-                            <span>{item.companyDate.endYear}</span>
-                            <span>{item.companyDate.endMonth}</span>
-                          </div>
+                          <EnrolledCareerDate item={item} />
                           <span className={cx("company_name")}>
                             {item.companyName}
                           </span>
@@ -50,12 +48,7 @@ function ResumeSection({ portpolioData, resumeRef }: ResumeSectionProps) {
                     {educationList.map((item, index) => {
                       return (
                         <li key={index} className={cx("item")}>
-                          <div>
-                            <span>{item.schoolDate.startYear}</span>
-                            <span>{item.schoolDate.startMonth}</span>
-                            <span>{item.schoolDate.endYear}</span>
-                            <span>{item.schoolDate.endMonth}</span>
-                          </div>
+                          <EnrolledSchoolDate item={item} />
                           <span className={cx("school_name")}>
                             {item.schoolName}
                           </span>

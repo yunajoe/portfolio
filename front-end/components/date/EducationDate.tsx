@@ -15,7 +15,6 @@ type DataBoxProps = {
 
 function EducationDate({ item }: DataBoxProps) {
   const dispatch = useDispatch();
-  console.log("EducationItem", item);
 
   const handleChangeCurrent = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(

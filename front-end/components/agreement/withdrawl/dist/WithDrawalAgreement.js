@@ -2,7 +2,6 @@
 "use strict";
 exports.__esModule = true;
 var WidthDrawlWarningText_1 = require("@/components/agreement/withdrawl/WidthDrawlWarningText");
-var WithDrawalAccount_1 = require("@/components/agreement/withdrawl/WithDrawalAccount");
 var WithDrawalSign_1 = require("@/components/agreement/withdrawl/WithDrawalSign");
 var WithDrawalButton_1 = require("@/components/button/WithDrawalButton");
 var Divider_1 = require("@/components/divider/Divider");
@@ -11,6 +10,7 @@ var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
 var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
 var bind_1 = require("classnames/bind");
+var dynamic_1 = require("next/dynamic");
 var navigation_1 = require("next/navigation");
 var react_1 = require("react");
 var WithDrawalAgreement_module_scss_1 = require("./WithDrawalAgreement.module.scss");
@@ -35,6 +35,7 @@ function WithDrawalAgreement() {
             dispatch(statusSlice_1.deleteUserStatusReset());
         };
     }, [deleteUserStatus]);
+    var WithDrawlAccount = dynamic_1["default"](function () { return Promise.resolve().then(function () { return require("@/components/agreement/withdrawl/WithDrawalAccount"); }); }, { ssr: false });
     return (React.createElement("form", { className: cx("form") },
         React.createElement("fieldset", null,
             React.createElement("legend", { className: cx("title") },
@@ -43,7 +44,7 @@ function WithDrawalAgreement() {
             React.createElement(WidthDrawlWarningText_1["default"], { warningArray: text_1.warning_text_two }),
             React.createElement(WidthDrawlWarningText_1["default"], { warningArray: text_1.warning_text_three }),
             React.createElement(Divider_1["default"], null),
-            React.createElement(WithDrawalAccount_1["default"], { userData: userData }),
+            React.createElement(WithDrawlAccount, { userData: userData }),
             React.createElement(Divider_1["default"], null),
             React.createElement(WithDrawalSign_1["default"], { agreeSelectOptions: agreeSelectOptions, setAgreeSelectOptions: setAgreeSelectOptions }),
             React.createElement(WithDrawalButton_1["default"], { agreeSelectOptions: agreeSelectOptions, withDrawlButton: withDrawlButton, setWithDrawlButton: setWithDrawlButton, userData: userData }))));

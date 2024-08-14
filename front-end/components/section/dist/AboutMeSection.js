@@ -19,7 +19,7 @@ function AboutMeSection(_a) {
                             React.createElement("div", { className: cx("about_me_info") },
                                 React.createElement("div", { className: cx("intro_content") },
                                     React.createElement("div", { className: cx("image_box") },
-                                        React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, width: 300, height: 300 })),
+                                        React.createElement(ConditionCusTomAvatar_1["default"], { userData: userData, size: "200px" })),
                                     React.createElement("div", { className: cx("intro_text") },
                                         React.createElement("p", null, "Hello"),
                                         React.createElement("p", null, portpolioData.introText)))))))))));

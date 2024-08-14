@@ -2,8 +2,6 @@ import { getDetailPortPolio } from "@/api/portpolio";
 import { getUserInfoByUserObjectId } from "@/api/user";
 import BoardDetailContents from "@/components/contents/BoardDetailContents";
 
-// export async function generateStaticParams() {}
-
 async function getPortPolioData(portpolioId: string) {
   const portpolioData = await getDetailPortPolio(portpolioId);
   return portpolioData.data;
