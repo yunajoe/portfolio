@@ -22,26 +22,32 @@ function AboutMeSection({
 }: AboutMeSectionProps) {
   return (
     <section className={cx("section")} id="aboutMe" ref={aboutMeRef}>
-      <ScrollArea h={1420} className={cx("aboutMe", "overlay_container")}>
-        <SectionHead targetIcon={<PersonIcon />} />
-        <div className={cx("section_body")}>
-          <div className={cx("sub_section")}>
-            <div className={cx("intro_content")}>
-              <div className={cx("image_box")}>
-                <ConditionCusTomAvatar
-                  userData={userData}
-                  width={300}
-                  height={300}
-                />
+      <div className={cx("overlay_container")}>
+        <div className={cx("overlay")}>
+          <div className={cx("contents")}>
+            <ScrollArea h={1000}>
+              <div className={cx("scroll_area")}>
+                <SectionHead targetIcon={<PersonIcon />} title="ABOUT ME" />
+                <div className={cx("about_me_info")}>
+                  <div className={cx("intro_content")}>
+                    <div className={cx("image_box")}>
+                      <ConditionCusTomAvatar
+                        userData={userData}
+                        width={300}
+                        height={300}
+                      />
+                    </div>
+                    <div className={cx("intro_text")}>
+                      <p>Hello</p>
+                      <p>{portpolioData.introText}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={cx("intro_text")}>
-                <p>Hello</p>
-                <p>{portpolioData.introText}</p>
-              </div>
-            </div>
+            </ScrollArea>
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </section>
   );
 }

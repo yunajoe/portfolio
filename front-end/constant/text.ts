@@ -37,3 +37,9 @@ export const warning_text_three = [
     ],
   },
 ];
+
+export const agreement_text_one =
+  "회원 탈퇴를 진행하여 포트폴리오 사이트 계정에 귀속된 모든 정보를 삭제하는 데 동의합니다";
+
+export const agreement_text_two =
+  "회원 탈퇴를 진행하여 포트폴리오 사이트에서 제공하는 모든 서비스를 받지 않는데 동의합니다";

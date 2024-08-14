@@ -34,8 +34,10 @@ function MySettingBox() {
   return (
     <>
       <div className={cx("profile_container")}>
-        <ConditionCusTomAvatar userData={userData} width={180} height={180} />
-        <Text>{userData.username}님, 환영해요</Text>
+        <ConditionCusTomAvatar userData={userData} size="150px" />
+        <Text size="30px" fw={600}>
+          {userData.username}님, 환영해요
+        </Text>
       </div>
       <div className={cx("profile_setting_container")}>
         <Text fw={900} size="24px" p="15px">
@@ -43,17 +45,18 @@ function MySettingBox() {
         </Text>
         <ul>
           <li onClick={handleOpenPasswordModal}>
-            <p>비밀번호 변경</p>
+            <Text>비밀번호 변경</Text>
             <RightChevronIcon style={{ width: "30px" }} />
+          </li> 
+          <li>             
+            <Link
+              href="/myprofile/withdrawal"
+              className={cx("user_withdrawal_text")}
+            >
+              <Text>회원탈퇴</Text>
+              <RightChevronIcon style={{ width: "30px" }} />
+            </Link>
           </li>
-
-          <Link
-            href="/myprofile/withdrawal"
-            className={cx("user_withdrawal_text")}
-          >
-            <p>회원탈퇴</p>
-            <RightChevronIcon style={{ width: "30px" }} />
-          </Link>
         </ul>
       </div>
       {passwordChangeButton && (

@@ -13,6 +13,7 @@ export type CareerType = {
     endYear: string;
     endMonth: string;
   };
+  isCurrent: false;
 };
 
 export type EducationType = {
@@ -25,6 +26,7 @@ export type EducationType = {
     endYear: string;
     endMonth: string;
   };
+  isCurrent: false;
 };
 
 export type PortPolioState = {
@@ -71,6 +73,7 @@ const portPolioSlice = createSlice({
         status: action.payload.status,
         position: action.payload.position,
         companyDate: action.payload.companyDate,
+        isCurrent: action.payload.isCurrent,
       };
       state.careerList.unshift(object);
     },
@@ -84,6 +87,7 @@ const portPolioSlice = createSlice({
         state.careerList[ItemIndex].status = action.payload.status;
         state.careerList[ItemIndex].position = action.payload.position;
         state.careerList[ItemIndex].companyDate = action.payload.companyDate;
+        state.careerList[ItemIndex].isCurrent = action.payload.isCurrent;
       }
     },
     careerFieldDelete: (state, action) => {
@@ -100,6 +104,7 @@ const portPolioSlice = createSlice({
         schoolName: action.payload.schoolName,
         major: action.payload.major,
         schoolDate: action.payload.schoolDate,
+        isCurrent: action.payload.isCurrent,
       };
       state.educationList.unshift(object);
     },
@@ -113,6 +118,7 @@ const portPolioSlice = createSlice({
         state.educationList[ItemIndex].schoolName = action.payload.schoolName;
         state.educationList[ItemIndex].major = action.payload.major;
         state.educationList[ItemIndex].schoolDate = action.payload.schoolDate;
+        state.educationList[ItemIndex].isCurrent = action.payload.isCurrent;
       }
     },
 

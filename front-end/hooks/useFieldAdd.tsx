@@ -20,6 +20,7 @@ function useFieldAdd() {
             endYear: "",
             endMonth: "",
           },
+          isCurrent: false,
         })
       );
     },
@@ -34,6 +35,7 @@ function useFieldAdd() {
             endYear: "",
             endMonth: "",
           },
+          isCurrent: false,
         })
       );
     },

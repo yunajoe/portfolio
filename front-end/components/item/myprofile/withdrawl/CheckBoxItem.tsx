@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 
 type CheckBoxItemProps = {
   type: string;
+  text: string;
   agreeSelectOptions: { first_option: boolean; second_option: boolean };
   setAgreeSelectOptions: React.Dispatch<
     SetStateAction<{ first_option: boolean; second_option: boolean }>
@@ -15,6 +16,7 @@ type CheckBoxItemProps = {
 
 function CheckBoxItem({
   type,
+  text,
   agreeSelectOptions,
   setAgreeSelectOptions,
 }: CheckBoxItemProps) {
@@ -58,8 +60,7 @@ function CheckBoxItem({
       />
       <div>
         <p>
-          회원 탈퇴를 진행하여 포트폴리오 사이트 계정에 귀속된 모든 정보를
-          삭제하는 데 동의합니다
+          {text}
         </p>
       </div>
     </div>

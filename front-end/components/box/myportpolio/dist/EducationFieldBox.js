@@ -65,10 +65,25 @@ function EducationFieldBox(_a) {
     var _e = react_1.useState(false), isClick = _e[0], setIsClick = _e[1];
     var _f = react_1.useState(false), isSchoolItemClick = _f[0], setIsSchoolItemClick = _f[1];
     var _g = react_1.useState(false), isMajorMenuClick = _g[0], setIsMajorMenuClick = _g[1];
-    var _h = useModal_1["default"](), isOpen = _h.isOpen, handleOpen = _h.handleOpen, handleClose = _h.handleClose, isDeleteModalOpen = _h.isDeleteModalOpen, handleDeleteModalOpen = _h.handleDeleteModalOpen, handleDeleteModalClose = _h.handleDeleteModalClose;
+    var _h = react_1.useState(null), searchId = _h[0], setSearchId = _h[1];
+    var _j = react_1.useState(null), deleteId = _j[0], setDeleteId = _j[1];
+    var _k = useModal_1["default"](), isSearchModalOpen = _k.isSearchModalOpen, setIsSearchModalOpen = _k.setIsSearchModalOpen, isDeleteModalOpen = _k.isDeleteModalOpen, setIsDeleteModalOpen = _k.setIsDeleteModalOpen;
     var dispatch = hooks_1.useAppDispatch();
-    var handleSearchModal = function () {
-        handleOpen();
+    var handleSearchModalOpen = function (searchId) {
+        setIsSearchModalOpen(true);
+        setSearchId(searchId);
+    };
+    var handleSearchModalClose = function () {
+        setIsSearchModalOpen(false);
+        setSearchId(null);
+    };
+    var handleDeleteModalOpen = function (deleteId) {
+        setIsDeleteModalOpen(true);
+        setDeleteId(deleteId);
+    };
+    var handleDeleteModalClose = function () {
+        setIsDeleteModalOpen(false);
+        setDeleteId(null);
     };
     var handleResetModal = function () {
         setSearchValue("");
@@ -115,7 +130,7 @@ function EducationFieldBox(_a) {
         setSearchValue(event.target.value);
     };
     var content = (React.createElement(React.Fragment, null,
-        React.createElement(SearchEducationModalContent_1["default"], { data: searchResult, item: item, searchValue: searchValue, setSearchValue: setSearchValue, setSearchResult: setSearchResult, handleChangeFunc: handleInputChange, isClick: isClick, setIsClick: setIsClick, isSchoolItemClick: isSchoolItemClick, setIsSchoolItemClick: setIsSchoolItemClick, close: handleClose })));
+        React.createElement(SearchEducationModalContent_1["default"], { data: searchResult, item: item, searchValue: searchValue, setSearchValue: setSearchValue, setSearchResult: setSearchResult, handleChangeFunc: handleInputChange, isClick: isClick, setIsClick: setIsClick, isSchoolItemClick: isSchoolItemClick, setIsSchoolItemClick: setIsSchoolItemClick, close: handleSearchModalClose, setSearchId: setSearchId })));
     var handleMajorChange = function (event) {
         setIsMajorMenuClick(true);
         setSearchMajorValue(event.target.value);
@@ -123,7 +138,8 @@ function EducationFieldBox(_a) {
             id: item.id,
             schoolDate: item.schoolDate,
             schoolName: item.schoolName,
-            major: event.target.value
+            major: event.target.value,
+            isCurrent: item.isCurrent
         }));
     };
     var searchMajorListMemo = react_1.useMemo(function () {
@@ -133,20 +149,20 @@ function EducationFieldBox(_a) {
         }
         return [];
     }, [item.major, majorList]);
-    return (React.createElement("div", null,
-        React.createElement(core_1.Flex, { className: cx("container") },
-            React.createElement(core_1.Stack, null,
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: cx("container") },
+            React.createElement(core_1.Stack, { className: cx("date") },
                 React.createElement(EducationDate_1["default"], { item: item })),
-            React.createElement(core_1.Box, { w: "100%" },
+            React.createElement("div", { className: cx("education_container") },
                 React.createElement(core_1.Flex, { w: "100%", justify: "space-between", align: "center" },
-                    React.createElement(ModalInput_1["default"], { placeholder: "\uD559\uAD50\uBA85", value: item.schoolName, onClick: handleSearchModal }),
-                    React.createElement(icons_react_1.IconX, { stroke: 1, style: { cursor: "pointer", padding: "1px" }, onClick: handleDeleteModalOpen })),
-                React.createElement("div", { className: cx("major_input_container") },
+                    React.createElement(ModalInput_1["default"], { placeholder: "\uD559\uAD50\uBA85", value: item.schoolName, onClick: function () { return handleSearchModalOpen(item.id); } }),
+                    React.createElement(icons_react_1.IconX, { stroke: 1, style: { cursor: "pointer", padding: "1px" }, onClick: function () { return handleDeleteModalOpen(item.id); } })),
+                React.createElement("div", null,
                     React.createElement(core_1.TextInput, { variant: "unstyled", placeholder: "\uC804\uACF5 \uBC0F \uD559\uC704(ex: \uACBD\uC81C\uD559\uACFC \uD559\uC0AC)", value: item.major, onClick: function () { return setIsMajorMenuClick(true); }, onChange: function (event) { return handleMajorChange(event); } }),
                     isMajorMenuClick && searchMajorValue.length > 0 && (React.createElement(MajorSearchResult_1["default"], { data: searchMajorListMemo, item: item, searchMajorValue: searchMajorValue, setSearchMajorValue: setSearchMajorValue, setIsMajorMenuClick: setIsMajorMenuClick }))))),
-        isOpen && (React.createElement(ModalPortal_1["default"], null,
-            React.createElement(SearchModal_1["default"], { title: "\uD559\uAD50\uAC80\uC0C9", content: content, close: handleClose, reset: handleResetModal, setIsClick: setIsClick, setIsItemClick: setIsSchoolItemClick }))),
-        isDeleteModalOpen && (React.createElement(ModalPortal_1["default"], null,
-            React.createElement(EducationFieldDeleteModal_1["default"], { onClose: handleDeleteModalClose, index: index })))));
+        isSearchModalOpen && item.id === searchId && (React.createElement(ModalPortal_1["default"], null,
+            React.createElement(SearchModal_1["default"], { title: "\uD559\uAD50\uAC80\uC0C9", content: content, close: handleSearchModalClose, reset: handleResetModal, setIsClick: setIsClick, setIsItemClick: setIsSchoolItemClick }))),
+        isDeleteModalOpen && item.id === deleteId && (React.createElement(ModalPortal_1["default"], null,
+            React.createElement(EducationFieldDeleteModal_1["default"], { onClose: handleDeleteModalClose, index: index, setDeleteId: setDeleteId })))));
 }
 exports["default"] = EducationFieldBox;

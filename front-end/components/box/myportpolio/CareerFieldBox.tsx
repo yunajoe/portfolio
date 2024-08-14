@@ -21,16 +21,18 @@ const cx = classNames.bind(styles);
 type FieldBoxProps = {
   item: CareerType;
   index: number;
-  portpolioId: string;
   companyList: string[];
 };
 
 function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
-  // 회사
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState<string[]>([]);
   const [isClick, setIsClick] = useState(false);
   const [isCompanyItemClick, setIsCompanyItemClick] = useState(false);
+
+  //  deleteID
+  const [searchId, setSearchId] = useState<number | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   // stasuts
   const [statusValue, setStatusValue] = useState("정규직");
@@ -38,12 +40,10 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
 
   // 모달
   const {
-    isOpen,
-    handleOpen,
-    handleClose,
+    isSearchModalOpen,
+    setIsSearchModalOpen,
     isDeleteModalOpen,
-    handleDeleteModalOpen,
-    handleDeleteModalClose,
+    setIsDeleteModalOpen,
   } = useModal();
 
   const dispatch = useAppDispatch();
@@ -52,8 +52,14 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
     callback: Function;
     delay: number;
   };
-  const handleSearchModal = () => {
-    handleOpen();
+  const handleSearchModalOpen = (searchId: number) => {
+    setIsSearchModalOpen(true);
+    setSearchId(searchId);
+  };
+
+  const handleSearchModalClose = () => {
+    setIsSearchModalOpen(false);
+    setSearchId(null);
   };
 
   const handleResetModal = () => {
@@ -100,6 +106,7 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
         status: item.status,
         position: event.target.value,
         companyDate: item.companyDate,
+        isCurrent: item.isCurrent,
       })
     );
   };
@@ -120,9 +127,20 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
       isStatusClick={isStatusClick}
       setIsStatusClick={setIsStatusClick}
       handleChangeFunc={handleInputChange}
-      close={handleClose}
+      close={handleSearchModalClose}
+      setSearchId={setSearchId}
     />
   );
+
+  const handleDeleteModalOpen = (deleteId: number) => {
+    setIsDeleteModalOpen(true);
+    setDeleteId(deleteId);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+    setDeleteId(null);
+  };
 
   return (
     <>
@@ -136,7 +154,7 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
               <ModalInput
                 placeholder="회사명"
                 value={item.companyName}
-                onClick={handleSearchModal}
+                onClick={() => handleSearchModalOpen(item.id)}
               />
               {item.companyName.length > 0 && item.status.length > 0 && (
                 <Pill size="sm">{item.status}</Pill>
@@ -148,7 +166,7 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
                 cursor: "pointer",
                 padding: "1px",
               }}
-              onClick={handleDeleteModalOpen}
+              onClick={() => handleDeleteModalOpen(item.id)}
             />
           </Flex>
           <TextInput
@@ -159,23 +177,24 @@ function CareerFieldBox({ item, index, companyList }: FieldBoxProps) {
           />
         </Box>
       </Flex>
-      {isOpen && (
+      {isSearchModalOpen && item.id === searchId && (
         <ModalPortal>
           <SearchModal
             title="직장검색"
             content={content}
-            close={handleClose}
+            close={handleSearchModalClose}
             reset={handleResetModal}
             setIsClick={setIsClick}
             setIsItemClick={setIsCompanyItemClick}
           />
         </ModalPortal>
       )}
-      {isDeleteModalOpen && (
+      {isDeleteModalOpen && item.id === deleteId && (
         <ModalPortal>
           <CareerFieldDeleteModal
             onClose={handleDeleteModalClose}
             index={index}
+            setDeleteId={setDeleteId}
           />
         </ModalPortal>
       )}

@@ -9,9 +9,11 @@ exports.getTargetRef = function (targetRefArr) {
     var homeRef = targetRefArr[0].homeRef;
     var aboutMeRef = targetRefArr[1].aboutMeRef;
     var portFolioRef = targetRefArr[2].portFolioRef;
+    var resumeRef = targetRefArr[3].resumeRef;
     return {
         homeRef: homeRef,
         aboutMeRef: aboutMeRef,
-        portFolioRef: portFolioRef
+        portFolioRef: portFolioRef,
+        resumeRef: resumeRef
     };
 };

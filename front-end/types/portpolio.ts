@@ -9,6 +9,7 @@ export type CareerType = {
     endYear: string;
     endMonth: string;
   };
+  isCurrent: false;
 };
 
 export type EducationType = {
@@ -21,6 +22,7 @@ export type EducationType = {
     endYear: string;
     endMonth: string;
   };
+  isCurrent: false;
 };
 export type CareerList = {
   id: number;

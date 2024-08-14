@@ -36,18 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getDefaultPortPolio = exports.updatePortPolioName = exports.updateDefaultPortPolio = exports.deletePortPolio = exports.getDetailPortPolio = exports.getListPortPolioDetail = exports.getPortPolioList = exports.savePortPolio = exports.createPortPolio = void 0;
+exports.getUserDefaultPortPolio = exports.getDefaultPortPolioList = exports.updatePortPolioName = exports.updateDefaultPortPolio = exports.deletePortPolio = exports.getDetailPortPolio = exports.getPortPolioDetailList = exports.getPortPolioList = exports.savePortPolio = exports.createPortPolio = void 0;
 var _1 = require(".");
 // CREATE 포폴
-exports.createPortPolio = function (accessToken) { return __awaiter(void 0, void 0, void 0, function () {
+exports.createPortPolio = function () { return __awaiter(void 0, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, _1["default"].get("createPortPolio", {
-                    headers: {
-                        Authorization: accessToken
-                    }
-                })];
+            case 0: return [4 /*yield*/, _1["default"].get("createPortPolio")];
             case 1:
                 response = _a.sent();
                 return [2 /*return*/, response];
@@ -93,7 +89,7 @@ exports.getPortPolioList = function (data) { return __awaiter(void 0, void 0, vo
     });
 }); };
 // Detail List 포폴
-exports.getListPortPolioDetail = function (users_table_id) { return __awaiter(void 0, void 0, void 0, function () {
+exports.getPortPolioDetailList = function (users_table_id) { return __awaiter(void 0, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -182,12 +178,28 @@ exports.updatePortPolioName = function (data) { return __awaiter(void 0, void 0,
         }
     });
 }); };
-// default 포폴 가져오기
-exports.getDefaultPortPolio = function () { return __awaiter(void 0, void 0, void 0, function () {
+// default 포폴 list로  가져오기
+exports.getDefaultPortPolioList = function () { return __awaiter(void 0, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, _1["default"].get("portpolio/default/list")];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, response];
+        }
+    });
+}); };
+// 해당 user의 default 가져오기
+exports.getUserDefaultPortPolio = function (_id) { return __awaiter(void 0, void 0, void 0, function () {
+    var response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, _1["default"].get("portpolio/default", {
+                    params: {
+                        _id: _id
+                    }
+                })];
             case 1:
                 response = _a.sent();
                 return [2 /*return*/, response];

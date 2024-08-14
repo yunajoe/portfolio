@@ -1,32 +1,17 @@
 import { useState } from "react";
 
 function useModal() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
-  const handleDeleteModalOpen = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleDeleteModalClose = () => {
-    setIsDeleteModalOpen(false);
-  };
-
-  return {
-    isOpen,
-    handleOpen,
-    handleClose,
+  return {  
+    isSearchModalOpen,
+    setIsSearchModalOpen,
     isDeleteModalOpen,
-    handleDeleteModalOpen,
-    handleDeleteModalClose,
+    setIsDeleteModalOpen,
+
   };
 }
 

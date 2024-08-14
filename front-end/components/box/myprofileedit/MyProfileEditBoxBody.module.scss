@@ -18,22 +18,17 @@
 
 .user_profile_image {
   position: absolute;
-  // border: 5px solid blue;
   bottom: 0;
   right: 0;
 }
 
 .add_icon_container {
-  // border: 5px solid red;
-  // position: absolute;
   position: relative;
   z-index: 900;
-  top: 5px;
+  right: 8px;
   overflow: visible;
 }
 
-
-//
 .user_nickname_container {
   width: 100%;
   display: flex;

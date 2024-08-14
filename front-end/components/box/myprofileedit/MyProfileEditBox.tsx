@@ -21,7 +21,6 @@ function MyProfileEditBox() {
   } = useAppSelector(selectStatus);
 
   const [profileImageUrl, setProfileImageUrl] = useState("");
-  // 아래처럼 하면은 왜 안될까유?
 
   const [profileUserNickNameButton, setProfileUserNickNameButton] =
     useState(false);

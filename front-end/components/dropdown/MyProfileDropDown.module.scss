@@ -2,16 +2,17 @@
 
 .container {
   position: absolute;
-
   width: 250px;
 
   @include mobile {
     left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: -125px;
+    transform: translate(-50%, -10%);
   }
   @include laptop {
     left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: -125px;
+    transform: translate(-50%, -10%);
   }
   @include desktop {
     top: 73%;
@@ -34,6 +35,7 @@
   text-decoration: none;
   padding: 10px;
   color: black;
+  padding: 20px;
   z-index: 20;
   &:hover {
     background-color: rgba(244, 245, 249, 0.61);

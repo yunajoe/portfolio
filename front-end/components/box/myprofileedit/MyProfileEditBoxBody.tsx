@@ -38,7 +38,7 @@ function MyProfileEditBoxBody({
   return (
     <section className={cx("second_section")}>
       <div className={cx("user_profile_image_container")}>
-        <ConditionCusTomAvatar userData={userData} />
+        <ConditionCusTomAvatar userData={userData} size="150px" />
         <div className={cx("user_profile_image")}>
           <label htmlFor="profile_image_uploads">
             <input

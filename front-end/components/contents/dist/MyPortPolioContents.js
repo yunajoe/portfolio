@@ -1,167 +1,84 @@
 "use client";
 "use strict";
 exports.__esModule = true;
-var CareerFieldBox_1 = require("@/components/box/myportpolio/CareerFieldBox");
-var EducationFieldBox_1 = require("@/components/box/myportpolio/EducationFieldBox");
-var InputBox_1 = require("@/components/box/myportpolio/InputBox");
-var IntroduceBox_1 = require("@/components/box/myportpolio/IntroduceBox");
-var text_1 = require("@/constant/text");
-var ToastContext_1 = require("@/context/ToastContext");
-var AddIcon_1 = require("@/public/icons/AddIcon");
+var CreatePortPolioCard_1 = require("@/components/card/PortPolioCard/CreatePortPolioCard");
+var PortPolioCard_1 = require("@/components/card/PortPolioCard/PortPolioCard");
+var EditAndDeleteDropDown_1 = require("@/components/dropdown/EditAndDeleteDropDown");
+var ModalPortal_1 = require("@/components/modal/ModalPortal");
+var PortPolioDeleteModal_1 = require("@/components/modal/type/PortPolioDeleteModal");
+var useModal_1 = require("@/hooks/useModal");
+var useToast_1 = require("@/hooks/useToast");
 var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
-var portpolioSlice_1 = require("@/src/app/lib/features/portpolio/portpolioSlice");
-var searchSlice_1 = require("@/src/app/lib/features/search/searchSlice");
+var portpolioResultSlice_1 = require("@/src/app/lib/features/portpolio/portpolioResultSlice");
 var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
-var preprecessingApiData_1 = require("@/utils/preprecessingApiData");
-var core_1 = require("@mantine/core");
+var bind_1 = require("classnames/bind");
 var navigation_1 = require("next/navigation");
 var react_1 = require("react");
-function MyPortPolioEditContents() {
-    var usePortPolioSelector = hooks_1.useAppSelector(portpolioSlice_1.selectPortPolio);
-    var useSearchSelector = hooks_1.useAppSelector(searchSlice_1.selectSearch);
+var MyPortPolioContents_module_scss_1 = require("./MyPortPolioContents.module.scss");
+var cx = bind_1["default"].bind(MyPortPolioContents_module_scss_1["default"]);
+function MyPortPolioContents() {
+    var _a = react_1.useState(false), isEditAndDeleteDropDown = _a[0], setIsEditAndDeleteDropDown = _a[1];
+    var _b = react_1.useState(""), deleteDropDownId = _b[0], setDeleteDropDownId = _b[1];
+    var _c = react_1.useState(false), isResumeNameEdit = _c[0], setIsResumeNameEdit = _c[1];
+    var useSelectAuth = hooks_1.useAppSelector(authSlice_1.selectAuth);
+    var usePortPolioResultSelector = hooks_1.useAppSelector(portpolioResultSlice_1.selectPortPolioResult);
     var useStatusSelector = hooks_1.useAppSelector(statusSlice_1.selectStatus);
-    var useAuthSelector = hooks_1.useAppSelector(authSlice_1.selectAuth);
-    // 66930d5b0a819067b60e356f
-    var introText = usePortPolioSelector.introText, careerList = usePortPolioSelector.careerList, educationList = usePortPolioSelector.educationList;
-    var majorData = useSearchSelector.majorData, companyData = useSearchSelector.companyData;
-    var defaultPortPolioStatus = useStatusSelector.defaultPortPolioStatus, defaultPortPolioMessage = useStatusSelector.defaultPortPolioMessage;
-    var userData = useAuthSelector.userData;
-    var filteredMajorArr = preprecessingApiData_1.preprocessingMajor(majorData);
-    var filteredCompanyArr = preprecessingApiData_1.preprocessingCompany(companyData);
-    var toast = react_1.useContext(ToastContext_1.ToastContext);
-    var router = navigation_1.useRouter();
-    var pathname = navigation_1.usePathname();
-    var portpolioId = pathname.split("edit/")[1];
-    var defaultResumeBox = (React.createElement(React.Fragment, null, usePortPolioSelector.defaultResume ? (React.createElement(core_1.Box, { w: "100%", ta: "right", p: "15px", bg: "#f8f5ff", mb: "10px" },
-        React.createElement(core_1.Text, { c: "#8958fa", ta: "left", fw: 700 }, "\uAE30\uBCF8 \uC774\uB825\uC11C"))) : (React.createElement(core_1.Box, { w: "100%", ta: "right", p: "15px", bg: "#f8f8f8", mb: "10px" },
-        React.createElement(core_1.UnstyledButton, { c: "#36f", fw: 700, onClick: function () {
-                return handleChangeToDefaultResume(userData._id, portpolioId);
-            } }, "\uAE30\uBCF8\uC774\uB825\uC11C\uB85C \uC124\uC815\uD558\uAE30")))));
+    // 모달
+    // const { isDeleteModalOpen, handleDeleteModalOpen, handleDeleteModalClose } =
+    //   useModal();
+    var _d = useModal_1["default"](), isDeleteModalOpen = _d.isDeleteModalOpen, setIsDeleteModalOpen = _d.setIsDeleteModalOpen;
+    var userData = useSelectAuth.userData;
+    var savePortPolioStatus = useStatusSelector.savePortPolioStatus, deletePortPolioStatus = useStatusSelector.deletePortPolioStatus, updatePortPolioNameStatus = useStatusSelector.updatePortPolioNameStatus, updatePortPolioNameMessage = useStatusSelector.updatePortPolioNameMessage;
+    var portpolio_detail_arr = usePortPolioResultSelector.portpolio_detail_arr;
     var dispatch = hooks_1.useAppDispatch();
-    var handleCompleteButton = function () {
-        if (introText.length !== 0 &&
-            careerList.length !== 0 &&
-            educationList.length !== 0) {
+    var router = navigation_1.useRouter();
+    var handleDeleteModalOpen = function () {
+        setIsDeleteModalOpen(true);
+    };
+    var handleDeleteModalClose = function () {
+        setIsDeleteModalOpen(false);
+    };
+    // 이력서 이름 변경 펑션
+    var handleChangeResumeName = function () {
+        setIsResumeNameEdit(true);
+        setIsEditAndDeleteDropDown(false);
+    };
+    // 이력서 삭제 펑션
+    var handleDeleteResume = function () {
+        handleDeleteModalOpen();
+        setIsEditAndDeleteDropDown(false);
+    };
+    react_1.useEffect(function () {
+        if (userData._id) {
             dispatch({
-                type: "SAVE_PORT_POLIO_REQUEST",
-                portpolioId: portpolioId,
-                introText: introText,
-                careerList: careerList,
-                educationList: educationList
+                type: "GET_PORT_POLIO_DETAIL_LIST_REQUEST",
+                users_table_id: userData._id
             });
-            router.push("/myportpolio");
         }
-    };
-    var educationListMemo = react_1.useMemo(function () {
-        return usePortPolioSelector.educationList;
-    }, [usePortPolioSelector.educationList]);
-    var careerListMemo = react_1.useMemo(function () {
-        return usePortPolioSelector.careerList;
-    }, [usePortPolioSelector.careerList]);
-    var handleCareerAddButton = function () {
-        var _a, _b;
-        if (careerListMemo.length === 0) {
-            dispatch(portpolioSlice_1.careerFieldAdd({
-                companyName: "",
-                status: "정규직",
-                position: "",
-                companyDate: {
-                    startYear: "",
-                    startMonth: "",
-                    endYear: "",
-                    endMonth: ""
-                }
-            }));
-        }
-        else if (((_a = careerListMemo.at(0)) === null || _a === void 0 ? void 0 : _a.companyName) && ((_b = careerListMemo.at(0)) === null || _b === void 0 ? void 0 : _b.position)) {
-            dispatch(portpolioSlice_1.careerFieldAdd({
-                companyName: "",
-                status: "정규직",
-                position: "",
-                companyDate: {
-                    startYear: "",
-                    startMonth: "",
-                    endYear: "",
-                    endMonth: ""
-                }
-            }));
-        }
-    };
-    var handleEducationAddButton = function () {
-        var _a, _b;
-        if (educationListMemo.length === 0) {
-            dispatch(portpolioSlice_1.educationFieldAdd({
-                schoolName: "",
-                major: "",
-                schoolDate: {
-                    startYear: "",
-                    startMonth: "",
-                    endYear: "",
-                    endMonth: ""
-                }
-            }));
-        }
-        else if (((_a = educationListMemo.at(0)) === null || _a === void 0 ? void 0 : _a.schoolName) && ((_b = educationListMemo.at(0)) === null || _b === void 0 ? void 0 : _b.major)) {
-            dispatch(portpolioSlice_1.educationFieldAdd({
-                schoolName: "",
-                major: "",
-                schoolDate: {
-                    startYear: "",
-                    startMonth: "",
-                    endYear: "",
-                    endMonth: ""
-                }
-            }));
-        }
-    };
-    react_1.useEffect(function () {
-        dispatch({ type: "MAJOR_LIST_REQUEST" });
-        dispatch({ type: "COMPANY_LIST_REQUEST" });
         return function () {
-            dispatch(statusSlice_1.defaultPortPolioReset());
+            dispatch(statusSlice_1.deletePortPolioStatusReset());
         };
-    }, []);
-    react_1.useEffect(function () {
-        dispatch({
-            type: "GET_PORT_POLIO_DETAIL_REQUEST",
-            portpolioId: portpolioId
-        });
-    }, [portpolioId, defaultPortPolioStatus]);
-    var handleChangeToDefaultResume = function (users_table_id, portpolioId) {
-        dispatch({
-            type: "UPDATE_DEFAULT_PORT_POLIO_REQUEST",
-            users_table_id: users_table_id,
-            portpolio_id: portpolioId
-        });
+    }, [
+        userData._id,
+        updatePortPolioNameStatus,
+        deletePortPolioStatus,
+        savePortPolioStatus,
+    ]);
+    var navigateToDetailPage = function (data) {
+        if (deleteDropDownId !== "")
+            return;
+        router.push("/myportpolio/edit/" + data.portpolioId);
     };
-    react_1.useEffect(function () {
-        if (defaultPortPolioStatus === 200) {
-            toast === null || toast === void 0 ? void 0 : toast.open(defaultPortPolioMessage);
-        }
-    }, [defaultPortPolioStatus]);
-    return (React.createElement(React.Fragment, null,
-        defaultResumeBox,
-        React.createElement(InputBox_1["default"], { title: "\uAC04\uB2E8\uC18C\uAC1C\uAE00", description: text_1.intro }),
-        React.createElement(IntroduceBox_1["default"], { introText: introText }),
-        React.createElement(InputBox_1["default"], { title: "\uACBD\uB825", description: text_1.career }),
-        React.createElement(core_1.Flex, { justify: "flex-start", align: "center", gap: "2px", mb: "10px" },
-            React.createElement(AddIcon_1["default"], { style: { width: "15px", height: "20px" } }),
-            React.createElement(core_1.Text, { style: { cursor: "pointer" }, onClick: handleCareerAddButton, c: "blue", fw: 700 }, "\uCD94\uAC00")),
-        React.createElement("div", { style: { marginBottom: "30px" } }, careerListMemo.length > 0 &&
-            careerListMemo.map(function (item, index) {
-                return (React.createElement("div", { key: item.id },
-                    React.createElement(CareerFieldBox_1["default"], { item: item, portpolioId: portpolioId, index: index, companyList: filteredCompanyArr })));
-            })),
-        React.createElement(InputBox_1["default"], { title: "\uD559\uB825", description: text_1.school }),
-        React.createElement(core_1.Flex, { justify: "flex-start", align: "center", gap: "2px", mb: "10px" },
-            React.createElement(AddIcon_1["default"], { style: { width: "15px", height: "20px" } }),
-            React.createElement(core_1.Text, { style: { cursor: "pointer" }, onClick: handleEducationAddButton, c: "blue", fw: 700 }, "\uCD94\uAC00")),
-        educationListMemo.length > 0 &&
-            educationListMemo.map(function (item, index) {
-                return (React.createElement("div", { key: item.id },
-                    React.createElement(EducationFieldBox_1["default"], { item: item, portpolioId: portpolioId, index: index, majorList: filteredMajorArr })));
-            }),
-        React.createElement(core_1.Button, { onClick: handleCompleteButton }, "\uC791\uC131 \uC644\uB8CC")));
+    useToast_1["default"]("portpolio_name", updatePortPolioNameStatus, updatePortPolioNameMessage);
+    return (React.createElement("div", { className: cx("grid_container") },
+        React.createElement(CreatePortPolioCard_1["default"], null),
+        portpolio_detail_arr.map(function (data, index) {
+            return (React.createElement("div", { onClick: function () { return navigateToDetailPage(data); }, key: index, role: "button", className: cx("card_container") },
+                React.createElement(PortPolioCard_1["default"], { data: data, deleteDropDownId: deleteDropDownId, setDeleteDropDownId: setDeleteDropDownId, isResumeNameEdit: isResumeNameEdit, setIsResumeNameEdit: setIsResumeNameEdit, setIsEditAndDeleteDropDown: setIsEditAndDeleteDropDown }),
+                isEditAndDeleteDropDown && data._id === deleteDropDownId && (React.createElement(EditAndDeleteDropDown_1["default"], { setDeleteDropDownId: setDeleteDropDownId, handleChangeResumeName: handleChangeResumeName, handleDeleteResume: handleDeleteResume })),
+                isDeleteModalOpen && data._id === deleteDropDownId && (React.createElement(ModalPortal_1["default"], null,
+                    React.createElement(PortPolioDeleteModal_1["default"], { onClose: handleDeleteModalClose, users_table_id: data.users_table_id, portpolio_id: data.portpolioId, setDeleteDropDownId: setDeleteDropDownId })))));
+        })));
 }
-exports["default"] = MyPortPolioEditContents;
+exports["default"] = MyPortPolioContents;

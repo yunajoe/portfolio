@@ -26,31 +26,29 @@ function MyProfileBox() {
   };
 
   return (
-    <>
-      <div className={cx("myprofile_container")}>
-        <section className={cx("myinfo_section")}>
-          <div className={cx("myinfo")}>
-            <ConditionCusTomAvatar userData={userData} />
-            <MyProfileName userData={userData} />
-          </div>
-          <div className={cx("settings")}>
-            <UnstyledButton
-              className={cx("settings_button")}
-              onClick={handleOpenSetting}
-            >
-              설정
-            </UnstyledButton>
-            {setting && (
-              <MyProfileDropDown handleCloseSetting={handleCloseSetting} />
-            )}
-          </div>
-        </section>
-        <section className={cx("addbutton_section")}>
-          <EducationAddButton userData={userData} />
-          <CareerAddButton userData={userData} />
-        </section>
-      </div>
-    </>
+    <div className={cx("myprofile_container")}>
+      <section className={cx("myinfo_section")}>
+        <div className={cx("myinfo")}>
+          <ConditionCusTomAvatar userData={userData} size="100px" />
+          <MyProfileName userData={userData} />
+        </div>
+        <div className={cx("settings")}>
+          <UnstyledButton
+            className={cx("settings_button")}
+            onClick={handleOpenSetting}
+          >
+            설정
+          </UnstyledButton>
+          {setting && (
+            <MyProfileDropDown handleCloseSetting={handleCloseSetting} />
+          )}
+        </div>
+      </section>
+      <section className={cx("addbutton_section")}>
+        <EducationAddButton userData={userData} />
+        <CareerAddButton userData={userData} />
+      </section>
+    </div>
   );
 }
 

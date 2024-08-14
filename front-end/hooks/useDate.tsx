@@ -11,6 +11,7 @@ function useDate(dispatchname: string, item: any) {
   const handleStartDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (dispatchname === "career/date") {
       const { name, value } = e.target;
+      console.log("handleStartDate", name, value);
 
       const nonNumberValue = value.replace(/[^0-9]/g, "");
       switch (name) {
@@ -27,6 +28,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.companyDate?.endYear,
                 endMonth: item.companyDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
 
@@ -44,6 +46,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.companyDate?.endYear,
                 endMonth: item.companyDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
           break;
@@ -64,6 +67,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.schoolDate?.endYear,
                 endMonth: item.schoolDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
           break;
@@ -79,6 +83,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.schoolDate?.endYear,
                 endMonth: item.schoolDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
       }
@@ -102,6 +107,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: nonNumberValue,
                 endMonth: item.companyDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
           break;
@@ -118,6 +124,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.companyDate?.endYear,
                 endMonth: nonNumberValue,
               },
+              isCurrent: item.isCurrent,
             })
           );
       }
@@ -137,6 +144,7 @@ function useDate(dispatchname: string, item: any) {
                 endYear: nonNumberValue,
                 endMonth: item.schoolDate?.endMonth,
               },
+              isCurrent: item.isCurrent,
             })
           );
           break;
@@ -152,11 +160,13 @@ function useDate(dispatchname: string, item: any) {
                 endYear: item.schoolDate?.endYear,
                 endMonth: nonNumberValue,
               },
+              isCurrent: item.isCurrent,
             })
           );
       }
     }
   };
+
   return {
     handleStartDate,
     handleEndDate,

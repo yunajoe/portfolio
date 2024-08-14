@@ -1,26 +1,30 @@
+// 공통
 .section {
   height: 100vh;
   overflow: visible !important;
 }
-.aboutMe {
-  background-color: var(--section-background);
-}
-
 .overlay_container {
   height: 100%;
+  border-radius: 3px;
   overflow: hidden;
   outline: none;
 }
 
-
-
-// body
-.section_body {
-  background-color: var(--section-background);
-  height: 2000px;
+.overlay {
+  background: rgba(44, 62, 80, 0.5);
+  height: 100%;
 }
 
-.sub_section {
+.contents {
+  height: 100%;
+  margin: auto;
+  background-color: #4a5167;
+}
+.scroll_area {
+  height: 1500px;
+}
+
+.about_me_info {
   background-color: #5f7cb8;
   display: flex;
   flex-direction: column;
@@ -28,14 +32,9 @@
   align-items: center;
   padding-top: 50px;
   padding-bottom: 50px;
-
   row-gap: 15px;
 }
-.sub_title {
-  font-size: 30px;
-  font-weight: 500;
-  color: white;
-}
+
 .intro_content {
   display: flex;
   column-gap: 20px;

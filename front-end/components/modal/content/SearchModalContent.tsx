@@ -26,6 +26,7 @@ export type CompanySearchBaPropsTypes = {
   setIsStatusClick: React.Dispatch<SetStateAction<boolean>>;
   handleChangeFunc: (event: ChangeEvent<HTMLInputElement>) => void;
   close: () => void;
+  setSearchId: React.Dispatch<SetStateAction<number | null>>;
 };
 
 function SearchModalContent({
@@ -44,6 +45,7 @@ function SearchModalContent({
   isStatusClick,
   setIsStatusClick,
   close,
+  setSearchId,
 }: CompanySearchBaPropsTypes) {
   const handleStatus = () => {
     setIsStatusClick(true);
@@ -91,15 +93,16 @@ function SearchModalContent({
         />
       )}
       <CareerConfirmButton
-        isClick={isClick}
+        // isClick={isClick}
         setIsClick={setIsClick}
         isCompanyItemClick={isCompanyItemClick}
-        setIsCompanyItemClick={setIsCompanyItemClick}
+        // setIsCompanyItemClick={setIsCompanyItemClick}
         close={close}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         statusValue={statusValue}
         setSearchResult={setSearchResult}
+        setSearchId={setSearchId}
         item={item}
       />
     </div>

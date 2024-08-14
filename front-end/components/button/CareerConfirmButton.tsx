@@ -9,29 +9,31 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type CareerConfirmButtonProps = {
-  isClick: boolean;
+  // isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;
   isCompanyItemClick: boolean;
-  setIsCompanyItemClick: React.Dispatch<SetStateAction<boolean>>;
+  // setIsCompanyItemClick: React.Dispatch<SetStateAction<boolean>>;
   close: () => void;
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
   statusValue: string;
   setSearchResult: React.Dispatch<SetStateAction<string[]>>;
   item: CareerType;
+  setSearchId: React.Dispatch<SetStateAction<number | null>>;
 };
 
 function CareerConfirmButton({
-  isClick,
+  // isClick,
   setIsClick,
   isCompanyItemClick,
-  setIsCompanyItemClick,
+  // setIsCompanyItemClick,
   close,
   searchValue,
   setSearchValue,
   statusValue,
   setSearchResult,
   item,
+  setSearchId,
 }: CareerConfirmButtonProps) {
   const dispatch = useAppDispatch();
 
@@ -43,12 +45,14 @@ function CareerConfirmButton({
         status: statusValue,
         position: item.position,
         companyDate: item.companyDate,
+        isCurrent: item.isCurrent,
       })
     );
     close();
     setIsClick(false);
     setSearchValue("");
     setSearchResult([]);
+    setSearchId(null);
   };
   return (
     <UnstyledButton

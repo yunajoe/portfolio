@@ -1,7 +1,10 @@
 import useDate from "@/hooks/useDate";
-import { EducationType } from "@/src/app/lib/features/portpolio/portpolioSlice";
+import {
+  educationFieldEdit,
+  EducationType,
+} from "@/src/app/lib/features/portpolio/portpolioSlice";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./DateBox.module.scss";
 
 const cx = classNames.bind(styles);
@@ -11,10 +14,19 @@ type DataBoxProps = {
 };
 
 function EducationDate({ item }: DataBoxProps) {
-  const [isCurrent, setIsCurrent] = useState(false);
+  const dispatch = useDispatch();
+  console.log("EducationItem", item);
 
-  const handleChangeCurrent = () => {
-    setIsCurrent(!isCurrent);
+  const handleChangeCurrent = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      educationFieldEdit({
+        id: item.id,
+        schoolDate: item.schoolDate,
+        schoolName: item.schoolName,
+        major: item.major,
+        isCurrent: event.target.checked,
+      })
+    );
   };
 
   const { handleStartDate, handleEndDate } = useDate("education/date", item);
@@ -46,7 +58,7 @@ function EducationDate({ item }: DataBoxProps) {
           </span>
         </div>
 
-        {!isCurrent ? (
+        {!item.isCurrent ? (
           <div className={cx("end_date")}>
             <span>-</span>
             <input
@@ -80,7 +92,7 @@ function EducationDate({ item }: DataBoxProps) {
           type="checkbox"
           id="current"
           name="current"
-          checked={isCurrent}
+          checked={item.isCurrent}
           onChange={handleChangeCurrent}
         />
         <label htmlFor="current">현재재학중</label>

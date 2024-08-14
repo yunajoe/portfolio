@@ -16,6 +16,9 @@ exports.__esModule = true;
 exports.selectPortPolio = exports.portpolioReset = exports.portpolioDetailFail = exports.portpolioDetailSuccess = exports.educationFieldDelete = exports.educationFieldEdit = exports.educationFieldAdd = exports.careerFieldDelete = exports.careerFieldEdit = exports.careerFieldAdd = exports.introTextEdit = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var initialState = {
+    userTableId: "",
+    portpolioId: "",
+    portpolioName: "",
     introText: "",
     careerList: [],
     educationList: [],
@@ -39,7 +42,8 @@ var portPolioSlice = toolkit_1.createSlice({
                 companyName: action.payload.companyName,
                 status: action.payload.status,
                 position: action.payload.position,
-                companyDate: action.payload.companyDate
+                companyDate: action.payload.companyDate,
+                isCurrent: action.payload.isCurrent
             };
             state.careerList.unshift(object);
         },
@@ -50,6 +54,7 @@ var portPolioSlice = toolkit_1.createSlice({
                 state.careerList[ItemIndex].status = action.payload.status;
                 state.careerList[ItemIndex].position = action.payload.position;
                 state.careerList[ItemIndex].companyDate = action.payload.companyDate;
+                state.careerList[ItemIndex].isCurrent = action.payload.isCurrent;
             }
         },
         careerFieldDelete: function (state, action) {
@@ -62,7 +67,8 @@ var portPolioSlice = toolkit_1.createSlice({
                 id: state.educationIdNumber,
                 schoolName: action.payload.schoolName,
                 major: action.payload.major,
-                schoolDate: action.payload.schoolDate
+                schoolDate: action.payload.schoolDate,
+                isCurrent: action.payload.isCurrent
             };
             state.educationList.unshift(object);
         },
@@ -72,6 +78,7 @@ var portPolioSlice = toolkit_1.createSlice({
                 state.educationList[ItemIndex].schoolName = action.payload.schoolName;
                 state.educationList[ItemIndex].major = action.payload.major;
                 state.educationList[ItemIndex].schoolDate = action.payload.schoolDate;
+                state.educationList[ItemIndex].isCurrent = action.payload.isCurrent;
             }
         },
         educationFieldDelete: function (state, action) {
@@ -79,7 +86,13 @@ var portPolioSlice = toolkit_1.createSlice({
             state.educationList = arr;
         },
         portpolioDetailSuccess: function (state, action) {
-            var _a = action.payload, _id = _a._id, portpolioId = _a.portpolioId, introText = _a.introText, careerList = _a.careerList, educationList = _a.educationList;
+            var _a = action.payload, _id = _a._id, users_table_id = _a.users_table_id, portpolioId = _a.portpolioId, portpolio_name = _a.portpolio_name, introText = _a.introText, careerList = _a.careerList, educationList = _a.educationList;
+            // user_table_id
+            state.userTableId = users_table_id;
+            //portpolioId
+            state.portpolioId = portpolioId;
+            // portpolioname
+            state.portpolioName = portpolio_name;
             // introText
             state.introText = introText;
             // careerList

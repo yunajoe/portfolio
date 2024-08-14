@@ -10,29 +10,31 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type ConFirmButtonProps = {
-  isClick: boolean;
+  // isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;
   isSchoolItemClick: boolean;
   setIsSchoolItemClick: React.Dispatch<SetStateAction<boolean>>;
   close: () => void;
-  searchValue: string;
+  // searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
   setSearchResult: React.Dispatch<SetStateAction<SchoolItem[]>>;
   item: EducationType;
   schoolName: string;
+  setSearchId: React.Dispatch<SetStateAction<number | null>>;
 };
 
 function ConfirmButton({
-  isClick,
+  // isClick,
   setIsClick,
   isSchoolItemClick,
   setIsSchoolItemClick,
   close,
-  searchValue,
+  // searchValue,
   setSearchValue,
   setSearchResult,
   item,
   schoolName,
+  setSearchId,
 }: ConFirmButtonProps) {
   const dispatch = useAppDispatch();
 
@@ -43,6 +45,7 @@ function ConfirmButton({
         schoolName: schoolName,
         major: item.major,
         schoolDate: item.schoolDate,
+        isCurrent: item.isCurrent,
       })
     );
 
@@ -51,6 +54,7 @@ function ConfirmButton({
     setIsSchoolItemClick(false);
     setSearchValue("");
     setSearchResult([]);
+    setSearchId(null);
   };
 
   return (

@@ -34,67 +34,108 @@ var portpolioResultSlice_1 = require("@/src/app/lib/features/portpolio/portpolio
 var portpolioSlice_1 = require("@/src/app/lib/features/portpolio/portpolioSlice");
 var statusSlice_1 = require("@/src/app/lib/features/status/statusSlice");
 var effects_1 = require("redux-saga/effects");
-function getPortPolioListSaga(action) {
-    var data, result, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 6, , 8]);
-                return [4 /*yield*/, effects_1.call(portpolio_1.getPortPolioList, action)];
-            case 1:
-                data = _a.sent();
-                result = data.data;
-                if (!(result.status === 200)) return [3 /*break*/, 3];
-                return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioListSuccess(result.result))];
-            case 2:
-                _a.sent();
-                return [3 /*break*/, 5];
-            case 3: return [4 /*yield*/, effects_1.put(statusSlice_1.accessTokenStatus(result))];
-            case 4:
-                _a.sent();
-                _a.label = 5;
-            case 5: return [3 /*break*/, 8];
-            case 6:
-                err_1 = _a.sent();
-                return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioListFail())];
-            case 7:
-                _a.sent();
-                return [3 /*break*/, 8];
-            case 8: return [2 /*return*/];
-        }
-    });
-}
+// function* getPortPolioListSaga(action: any): any {
+//   try {
+//     const data = yield call(getPortPolioList, action);
+//     const result = data.data;
+//     console.log("result", result);
+//     if (result.status === 200) {
+//       yield put(portpolioListSuccess(result.result));
+//     } else {
+//       yield put(accessTokenStatus(result));
+//     }
+//   } catch (err) {
+//     yield put(portpolioListFail());
+//   }
+// }
 function getPortPolioDetailListSaga(action) {
-    var data, result, err_2;
+    var data, result, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 5]);
-                return [4 /*yield*/, effects_1.call(portpolio_1.getListPortPolioDetail, action.users_table_id)];
+                _a.trys.push([0, 4, , 7]);
+                return [4 /*yield*/, effects_1.call(portpolio_1.getPortPolioDetailList, action.users_table_id)];
             case 1:
                 data = _a.sent();
                 result = data.data;
                 return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioDetailListSuccess(result))];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 5];
+                return [4 /*yield*/, effects_1.put(statusSlice_1.portpolioListStatus(result))];
             case 3:
-                err_2 = _a.sent();
-                return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioDetailListFail())];
-            case 4:
                 _a.sent();
-                return [3 /*break*/, 5];
-            case 5: return [2 /*return*/];
+                return [3 /*break*/, 7];
+            case 4:
+                error_1 = _a.sent();
+                return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioDetailListFail(error_1.data))];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.portpolioListStatus(error_1.data))];
+            case 6:
+                _a.sent();
+                return [3 /*break*/, 7];
+            case 7: return [2 /*return*/];
+        }
+    });
+}
+function getPortPolioDetailSaga(action) {
+    var data, result, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 4, , 7]);
+                return [4 /*yield*/, effects_1.call(portpolio_1.getDetailPortPolio, action.portpolioId)];
+            case 1:
+                data = _a.sent();
+                result = data.data;
+                return [4 /*yield*/, effects_1.put(portpolioSlice_1.portpolioDetailSuccess(result.result))];
+            case 2:
+                _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.portpolioDetailStatus(result))];
+            case 3:
+                _a.sent();
+                return [3 /*break*/, 7];
+            case 4:
+                error_2 = _a.sent();
+                return [4 /*yield*/, effects_1.put(portpolioSlice_1.portpolioDetailFail())];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.portpolioDetailStatus(error_2.data))];
+            case 6:
+                _a.sent();
+                return [3 /*break*/, 7];
+            case 7: return [2 /*return*/];
+        }
+    });
+}
+function getDefaultPortPolioSaga(action) {
+    var data, result, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, effects_1.call(portpolio_1.getUserDefaultPortPolio, action._id)];
+            case 1:
+                data = _a.sent();
+                result = data.data;
+                return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.getDefaultPortPolioSuccess(result.result))];
+            case 2:
+                _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                err_1 = _a.sent();
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }
 function createPortPolioSaga(action) {
-    var data, result, err_3;
+    var data, result, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 5]);
-                return [4 /*yield*/, effects_1.call(portpolio_1.createPortPolio, action.accessToken)];
+                return [4 /*yield*/, effects_1.call(portpolio_1.createPortPolio)];
             case 1:
                 data = _a.sent();
                 result = data.data;
@@ -103,7 +144,7 @@ function createPortPolioSaga(action) {
                 _a.sent();
                 return [3 /*break*/, 5];
             case 3:
-                err_3 = _a.sent();
+                err_2 = _a.sent();
                 return [4 /*yield*/, effects_1.put(portpolioResultSlice_1.portpolioCreateFail())];
             case 4:
                 _a.sent();
@@ -113,11 +154,11 @@ function createPortPolioSaga(action) {
     });
 }
 function savePortPolioSaga(action) {
-    var data, result, err_4;
+    var data, result, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 5]);
                 return [4 /*yield*/, effects_1.call(portpolio_1.savePortPolio, action)];
             case 1:
                 data = _a.sent();
@@ -125,31 +166,10 @@ function savePortPolioSaga(action) {
                 return [4 /*yield*/, effects_1.put(statusSlice_1.savePortPolioStatus(result))];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 4];
-            case 3:
-                err_4 = _a.sent();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}
-function getPortPolioDetailSaga(action) {
-    var data, result, err_5;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 5]);
-                return [4 /*yield*/, effects_1.call(portpolio_1.getDetailPortPolio, action.portpolioId)];
-            case 1:
-                data = _a.sent();
-                result = data.data;
-                return [4 /*yield*/, effects_1.put(portpolioSlice_1.portpolioDetailSuccess(result))];
-            case 2:
-                _a.sent();
                 return [3 /*break*/, 5];
             case 3:
-                err_5 = _a.sent();
-                return [4 /*yield*/, effects_1.put(portpolioSlice_1.portpolioDetailFail())];
+                error_3 = _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.savePortPolioStatus(error_3.data))];
             case 4:
                 _a.sent();
                 return [3 /*break*/, 5];
@@ -158,11 +178,11 @@ function getPortPolioDetailSaga(action) {
     });
 }
 function deletePortPolioSaga(action) {
-    var data, result, err_6;
+    var data, result, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 5]);
                 return [4 /*yield*/, effects_1.call(portpolio_1.deletePortPolio, action)];
             case 1:
                 data = _a.sent();
@@ -170,20 +190,23 @@ function deletePortPolioSaga(action) {
                 return [4 /*yield*/, effects_1.put(statusSlice_1.deletePortPolioStatus(result))];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 4];
+                return [3 /*break*/, 5];
             case 3:
-                err_6 = _a.sent();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                error_4 = _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.deletePortPolioStatus(error_4.data))];
+            case 4:
+                _a.sent();
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
         }
     });
 }
 function updateDefaultPortPolioSaga(action) {
-    var data, result, err_7;
+    var data, result, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 5]);
                 return [4 /*yield*/, effects_1.call(portpolio_1.updateDefaultPortPolio, action)];
             case 1:
                 data = _a.sent();
@@ -191,20 +214,23 @@ function updateDefaultPortPolioSaga(action) {
                 return [4 /*yield*/, effects_1.put(statusSlice_1.defaultPortPolioStatus(result))];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 4];
+                return [3 /*break*/, 5];
             case 3:
-                err_7 = _a.sent();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                error_5 = _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.defaultPortPolioStatus(error_5.data))];
+            case 4:
+                _a.sent();
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
         }
     });
 }
 function updatePortPolioNameSaga(action) {
-    var data, result, err_8;
+    var data, result, error_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 5]);
                 return [4 /*yield*/, effects_1.call(portpolio_1.updatePortPolioName, action)];
             case 1:
                 data = _a.sent();
@@ -212,24 +238,30 @@ function updatePortPolioNameSaga(action) {
                 return [4 /*yield*/, effects_1.put(statusSlice_1.updatePortPolioNameStatus(result))];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 4];
+                return [3 /*break*/, 5];
             case 3:
-                err_8 = _a.sent();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                error_6 = _a.sent();
+                return [4 /*yield*/, effects_1.put(statusSlice_1.updatePortPolioNameStatus(error_6.data))];
+            case 4:
+                _a.sent();
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
         }
     });
 }
 function portPolioSaga() {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, effects_1.takeEvery("GET_PORT_POLIO_LIST_REQUEST", getPortPolioListSaga)];
+            case 0: 
+            // yield takeEvery("GET_PORT_POLIO_LIST_REQUEST", getPortPolioListSaga);
+            return [4 /*yield*/, effects_1.takeEvery("GET_PORT_POLIO_DETAIL_LIST_REQUEST", getPortPolioDetailListSaga)];
             case 1:
+                // yield takeEvery("GET_PORT_POLIO_LIST_REQUEST", getPortPolioListSaga);
                 _a.sent();
                 return [4 /*yield*/, effects_1.takeEvery("GET_PORT_POLIO_DETAIL_REQUEST", getPortPolioDetailSaga)];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, effects_1.takeEvery("GET_PORT_POLIO_DETAIL_LIST_REQUEST", getPortPolioDetailListSaga)];
+                return [4 /*yield*/, effects_1.takeEvery("GET_PORT_POLIO_DEFAULT_REQUEST", getDefaultPortPolioSaga)];
             case 3:
                 _a.sent();
                 return [4 /*yield*/, effects_1.takeEvery("CREATE_PORT_POLIO_REQUEST", createPortPolioSaga)];

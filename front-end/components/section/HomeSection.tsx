@@ -13,9 +13,9 @@ type HomeSectionProps = {
 function HomeSection({ userData, homeRef }: HomeSectionProps) {
   return (
     <section className={cx("section")} id="home" ref={homeRef}>
-      <div className={cx("home", "overlay_container")}>
+      <div className={cx("overlay_container")}>
         <div className={cx("overlay")}>
-          <div className={cx("section_head")}>
+          <div className={cx("contents")}>
             <div className={cx("user_info")}>
               <h3 className={cx("greeting_text")}>HI, IAM</h3>
               <h1 className={cx("user_name_text")}>{userData.username}</h1>

@@ -7,14 +7,16 @@ type ConditionCusTomAvatarProps = {
   borderRadius?: string;
   width?: number;
   height?: number;
+  size?: string;
 };
 
 function ConditionCusTomAvatar({
   userData,
   borderRadius = "0%",
-  width = 100,
-  height = 100,
-}: ConditionCusTomAvatarProps) {
+  size,
+}: // width = 100,
+// height = 100,
+ConditionCusTomAvatarProps) {
   return (
     <>
       {userData.userprofile.length > 0 ? (
@@ -22,12 +24,12 @@ function ConditionCusTomAvatar({
           <Image
             alt="profile_image"
             src={`http://localhost:8080/static/images/${userData.userprofile}`}
-            width={width}
-            height={height}
+            // width={width}
+            // height={height}
           />
         </div>
       ) : (
-        <CusTomAvatar userData={userData} size="100%" />
+        <CusTomAvatar userData={userData} size={size} />
       )}
     </>
   );

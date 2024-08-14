@@ -5,14 +5,14 @@ const cx = classNames.bind(styles);
 
 type SectionHeadProps = {
   targetIcon: ReactNode;
+  title: string;
 };
 
-function SectionHead({ targetIcon }: SectionHeadProps) {
+function SectionHead({ targetIcon, title }: SectionHeadProps) {
   return (
     <div className={cx("section_head")}>
       {targetIcon}
-      {/* <PersonIcon style={{ width: "500px", height: "200px" }} /> */}
-      <h1 className={cx("title")}>ABOUT ME</h1>
+      <h1 className={cx("title")}>{title}</h1>
     </div>
   );
 }

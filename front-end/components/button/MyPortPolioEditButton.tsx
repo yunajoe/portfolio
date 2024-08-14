@@ -21,14 +21,11 @@ function MyPortPolioEditButton({
   isCompletedButton,
   setIsCompletedButton,
 }: MyPortPolioEditButtonProps) {
-  const isDisabled =    
+  const isDisabled =
     introText.trim().length === 0 ||
     careerList.length === 0 ||
     educationList.length === 0;
 
-  // useEffect(() => {
-  //   setIsCompletedButton(false);
-  // }, []);
   return (
     <div className={cx("container")}>
       <UnstyledButton

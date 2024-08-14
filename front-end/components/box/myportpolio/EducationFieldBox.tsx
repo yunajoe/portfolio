@@ -40,14 +40,13 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
   const [isClick, setIsClick] = useState(false);
   const [isSchoolItemClick, setIsSchoolItemClick] = useState(false);
   const [isMajorMenuClick, setIsMajorMenuClick] = useState(false);
-
+  const [searchId, setSearchId] = useState<number | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
   const {
-    isOpen,
-    handleOpen,
-    handleClose,
+    isSearchModalOpen,
+    setIsSearchModalOpen,
     isDeleteModalOpen,
-    handleDeleteModalOpen,
-    handleDeleteModalClose,
+    setIsDeleteModalOpen,
   } = useModal();
   const dispatch = useAppDispatch();
 
@@ -55,15 +54,29 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
     callback: Function;
     delay: number;
   };
-  const handleSearchModal = () => {
-    handleOpen();
+  const handleSearchModalOpen = (searchId: number) => {
+    setIsSearchModalOpen(true);
+    setSearchId(searchId);
   };
 
+  const handleSearchModalClose = () => {
+    setIsSearchModalOpen(false);
+    setSearchId(null);
+  };
+
+  const handleDeleteModalOpen = (deleteId: number) => {
+    setIsDeleteModalOpen(true);
+    setDeleteId(deleteId);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+    setDeleteId(null);
+  };
   const handleResetModal = () => {
     setSearchValue("");
     setSearchResult([]);
   };
-
   const debounceFunction = ({ callback, delay }: DebounceFunctionTypes) => {
     let timer: any;
     return (...args: string[]) => {
@@ -107,7 +120,8 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
         setIsClick={setIsClick}
         isSchoolItemClick={isSchoolItemClick}
         setIsSchoolItemClick={setIsSchoolItemClick}
-        close={handleClose}
+        close={handleSearchModalClose}
+        setSearchId={setSearchId}
       />
     </>
   );
@@ -115,13 +129,13 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
   const handleMajorChange = (event: ChangeEvent<HTMLInputElement>) => {
     setIsMajorMenuClick(true);
     setSearchMajorValue(event.target.value);
-
     dispatch(
       educationFieldEdit({
         id: item.id,
         schoolDate: item.schoolDate,
         schoolName: item.schoolName,
         major: event.target.value,
+        isCurrent: item.isCurrent,
       })
     );
   };
@@ -145,12 +159,12 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
             <ModalInput
               placeholder="학교명"
               value={item.schoolName}
-              onClick={handleSearchModal}
+              onClick={() => handleSearchModalOpen(item.id)}
             />
             <IconX
               stroke={1}
               style={{ cursor: "pointer", padding: "1px" }}
-              onClick={handleDeleteModalOpen}
+              onClick={() => handleDeleteModalOpen(item.id)}
             />
           </Flex>
 
@@ -176,23 +190,24 @@ function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
       </div>
 
       {/* 모달 나오는거 */}
-      {isOpen && (
+      {isSearchModalOpen && item.id === searchId && (
         <ModalPortal>
           <SearchModal
             title="학교검색"
             content={content}
-            close={handleClose}
+            close={handleSearchModalClose}
             reset={handleResetModal}
             setIsClick={setIsClick}
             setIsItemClick={setIsSchoolItemClick}
           />
         </ModalPortal>
       )}
-      {isDeleteModalOpen && (
+      {isDeleteModalOpen && item.id === deleteId && (
         <ModalPortal>
           <EducationFieldDeleteModal
             onClose={handleDeleteModalClose}
             index={index}
+            setDeleteId={setDeleteId}
           />
         </ModalPortal>
       )}

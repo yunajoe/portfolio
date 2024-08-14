@@ -4,7 +4,6 @@ import DescriptionBox from "@/components/box/myportpolio/DescriptionBox";
 import EducationFieldBox from "@/components/box/myportpolio/EducationFieldBox";
 import IntroduceBox from "@/components/box/myportpolio/IntroduceBox";
 import PortPolioNameBox from "@/components/box/myportpolio/PortPolioNameBox";
-import ProfileBox from "@/components/box/myportpolio/ProfileBox";
 import MyPortPolioEditButton from "@/components/button/MyPortPolioEditButton";
 import { career, intro, school } from "@/constant/text";
 import useFieldAdd from "@/hooks/useFieldAdd";
@@ -54,14 +53,18 @@ function MyPortPolioEditContents({
   const router = useRouter();
   const pathname = usePathname();
   const portpolioId = getPortPolioId(pathname, "edit");
-  // const portpolioId = pathname.split("edit/")[1];
 
   useToast("portpolio", defaultPortPolioStatus, defaultPortPolioMessage);
-
+  // const ProfileBox = dynamic(
+  //   () => import("@/components/box/myportpolio/ProfileBox"),
+  //   {
+  //     ssr: false,
+  //   }
+  // );
   const defaultResumeBox = (
     <>
       {usePortPolioSelector.defaultResume ? (
-        <Box w="100%" ta="right" p="15px" bg="#f8f5ff" mb="10px">
+        <Box w="100%" ta="right" p="15px" bg="#f8f5ff" mb="50px">
           <Text c="#8958fa" ta="left" fw={700}>
             기본 이력서
           </Text>
@@ -159,9 +162,12 @@ function MyPortPolioEditContents({
         <div className={cx("portpolio_name_container")}>
           <PortPolioNameBox portpolioName={portpolioName} />
         </div>
-        <div className={cx("profile_container")}>
+        {/* <div className={cx("profile_container")}>
           <ProfileBox userData={userData} />
-        </div>
+        </div> */}
+        {/* <div classNam={cx("profile_container")}>
+          <ProfileBox userData={userData} />
+        </div> */}
         <DescriptionBox title="간단소개글" description={intro} />
         <IntroduceBox introText={introText} />
         <DescriptionBox title="경력" description={career} />
@@ -183,7 +189,7 @@ function MyPortPolioEditContents({
                 <div key={item.id}>
                   <CareerFieldBox
                     item={item}
-                    portpolioId={portpolioId}
+                    // portpolioId={portpolioId}
                     index={index}
                     companyList={filteredCompanyArr}
                   />

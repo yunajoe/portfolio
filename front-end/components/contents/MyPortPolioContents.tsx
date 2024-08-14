@@ -31,10 +31,11 @@ function MyPortPolioContents() {
   const useStatusSelector = useAppSelector(selectStatus);
 
   // 모달
-  const { isDeleteModalOpen, handleDeleteModalOpen, handleDeleteModalClose } =
-    useModal();
+  // const { isDeleteModalOpen, handleDeleteModalOpen, handleDeleteModalClose } =
+  //   useModal();
+  const { isDeleteModalOpen, setIsDeleteModalOpen } = useModal();
 
-  const { isLogin, message, status, userData } = useSelectAuth;
+  const { userData } = useSelectAuth;
   const {
     savePortPolioStatus,
     deletePortPolioStatus,
@@ -45,6 +46,14 @@ function MyPortPolioContents() {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const handleDeleteModalOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   // 이력서 이름 변경 펑션
   const handleChangeResumeName = () => {

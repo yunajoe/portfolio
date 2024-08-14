@@ -1,7 +1,8 @@
 import useDate from "@/hooks/useDate";
+import { careerFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { CareerType } from "@/types/portpolio";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./DateBox.module.scss";
 
 const cx = classNames.bind(styles);
@@ -11,10 +12,25 @@ type DataBoxProps = {
 };
 
 function CareerDate({ item }: DataBoxProps) {
-  const [isCurrent, setIsCurrent] = useState(false);
+  const dispatch = useDispatch();
+  console.log("Carreeritem", item);
 
-  const handleChangeCurrent = () => {
-    setIsCurrent(!isCurrent);
+  const handleChangeCurrent = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      careerFieldEdit({
+        id: item.id,
+        companyName: item.companyName,
+        status: item.status,
+        position: item.position,
+        companyDate: {
+          startYear: item.companyDate?.startYear,
+          startMonth: item.companyDate?.startMonth,
+          endYear: item.companyDate?.endYear,
+          endMonth: item.companyDate?.endMonth,
+        },
+        isCurrent: event.target.checked,
+      })
+    );
   };
 
   const { handleStartDate, handleEndDate } = useDate("career/date", item);
@@ -25,7 +41,7 @@ function CareerDate({ item }: DataBoxProps) {
         <div className={cx("start_date")}>
           <input
             onChange={(event) => handleStartDate(event)}
-            value={item.companyDate?.startYear}
+            value={item.companyDate?.startYear || ""}
             className={cx("input_year")}
             name="startYear"
             maxLength={4}
@@ -36,7 +52,7 @@ function CareerDate({ item }: DataBoxProps) {
             .
             <input
               onChange={(event) => handleStartDate(event)}
-              value={item.companyDate?.startMonth}
+              value={item.companyDate?.startMonth || ""}
               name="startMonth"
               maxLength={2}
               placeholder="MM"
@@ -46,12 +62,12 @@ function CareerDate({ item }: DataBoxProps) {
           </span>
         </div>
 
-        {!isCurrent ? (
+        {!item.isCurrent ? (
           <div className={cx("end_date")}>
             <span>-</span>
             <input
               onChange={(event) => handleEndDate(event)}
-              value={item.companyDate?.endYear}
+              value={item.companyDate?.endYear || ""}
               name="endYear"
               maxLength={4}
               placeholder="YYYY"
@@ -62,7 +78,7 @@ function CareerDate({ item }: DataBoxProps) {
               .
               <input
                 onChange={(event) => handleEndDate(event)}
-                value={item.companyDate?.endMonth}
+                value={item.companyDate?.endMonth || ""}
                 name="endMonth"
                 maxLength={2}
                 placeholder="MM"
@@ -80,7 +96,7 @@ function CareerDate({ item }: DataBoxProps) {
           type="checkbox"
           id="current"
           name="current"
-          checked={isCurrent}
+          checked={item.isCurrent}
           onChange={handleChangeCurrent}
         />
         <label htmlFor="current">현재재직중</label>

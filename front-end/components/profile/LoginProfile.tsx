@@ -13,7 +13,12 @@ function LoginProfile({ isLogin, userData }: LoginProfileProps) {
     <div>
       {isLogin ? (
         <Link href="/myprofile" style={{ textDecoration: "none" }}>
-          <ConditionCusTomAvatar userData={userData} width={30} height={30} />
+          <ConditionCusTomAvatar
+            userData={userData}
+            width={30}
+            height={30}
+            borderRadius="50%"
+          />
         </Link>
       ) : (
         <LinkButton name="회원가입/로그인" />

@@ -30,7 +30,7 @@ function WithDrawalAgreement() {
   const useAuthSelector = useAppSelector(selectAuth);
   const useStatusSelector = useAppSelector(selectStatus);
   const { userData } = useAuthSelector;
-  const { deleteUserStatus, deleteUserMessage } = useStatusSelector;
+  const { deleteUserStatus } = useStatusSelector;
   const dispatch = useAppDispatch();
   const router = useRouter();
   useEffect(() => {

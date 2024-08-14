@@ -1,6 +1,6 @@
 import useOnClickOutside from "@/hooks/useOnClickOutside";
+import NonFillPersonIcon from "@/public/icons/NonFillPersonIcon";
 import PencilIcon from "@/public/icons/PencilIcon";
-import PersonIcon from "@/public/icons/PersonIcon";
 import { Text } from "@mantine/core";
 import classNames from "classnames/bind";
 import Link from "next/link";
@@ -25,7 +25,7 @@ function MyProfileDropDown({ handleCloseSetting }: MyProfileDropDownProps) {
         </Link>
 
         <Link href="/myprofile/setting" className={cx("item")}>
-          <PersonIcon />
+          <NonFillPersonIcon style={{ width: "25px", height: "25px" }} />
           <Text>계정설정</Text>
         </Link>
       </ul>

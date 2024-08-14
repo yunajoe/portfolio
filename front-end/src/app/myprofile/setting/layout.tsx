@@ -1,3 +1,4 @@
+import MainNavBar from "@/components/navbar/MainNavBar";
 import classNames from "classnames/bind";
 import styles from "./layout.module.scss";
 const cx = classNames.bind(styles);
@@ -7,7 +8,12 @@ type MyProfileEditLayoutProps = {
 };
 
 function MyProfileSettingLayout({ children }: MyProfileEditLayoutProps) {
-  return <div className={cx("container")}>{children}</div>;
+  return (
+    <>
+      <MainNavBar />
+      <div className={cx("container")}>{children}</div>
+    </>
+  );
 }
 
 export default MyProfileSettingLayout;

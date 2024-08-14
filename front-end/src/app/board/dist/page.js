@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var portpolio_1 = require("@/api/portpolio");
 var BoardContents_1 = require("@/components/contents/BoardContents");
+var MainNavBar_1 = require("@/components/navbar/MainNavBar");
 var react_1 = require("react");
 function getDefaultPortPolios() {
     return __awaiter(this, void 0, void 0, function () {
@@ -61,6 +62,8 @@ function Page() {
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, (React.createElement(react_1.Suspense, null,
+                            React.createElement(MainNavBar_1["default"], null),
+                            React.createElement("div", null, "\uD3EC\uD2B8\uD3F4\uB9AC\uC624 \uBAA8\uC74C"),
                             React.createElement(BoardContents_1["default"], { data: data.result })))];
             }
         });

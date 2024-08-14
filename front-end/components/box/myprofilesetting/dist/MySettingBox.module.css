@@ -1,0 +1,33 @@
+.profile_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 15px;
+}
+
+.profile_setting_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 800px;
+  border: 1px solid rgba(112, 115, 124, 0.22);
+  padding: 20px 20px 15px;
+}
+.profile_setting_container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(112, 115, 124, 0.22);
+}
+
+.user_withdrawal_text {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: black;
+}

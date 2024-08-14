@@ -7,7 +7,7 @@ type CusTomAvatarProps = {
   size?: string;
 };
 
-function CusTomAvatar({ userData, size = "35px" }: CusTomAvatarProps) {
+function CusTomAvatar({ userData, size }: CusTomAvatarProps) {
   const initLetter = convertAvatarLetter(userData.username);
   const color = avatarColor[initLetter];
 

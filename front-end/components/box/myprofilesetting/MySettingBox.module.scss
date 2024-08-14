@@ -1,15 +1,17 @@
+@import "/styles/mixin.scss";
+
 .profile_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: 15px;
 }
 
 .profile_setting_container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
   border: 1px solid rgba(112, 115, 124, 0.22);
   border-radius: 14px;
   padding: 20px 20px 15px;
@@ -19,10 +21,24 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    // padding: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(112, 115, 124, 0.22);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0px;
+    }
+  }
+
+  @include mobile {
+    width: 600px;
+  }
+  @include laptop {
+    width: 800px;
+  }
+  @include desktop {
+    width: 1000px;
   }
 }
 

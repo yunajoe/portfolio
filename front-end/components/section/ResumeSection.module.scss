@@ -1,0 +1,66 @@
+// 공통
+.section {
+  height: 100vh;
+  overflow: visible !important;
+}
+.overlay_container {
+  height: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  outline: none;
+}
+
+.overlay {
+  background: rgba(44, 62, 80, 0.5);
+  height: 100%;
+}
+
+.contents {
+  height: 100%;
+  margin: auto;
+}
+
+.scroll_area {
+  height: 1500px;
+}
+
+//   education
+.education_and_work_container {
+  display: flex;
+}
+
+.education_container {
+  flex: 1;
+  border: 5px solid blue;
+  list-style: none;
+  padding: 10px;
+}
+.work_container {
+  flex: 1;
+  border: 5px solid blue;
+  list-style: none;
+}
+
+//  아이템
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.school_name {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.major {
+  font-weight: 700;
+}
+
+.company_name {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.position {
+  font-weight: 700;
+}

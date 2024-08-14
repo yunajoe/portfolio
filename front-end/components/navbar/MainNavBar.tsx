@@ -30,13 +30,15 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
       <div className={cx("navigation_container", { hidden: edit })}>
         <nav className={cx("navigation")}>
           <ul className={cx("first_navigation_section")}>
+            <Link className={cx("link")} href="/">
+              Home
+            </Link>
             <Link className={cx("link")} href="/board">
-              People&apos;s Portpolio
+              People&apos;s portfolio
             </Link>
             <Link className={cx("link")} href="/myportpolio">
-              My Portpolio
+              My portfolio
             </Link>
-            <li>test3</li>
           </ul>
           <div className={cx("second_navigation_section")}>
             <SearchIcon style={{ width: "20px" }} />

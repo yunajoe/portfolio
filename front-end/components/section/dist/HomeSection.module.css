@@ -3,11 +3,6 @@
   overflow: visible !important;
 }
 
-.home {
-  background-size: cover;
-  background-color: var(--section-background);
-}
-
 .overlay_container {
   height: 100%;
   border-radius: 3px;
@@ -20,7 +15,7 @@
   height: 100%;
 }
 
-.section_head {
+.contents {
   height: 100%;
   margin: auto;
   background-color: #4a5167;

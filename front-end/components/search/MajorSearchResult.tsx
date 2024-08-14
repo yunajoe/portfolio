@@ -45,6 +45,7 @@ function MajorSearchResult({
             schoolDate: item.schoolDate,
             schoolName: item.schoolName,
             major: major,
+            isCurrent: item.isCurrent,
           })
         );
       }}

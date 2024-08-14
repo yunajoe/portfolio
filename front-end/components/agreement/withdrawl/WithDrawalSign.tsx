@@ -1,4 +1,5 @@
 import CheckBoxItem from "@/components/item/myprofile/withdrawl/CheckBoxItem";
+import { agreement_text_one, agreement_text_two } from "@/constant/text";
 import classNames from "classnames/bind";
 import { SetStateAction } from "react";
 import styles from "./WithDrawalSign.module.scss";
@@ -21,11 +22,13 @@ function WithDrawalSign({
         agreeSelectOptions={agreeSelectOptions}
         setAgreeSelectOptions={setAgreeSelectOptions}
         type="first"
+        text={agreement_text_one}
       />
       <CheckBoxItem
         agreeSelectOptions={agreeSelectOptions}
         setAgreeSelectOptions={setAgreeSelectOptions}
         type="second"
+        text={agreement_text_two}
       />
     </div>
   );

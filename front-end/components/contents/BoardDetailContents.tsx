@@ -20,17 +20,28 @@ function BoardDetailContents({
   const homeRef = useRef(null);
   const aboutMeRef = useRef(null);
   const portFolioRef = useRef(null);
+  const resumeRef = useRef(null);
 
   return (
     <div>
       <BoardSideNavBar
         userData={userData}
-        mergedRefs={[{ homeRef }, { aboutMeRef }, { portFolioRef }]}
+        mergedRefs={[
+          { homeRef },
+          { aboutMeRef },
+          { portFolioRef },
+          { resumeRef },
+        ]}
       />
       <BoardDetailMainBox
         userData={userData}
-        portpolioData={ portpolioData}
-        mergedRefs={[{ homeRef }, { aboutMeRef }, { portFolioRef }]}
+        portpolioData={portpolioData}
+        mergedRefs={[
+          { homeRef },
+          { aboutMeRef },
+          { portFolioRef },
+          { resumeRef },
+        ]}
       />
     </div>
   );

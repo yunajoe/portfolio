@@ -2,13 +2,13 @@
 
 .container {
   // position: absolute;
-  width: 50%;
+  // width: 40%;
   border: 1px solid #ccc;
   background-color: #fff;
   z-index: 5;
   height: 300px;
   overflow-y: auto;
-  border: 5px solid green;
+  // border: 5px solid green;
   @include mobile {
     width: 100%;
   }

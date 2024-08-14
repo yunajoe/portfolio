@@ -1,14 +1,5 @@
 @import "/styles/mixin.scss";
 .container {
   margin-bottom: 20px;
+  padding: 5px;
 }
-
-// @include mobile {
-//   display: none;
-// }
-// @include laptop {
-//   display: none;
-// }
-// @include desktop {
-//   display: block;
-// }

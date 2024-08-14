@@ -21,7 +21,6 @@ function EducationAddButton({ userData }: EducationAddButtonProps) {
     });
   };
 
-  //  조건후 navigation하는 훅
   useCustomNavigation();
 
   return (

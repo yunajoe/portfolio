@@ -1,33 +1,10 @@
-.container {
-  width: calc(100% - 325px);
-  margin-left: 300px;
-  margin-right: 25px;
-  transition: all 0.5s ease-in-out 0s;
-}
-
 .section {
   height: 100vh;
   overflow: visible !important;
 }
 
-.display_table {
-  display: table;
-  width: 100%;
-}
-
-.user_container {
-  padding: 0 60px;
-  background-color: blue;
-}
-
-.home {
-  background-color: red;
-  background-size: cover;
-}
-
 .overlay_container {
   height: 100%;
-  border: 5px solid #3a4a5d;
   border-radius: 3px;
   overflow: hidden;
   outline: none;
@@ -38,7 +15,14 @@
   height: 100%;
 }
 
-// aboutMe
-.aboutMe {
-  background-color: green;
+.contents {
+  height: 100%;
+  margin: auto;
+  background-color: #4a5167;
+}
+
+.intro_section {
+  padding: 0 60px;
+  background-color: blue;
+  color: white;
 }
