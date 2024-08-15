@@ -189,7 +189,6 @@ function MyPortPolioEditContents({
                 <div key={item.id}>
                   <CareerFieldBox
                     item={item}
-                    // portpolioId={portpolioId}
                     index={index}
                     companyList={filteredCompanyArr}
                   />
@@ -228,8 +227,6 @@ function MyPortPolioEditContents({
         careerList={careerList}
         educationList={educationList}
         onClick={handleCompleteButton}
-        isCompletedButton={isCompletedButton}
-        setIsCompletedButton={setIsCompletedButton}
       />
     </>
   );

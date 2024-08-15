@@ -3,16 +3,14 @@ import classNames from "classnames/bind";
 import styles from "./SideBarMenuItem.module.scss";
 const cx = classNames.bind(styles);
 type SideBarMenuItemProps = {
-  icon: any;
+  icon: React.ReactNode; 
   itemName: string;
-
-  handleClick: any;
+  handleClick: (text: string) => void;
 };
 
 function SideBarMenuItem({
   icon,
   itemName,
-
   handleClick,
 }: SideBarMenuItemProps) {
   return (

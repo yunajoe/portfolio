@@ -8,11 +8,13 @@ export const getTargetRef = (targetRefArr: any[]) => {
   const aboutMeRef = targetRefArr[1].aboutMeRef;
   const portFolioRef = targetRefArr[2].portFolioRef;
   const resumeRef = targetRefArr[3].resumeRef;
+  const contactRef = targetRefArr[4].contactRef;
 
   return {
     homeRef,
     aboutMeRef,
     portFolioRef,
     resumeRef,
+    contactRef,
   };
 };

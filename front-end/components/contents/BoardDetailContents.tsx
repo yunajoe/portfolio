@@ -1,5 +1,6 @@
 "use client";
 import BoardDetailMainBox from "@/components/box/boarddetail/BoardDetailMainBox";
+import FloatingButton from "@/components/button/FloatingButton";
 import BoardSideNavBar from "@/components/navbar/BoardSideNavBar";
 import { User } from "@/types/api";
 import { Item } from "@/types/portpolio";
@@ -29,6 +30,7 @@ function BoardDetailContents({
           { aboutMeRef },
           { portFolioRef },
           { resumeRef },
+          { contactRef },
         ]}
       />
       <BoardDetailMainBox
@@ -39,8 +41,10 @@ function BoardDetailContents({
           { aboutMeRef },
           { portFolioRef },
           { resumeRef },
+          { contactRef },
         ]}
       />
+      <FloatingButton text="페이지 돌아가기" />
     </div>
   );
 }

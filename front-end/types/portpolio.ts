@@ -24,14 +24,6 @@ export type EducationType = {
   };
   isCurrent: false;
 };
-// export type CareerList = {
-//   id: number;
-//   companyName: string;
-//   companyDate: CompanyDate;
-//   position: string;
-//   status: string;
-//   isCurrent: boolean;
-// };
 
 export type CompanyDate = {
   startYear: string;
@@ -39,14 +31,6 @@ export type CompanyDate = {
   endYear: string;
   endMonth: string;
 };
-
-// export type EducationList = {
-//   id: number;
-//   schoolName: string;
-//   schoolDate: SchoolDate;
-//   major: string;
-//   isCurrent: boolean;
-// };
 
 export type SchoolDate = {
   startYear: string;

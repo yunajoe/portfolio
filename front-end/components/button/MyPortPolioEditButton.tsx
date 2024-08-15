@@ -1,7 +1,6 @@
 import { CareerType, EducationType } from "@/types/portpolio";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
-import { SetStateAction } from "react";
 import styles from "./MyPortPolioEditButton.module.scss";
 const cx = classNames.bind(styles);
 type MyPortPolioEditButtonProps = {
@@ -9,8 +8,6 @@ type MyPortPolioEditButtonProps = {
   introText: string;
   careerList: CareerType[];
   educationList: EducationType[];
-  isCompletedButton: boolean;
-  setIsCompletedButton: React.Dispatch<SetStateAction<boolean>>;
 };
 
 function MyPortPolioEditButton({
@@ -18,8 +15,6 @@ function MyPortPolioEditButton({
   introText,
   careerList,
   educationList,
-  isCompletedButton,
-  setIsCompletedButton,
 }: MyPortPolioEditButtonProps) {
   const isDisabled =
     introText.trim().length === 0 ||

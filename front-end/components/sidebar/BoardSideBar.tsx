@@ -11,11 +11,12 @@ type BoardSideBarProps = {
     { homeRef: RefObject<HTMLElement> | null },
     { aboutMeRef: RefObject<HTMLElement> | null },
     { portFolioRef: RefObject<HTMLElement> | null },
-    { resumeRef: RefObject<HTMLElement> | null }
+    { resumeRef: RefObject<HTMLElement> | null },
+    { contactRef: RefObject<HTMLElement> | null }
   ];
 };
 function BoardSideBar({ mergedRefs }: BoardSideBarProps) {
-  const { homeRef, aboutMeRef, portFolioRef, resumeRef } =
+  const { homeRef, aboutMeRef, portFolioRef, resumeRef, contactRef } =
     getTargetRef(mergedRefs);
   const [navigateRef, setNavigateRef] = useState<RefObject<HTMLElement> | null>(
     null
@@ -29,6 +30,8 @@ function BoardSideBar({ mergedRefs }: BoardSideBarProps) {
       setNavigateRef(portFolioRef);
     } else if ("RESUME" === itemName) {
       setNavigateRef(resumeRef);
+    } else if ("CONTACT ME" === itemName) {
+      setNavigateRef(contactRef);
     }
   };
 

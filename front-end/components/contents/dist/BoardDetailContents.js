@@ -2,6 +2,7 @@
 "use strict";
 exports.__esModule = true;
 var BoardDetailMainBox_1 = require("@/components/box/boarddetail/BoardDetailMainBox");
+var FloatingButton_1 = require("@/components/button/FloatingButton");
 var BoardSideNavBar_1 = require("@/components/navbar/BoardSideNavBar");
 var react_1 = require("react");
 function BoardDetailContents(_a) {
@@ -17,12 +18,15 @@ function BoardDetailContents(_a) {
                 { aboutMeRef: aboutMeRef },
                 { portFolioRef: portFolioRef },
                 { resumeRef: resumeRef },
+                { contactRef: contactRef },
             ] }),
         React.createElement(BoardDetailMainBox_1["default"], { userData: userData, portpolioData: portpolioData, mergedRefs: [
                 { homeRef: homeRef },
                 { aboutMeRef: aboutMeRef },
                 { portFolioRef: portFolioRef },
                 { resumeRef: resumeRef },
-            ] })));
+                { contactRef: contactRef },
+            ] }),
+        React.createElement(FloatingButton_1["default"], { text: "\uD398\uC774\uC9C0 \uB3CC\uC544\uAC00\uAE30" })));
 }
 exports["default"] = BoardDetailContents;

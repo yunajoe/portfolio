@@ -10,7 +10,7 @@ var preprocessing_1 = require("@/utils/preprocessing");
 var react_1 = require("react");
 function BoardSideBar(_a) {
     var mergedRefs = _a.mergedRefs;
-    var _b = preprocessing_1.getTargetRef(mergedRefs), homeRef = _b.homeRef, aboutMeRef = _b.aboutMeRef, portFolioRef = _b.portFolioRef, resumeRef = _b.resumeRef;
+    var _b = preprocessing_1.getTargetRef(mergedRefs), homeRef = _b.homeRef, aboutMeRef = _b.aboutMeRef, portFolioRef = _b.portFolioRef, resumeRef = _b.resumeRef, contactRef = _b.contactRef;
     var _c = react_1.useState(null), navigateRef = _c[0], setNavigateRef = _c[1];
     var handleClick = function (itemName) {
         if ("HOME" === itemName) {
@@ -24,6 +24,9 @@ function BoardSideBar(_a) {
         }
         else if ("RESUME" === itemName) {
             setNavigateRef(resumeRef);
+        }
+        else if ("CONTACT ME" === itemName) {
+            setNavigateRef(contactRef);
         }
     };
     react_1.useEffect(function () {

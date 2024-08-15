@@ -116,9 +116,7 @@ function MyPortPolioEditContents(_a) {
             React.createElement("div", { style: { marginBottom: "30px" } }, careerListMemo.length > 0 &&
                 careerListMemo.map(function (item, index) {
                     return (React.createElement("div", { key: item.id },
-                        React.createElement(CareerFieldBox_1["default"], { item: item, 
-                            // portpolioId={portpolioId}
-                            index: index, companyList: filteredCompanyArr })));
+                        React.createElement(CareerFieldBox_1["default"], { item: item, index: index, companyList: filteredCompanyArr })));
                 })),
             React.createElement(DescriptionBox_1["default"], { title: "\uD559\uB825", description: text_1.school }),
             React.createElement(core_1.Flex, { justify: "flex-start", align: "center", gap: "2px", mb: "10px" },
@@ -129,6 +127,6 @@ function MyPortPolioEditContents(_a) {
                     return (React.createElement("div", { key: item.id },
                         React.createElement(EducationFieldBox_1["default"], { item: item, portpolioId: portpolioId, index: index, majorList: filteredMajorArr })));
                 })),
-        React.createElement(MyPortPolioEditButton_1["default"], { introText: introText, careerList: careerList, educationList: educationList, onClick: handleCompleteButton, isCompletedButton: isCompletedButton, setIsCompletedButton: setIsCompletedButton })));
+        React.createElement(MyPortPolioEditButton_1["default"], { introText: introText, careerList: careerList, educationList: educationList, onClick: handleCompleteButton })));
 }
 exports["default"] = MyPortPolioEditContents;

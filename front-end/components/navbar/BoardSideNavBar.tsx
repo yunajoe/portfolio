@@ -11,7 +11,8 @@ type BoardSideNavBarProps = {
     { homeRef: RefObject<HTMLElement> | null },
     { aboutMeRef: RefObject<HTMLElement> | null },
     { portFolioRef: RefObject<HTMLElement> | null },
-    { resumeRef: RefObject<HTMLElement> | null }
+    { resumeRef: RefObject<HTMLElement> | null },
+    { contactRef: RefObject<HTMLElement> | null }
   ];
 };
 function BoardSideNavBar({ userData, mergedRefs }: BoardSideNavBarProps) {

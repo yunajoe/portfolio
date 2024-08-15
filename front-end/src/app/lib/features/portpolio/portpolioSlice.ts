@@ -20,7 +20,7 @@ export type EducationType = {
   id: number;
   schoolName: string;
   major: string;
-  schoolDate?: {
+  schoolDate: {
     startYear: string;
     startMonth: string;
     endYear: string;

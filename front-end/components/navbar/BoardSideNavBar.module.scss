@@ -8,11 +8,6 @@
   left: 22px;
   border-radius: 5px;
 }
-.go-back-page {
-  position: fixed;
-  bottom: 10px;
-  background-color: green;
-}
 
 .slide_menu {
   position: relative;
@@ -23,7 +18,7 @@
 .image_box {
   height: 250px;
   padding: 10px;
-  border: 3px solid var(--blue-border);
+  background: #e4e6ed;
 }
 
 .menu_name {

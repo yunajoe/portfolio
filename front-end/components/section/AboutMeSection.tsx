@@ -31,12 +31,7 @@ function AboutMeSection({
                 <div className={cx("about_me_info")}>
                   <div className={cx("intro_content")}>
                     <div className={cx("image_box")}>
-                      <ConditionCusTomAvatar
-                        userData={userData}
-                        size="200px"
-                        // width={300}
-                        // height={300}
-                      />
+                      <ConditionCusTomAvatar userData={userData} size="200px" />
                     </div>
                     <div className={cx("intro_text")}>
                       <p>Hello</p>

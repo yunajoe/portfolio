@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 20px;
+}

@@ -1,4 +1,5 @@
 import AboutMeSection from "@/components/section/AboutMeSection";
+import ContactSection from "@/components/section/ContactSection";
 import HomeSection from "@/components/section/HomeSection";
 import PortFolioSection from "@/components/section/PortFolioSection";
 import ResumeSection from "@/components/section/ResumeSection";
@@ -17,7 +18,8 @@ type BoardDetailMainBoxProps = {
     { homeRef: RefObject<HTMLElement> | null },
     { aboutMeRef: RefObject<HTMLElement> | null },
     { portFolioRef: RefObject<HTMLElement> | null },
-    { resumeRef: RefObject<HTMLElement> | null }
+    { resumeRef: RefObject<HTMLElement> | null },
+    { contactRef: RefObject<HTMLElement> | null }
   ];
 };
 function BoardDetailMainBox({
@@ -25,7 +27,7 @@ function BoardDetailMainBox({
   portpolioData,
   mergedRefs,
 }: BoardDetailMainBoxProps) {
-  const { homeRef, aboutMeRef, portFolioRef, resumeRef } =
+  const { homeRef, aboutMeRef, portFolioRef, resumeRef, contactRef } =
     getTargetRef(mergedRefs);
 
   return (
@@ -38,6 +40,7 @@ function BoardDetailMainBox({
       />
       <PortFolioSection portFolioRef={portFolioRef} />
       <ResumeSection portpolioData={portpolioData} resumeRef={resumeRef} />
+      <ContactSection contactRef={contactRef} />
     </main>
   );
 }
