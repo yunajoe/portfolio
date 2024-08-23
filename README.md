@@ -18,3 +18,7 @@
 - 로그인(일반로그인, 카카오톡로그인)
 - 자신의 프로필 수정(닉네임, 프로필 이미지, 비밀번호)
 - 포트폴리오 CRUD(포트폴리오 만들기, 편집, 수정, 삭제)
+
+<img src="https://github.com/user-attachments/assets/1f8dadf3-5ce6-48d2-ae2d-599f15311411" alt="kakao gif" style="width: 300px; height: auto;">
+
+
