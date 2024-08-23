@@ -23,5 +23,6 @@
 
 
 
+<img src="https://github.com/user-attachments/assets/dff81cbf-181b-4a5d-a09b-1b13ad036f38" alt="profile_change gif" style="width: 400px; height: auto;">
 
 
