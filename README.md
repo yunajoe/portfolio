@@ -1,0 +1,11 @@
+# PORTFOLIE 프로젝트
+
+# 사용스택
+
+### FRONT_END
+
+- NEXT.JS, REDUX, REDUX-SAGE, SCSS
+
+### BACK_END
+
+- EXPRESS, MONGO_DB
