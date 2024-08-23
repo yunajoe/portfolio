@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
+import Loading from "@/src/app/loading";
 import { useRouter } from "next/navigation";
 
 function Page() {
@@ -32,7 +33,7 @@ function Page() {
 
   return (
     <div>
-      <h1>Auth 페이지 입니다</h1>
+      <Loading />
     </div>
   );
 }

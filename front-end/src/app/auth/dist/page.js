@@ -5,6 +5,7 @@ var navigation_1 = require("next/navigation");
 var react_1 = require("react");
 var authSlice_1 = require("@/src/app/lib/features/auth/authSlice");
 var hooks_1 = require("@/src/app/lib/hooks");
+var loading_1 = require("@/src/app/loading");
 var navigation_2 = require("next/navigation");
 function Page() {
     var searchParams = navigation_1.useSearchParams();
@@ -26,6 +27,6 @@ function Page() {
         passTheCodeToServer();
     }, [useAuthSelector.isLogin]);
     return (React.createElement("div", null,
-        React.createElement("h1", null, "Auth \uD398\uC774\uC9C0 \uC785\uB2C8\uB2E4")));
+        React.createElement(loading_1["default"], null)));
 }
 exports["default"] = Page;
