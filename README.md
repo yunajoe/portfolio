@@ -19,10 +19,9 @@
 - 자신의 프로필 수정(닉네임, 프로필 이미지, 비밀번호)
 - 포트폴리오 CRUD(포트폴리오 만들기, 편집, 수정, 삭제)
 
-<img src="https://github.com/user-attachments/assets/1f8dadf3-5ce6-48d2-ae2d-599f15311411" alt="kakao gif" style="width: 360px; height: auto;">
+<img src="https://github.com/user-attachments/assets/f1b361d2-0680-42c3-b5b3-2b296c3925d5" alt="kakao gif" style="width: 400px; height: auto;">
 
 
 
 
-<img src="https://github.com/user-attachments/assets/fc5f801c-86ae-4a52-985b-43bbefa1d5a6" alt="profilechange gif" style="width: 360px; height: auto;">
 
