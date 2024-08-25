@@ -1,4 +1,4 @@
-import { CareerList, EducationList } from "@/types/portpolio";
+import { CareerType, EducationType } from "@/types/portpolio";
 import instance from ".";
 
 // CREATE 포폴
@@ -12,8 +12,8 @@ export type SavePortPolio = {
   type: string;
   portpolioId: string;
   introText: string;
-  careerList: CareerList[];
-  educationList: EducationList[];
+  careerList: CareerType[];
+  educationList: EducationType[];
 };
 export const savePortPolio = async (data: SavePortPolio) => {
   const { portpolioId, introText, careerList, educationList } = data;

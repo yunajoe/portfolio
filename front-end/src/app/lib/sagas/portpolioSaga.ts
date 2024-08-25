@@ -41,21 +41,6 @@ import {
 } from "@/types/portpolioSaga";
 import { call, put, takeEvery } from "redux-saga/effects";
 
-// function* getPortPolioListSaga(action: any): any {
-//   try {
-//     const data = yield call(getPortPolioList, action);
-//     const result = data.data;
-//     console.log("result", result);
-//     if (result.status === 200) {
-//       yield put(portpolioListSuccess(result.result));
-//     } else {
-//       yield put(accessTokenStatus(result));
-//     }
-//   } catch (err) {
-//     yield put(portpolioListFail());
-//   }
-// }
-
 function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
   try {
     const data = yield call(getPortPolioDetailList, action.users_table_id);
@@ -138,7 +123,6 @@ function* updatePortPolioNameSaga(action: UpdatePortPolioNameSaga): any {
 }
 
 export function* portPolioSaga() {
-  // yield takeEvery("GET_PORT_POLIO_LIST_REQUEST", getPortPolioListSaga);
   yield takeEvery(
     "GET_PORT_POLIO_DETAIL_LIST_REQUEST",
     getPortPolioDetailListSaga

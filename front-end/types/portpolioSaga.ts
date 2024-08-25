@@ -1,4 +1,4 @@
-import { CareerList, EducationList } from "@/types/portpolio";
+import { CareerType, EducationType } from "@/types/portpolio";
 
 export type GetPortPolioDetailListSaga = {
   type: string;
@@ -33,6 +33,6 @@ export type SavePortPolioSaga = {
   type: string;
   portpolioId: string;
   introText: string;
-  careerList: CareerList[];
-  educationList: EducationList[];
+  careerList: CareerType[];
+  educationList: EducationType[];
 };
