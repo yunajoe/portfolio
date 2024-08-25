@@ -1,1 +1,7 @@
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/dist/app.js" }] }
+{ "version": 2, 
+"rewrites": [{ "source": "/(.*)", "destination": "/dist/app.js" }],   
+"routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/dist/app.js" }
+  ] 
+}
