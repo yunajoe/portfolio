@@ -26,3 +26,55 @@
 <img src="https://github.com/user-attachments/assets/dff81cbf-181b-4a5d-a09b-1b13ad036f38" alt="profile_change gif" style="width: 400px; height: auto;">
 
 
+https://portfolio-front-cdtfb34op-ddds-projects-1f96b341.vercel.app/ (프론트)
+
+# 프론트 INSTALL
+
+1. clone 하기
+```bash
+git clone https://github.com/yunajoe/portfolio/tree/main/front-end
+```
+
+2. install 하기
+
+```bash
+npm i
+```
+
+3. app 실행하기
+
+```bash
+npm run dev
+```
+
+4. app 빌드하기
+
+```bash
+npm run build
+```
+
+# 백엔드 INSTALL
+
+1. clone 하기
+```bash
+git clone https://github.com/yunajoe/portfolio/tree/main/back-end
+```
+
+2. install 하기
+
+```bash
+npm i
+```
+
+3. app 실행하기
+
+```bash
+npm run dev
+```
+
+4. app 빌드하기
+
+```bash
+npm run build
+```
+
