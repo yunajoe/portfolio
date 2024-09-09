@@ -24,11 +24,17 @@ const cx = classNames.bind(styles);
 
 function MyPortPolioContents() {
   const [isEditAndDeleteDropDown, setIsEditAndDeleteDropDown] = useState(false);
-  const [deleteDropDownId, setDeleteDropDownId] = useState("");
   const [isResumeNameEdit, setIsResumeNameEdit] = useState(false);
+  const [deleteDropDownId, setDeleteDropDownId] = useState("");
+
+  // console.log(
+  //   "isEditAndDeleteDropDown",
+  //   isEditAndDeleteDropDown,
+  //   isResumeNameEdit,
+  //   deleteDropDownId
+  // );
 
   // 드래그
-  // const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
   const useSelectAuth = useAppSelector(selectAuth);
   const usePortPolioResultSelector = useAppSelector(selectPortPolioResult);
@@ -105,30 +111,45 @@ function MyPortPolioContents() {
       {newDataList.map((data, index) => {
         return (
           <div
-            onClick={() => navigateToDetailPage(data)}
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateToDetailPage(data);
+            }}
             key={index}
             role="button"
             className={cx("card_container")}
           >
-            <PortPolioCard
-              data={data}
-              deleteDropDownId={deleteDropDownId}
-              setDeleteDropDownId={setDeleteDropDownId}
-              isResumeNameEdit={isResumeNameEdit}
-              setIsResumeNameEdit={setIsResumeNameEdit}
-              setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
-              // for드래그
-              draggingIndex={index}
-              handleUpdateDataList={handleUpdateDataList}
-            />
-
-            {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
-              <EditAndDeleteDropDown
+            <div
+              style={{
+                position: "relative",
+                backgroundColor: "red",
+                width: "100%",
+                height: "100%",
+                zIndex: 1,
+              }}
+            >
+              <PortPolioCard
+                data={data}
+                deleteDropDownId={deleteDropDownId}
                 setDeleteDropDownId={setDeleteDropDownId}
-                handleChangeResumeName={handleChangeResumeName}
-                handleDeleteResume={handleDeleteResume}
+                isResumeNameEdit={isResumeNameEdit}
+                setIsResumeNameEdit={setIsResumeNameEdit}
+                setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
+                // for드래그
+                draggingIndex={index}
+                handleUpdateDataList={handleUpdateDataList}
               />
-            )}
+              {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
+                <EditAndDeleteDropDown
+                  setDeleteDropDownId={setDeleteDropDownId}
+                  handleChangeResumeName={handleChangeResumeName}
+                  handleDeleteResume={handleDeleteResume}
+                  isResumeNameEdit={isResumeNameEdit}
+                  setIsResumeNameEdit={setIsResumeNameEdit}
+                />
+              )}
+            </div>
+
             {isDeleteModalOpen && data._id === deleteDropDownId && (
               <ModalPortal>
                 <PortPolioDeleteModal

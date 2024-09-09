@@ -37,7 +37,6 @@ function PortPolioCard({
   ) => {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("cardIndex", String(draggingIndex));
-    console.log("드래그하는인덱수", draggingIndex);
   };
 
   // 요소나 텍스트 블록을 적합한 드롭 대상 위로 위로갈떄

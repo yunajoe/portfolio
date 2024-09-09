@@ -9,17 +9,22 @@ type EditAndDeleteDropDownProps = {
   setDeleteDropDownId: React.Dispatch<SetStateAction<string>>;
   handleChangeResumeName: () => void;
   handleDeleteResume: () => void;
+  isResumeNameEdit: boolean;
+  setIsResumeNameEdit: React.Dispatch<SetStateAction<boolean>>;
 };
 
 function EditAndDeleteDropDown({
   setDeleteDropDownId,
   handleChangeResumeName,
   handleDeleteResume,
+  isResumeNameEdit,
+  setIsResumeNameEdit,
 }: EditAndDeleteDropDownProps) {
   const ref = useRef(null);
 
   const handleClickOutside = () => {
     setDeleteDropDownId("");
+    setIsResumeNameEdit(false);
   };
   useOnClickOutside(ref, handleClickOutside);
 

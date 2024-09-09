@@ -1,12 +1,13 @@
 import DeleteModalButton from "@/components/button/DeleteModalButton";
 import DeleteModalLayout from "@/components/modal/layout/DeleteModalLayout";
+import { SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 
 type PortPolioDeleteModalProps = {
   onClose: () => void;
   users_table_id: string;
   portpolio_id: string;
-  setDeleteDropDownId: any;
+  setDeleteDropDownId: React.Dispatch<SetStateAction<string>>;
 };
 
 function PortPolioDeleteModal({
