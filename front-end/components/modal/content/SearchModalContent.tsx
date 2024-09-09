@@ -86,17 +86,15 @@ function SearchModalContent({
       {/*  재직형태 결과*/}
       {isStatusClick && (
         <StatusDropdown
-          item={item}
-          statusValue={statusValue}
+          // item={item}
+          // statusValue={statusValue}
           setStatusValue={setStatusValue}
           setIsStatusClick={setIsStatusClick}
         />
       )}
       <CareerConfirmButton
-        // isClick={isClick}
         setIsClick={setIsClick}
         isCompanyItemClick={isCompanyItemClick}
-        // setIsCompanyItemClick={setIsCompanyItemClick}
         close={close}
         searchValue={searchValue}
         setSearchValue={setSearchValue}

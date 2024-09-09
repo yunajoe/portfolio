@@ -55,12 +55,7 @@ function MyPortPolioEditContents({
   const portpolioId = getPortPolioId(pathname, "edit");
 
   useToast("portpolio", defaultPortPolioStatus, defaultPortPolioMessage);
-  // const ProfileBox = dynamic(
-  //   () => import("@/components/box/myportpolio/ProfileBox"),
-  //   {
-  //     ssr: false,
-  //   }
-  // );
+
   const defaultResumeBox = (
     <>
       {usePortPolioSelector.defaultResume ? (
@@ -162,12 +157,7 @@ function MyPortPolioEditContents({
         <div className={cx("portpolio_name_container")}>
           <PortPolioNameBox portpolioName={portpolioName} />
         </div>
-        {/* <div className={cx("profile_container")}>
-          <ProfileBox userData={userData} />
-        </div> */}
-        {/* <div classNam={cx("profile_container")}>
-          <ProfileBox userData={userData} />
-        </div> */}
+    
         <DescriptionBox title="간단소개글" description={intro} />
         <IntroduceBox introText={introText} />
         <DescriptionBox title="경력" description={career} />

@@ -5,7 +5,6 @@ import PortPolioCard from "@/components/card/PortPolioCard/PortPolioCard";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
-import useDragAndDrop from "@/hooks/useDragAndDrop";
 import useModal from "@/hooks/useModal";
 import useToast from "@/hooks/useToast";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -28,7 +27,7 @@ function MyPortPolioContents() {
   const [isResumeNameEdit, setIsResumeNameEdit] = useState(false);
 
   // 드래그
-  // const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const useSelectAuth = useAppSelector(selectAuth);
   const usePortPolioResultSelector = useAppSelector(selectPortPolioResult);
@@ -67,8 +66,6 @@ function MyPortPolioContents() {
     handleDeleteModalOpen();
     setIsEditAndDeleteDropDown(false);
   };
-  const { newDataList, handleUpdateDataList } =
-    useDragAndDrop(portpolio_detail_arr);
 
   useEffect(() => {
     if (userData._id) {
@@ -101,8 +98,7 @@ function MyPortPolioContents() {
   return (
     <div className={cx("grid_container")}>
       <CreatePortPolioCard />
-      {/* portpolio_detail_arr. */}
-      {newDataList.map((data, index) => {
+      {portpolio_detail_arr.map((data, index) => {
         return (
           <div
             onClick={() => navigateToDetailPage(data)}
@@ -117,9 +113,6 @@ function MyPortPolioContents() {
               isResumeNameEdit={isResumeNameEdit}
               setIsResumeNameEdit={setIsResumeNameEdit}
               setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
-              // for드래그
-              draggingIndex={index}
-              handleUpdateDataList={handleUpdateDataList}
             />
 
             {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
