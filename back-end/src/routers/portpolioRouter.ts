@@ -74,6 +74,7 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
   }
 });
 
+// 요걸루 뿌린당
 portpolioRouter.get(
   "/portpolio/detail/list",
   async (req: Request, res: Response) => {
@@ -123,6 +124,21 @@ portpolioRouter.get(
       });
     } catch (err) {
       return res.status(500).send("internal server error");
+    }
+  }
+);
+
+// 드래그해서 변경된 순서의 포폴 저장하기
+//
+portpolioRouter.post(
+  "/portpolio/update/portpolioIds",
+  async (req: Request, res: Response) => {
+    // porpotliodIDs를 가져온다..
+    console.log("호홓호홍", req.body);
+    const { users_table_id, portpolio_ids } = req.body.data;
+    try {
+    } catch (err) {
+      return false;
     }
   }
 );
@@ -269,7 +285,9 @@ portpolioRouter.get(
           message: "default 포트폴리오를 가지고 오는데실패",
         });
       }
-    } catch (err) {}
+    } catch (err) {
+      return res.status(500).send("internal server error");
+    }
   }
 );
 module.exports = portpolioRouter;
