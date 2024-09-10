@@ -27,15 +27,6 @@ function MyPortPolioContents() {
   const [isResumeNameEdit, setIsResumeNameEdit] = useState(false);
   const [deleteDropDownId, setDeleteDropDownId] = useState("");
 
-  // console.log(
-  //   "isEditAndDeleteDropDown",
-  //   isEditAndDeleteDropDown,
-  //   isResumeNameEdit,
-  //   deleteDropDownId
-  // );
-
-  // 드래그
-
   const useSelectAuth = useAppSelector(selectAuth);
   const usePortPolioResultSelector = useAppSelector(selectPortPolioResult);
   const useStatusSelector = useAppSelector(selectStatus);
@@ -50,6 +41,8 @@ function MyPortPolioContents() {
     updatePortPolioNameMessage,
   } = useStatusSelector;
   const { portpolio_detail_arr } = usePortPolioResultSelector;
+
+  console.log("포폴리스트", portpolio_detail_arr);
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -122,7 +115,6 @@ function MyPortPolioContents() {
             <div
               style={{
                 position: "relative",
-                backgroundColor: "red",
                 width: "100%",
                 height: "100%",
                 zIndex: 1,
@@ -136,7 +128,9 @@ function MyPortPolioContents() {
                 setIsResumeNameEdit={setIsResumeNameEdit}
                 setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
                 // for드래그
+
                 draggingIndex={index}
+                newDataList={newDataList}
                 handleUpdateDataList={handleUpdateDataList}
               />
               {isEditAndDeleteDropDown && data._id === deleteDropDownId && (

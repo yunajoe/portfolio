@@ -1,12 +1,5 @@
 import { CareerType, EducationType } from "@/types/portpolio";
 import instance from ".";
-
-// CREATE 포폴
-export const createPortPolio = async () => {
-  const response = await instance.get("createPortPolio");
-  return response;
-};
-
 // SAVE 포폴
 export type SavePortPolio = {
   type: string;
@@ -15,6 +8,38 @@ export type SavePortPolio = {
   careerList: CareerType[];
   educationList: EducationType[];
 };
+
+type UpdateDefaultPortPolio = {
+  type: string;
+  users_table_id: string;
+  portpolio_id: string;
+};
+
+type UpdatePortPolioName = {
+  type: string;
+  users_table_id: string;
+  portpolio_id: string;
+  portpolio_name: string;
+};
+
+type UpdatePortPolioIds = {
+  type: string;
+  users_table_id: string;
+  portpolio_ids: string[];
+};
+
+type DeletePortPolio = {
+  type: string;
+  users_table_id: string;
+  portpolio_id: string;
+};
+
+// CREATE 포폴
+export const createPortPolio = async () => {
+  const response = await instance.get("createPortPolio");
+  return response;
+};
+
 export const savePortPolio = async (data: SavePortPolio) => {
   const { portpolioId, introText, careerList, educationList } = data;
   const response = await instance.post("portpolio/save", {
@@ -23,25 +48,6 @@ export const savePortPolio = async (data: SavePortPolio) => {
       introText,
       careerList,
       educationList,
-    },
-  });
-  return response;
-};
-
-// LIST 포폴
-
-type GetPortPolioList = {
-  type: string;
-  accessToken: string;
-  users_table_id: string;
-};
-
-export const getPortPolioList = async (data: GetPortPolioList) => {
-  const { accessToken, users_table_id } = data;
-  const response = await instance.post("portpolio/list", {
-    data: {
-      accessToken,
-      users_table_id,
     },
   });
   return response;
@@ -67,12 +73,6 @@ export const getDetailPortPolio = async (portpolio_id: string) => {
   return response;
 };
 
-type DeletePortPolio = {
-  type: string;
-  users_table_id: string;
-  portpolio_id: string;
-};
-
 // 포폴삭제하기
 export const deletePortPolio = async (data: DeletePortPolio) => {
   const { users_table_id, portpolio_id } = data;
@@ -83,12 +83,6 @@ export const deletePortPolio = async (data: DeletePortPolio) => {
     },
   });
   return response;
-};
-
-type UpdateDefaultPortPolio = {
-  type: string;
-  users_table_id: string;
-  portpolio_id: string;
 };
 
 // default 포폴로 업데이트
@@ -103,12 +97,6 @@ export const updateDefaultPortPolio = async (data: UpdateDefaultPortPolio) => {
   return response;
 };
 
-type UpdatePortPolioName = {
-  type: string;
-  users_table_id: string;
-  portpolio_id: string;
-  portpolio_name: string;
-};
 // 포폴 이름 업데이트
 export const updatePortPolioName = async (data: UpdatePortPolioName) => {
   const { users_table_id, portpolio_id, portpolio_name } = data;
@@ -124,14 +112,24 @@ export const updatePortPolioName = async (data: UpdatePortPolioName) => {
 };
 
 // default 포폴 list로  가져오기
-
 export const getDefaultPortPolioList = async () => {
   const response = await instance.get("portpolio/default/list");
   return response;
 };
 
-// 해당 user의 default 가져오기
+// porpotlioId업데이뜌!
+export const updatePortPolioIds = async (data: UpdatePortPolioIds) => {
+  const { users_table_id, portpolio_ids } = data;
+  const response = await instance.post("portpolio/update/portpolioIds", {
+    data: {
+      users_table_id,
+      portpolio_ids,
+    },
+  });
+  return response;
+};
 
+// 해당 user의 default 가져오기
 export const getUserDefaultPortPolio = async (_id: string) => {
   const response = await instance.get("portpolio/default", {
     params: {

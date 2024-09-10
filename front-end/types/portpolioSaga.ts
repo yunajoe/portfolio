@@ -5,11 +5,19 @@ export type GetPortPolioDetailListSaga = {
   users_table_id: string;
 };
 
+export type GetPortPolioDetailSaga = {
+  type: string;
+  portpolioId: string;
+};
+
 export type GetPortPolioDefaultSaga = {
   type: string;
   _id: string;
 };
 
+export type CreatePortPolioSaga = {
+  type: string;
+};
 export type DeletePortPolioSaga = {
   type: string;
   users_table_id: string;
@@ -29,6 +37,11 @@ export type UpdatePortPolioNameSaga = {
   portpolio_name: string;
 };
 
+export type UpdatePortPolioIdsSaga = {
+  type: string;
+  users_table_id: string;
+  portpolio_ids: string[];
+};
 export type SavePortPolioSaga = {
   type: string;
   portpolioId: string;

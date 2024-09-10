@@ -2,6 +2,8 @@ import PortPolioCardBody from "@/components/card/PortPolioCard/PortPolioCardBody
 import PortPolioCardBottom from "@/components/card/PortPolioCard/PortPolioCardBottom";
 import PortPolioCardHeader from "@/components/card/PortPolioCard/PortPolioCardHeader";
 import Divider from "@/components/divider/Divider";
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { SetStateAction } from "react";
@@ -18,6 +20,7 @@ type PortPolioCardProps = {
 
   // for 드래그앤드롭
   draggingIndex: number;
+  newDataList: Item[];
   handleUpdateDataList: (dragIndex: number, index: number) => void;
 };
 
@@ -29,8 +32,14 @@ function PortPolioCard({
   setDeleteDropDownId,
   setIsEditAndDeleteDropDown,
   draggingIndex,
+  newDataList,
   handleUpdateDataList,
 }: PortPolioCardProps) {
+  const useSelectAuth = useAppSelector(selectAuth);
+
+  const { userData } = useSelectAuth;
+
+  const dispatch = useAppDispatch();
   const handleDragStart = (
     e: React.DragEvent<HTMLDivElement>,
     draggingIndex: number
@@ -50,6 +59,17 @@ function PortPolioCard({
     const sourceIndex = Number(e.dataTransfer.getData("cardIndex"));
     handleUpdateDataList(sourceIndex, index);
   };
+
+  const handleDragEnd = () => {
+    const rearrangePortPolioIds = newDataList.map((item) => item.portpolioId);
+    console.log("드래그끝나쪄!");
+    dispatch({
+      type: "UPDATE_PORT_POLIO_IDS_REQUEST",
+      users_table_id: userData._id,
+      portpolio_ids: rearrangePortPolioIds,
+    });
+  };
+
   return (
     <div
       className={cx("container")}
@@ -57,6 +77,7 @@ function PortPolioCard({
       onDragStart={(e) => handleDragStart(e, draggingIndex)}
       onDragOver={handleDragOver}
       onDrop={(e) => handleDrop(e, draggingIndex)}
+      onDragEnd={handleDragEnd}
     >
       <div className={cx("portpolio_contents")}>
         <PortPolioCardHeader data={data} />

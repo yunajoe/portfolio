@@ -8,6 +8,7 @@ import {
   getUserDefaultPortPolio,
   savePortPolio,
   updateDefaultPortPolio,
+  updatePortPolioIds,
   updatePortPolioName,
 } from "@/api/portpolio";
 import {
@@ -32,11 +33,14 @@ import {
   updatePortPolioNameStatus,
 } from "@/src/app/lib/features/status/statusSlice";
 import {
+  CreatePortPolioSaga,
   DeletePortPolioSaga,
   GetPortPolioDefaultSaga,
   GetPortPolioDetailListSaga,
+  GetPortPolioDetailSaga,
   SavePortPolioSaga,
   UpdateDefaultPortPolioSaga,
+  UpdatePortPolioIdsSaga,
   UpdatePortPolioNameSaga,
 } from "@/types/portpolioSaga";
 import { call, put, takeEvery } from "redux-saga/effects";
@@ -45,6 +49,7 @@ function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
   try {
     const data = yield call(getPortPolioDetailList, action.users_table_id);
     const result = data.data;
+    console.log("디테일리스트사가아아아", result);
     yield put(portpolioDetailListSuccess(result));
     yield put(portpolioListStatus(result));
   } catch (error: any) {
@@ -52,7 +57,7 @@ function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
     yield put(portpolioListStatus(error.data));
   }
 }
-function* getPortPolioDetailSaga(action: any): any {
+function* getPortPolioDetailSaga(action: GetPortPolioDetailSaga): any {
   try {
     const data = yield call(getDetailPortPolio, action.portpolioId);
     const result = data.data;
@@ -72,7 +77,7 @@ function* getDefaultPortPolioSaga(action: GetPortPolioDefaultSaga): any {
   } catch (err) {}
 }
 
-function* createPortPolioSaga(action: any): any {
+function* createPortPolioSaga(action: CreatePortPolioSaga): any {
   try {
     const data = yield call(createPortPolio);
     const result = data.data;
@@ -122,6 +127,16 @@ function* updatePortPolioNameSaga(action: UpdatePortPolioNameSaga): any {
   }
 }
 
+function* updatePortPolioIdsSaga(action: UpdatePortPolioIdsSaga): any {
+  try {
+    const data = yield call(updatePortPolioIds, action);
+    const result = data.data;
+    console.log("드래그한디테일리스트사가앙아", result);
+    yield put(portpolioDetailListSuccess(result));
+    yield put(portpolioListStatus(result));
+  } catch (error: any) {}
+}
+
 export function* portPolioSaga() {
   yield takeEvery(
     "GET_PORT_POLIO_DETAIL_LIST_REQUEST",
@@ -138,4 +153,5 @@ export function* portPolioSaga() {
     updateDefaultPortPolioSaga
   );
   yield takeEvery("UPDATE_PORT_POLIO_NAME_REQUEST", updatePortPolioNameSaga);
+  yield takeEvery("UPDATE_PORT_POLIO_IDS_REQUEST", updatePortPolioIdsSaga);
 }

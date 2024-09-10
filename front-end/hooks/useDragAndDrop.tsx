@@ -16,13 +16,12 @@ function useDragAndDrop(data: Item[]) {
       filteredDataList.splice(index, 0, targetData);
       setNewDataList(filteredDataList);
     }
-
-    // setNewDataList(filteredDataList);
   };
 
   useEffect(() => {
     setNewDataList(data);
   }, [data]);
+
   return {
     newDataList,
     handleUpdateDataList,
