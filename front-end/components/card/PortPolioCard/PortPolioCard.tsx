@@ -83,6 +83,7 @@ function PortPolioCard({
         <PortPolioCardBody
           data={data}
           deleteDropDownId={deleteDropDownId}
+          setDeleteDropDownId={setDeleteDropDownId}
           isResumeNameEdit={isResumeNameEdit}
           setIsResumeNameEdit={setIsResumeNameEdit}
         />

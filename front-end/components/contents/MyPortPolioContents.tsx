@@ -44,6 +44,8 @@ function MyPortPolioContents() {
 
   // console.log("포폴리스트", portpolio_detail_arr);
 
+  console.log("딜리222뚜", deleteDropDownId);
+
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -105,7 +107,6 @@ function MyPortPolioContents() {
         return (
           <div
             onClick={(e) => {
-              console.log("페이지이도옹ㅇ");
               e.stopPropagation();
               navigateToDetailPage(data);
             }}
@@ -125,7 +126,6 @@ function MyPortPolioContents() {
               setIsResumeNameEdit={setIsResumeNameEdit}
               setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
               // for드래그
-
               draggingIndex={index}
               newDataList={newDataList}
               handleUpdateDataList={handleUpdateDataList}

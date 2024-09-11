@@ -14,6 +14,7 @@ type PorPolioNameProps = {
   portpolioName: string;
   isResumeNameEdit: boolean;
   setIsResumeNameEdit: React.Dispatch<SetStateAction<boolean>>;
+  setDeleteDropDownId: React.Dispatch<SetStateAction<string>>;
 };
 
 function PortPolioName({
@@ -22,6 +23,7 @@ function PortPolioName({
   portpolioName,
   isResumeNameEdit,
   setIsResumeNameEdit,
+  setDeleteDropDownId,
 }: PorPolioNameProps) {
   const dispatch = useAppDispatch();
 
@@ -32,6 +34,7 @@ function PortPolioName({
 
   const handleClickOutside = () => {
     setIsResumeNameEdit(false);
+    setDeleteDropDownId("");
   };
 
   useOnClickOutside(ref, handleClickOutside);
@@ -56,6 +59,7 @@ function PortPolioName({
   useEffect(() => {
     if (useStatusSelector.updatePortPolioNameStatus === 200) {
       setIsResumeNameEdit(false);
+      setDeleteDropDownId("");
     }
   }, [useStatusSelector.updatePortPolioNameStatus]);
 
