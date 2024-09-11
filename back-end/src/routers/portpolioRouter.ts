@@ -133,12 +133,29 @@ portpolioRouter.get(
 portpolioRouter.post(
   "/portpolio/update/portpolioIds",
   async (req: Request, res: Response) => {
-    // porpotliodIDs를 가져온다..
-    console.log("호홓호홍", req.body);
     const { users_table_id, portpolio_ids } = req.body.data;
     try {
+      const arr = await getPortPolioContentsList(users_table_id);
+      const result = portpolio_ids.map((id: string) => {
+        const targetPortPolio = arr.filter(
+          (item: Item) => item.portpolioId === id
+        );
+        return targetPortPolio[0];
+      });
+
+      if (result && result.length > 0) {
+        return res.status(200).send({
+          status: 200,
+          message: "포트폴리오 리스트를 가지고 왔습니다",
+          result,
+        });
+      }
+      return res.status(400).send({
+        status: 400,
+        message: "포트폴리오 리스트를 가지고 오는데 실패하였습니다",
+      });
     } catch (err) {
-      return false;
+      return res.status(500).send("internal server error");
     }
   }
 );
