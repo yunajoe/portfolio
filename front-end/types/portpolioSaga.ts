@@ -3,6 +3,7 @@ import { CareerType, EducationType } from "@/types/portpolio";
 export type GetPortPolioDetailListSaga = {
   type: string;
   users_table_id: string;
+  isDragging: null | string;
 };
 
 export type GetPortPolioDetailSaga = {

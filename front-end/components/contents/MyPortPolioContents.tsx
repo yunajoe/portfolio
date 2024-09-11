@@ -44,8 +44,6 @@ function MyPortPolioContents() {
 
   // console.log("포폴리스트", portpolio_detail_arr);
 
-  console.log("딜리222뚜", deleteDropDownId);
-
   const dispatch = useAppDispatch();
   const router = useRouter();
 
