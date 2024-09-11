@@ -1,10 +1,6 @@
-import { RefObject, SetStateAction, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
-function useFocus(
-  ref: RefObject<HTMLInputElement>,
-  isResumeNameEdit: boolean,
-  setIsResumeNameEdit: React.Dispatch<SetStateAction<boolean>>
-) {
+function useFocus(ref: RefObject<HTMLInputElement>, isResumeNameEdit: boolean) {
   useEffect(() => {
     if (ref.current && !isResumeNameEdit) {
       ref.current.disabled = true;
@@ -14,11 +10,6 @@ function useFocus(
       ref.current.disabled = false;
       ref.current.focus();
     }
-
-    return () => {
-      setIsResumeNameEdit(false);
-      ref?.current?.blur();
-    };
   }, [ref.current, isResumeNameEdit]);
 }
 

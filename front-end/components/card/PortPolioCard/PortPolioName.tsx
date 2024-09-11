@@ -28,7 +28,7 @@ function PortPolioName({
   const useStatusSelector = useAppSelector(selectStatus);
   const ref = useRef<HTMLInputElement>(null);
 
-  useFocus(ref, isResumeNameEdit, setIsResumeNameEdit);
+  useFocus(ref, isResumeNameEdit);
 
   const handleClickOutside = () => {
     setIsResumeNameEdit(false);

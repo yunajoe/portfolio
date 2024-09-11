@@ -105,6 +105,7 @@ function MyPortPolioContents() {
         return (
           <div
             onClick={(e) => {
+              console.log("페이지이도옹ㅇ");
               e.stopPropagation();
               navigateToDetailPage(data);
             }}
