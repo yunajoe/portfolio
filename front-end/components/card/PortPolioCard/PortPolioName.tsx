@@ -1,5 +1,7 @@
 import classNames from "classnames/bind";
 
+import useFocus from "@/hooks/useFocus";
+import useOnClickOutside from "@/hooks/useOnClickOutside";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { SetStateAction, useEffect, useRef, useState } from "react";
@@ -21,10 +23,18 @@ function PortPolioName({
   isResumeNameEdit,
   setIsResumeNameEdit,
 }: PorPolioNameProps) {
-  const ref = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
   const useStatusSelector = useAppSelector(selectStatus);
+  const ref = useRef<HTMLInputElement>(null);
+
+  useFocus(ref, isResumeNameEdit, setIsResumeNameEdit);
+
+  const handleClickOutside = () => {
+    setIsResumeNameEdit(false);
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
 
   const [newPortPolioName, setNewPortPolioName] = useState(portpolioName);
 
@@ -42,13 +52,6 @@ function PortPolioName({
       });
     }
   };
-
-  // TODO useFocusHookm만들어서 대체하기
-  useEffect(() => {
-    if (ref.current && isResumeNameEdit) {
-      ref.current.focus();
-    }
-  }, [ref.current]);
 
   useEffect(() => {
     if (useStatusSelector.updatePortPolioNameStatus === 200) {

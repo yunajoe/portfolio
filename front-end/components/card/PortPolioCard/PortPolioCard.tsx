@@ -62,7 +62,6 @@ function PortPolioCard({
 
   const handleDragEnd = () => {
     const rearrangePortPolioIds = newDataList.map((item) => item.portpolioId);
-    console.log("드래그끝나쪄!");
     dispatch({
       type: "UPDATE_PORT_POLIO_IDS_REQUEST",
       users_table_id: userData._id,

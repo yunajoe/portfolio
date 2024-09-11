@@ -49,7 +49,7 @@ function* getPortPolioDetailListSaga(action: GetPortPolioDetailListSaga): any {
   try {
     const data = yield call(getPortPolioDetailList, action.users_table_id);
     const result = data.data;
-    console.log("디테일리스트사가아아아", result);
+    // console.log("디테일리스트사가아아아", result);
     yield put(portpolioDetailListSuccess(result));
     yield put(portpolioListStatus(result));
   } catch (error: any) {

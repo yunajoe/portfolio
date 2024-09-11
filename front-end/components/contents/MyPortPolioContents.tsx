@@ -42,7 +42,7 @@ function MyPortPolioContents() {
   } = useStatusSelector;
   const { portpolio_detail_arr } = usePortPolioResultSelector;
 
-  console.log("포폴리스트", portpolio_detail_arr);
+  // console.log("포폴리스트", portpolio_detail_arr);
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -114,7 +114,8 @@ function MyPortPolioContents() {
               isEditAndDeleteDropDown && data._id === deleteDropDownId
                 ? "card_container_open"
                 : "card_container"
-            )}            >
+            )}
+          >
             <PortPolioCard
               data={data}
               deleteDropDownId={deleteDropDownId}
@@ -133,7 +134,6 @@ function MyPortPolioContents() {
                 setDeleteDropDownId={setDeleteDropDownId}
                 handleChangeResumeName={handleChangeResumeName}
                 handleDeleteResume={handleDeleteResume}
-                isResumeNameEdit={isResumeNameEdit}
                 setIsResumeNameEdit={setIsResumeNameEdit}
               />
             )}
