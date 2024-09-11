@@ -110,39 +110,33 @@ function MyPortPolioContents() {
             }}
             key={index}
             role="button"
-            className={cx("card_container")}
-          >
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                zIndex: 1,
-              }}
-            >
-              <PortPolioCard
-                data={data}
-                deleteDropDownId={deleteDropDownId}
+            className={cx(
+              isEditAndDeleteDropDown && data._id === deleteDropDownId
+                ? "card_container_open"
+                : "card_container"
+            )}            >
+            <PortPolioCard
+              data={data}
+              deleteDropDownId={deleteDropDownId}
+              setDeleteDropDownId={setDeleteDropDownId}
+              isResumeNameEdit={isResumeNameEdit}
+              setIsResumeNameEdit={setIsResumeNameEdit}
+              setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
+              // for드래그
+
+              draggingIndex={index}
+              newDataList={newDataList}
+              handleUpdateDataList={handleUpdateDataList}
+            />
+            {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
+              <EditAndDeleteDropDown
                 setDeleteDropDownId={setDeleteDropDownId}
+                handleChangeResumeName={handleChangeResumeName}
+                handleDeleteResume={handleDeleteResume}
                 isResumeNameEdit={isResumeNameEdit}
                 setIsResumeNameEdit={setIsResumeNameEdit}
-                setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
-                // for드래그
-
-                draggingIndex={index}
-                newDataList={newDataList}
-                handleUpdateDataList={handleUpdateDataList}
               />
-              {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
-                <EditAndDeleteDropDown
-                  setDeleteDropDownId={setDeleteDropDownId}
-                  handleChangeResumeName={handleChangeResumeName}
-                  handleDeleteResume={handleDeleteResume}
-                  isResumeNameEdit={isResumeNameEdit}
-                  setIsResumeNameEdit={setIsResumeNameEdit}
-                />
-              )}
-            </div>
+            )}
 
             {isDeleteModalOpen && data._id === deleteDropDownId && (
               <ModalPortal>

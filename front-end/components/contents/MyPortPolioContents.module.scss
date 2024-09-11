@@ -2,7 +2,6 @@
 
 .grid_container {
   position: absolute;
-
   z-index: 1;
   top: 100px;
   left: 50%;
@@ -33,4 +32,9 @@
   border: 1px solid #dbdbdb;
   height: 200px;
   background-color: var(--main-background);
+}
+
+.card_container_open {
+  @extend .card_container;
+  z-index: 5;
 }
