@@ -61,11 +61,10 @@ export const savePortPolio = async (data: SavePortPolio) => {
 
 // Detail List 포폴
 export const getPortPolioDetailList = async (data: GetPortPolioDetailList) => {
-  const { users_table_id} = data;  
+  const { users_table_id } = data;
   const response = await instance.get("portpolio/detail/list", {
     params: {
       users_table_id: users_table_id,
-
     },
   });
   return response;

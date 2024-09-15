@@ -1,15 +1,17 @@
 @import "/styles/mixin.scss";
 
 .grid_container {
-  position: absolute;
+  position: relative;
   z-index: 1;
   top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  // left: 50%;
+  // transform: translateX(-80%);
   display: grid;
   row-gap: 10px;
   width: 80%;
   margin: 0 auto;
+  background-color: red;
+  grid-template-columns: repeat(1, 1fr); // 기본 1열 설정
 
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
@@ -20,7 +22,7 @@
     column-gap: 20px;
   }
   @include desktop {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 20px;
   }
 }
@@ -30,7 +32,7 @@
   position: relative;
   z-index: 2;
   border: 1px solid #dbdbdb;
-  height: 200px;
+  height: 240px;
   background-color: var(--main-background);
 }
 

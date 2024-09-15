@@ -29,7 +29,7 @@ function CreatePortPolioCard() {
     <>
       <Card
         onClick={handleCreatePortPoilo}
-        h="200px"
+        h="240px"
         shadow="sm"
         p="50px"
         style={{ border: "1px solid #dbdbdb" }}

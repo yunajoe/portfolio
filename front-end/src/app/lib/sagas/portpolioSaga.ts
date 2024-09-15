@@ -130,7 +130,6 @@ function* updatePortPolioIdsSaga(action: UpdatePortPolioIdsSaga): any {
   try {
     const data = yield call(updatePortPolioIds, action);
     const result = data.data;
-    console.log("드래그한디테일리스트사가앙아", result);
     yield put(portpolioDetailListSuccess(result));
     yield put(portpolioListStatus(result));
   } catch (error: any) {}

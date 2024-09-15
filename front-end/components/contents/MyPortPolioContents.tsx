@@ -6,6 +6,7 @@ import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
 import useDragAndDrop from "@/hooks/useDragAndDrop";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import useModal from "@/hooks/useModal";
 import useToast from "@/hooks/useToast";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -18,7 +19,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./MyPortPolioContents.module.scss";
 const cx = classNames.bind(styles);
 
@@ -42,10 +43,14 @@ function MyPortPolioContents() {
   } = useStatusSelector;
   const { portpolio_detail_arr } = usePortPolioResultSelector;
 
-  // console.log("포폴리스트", portpolio_detail_arr);
-
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const observerRef = useRef(null);
+
+  // const handleTestFunction = async () => {
+  //   console.log("데이터를 추가합니닷!");
+  //   await createPortPolio();
+  // };
 
   const handleDeleteModalOpen = () => {
     setIsDeleteModalOpen(true);
@@ -68,6 +73,8 @@ function MyPortPolioContents() {
   };
   const { newDataList, handleUpdateDataList } =
     useDragAndDrop(portpolio_detail_arr);
+
+  const { dividedData } = useInfiniteScroll(observerRef, newDataList, 20);
 
   useEffect(() => {
     if (userData._id) {
@@ -98,59 +105,68 @@ function MyPortPolioContents() {
   );
 
   return (
-    <div className={cx("grid_container")}>
-      <CreatePortPolioCard />
-      {/* portpolio_detail_arr. */}
-      {newDataList.map((data, index) => {
-        return (
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              navigateToDetailPage(data);
-            }}
-            key={index}
-            role="button"
-            className={cx(
-              isEditAndDeleteDropDown && data._id === deleteDropDownId
-                ? "card_container_open"
-                : "card_container"
-            )}
-          >
-            <PortPolioCard
-              data={data}
-              deleteDropDownId={deleteDropDownId}
-              setDeleteDropDownId={setDeleteDropDownId}
-              isResumeNameEdit={isResumeNameEdit}
-              setIsResumeNameEdit={setIsResumeNameEdit}
-              setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
-              // for드래그
-              draggingIndex={index}
-              newDataList={newDataList}
-              handleUpdateDataList={handleUpdateDataList}
-            />
-            {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
-              <EditAndDeleteDropDown
+    <>
+      <div className={cx("grid_container")}>
+        <CreatePortPolioCard />
+        {/* <button onClick={handleTestFunction}>데잉터추가버툰</button> */}
+        {/* portpolio_detail_arr. */}
+        {dividedData.map((data, index) => {
+          return (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateToDetailPage(data);
+              }}
+              key={index}
+              role="button"
+              className={cx(
+                isEditAndDeleteDropDown && data._id === deleteDropDownId
+                  ? "card_container_open"
+                  : "card_container"
+              )}
+            >
+              <PortPolioCard
+                data={data}
+                deleteDropDownId={deleteDropDownId}
                 setDeleteDropDownId={setDeleteDropDownId}
-                handleChangeResumeName={handleChangeResumeName}
-                handleDeleteResume={handleDeleteResume}
+                isResumeNameEdit={isResumeNameEdit}
                 setIsResumeNameEdit={setIsResumeNameEdit}
+                setIsEditAndDeleteDropDown={setIsEditAndDeleteDropDown}
+                // for드래그
+                draggingIndex={index}
+                newDataList={newDataList}
+                handleUpdateDataList={handleUpdateDataList}
               />
-            )}
-
-            {isDeleteModalOpen && data._id === deleteDropDownId && (
-              <ModalPortal>
-                <PortPolioDeleteModal
-                  onClose={handleDeleteModalClose}
-                  users_table_id={data.users_table_id}
-                  portpolio_id={data.portpolioId}
+              {isEditAndDeleteDropDown && data._id === deleteDropDownId && (
+                <EditAndDeleteDropDown
                   setDeleteDropDownId={setDeleteDropDownId}
+                  handleChangeResumeName={handleChangeResumeName}
+                  handleDeleteResume={handleDeleteResume}
+                  setIsResumeNameEdit={setIsResumeNameEdit}
                 />
-              </ModalPortal>
-            )}
-          </div>
-        );
-      })}
-    </div>
+              )}
+
+              {isDeleteModalOpen && data._id === deleteDropDownId && (
+                <ModalPortal>
+                  <PortPolioDeleteModal
+                    onClose={handleDeleteModalClose}
+                    users_table_id={data.users_table_id}
+                    portpolio_id={data.portpolioId}
+                    setDeleteDropDownId={setDeleteDropDownId}
+                  />
+                </ModalPortal>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div
+        ref={observerRef}
+        style={{ background: "green", marginTop: "100px" }}
+      >
+        나는야무ㄴㅇㄹㄴㄴㅇㄹㄴㄹㄴㅇㄹㅇㄹㄴㅇㄹ한스크롤영역
+      </div>
+    </>
   );
 }
 
