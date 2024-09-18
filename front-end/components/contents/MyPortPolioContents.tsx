@@ -5,7 +5,6 @@ import PortPolioCard from "@/components/card/PortPolioCard/PortPolioCard";
 import EditAndDeleteDropDown from "@/components/dropdown/EditAndDeleteDropDown";
 import ModalPortal from "@/components/modal/ModalPortal";
 import PortPolioDeleteModal from "@/components/modal/type/PortPolioDeleteModal";
-import useCalculateClientWidth from "@/hooks/useCalculateClientWidth";
 import useDragAndDrop from "@/hooks/useDragAndDrop";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import useModal from "@/hooks/useModal";
@@ -49,6 +48,7 @@ function MyPortPolioContents() {
 
   const observerRef = useRef(null);
   const calculateRef = useRef(null);
+  const cardRef = useRef(null);
 
   // const handleTestFunction = async () => {
   //   console.log("데이터를 추가합니닷!");
@@ -79,9 +79,6 @@ function MyPortPolioContents() {
 
   const { dividedData } = useInfiniteScroll(observerRef, newDataList, 19);
 
-  const { rectHeight, clientHeight } = useCalculateClientWidth(calculateRef);
-  // console.log("rect", rectHeight, clientHeight);
-
   useEffect(() => {
     if (userData._id) {
       dispatch({
@@ -110,7 +107,7 @@ function MyPortPolioContents() {
     updatePortPolioNameMessage
   );
 
-  console.log("divided", dividedData);
+  // console.log("divided", dividedData);
 
   return (
     <>

@@ -28,52 +28,30 @@ function useInfiniteScroll(
     threshold: 1,
   };
 
+  console.log("scrollPosition, scollDirection", scrollPosition, scollDirection);
+
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry: any) => {
         const isIntersecting = entry.isIntersecting;
         if (isIntersecting) {
           setIndex((prev) => {
-            console.log(
-              "prev",
-              prev,
-              infiniteData.length,
-              "디렉션",
-              scollDirection
-            );
-            // 데이터가
-            if (prev >= infiniteData.length) {
-              return prev;
-            }
-
-            if (scollDirection === "down" || scollDirection === "") {
-              return prev + num;
-            }
-
-            if (scollDirection === "up") {
-              console.log("나는 스크롤업");
-              const oneRowCard = CardHeight + CardRowGap;
-              const lastScrollPoistion =
-                scrollpositionArr[scrollpositionArr.length - 1];
-              let diff = lastScrollPoistion - scrollPosition;
-              if (diff >= oneRowCard) {
-                let quotient = diff / oneRowCard; // 1
-                let deducedCardNums = Math.floor((quotient * num) / 4);
-                return prev - deducedCardNums;
+            console.log("하이하이", scrollPosition, scollDirection);
+            //TODO: prev가 infindate.length를 넘어가 버린당!
+            if (prev !== 0 && infiniteData.length > 0) {
+              if (prev >= infiniteData.length) {
+                return prev;
               }
             }
-
-            console.log("하이하이", scrollPosition, scollDirection);
-
             return prev + num;
           });
         }
       });
     },
-    [infiniteData, scrollPosition, scollDirection]
+    [infiniteData, scrollPosition]
   );
 
-  // console.log("데이터인덱스", index);
+  console.log("데이터인덱스", index);
 
   useEffect(() => {
     if (data) {
@@ -84,26 +62,24 @@ function useInfiniteScroll(
   useEffect(() => {
     if (infiniteData) {
       if (scollDirection === "down" || scollDirection === "") {
-        console.log("나는데이터 자를 인덱스", index);
         const subData = infiniteData.slice(0, index);
         setDividedData(subData);
         setScrollpositionArr((prev) => [...prev, scrollPosition]);
       }
       if (scollDirection === "up") {
-        console.log("iii");
-        // const oneRowCard = CardHeight + CardRowGap;
+        const oneRowCard = CardHeight + CardRowGap;
         setScrollpositionArr((prev) => [...prev, scrollPosition]);
-        // const lastScrollPoistion =
-        //   scrollpositionArr[scrollpositionArr.length - 1];
-        // let diff = lastScrollPoistion - scrollPosition;
-        // if (diff >= oneRowCard) {
-        // let quotient = diff / oneRowCard; // 1
-        // let deducedCardNums = Math.floor((quotient * num) / 4);
-        // setIndex((prev) => prev - deducedCardNums);
+        const lastScrollPoistion =
+          scrollpositionArr[scrollpositionArr.length - 1];
+        let diff = lastScrollPoistion - scrollPosition;
+        if (diff >= oneRowCard) {
+          let quotient = diff / oneRowCard; // 1
+          let deducedCardNums = Math.floor((quotient * num) / 4);
+          setIndex((prev) => prev - deducedCardNums);
 
-        const subData = infiniteData.slice(0, index);
-        setDividedData(subData);
-        // }
+          const subData = infiniteData.slice(0, index);
+          setDividedData(subData);
+        }
       }
     }
   }, [infiniteData, index, scollDirection, scrollPosition]);

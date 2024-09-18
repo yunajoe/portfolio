@@ -6,7 +6,7 @@ import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
-import { SetStateAction } from "react";
+import { SetStateAction, useRef } from "react";
 import styles from "./PortPolioCard.module.scss";
 const cx = classNames.bind(styles);
 
@@ -36,6 +36,7 @@ function PortPolioCard({
   handleUpdateDataList,
 }: PortPolioCardProps) {
   const useSelectAuth = useAppSelector(selectAuth);
+  const cardRef = useRef(null);
 
   const { userData } = useSelectAuth;
 
@@ -47,6 +48,9 @@ function PortPolioCard({
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("cardIndex", String(draggingIndex));
   };
+
+  // const { rectHeight, clientHeight } = useCalculateClientWidth(cardRef);
+  // console.log("카드", clientHeight);
 
   // 요소나 텍스트 블록을 적합한 드롭 대상 위로 위로갈떄
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -71,6 +75,7 @@ function PortPolioCard({
 
   return (
     <div
+      ref={cardRef}
       className={cx("container")}
       draggable
       onDragStart={(e) => handleDragStart(e, draggingIndex)}
