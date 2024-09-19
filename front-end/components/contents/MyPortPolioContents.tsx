@@ -48,12 +48,6 @@ function MyPortPolioContents() {
 
   const observerRef = useRef(null);
   const calculateRef = useRef(null);
-  const cardRef = useRef(null);
-
-  // const handleTestFunction = async () => {
-  //   console.log("데이터를 추가합니닷!");
-  //   await createPortPolio();
-  // };
 
   const handleDeleteModalOpen = () => {
     setIsDeleteModalOpen(true);

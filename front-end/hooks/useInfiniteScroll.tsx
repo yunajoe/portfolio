@@ -30,50 +30,42 @@ function useInfiniteScroll(
 
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      entries.forEach((entry: any) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         const isIntersecting = entry.isIntersecting;
-        if (isIntersecting) {
-          setIndex((prev) => {
-            console.log(
-              "prev",
-              prev,
-              infiniteData.length,
-              "디렉션",
-              scollDirection
-            );
-            // 데이터가
-            if (prev >= infiniteData.length) {
-              return prev;
-            }
+        console.log("옵저버가 보여영 =======> ", isIntersecting);
 
-            if (scollDirection === "down" || scollDirection === "") {
-              return prev + num;
-            }
-
-            if (scollDirection === "up") {
-              console.log("나는 스크롤업");
-              const oneRowCard = CardHeight + CardRowGap;
-              const lastScrollPoistion =
-                scrollpositionArr[scrollpositionArr.length - 1];
-              let diff = lastScrollPoistion - scrollPosition;
-              if (diff >= oneRowCard) {
-                let quotient = diff / oneRowCard; // 1
-                let deducedCardNums = Math.floor((quotient * num) / 4);
-                return prev - deducedCardNums;
+        // 스크롤다운이거나 처음일때!
+        if (scollDirection === "down" || scollDirection === "") {
+          console.log("arr111111111111", scrollpositionArr);
+          if (isIntersecting) {
+            setIndex((prev) => {
+              console.log("스크롤다운", prev);
+              if (prev >= infiniteData.length) {
+                return prev;
               }
-            }
+              return prev + num;
+            });
+          }
+        }
 
-            console.log("하이하이", scrollPosition, scollDirection);
-
-            return prev + num;
-          });
+        // 스크롤 업할때
+        if (scollDirection === "up") {
+          console.log("나는 스크롤업", scollDirection);
+          const oneRowCard = CardHeight + CardRowGap;
+          const lastScrollPoistion =
+            scrollpositionArr[scrollpositionArr.length - 1];
+          let diff = lastScrollPoistion - scrollPosition;
+          console.log("arr22222222222", scrollpositionArr);
+          if (diff >= oneRowCard) {
+            let quotient = diff / oneRowCard; // 1
+            let deducedCardNums = Math.floor((quotient * num) / 4);
+            setIndex((prev) => prev - deducedCardNums);
+          }
         }
       });
     },
-    [infiniteData, scrollPosition, scollDirection]
+    [infiniteData, scrollPosition]
   );
-
-  // console.log("데이터인덱스", index);
 
   useEffect(() => {
     if (data) {
@@ -84,29 +76,20 @@ function useInfiniteScroll(
   useEffect(() => {
     if (infiniteData) {
       if (scollDirection === "down" || scollDirection === "") {
-        console.log("나는데이터 자를 인덱스", index);
+        console.log("나는데이터 자를 인덱스, when 스크롤이즈 down", index);
         const subData = infiniteData.slice(0, index);
         setDividedData(subData);
         setScrollpositionArr((prev) => [...prev, scrollPosition]);
       }
       if (scollDirection === "up") {
-        console.log("iii");
-        // const oneRowCard = CardHeight + CardRowGap;
-        setScrollpositionArr((prev) => [...prev, scrollPosition]);
-        // const lastScrollPoistion =
-        //   scrollpositionArr[scrollpositionArr.length - 1];
-        // let diff = lastScrollPoistion - scrollPosition;
-        // if (diff >= oneRowCard) {
-        // let quotient = diff / oneRowCard; // 1
-        // let deducedCardNums = Math.floor((quotient * num) / 4);
-        // setIndex((prev) => prev - deducedCardNums);
+        console.log("나는데이터 자를 인덱스, when 스크롤이즈 up", index);
 
+        setScrollpositionArr((prev) => [...prev, scrollPosition]);
         const subData = infiniteData.slice(0, index);
         setDividedData(subData);
-        // }
       }
     }
-  }, [infiniteData, index, scollDirection, scrollPosition]);
+  }, [infiniteData, index]);
 
   const isClient = useClient();
 
@@ -121,9 +104,9 @@ function useInfiniteScroll(
       observer.observe(observerRef.current);
     }
 
-    return () => {
-      observer?.disconnect();
-    };
+    // return () => {
+    //   observer?.disconnect();
+    // };
   }, [observer]);
 
   return {

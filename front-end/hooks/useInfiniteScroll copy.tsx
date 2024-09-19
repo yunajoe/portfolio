@@ -76,6 +76,7 @@ function useInfiniteScroll(
           let quotient = diff / oneRowCard; // 1
           let deducedCardNums = Math.floor((quotient * num) / 4);
           setIndex((prev) => prev - deducedCardNums);
+          console.log();
 
           const subData = infiniteData.slice(0, index);
           setDividedData(subData);
