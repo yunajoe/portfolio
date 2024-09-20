@@ -101,14 +101,10 @@ function MyPortPolioContents() {
     updatePortPolioNameMessage
   );
 
-  // console.log("divided", dividedData);
-
   return (
     <>
       <div className={cx("grid_container")} ref={calculateRef}>
-        <CreatePortPolioCard />
-        {/* <button onClick={handleTestFunction}>데잉터추가버툰</button> */}
-        {/* portpolio_detail_arr. */}
+        <CreatePortPolioCard />      
         {dividedData.length > 0 &&
           dividedData.map((data, index) => {
             return (
@@ -160,12 +156,7 @@ function MyPortPolioContents() {
             );
           })}
       </div>
-      <div
-        ref={observerRef}
-        style={{ background: "green", marginTop: "100px" }}
-      >
-        나는야무ㄴㅇㄹㄴㄴㅇㄹㄴㄹㄴㅇㄹㅇㄹㄴㅇㄹ한스크롤영역
-      </div>
+      <div ref={observerRef}></div>
     </>
   );
 }
