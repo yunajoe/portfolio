@@ -24,6 +24,8 @@
 
 <img src="https://github.com/user-attachments/assets/dff81cbf-181b-4a5d-a09b-1b13ad036f38" alt="profile_change gif" style="width: 400px; height: auto;">
 
+<img src="https://github.com/user-attachments/assets/1fc34eac-142e-4231-acbf-0ebe5bd422ee" alt="infinite gif" style="width: 400px; height: auto;">
+
 # 프론트 배포주소
 
 https://portfolio-front-cdtfb34op-ddds-projects-1f96b341.vercel.app/ (프론트)
