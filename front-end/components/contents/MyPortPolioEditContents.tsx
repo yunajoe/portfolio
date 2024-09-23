@@ -22,7 +22,7 @@ import { getPortPolioId } from "@/utils/preprocessing";
 import { Box, Flex, Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import styles from "./MyPortPolioEditContents.module.scss";
 const cx = classNames.bind(styles);
 
@@ -35,7 +35,6 @@ function MyPortPolioEditContents({
   majorList,
   companyList,
 }: MyPortPolioEditContents) {
-  const [isCompletedButton, setIsCompletedButton] = useState(false);
   const usePortPolioSelector = useAppSelector(selectPortPolio);
   const useStatusSelector = useAppSelector(selectStatus);
   const useAuthSelector = useAppSelector(selectAuth);
@@ -157,7 +156,7 @@ function MyPortPolioEditContents({
         <div className={cx("portpolio_name_container")}>
           <PortPolioNameBox portpolioName={portpolioName} />
         </div>
-    
+
         <DescriptionBox title="간단소개글" description={intro} />
         <IntroduceBox introText={introText} />
         <DescriptionBox title="경력" description={career} />

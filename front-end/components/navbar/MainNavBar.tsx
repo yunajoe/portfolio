@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import Link from "next/link";
 import styles from "./MainNavBar.module.scss";
 
+import MultiLanguage from "@/components/language/MultiLanguage";
 import SearchIcon from "@/public/icons/SearchIcon";
 import dynamic from "next/dynamic";
 
@@ -40,9 +41,11 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
               My portfolio
             </Link>
           </ul>
+
           <div className={cx("second_navigation_section")}>
             <SearchIcon style={{ width: "20px" }} />
             <LOGINPROFILE isLogin={isLogin} userData={userData} />
+            <MultiLanguage />
           </div>
         </nav>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { t } from "@/components/language";
 import MainNavBar from "@/components/navbar/MainNavBar";
 import useClient from "@/hooks/useClient";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -43,7 +44,9 @@ export default function Home() {
       <Center bg="blue" h="100vh">
         <Stack justify="center" gap="30" w="300px">
           <Button variant="default" onClick={navigateToBoardPage}>
-            portpolio보러가기
+            {/* portpolio보러가기 */}
+
+            {t("home.menu_one")}
           </Button>
           {isClient && useAuthSelector.isLogin
             ? gotoMyPortPolio
