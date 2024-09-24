@@ -1,6 +1,6 @@
 "use client";
 
-import { t } from "@/components/language";
+import { useTranslation } from "@/components/language";
 import MainNavBar from "@/components/navbar/MainNavBar";
 import useClient from "@/hooks/useClient";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
@@ -26,6 +26,9 @@ export default function Home() {
     router.push("/board");
   };
 
+  const { t, language } = useTranslation();
+
+  console.log("나는야 현재 언어", language);
   const gotoMyPortPolio = (
     <Button variant="default" onClick={navigateToMyPortPolioPage}>
       나의 포트폴리오 보러가기
@@ -46,7 +49,7 @@ export default function Home() {
           <Button variant="default" onClick={navigateToBoardPage}>
             {/* portpolio보러가기 */}
 
-            {t("home.menu_one")}
+            {/* {t("home.menu_one")} */}
           </Button>
           {isClient && useAuthSelector.isLogin
             ? gotoMyPortPolio

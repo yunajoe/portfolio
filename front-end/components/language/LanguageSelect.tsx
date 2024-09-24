@@ -1,16 +1,14 @@
 "use client";
-import { setLanguage } from "@/components/language";
+import { useTranslation } from "@/components/language";
 import classNames from "classnames/bind";
 import styles from "./LanguageSelect.module.scss";
 const cx = classNames.bind(styles);
 
 function LanguageSelect() {
+  const { changeLanguage } = useTranslation();
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value);
+    changeLanguage(e.target.value);
   };
-
-  //   const currentLang = getLanguage();
-  //   console.log("ccc", currentLang);
 
   return (
     <select onChange={handleSelect}>
