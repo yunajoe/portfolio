@@ -7,7 +7,7 @@ import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
 import { Button, Center, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
-
+// netflix.com/search?q=지브리
 // 처음 웹에 들어왔을떄의 메인 화면
 // 자동 로그인 승인 여부 체크박스 만들기
 export default function Home() {
@@ -28,7 +28,6 @@ export default function Home() {
 
   const { t, language } = useTranslation();
 
-  console.log("나는야 현재 언어", language);
   const gotoMyPortPolio = (
     <Button variant="default" onClick={navigateToMyPortPolioPage}>
       나의 포트폴리오 보러가기
@@ -49,7 +48,7 @@ export default function Home() {
           <Button variant="default" onClick={navigateToBoardPage}>
             {/* portpolio보러가기 */}
 
-            {/* {t("home.menu_one")} */}
+            {isClient ? t("home.menu_one") : null}
           </Button>
           {isClient && useAuthSelector.isLogin
             ? gotoMyPortPolio

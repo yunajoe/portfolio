@@ -1,36 +1,40 @@
-// https://github.com/JWebCoder/react-multi-lang/blob/master/src/index.tsx
-
+import useClient from "@/hooks/useClient";
+import { promises as fs } from "fs";
 import { useEffect, useState } from "react";
+// https://vercel.com/guides/loading-static-file-nextjs-api-route
 
-// https://wavelop.com/en/story/implementing-multi-language-without-any-library-in-react-hooks/
-interface Translation {
-  [key: string]: string;
-}
+let language: string = "ko";
+const subscribers: Function[] = [];
 
-let language: string = "ko"; // default language
-
-let translationObj: Translation = {
-  ko: "",
-  en: "",
+//
+const triggerSubscription = () => {
+  subscribers.forEach((callback) => {
+    callback();
+  });
 };
-
-export const t = (path: string) => {
+export const t = async (path: string) => {
   const keys = path.split(".");
-  if (translationObj[language]) {
-    let targetLanguageObj = translationObj[language];
-    keys.forEach((key: string) => {
-      console.log("현재  키 스트링", key);
-    });
-  }
+  //  process.cwd()
+
+  const file = await fs.readFile(process.cwd() + "/");
+  console.log("files", file);
+
+  // const file = await import(`@/translation/${lang}.json`);
 
   return keys;
 };
 
+// 선택된 language를 return하는 함수
 export const getLanguage = (): string => {
   return language;
 };
+
+// language를 선택하는 함슈
 export const setLanguage = (lang: string) => {
-  language = lang;
+  if (language !== lang) {
+    language = lang;
+    triggerSubscription();
+  }
 };
 
 const useForceUpdate = (): [boolean, () => void] => {
@@ -38,18 +42,22 @@ const useForceUpdate = (): [boolean, () => void] => {
   const forceUpdate = () => setState((prev) => !prev);
   return [state, forceUpdate];
 };
-
 export function useTranslation() {
   const [state, forceUpdate] = useForceUpdate();
-  console.log("sate", state);
+  const isClient = useClient();
 
-  const changeLanguage = (newLang: string) => {
-    if (newLang !== language) {
-      setLanguage(newLang);
-    }
-  };
   useEffect(() => {
-    forceUpdate();
+    subscribers.push(forceUpdate);
+
+    // return () => {
+    //   console.log("나는 클린업함슈");
+    //   const index = subscribers.indexOf(subscriber);
+    //   console.log("인덳쓔", index);
+    // };
   }, []);
-  return { t, changeLanguage, language };
+
+  return {
+    t,
+    language,
+  };
 }
