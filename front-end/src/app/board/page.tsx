@@ -5,7 +5,6 @@ import { Suspense } from "react";
 
 async function getDefaultPortPolios() {
   const result = await getDefaultPortPolioList();
-
   return result.data;
 }
 

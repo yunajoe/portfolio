@@ -1,6 +1,9 @@
 {
   "home": {
-    "menu_one": "portfolio보 보러가기",
-    "menu_two": "나의 포트폴리오 보러가기"
+    "login": {
+      "menu_one": "나의 포트폴리오 보러가기"
+    },
+    "menu_one": "포트폴리오 보러가기",
+    "menu_two": "포트폴리오 만들러가기"
   }
 }

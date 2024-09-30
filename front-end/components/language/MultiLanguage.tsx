@@ -1,4 +1,3 @@
-import { getLanguage } from "@/components/language";
 import LanguageSelect from "@/components/language/LanguageSelect";
 import WorldIcon from "@/public/icons/WorldIcon";
 import classNames from "classnames/bind";
@@ -9,7 +8,6 @@ function MultiLanguage() {
     <div className={cx("container")}>
       <WorldIcon />
       <LanguageSelect />
-      <div>{getLanguage()}</div>
     </div>
   );
 }

@@ -1,10 +1,8 @@
-"use client";
-import { setLanguage } from "@/components/language";
-import classNames from "classnames/bind";
-import styles from "./LanguageSelect.module.scss";
-const cx = classNames.bind(styles);
+import { TransLationContext } from "@/context/TransLationContext";
+import { useContext } from "react";
 
 function LanguageSelect() {
+  const { setLanguage } = useContext(TransLationContext);
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
   };

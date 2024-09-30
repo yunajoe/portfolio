@@ -1,5 +1,4 @@
 // TODO: context로 뺴는 것을 나중에 훅으로 만들기(type들이 다 중복이댜)
-import { useDisclosure } from "@mantine/hooks";
 import { createContext, useState } from "react";
 
 // test context

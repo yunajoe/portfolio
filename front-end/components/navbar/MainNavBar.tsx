@@ -45,9 +45,11 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
           <div className={cx("second_navigation_section")}>
             <SearchIcon style={{ width: "20px" }} />
             <LOGINPROFILE isLogin={isLogin} userData={userData} />
-            <MultiLanguage />
           </div>
         </nav>
+      </div>
+      <div className={cx("multi_language")}>
+        <MultiLanguage />
       </div>
     </div>
   );

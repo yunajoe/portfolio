@@ -1,6 +1,9 @@
 {
   "home": {
+    "login": {
+      "menu_one": "GO TO MY PORTFOLIO"
+    },
     "menu_one": "GO TO OTHER PEOPLE'S PORTFOLIO",
-    "menu_two": "GO TO My PORTFOLIO"
+    "menu_two": "GO TO CREATE PORTFOLIO"
   }
 }

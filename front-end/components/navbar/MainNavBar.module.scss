@@ -72,11 +72,25 @@
 
 .second_navigation_section {
   display: flex;
-  column-gap: 15px;
+  column-gap: 1px;
   align-items: center;
+  margin-right: 30px;
 }
 
 .link {
   text-decoration: none;
   color: #000000;
+}
+
+.multi_language {
+  position: absolute;
+  transform: translate(-30%, -50%);
+  top: 50%;
+  right: 0;
+  @include mobile {
+    visibility: hidden;
+  }
+  @include laptop {
+    visibility: hidden;
+  }
 }

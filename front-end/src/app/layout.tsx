@@ -1,4 +1,3 @@
-// https://mantine.dev/styles/responsive/
 import { getUserInfoByRefreshToken } from "@/api/user";
 import AutoLoginProvider from "@/components/provider/AutoLoginProvider";
 import { notoSansKrMedium } from "@/public/fonts/notoSansKr";
