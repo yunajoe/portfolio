@@ -10,8 +10,6 @@ import { Button, Center, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-// 처음 웹에 들어왔을떄의 메인 화면
-// 자동 로그인 승인 여부 체크박스 만들기
 export default function HomeContent() {
   const router = useRouter();
   const useAuthSelector = useAppSelector(selectAuth);
