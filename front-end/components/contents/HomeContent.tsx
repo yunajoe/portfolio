@@ -27,7 +27,6 @@ export default function HomeContent() {
   };
 
   const { language, setLanguage } = useContext(TransLationContext);
-  console.log("language", language);
 
   const gotoMyPortPolio = (
     <Button variant="default" onClick={navigateToMyPortPolioPage}>
