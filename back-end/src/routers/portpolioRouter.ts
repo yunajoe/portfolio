@@ -53,6 +53,7 @@ portpolioRouter.get("/createPortPolio", async (req: Request, res: Response) => {
         createdAt: new Date(),
         updatedAt: new Date(),
         defaultResume: false,
+        bookmark: false,
       };
       const result = await getPortPolioList(targetUser._id);
       const obj = result[result.length - 1];
