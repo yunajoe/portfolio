@@ -104,7 +104,7 @@ function MyPortPolioContents() {
   return (
     <>
       <div className={cx("grid_container")} ref={calculateRef}>
-        <CreatePortPolioCard />      
+        <CreatePortPolioCard />
         {dividedData.length > 0 &&
           dividedData.map((data, index) => {
             return (

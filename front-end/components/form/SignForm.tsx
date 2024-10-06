@@ -2,7 +2,6 @@
 
 import LoginFormNavigationButton from "@/components/button/LoginFormNavigationButton";
 import LoginError from "@/components/error/LoginError";
-import CheckBoxInput from "@/components/input/CheckBoxInput";
 import useCustomForm from "@/hooks/useCustomForm";
 import { authReset } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
@@ -136,7 +135,7 @@ const SignForm = memo(function SignForm({
         )}
         {type === "login" && (
           <>
-            <CheckBoxInput />
+            {/* <CheckBoxInput /> */}
             <LoginError />
           </>
         )}

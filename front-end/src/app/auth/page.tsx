@@ -31,11 +31,7 @@ function Page() {
     passTheCodeToServer();
   }, [useAuthSelector.isLogin]);
 
-  return (
-    <div>
-      <Loading />
-    </div>
-  );
+  return <Loading />;
 }
 
 export default Page;

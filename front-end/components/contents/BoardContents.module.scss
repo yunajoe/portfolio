@@ -22,9 +22,21 @@
   }
 }
 
+.item_container {
+  position: relative;
+}
+
 .item {
   border: 5px solid #228be6;
   height: 150px;
   text-align: center;
   cursor: pointer;
+}
+
+.bookmark {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
 }
