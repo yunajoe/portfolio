@@ -32,7 +32,6 @@ function useInfiniteScroll(
       setInfiniteData(data);
     }
   }, [data]);
-  console.log("infin", infiniteData);
 
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -85,7 +84,7 @@ function useInfiniteScroll(
         setDividedData(subData);
       }
     }
-  }, [index, infiniteData.length]);
+  }, [index, infiniteData]);
 
   const isClient = useClient();
 

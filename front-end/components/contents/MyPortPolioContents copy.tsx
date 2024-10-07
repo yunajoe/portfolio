@@ -68,14 +68,22 @@ function MyPortPolioContents() {
     handleDeleteModalOpen();
     setIsEditAndDeleteDropDown(false);
   };
+  // const { newDataList, handleUpdateDataList } =
+  //   useDragAndDrop(portpolio_detail_arr);
 
-  const { dividedData } = useInfiniteScroll(
-    observerRef,
-    portpolio_detail_arr,
-    19
-  );
-  const { newDataList, handleUpdateDataList } = useDragAndDrop(dividedData);
+  // const { dividedData } = useInfiniteScroll(observerRef, newDataList, 19);
 
+  // const { dividedData } = useInfiniteScroll(
+  //   observerRef,
+  //   portpolio_detail_arr,
+  //   19
+  // );
+  const { newDataList, handleUpdateDataList } =
+    useDragAndDrop(portpolio_detail_arr);
+  console.log("portpolio", portpolio_detail_arr);
+  console.log("newDataList", newDataList);
+  const { dividedData } = useInfiniteScroll(observerRef, newDataList, 19);
+  console.log("dividedData", dividedData);
   useEffect(() => {
     if (userData._id) {
       dispatch({
