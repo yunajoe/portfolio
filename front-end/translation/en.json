@@ -1,4 +1,9 @@
 {
+  "main_navigation": {
+    "menu_one": "Home",
+    "menu_two": "People's portfolio",
+    "menu_three": "My portfolio"
+  },
   "home": {
     "login": {
       "menu_one": "GO TO MY PORTFOLIO"

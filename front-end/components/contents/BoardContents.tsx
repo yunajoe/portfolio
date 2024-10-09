@@ -13,7 +13,6 @@ type DefaultPortPolioProps = {
 };
 
 function BoardContents({ data }: DefaultPortPolioProps) {
-  console.log("data", data);
   const router = useRouter();
 
   const handleClick = (portpolioId: string) => {

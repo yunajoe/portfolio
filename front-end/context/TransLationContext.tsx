@@ -1,4 +1,5 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+"use client";
+import { createContext, useMemo, useState } from "react";
 type TransLationContext = {
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
@@ -21,10 +22,6 @@ export const TransLationProvider = ({ children }: TransLationProviderTypes) => {
     }),
     [language]
   );
-
-  useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
 
   return (
     <TransLationContext.Provider value={value}>

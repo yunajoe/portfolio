@@ -12,7 +12,9 @@ export const t = (path: string, lang: string) => {
         jsonData = require(`@/translation/ko.json`);
     }
     const keys = path.split(".");
+
     return keys.reduce((acc, key) => {
+      console.log("jsonData", jsonData);
       return acc[key];
     }, jsonData);
   } catch (err) {

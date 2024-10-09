@@ -1,4 +1,9 @@
 {
+  "main_navigation": {
+    "menu_one": "홈",
+    "menu_two": "포트폴리오 보러가기",
+    "menu_three": "나의 포트폴리오"
+  },
   "home": {
     "login": {
       "menu_one": "나의 포트폴리오 보러가기"

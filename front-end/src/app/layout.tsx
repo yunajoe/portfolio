@@ -1,5 +1,6 @@
 import { getUserInfoByRefreshToken } from "@/api/user";
 import AutoLoginProvider from "@/components/provider/AutoLoginProvider";
+import { TransLationProvider } from "@/context/TransLationContext";
 import { notoSansKrMedium } from "@/public/fonts/notoSansKr";
 import StoreProvider from "@/src/app/StoreProvider";
 import "@/styles/global.scss";
@@ -29,7 +30,9 @@ export default async function RootLayout({
       <body>
         <StoreProvider>
           <MantineProvider>
-            <AutoLoginProvider user={user?.data}>{children}</AutoLoginProvider>
+            <AutoLoginProvider user={user?.data}>
+              <TransLationProvider>{children}</TransLationProvider>
+            </AutoLoginProvider>
           </MantineProvider>
         </StoreProvider>
       </body>
