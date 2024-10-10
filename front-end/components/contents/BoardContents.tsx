@@ -1,5 +1,7 @@
 "use client";
-import BookmarkIcon from "@/public/icons/BookmarkIcon";
+import FriendIcon from "@/public/icons/FriendIcon";
+import MessageIcon from "@/public/icons/MessageIcon";
+import { useAppDispatch } from "@/src/app/lib/hooks";
 import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
@@ -15,13 +17,20 @@ type DefaultPortPolioProps = {
 function BoardContents({ data }: DefaultPortPolioProps) {
   const router = useRouter();
 
+  const dispatch = useAppDispatch();
+
   const handleClick = (portpolioId: string) => {
     router.push(`/board/${portpolioId}`);
   };
 
-  const handleBookMark = () => {
-    console.log("북마크를 합니당");
-  };
+  // const handleBookMark = (portfoliodId: string) => {
+  //   console.log("북마크를 합니당", portfoliodId);
+
+  //   dispatch({
+  //     type: "UPDATE_BOOK_MARK_REQUEST",
+  //     portfolio_id: portfoliodId,
+  //   });
+  // };
   useEffect(() => {
     router.refresh();
   }, []);
@@ -39,13 +48,21 @@ function BoardContents({ data }: DefaultPortPolioProps) {
             >
               {item.portpolio_name}
             </div>
-            <div
+            <div role="button" className={cx("friend_message_container")}>
+              <div role="button" className={cx("friend")}>
+                <FriendIcon />
+              </div>
+              <div role="button" className={cx("message")}>
+                <MessageIcon />
+              </div>
+            </div>
+            {/* <div
               className={cx("bookmark")}
               role="button"
-              onClick={handleBookMark}
+              onClick={() => handleBookMark(item.portpolioId)}
             >
               <BookmarkIcon fill={false} />
-            </div>
+            </div> */}
           </div>
         );
       })}

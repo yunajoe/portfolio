@@ -49,9 +49,6 @@ function PortPolioCard({
     e.dataTransfer.setData("cardIndex", String(draggingIndex));
   };
 
-  // const { rectHeight, clientHeight } = useCalculateClientWidth(cardRef);
-  // console.log("카드", clientHeight);
-
   // 요소나 텍스트 블록을 적합한 드롭 대상 위로 위로갈떄
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();

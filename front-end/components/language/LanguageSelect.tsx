@@ -7,8 +7,6 @@ function LanguageSelect() {
     setLanguage(e.target.value);
   };
 
-  console.log("나는 랭귀지 셀레뚜", language);
-
   return (
     <select onChange={handleSelect} defaultValue={language}>
       <option value="ko">한국어</option>

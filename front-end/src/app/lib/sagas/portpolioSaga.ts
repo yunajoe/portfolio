@@ -135,6 +135,11 @@ function* updatePortPolioIdsSaga(action: UpdatePortPolioIdsSaga): any {
   } catch (error: any) {}
 }
 
+// function* updateBookMarkSaga(action: UpdatePortFolioBookMark): any {
+//   try {
+//     const data = yield call(updatePortFolioBookMark, action);
+//   } catch (error: any) {}
+// }
 export function* portPolioSaga() {
   yield takeEvery(
     "GET_PORT_POLIO_DETAIL_LIST_REQUEST",
@@ -152,4 +157,5 @@ export function* portPolioSaga() {
   );
   yield takeEvery("UPDATE_PORT_POLIO_NAME_REQUEST", updatePortPolioNameSaga);
   yield takeEvery("UPDATE_PORT_POLIO_IDS_REQUEST", updatePortPolioIdsSaga);
+  // yield takeEvery("UPDATE_BOOK_MARK_REQUEST", updateBookMarkSaga);
 }

@@ -33,6 +33,10 @@ type UpdatePortPolioIds = {
   users_table_id: string;
   portpolio_ids: string[];
 };
+type UpdatePortFolioBookMark = {
+  type: string;
+  portfolio_id: string;
+};
 
 type DeletePortPolio = {
   type: string;
@@ -69,15 +73,6 @@ export const getPortPolioDetailList = async (data: GetPortPolioDetailList) => {
   });
   return response;
 };
-
-// export const getPortPolioDetailList = async (users_table_id: string) => {
-//   const response = await instance.get("portpolio/detail/list", {
-//     params: {
-//       users_table_id: users_table_id,
-//     },
-//   });
-//   return response;
-// };
 
 // Detail 포폴
 export const getDetailPortPolio = async (portpolio_id: string) => {
@@ -154,3 +149,15 @@ export const getUserDefaultPortPolio = async (_id: string) => {
   });
   return response;
 };
+
+// export const updatePortFolioBookMark = async (
+//   data: UpdatePortFolioBookMark
+// ) => {
+//   const { portfolio_id } = data;
+//   const response = await instance.post("portfolio/changeBookMark", {
+//     data: {
+//       portfolio_id,
+//     },
+//   });
+//   return response;
+// };

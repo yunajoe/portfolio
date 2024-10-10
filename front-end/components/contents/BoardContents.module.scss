@@ -33,10 +33,28 @@
   cursor: pointer;
 }
 
-.bookmark {
-  cursor: pointer;
+.friend_message_container {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 10;
+  display: flex;
+  column-gap: 10px;
+  padding: 5px;
 }
+
+.friend {
+  cursor: pointer;
+  z-index: 10;
+}
+.message {
+  cursor: pointer;
+  z-index: 10;
+}
+// .bookmark {
+//   cursor: pointer;
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   z-index: 10;
+// }

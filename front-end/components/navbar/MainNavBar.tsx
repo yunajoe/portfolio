@@ -47,6 +47,9 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
             <Link className={cx("link")} href="/myportpolio">
               {isClient ? t("main_navigation.menu_three", language) : null}
             </Link>
+            <Link className={cx("link")} href="/jobs">
+              개발자채용
+            </Link>
           </ul>
 
           <div className={cx("second_navigation_section")}>

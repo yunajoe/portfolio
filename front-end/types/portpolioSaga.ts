@@ -43,6 +43,10 @@ export type UpdatePortPolioIdsSaga = {
   users_table_id: string;
   portpolio_ids: string[];
 };
+export type UpdatePortFolioBookMark = {
+  type: string;
+  portfolio_id: string;
+};
 export type SavePortPolioSaga = {
   type: string;
   portpolioId: string;
