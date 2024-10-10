@@ -309,4 +309,12 @@ portpolioRouter.get(
   }
 );
 
+//  porpotfolioID를 인자로 bookmark하기
+// portpolioRouter.post(
+//   "/portfolio/changeBookMark",
+//   async (req: Request, res: Response) => {
+//     const { portfolio_id } = req.body.data;
+//     console.log("reqest", portfolio_id);
+//   }
+// );
 module.exports = portpolioRouter;
