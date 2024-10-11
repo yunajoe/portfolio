@@ -18,10 +18,4 @@
   }
 }
 
-@mixin colors {
-  background-color: red;
-}
 
-@mixin test($color) {
-  color: $color;
-}
