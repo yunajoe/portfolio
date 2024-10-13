@@ -1,19 +1,23 @@
+import useClient from "@/hooks/useClient";
+import useThrottle from "@/hooks/useThrottle";
 import { useEffect } from "react";
 
 function useEventListener(
   eventName: string,
   handler: () => void,
-  element = window
+  element = typeof window !== "undefined" ? window : null
 ) {
+  const isClient = useClient();
+  const throttle = useThrottle();
+
   useEffect(() => {
-    console.log("안냐세여 저는 useEFfect입니다");
+    if (!isClient || !element) return;
 
     element.addEventListener(eventName, handler);
     return () => {
-      console.log("클린업함슈");
       element.addEventListener(eventName, handler);
     };
-  }, []);
+  }, [isClient, eventName]);
 
   return null;
 }

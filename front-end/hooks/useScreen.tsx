@@ -1,13 +1,8 @@
 import useClient from "@/hooks/useClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function useScreen() {
-  let initVale = false;
   const isClient = useClient();
-
-  if (isClient) {
-    initVale = true;
-  }
 
   const readScreenSize = () => {
     if (!isClient) {
@@ -16,14 +11,27 @@ function useScreen() {
     return window.innerWidth;
   };
 
-  const [state, setState] = useState(() => {
-    if (initVale) {
-      return readScreenSize();
-    }
-    return undefined;
-  });
+  const [screenSize, setScreenSize] = useState(() => {
+    return isClient ? readScreenSize() : undefined;
+  });  
 
-  return <div></div>;
+  const handleSize = () => {
+    const newSize = readScreenSize();
+
+    if (newSize) {
+      setScreenSize(newSize);
+      return newSize;
+    }
+  };
+
+  useEffect(() => {
+    setScreenSize(readScreenSize());
+  }, [isClient]);
+
+  return {
+    screenSize,
+    handleSize,
+  };
 }
 
 export default useScreen;

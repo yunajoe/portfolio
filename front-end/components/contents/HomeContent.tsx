@@ -5,9 +5,11 @@ import { t } from "@/components/language";
 import MainNavBar from "@/components/navbar/MainNavBar";
 import { TransLationContext } from "@/context/TransLationContext";
 import useClient from "@/hooks/useClient";
+import useEventListener from "@/hooks/useEventListener";
+import useScreen from "@/hooks/useScreen";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppSelector } from "@/src/app/lib/hooks";
-import { responsive } from "@/utils/carousel";
+import { environemnt } from "@/utils/carousel";
 import { Button, Stack } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
@@ -78,7 +80,10 @@ export default function HomeContent() {
   const useAuthSelector = useAppSelector(selectAuth);
   const isClient = useClient();
   const [currentIndex, setCurrentIndex] = useState(0);
-  // useEventListener("click", () => console.log("하이"));
+
+  const { screenSize, handleSize } = useScreen();
+  console.log("scrrenSIze", screenSize);
+  useEventListener("resize", handleSize);
 
   const navigateToMyPortPolioPage = () => {
     router.push("/myportpolio");
@@ -91,6 +96,7 @@ export default function HomeContent() {
   const navigateToBoardPage = () => {
     router.push("/board");
   };
+  // console.log("ScrrenSize", screenSize);
 
   const { language, setLanguage } = useContext(TransLationContext);
   const handleNext = () => {
@@ -123,10 +129,11 @@ export default function HomeContent() {
               handlePrev={handlePrev}
               handleNext={handleNext}
             ></Carousel.Header>
+
             <Carousel.Slide
-              responsive={responsive}
               data={cards}
               currentIndex={currentIndex}
+              environemnt={screenSize && environemnt(screenSize)}
             ></Carousel.Slide>
           </Carousel>
           <Stack justify="center" w="300px">
@@ -139,7 +146,6 @@ export default function HomeContent() {
           </Stack>
         </div>
       </div>
-      {/* </Center> */}
     </>
   );
 }
