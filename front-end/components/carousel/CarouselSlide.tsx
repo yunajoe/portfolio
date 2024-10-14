@@ -1,5 +1,5 @@
 import { Responsive } from "@/types/carousel";
-import { responsive } from "@/utils/carousel";
+import { cardSize, responsive } from "@/utils/carousel";
 import classNames from "classnames/bind";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -17,9 +17,8 @@ function CarouselSlide({
   currentIndex,
   environemnt,
 }: CarouselSlideProps) {
-  console.log("environemnt", environemnt);
   const [slideData, setSlideData] = useState(
-    data.slice(currentIndex, currentIndex + 5)
+    data.slice(currentIndex, currentIndex + responsive[environemnt].items)
   );
   const [itemCount, setItemCount] = useState(() => {
     if (environemnt) {
@@ -29,16 +28,18 @@ function CarouselSlide({
   });
 
   useEffect(() => {
-    if (currentIndex >= data.length - 5 + 1) {
-      const newData = [
-        ...data.slice(currentIndex, data.length),
-        ...data.slice(0, 5 - (data.length - currentIndex)),
-      ];
-      setSlideData(newData);
-    } else {
-      setSlideData(data.slice(currentIndex, currentIndex + 5));
+    if (itemCount) {
+      if (currentIndex >= data.length - itemCount + 1) {
+        const newData = [
+          ...data.slice(currentIndex, data.length),
+          ...data.slice(0, itemCount - (data.length - currentIndex)),
+        ];
+        setSlideData(newData);
+      } else {
+        setSlideData(data.slice(currentIndex, currentIndex + itemCount));
+      }
     }
-  }, [currentIndex]);
+  }, [currentIndex, itemCount]);
 
   useEffect(() => {
     if (environemnt) {
@@ -49,7 +50,12 @@ function CarouselSlide({
     <div className={cx("carousel_slide")}>
       {slideData.map((card, index) => (
         <div key={index}>
-          <Image src={card.image} alt="" width={300} height={300} />
+          <Image
+            src={card.image}
+            alt="image"
+            width={cardSize(environemnt)}
+            height={300}
+          />
           <div>{card.title}</div>
         </div>
       ))}

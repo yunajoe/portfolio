@@ -2,7 +2,6 @@
 
 import Carousel from "@/components/carousel/Carousel";
 import { t } from "@/components/language";
-import MainNavBar from "@/components/navbar/MainNavBar";
 import { TransLationContext } from "@/context/TransLationContext";
 import useClient from "@/hooks/useClient";
 import useEventListener from "@/hooks/useEventListener";
@@ -95,7 +94,6 @@ export default function HomeContent() {
   const navigateToBoardPage = () => {
     router.push("/board");
   };
-  // console.log("ScrrenSize", screenSize);
 
   const { language } = useContext(TransLationContext);
   const handleNext = () => {
@@ -119,31 +117,28 @@ export default function HomeContent() {
   );
 
   return (
-    <>
-      <MainNavBar />
-      <div className={cx("wrapper")}>
-        <div className={cx("container")}>
-          <Carousel>
-            <Carousel.Header
-              handlePrev={handlePrev}
-              handleNext={handleNext}
-            ></Carousel.Header>
-            <Carousel.Slide
-              data={cards}
-              currentIndex={currentIndex}
-              environemnt={environemnt(screenSize)}
-            ></Carousel.Slide>
-          </Carousel>
-          <Stack justify="center" w="300px">
-            <Button variant="default" onClick={navigateToBoardPage}>
-              {isClient ? t("home.menu_one", language) : null}
-            </Button>
-            {isClient && useAuthSelector.isLogin
-              ? gotoMyPortPolio
-              : gotoCreatePortPolio}
-          </Stack>
-        </div>
+    <div className={cx("wrapper")}>
+      <div className={cx("container")}>
+        <Carousel>
+          <Carousel.Header
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          ></Carousel.Header>
+          <Carousel.Slide
+            data={cards}
+            currentIndex={currentIndex}
+            environemnt={environemnt(screenSize)}
+          ></Carousel.Slide>
+        </Carousel>
+        <Stack justify="center" w="300px">
+          <Button variant="default" onClick={navigateToBoardPage}>
+            {isClient ? t("home.menu_one", language) : null}
+          </Button>
+          {isClient && useAuthSelector.isLogin
+            ? gotoMyPortPolio
+            : gotoCreatePortPolio}
+        </Stack>
       </div>
-    </>
+    </div>
   );
 }

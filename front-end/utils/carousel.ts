@@ -2,12 +2,12 @@ import { Responsive } from "@/types/carousel";
 
 export const responsive: Responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1300 },
+    breakpoint: { max: 3000, min: 1400 },
     items: 5,
     slidesToSlide: 1,
   },
   laptop: {
-    breakpoint: { max: 1299, min: 1024 },
+    breakpoint: { max: 1399, min: 1024 },
     items: 4,
     slidesToSlide: 1,
   },
@@ -25,9 +25,9 @@ export const responsive: Responsive = {
 
 export const environemnt = (size: number | undefined) => {
   if (size) {
-    if (size >= 1300 && size <= 3000) {
+    if (size >= 1400 && size <= 3000) {
       return "desktop";
-    } else if (size >= 1024 && size <= 1299) {
+    } else if (size >= 1024 && size <= 1399) {
       return "laptop";
     } else if (size >= 768 && size <= 1023) {
       return "tablet";
@@ -37,4 +37,20 @@ export const environemnt = (size: number | undefined) => {
   }
   // size가 undefined일때 그냥 desktop으로 해놈 흠
   return "desktop";
+};
+type Environment = "desktop" | "laptop" | "tablet" | "mobile";
+
+export const cardSize = (environment: Environment) => {
+  switch (environment) {
+    case "desktop":
+      return 300;
+    case "laptop":
+      return 240;
+    case "tablet":
+      return 180;
+    case "mobile":
+      return 120;
+    default:
+      return 300;
+  }
 };
