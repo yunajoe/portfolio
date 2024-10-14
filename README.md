@@ -1,4 +1,4 @@
-# PORTFOLIE 프로젝트
+# PORTFOLIO 프로젝트
 
 - 나의 포트폴리오를 만들고, 나와 다른 사람들의 포트폴리오를 공유하는 사이트
 
@@ -20,6 +20,7 @@
 - 포트폴리오 CRUD(포트폴리오 만들기, 편집, 수정, 삭제)
 - 드래그 앤 드랍
 - 무한스크롤(스크롤을 up할 때는, 데이터가 줄어들음)
+- 캐러셀(반응형)
 
 <img src="https://github.com/user-attachments/assets/f1b361d2-0680-42c3-b5b3-2b296c3925d5" alt="kakao gif" style="width: 400px; height: auto;">
 
