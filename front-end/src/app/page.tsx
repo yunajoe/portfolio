@@ -3,7 +3,7 @@ import MainNavBar from "@/components/navbar/MainNavBar";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "red" }}>
+    <div>
       <MainNavBar />
       <HomeContent />
     </div>

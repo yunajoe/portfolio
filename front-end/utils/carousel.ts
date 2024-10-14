@@ -47,9 +47,9 @@ export const cardSize = (environment: Environment) => {
     case "laptop":
       return 240;
     case "tablet":
-      return 180;
+      return 200;
     case "mobile":
-      return 120;
+      return 200;
     default:
       return 300;
   }
