@@ -18,8 +18,6 @@ function useEventListener(
       element.addEventListener(eventName, handler);
     };
   }, [isClient, eventName]);
-
-  return null;
 }
 
 export default useEventListener;

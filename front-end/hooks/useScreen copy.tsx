@@ -5,25 +5,30 @@ function useScreen() {
   const isClient = useClient();
 
   const readScreenSize = () => {
-    if (isClient) {
-      return window.innerWidth;
+    if (!isClient) {
+      return undefined;
     }
-    return undefined;
+    return window.innerWidth;
   };
 
-  const [screenSize, setScreenSize] = useState(readScreenSize);
+  const [screenSize, setScreenSize] = useState(() => {
+    return isClient ? readScreenSize() : undefined;
+  });
 
   const handleSize = () => {
     const newSize = readScreenSize();
+
     if (newSize) {
       setScreenSize(newSize);
+      return newSize;
     }
   };
 
   useEffect(() => {
-    handleSize();
+    setScreenSize(readScreenSize());
   }, [isClient]);
 
+  console.log("ScreenSize", screenSize);
   return {
     screenSize,
     handleSize,

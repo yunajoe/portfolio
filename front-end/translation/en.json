@@ -2,7 +2,8 @@
   "main_navigation": {
     "menu_one": "Home",
     "menu_two": "People's portfolio",
-    "menu_three": "My portfolio"
+    "menu_three": "My portfolio",
+    "menu_four": "Job List"
   },
   "home": {
     "login": {

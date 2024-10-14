@@ -38,7 +38,6 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
         <nav className={cx("navigation")}>
           <ul className={cx("first_navigation_section")}>
             <Link className={cx("link")} href="/">
-              {/* Home */}
               {isClient ? t("main_navigation.menu_one", language) : null}
             </Link>
             <Link className={cx("link")} href="/board">
@@ -48,7 +47,7 @@ function MainNavBar({ edit = false }: MainNavBarProps) {
               {isClient ? t("main_navigation.menu_three", language) : null}
             </Link>
             <Link className={cx("link")} href="/jobs">
-              개발자채용
+              {isClient ? t("main_navigation.menu_four", language) : null}
             </Link>
           </ul>
 

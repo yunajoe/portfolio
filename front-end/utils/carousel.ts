@@ -35,4 +35,6 @@ export const environemnt = (size: number | undefined) => {
       return "mobile";
     }
   }
+  // size가 undefined일때 그냥 desktop으로 해놈 흠
+  return "desktop";
 };

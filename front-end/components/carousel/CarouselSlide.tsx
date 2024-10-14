@@ -17,6 +17,7 @@ function CarouselSlide({
   currentIndex,
   environemnt,
 }: CarouselSlideProps) {
+  console.log("environemnt", environemnt);
   const [slideData, setSlideData] = useState(
     data.slice(currentIndex, currentIndex + 5)
   );
@@ -26,9 +27,6 @@ function CarouselSlide({
     }
     return undefined;
   });
-
-  console.log("environment", environemnt);
-  console.log("itemCount", itemCount);
 
   useEffect(() => {
     if (currentIndex >= data.length - 5 + 1) {
@@ -41,20 +39,6 @@ function CarouselSlide({
       setSlideData(data.slice(currentIndex, currentIndex + 5));
     }
   }, [currentIndex]);
-
-  // useEffect(() => {
-  //   if (itemCount) {
-  //     if (currentIndex >= data.length - itemCount + 1) {
-  //       const newData = [
-  //         ...data.slice(currentIndex, data.length),
-  //         ...data.slice(0, -(data.length - currentIndex)),
-  //       ];
-  //       setSlideData(newData);
-  //     } else {
-  //       setSlideData(data.slice(currentIndex, currentIndex + itemCount));
-  //     }
-  //   }
-  // }, [currentIndex, environemnt]);
 
   useEffect(() => {
     if (environemnt) {

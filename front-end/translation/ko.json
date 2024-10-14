@@ -2,7 +2,8 @@
   "main_navigation": {
     "menu_one": "홈",
     "menu_two": "포트폴리오 보러가기",
-    "menu_three": "나의 포트폴리오"
+    "menu_three": "나의 포트폴리오",
+    "menu_four": "개발자채용"
   },
   "home": {
     "login": {

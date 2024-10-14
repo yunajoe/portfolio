@@ -82,7 +82,6 @@ export default function HomeContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { screenSize, handleSize } = useScreen();
-  console.log("scrrenSIze", screenSize);
   useEventListener("resize", handleSize);
 
   const navigateToMyPortPolioPage = () => {
@@ -98,7 +97,7 @@ export default function HomeContent() {
   };
   // console.log("ScrrenSize", screenSize);
 
-  const { language, setLanguage } = useContext(TransLationContext);
+  const { language } = useContext(TransLationContext);
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % cards.length);
   };
@@ -129,11 +128,10 @@ export default function HomeContent() {
               handlePrev={handlePrev}
               handleNext={handleNext}
             ></Carousel.Header>
-
             <Carousel.Slide
               data={cards}
               currentIndex={currentIndex}
-              environemnt={screenSize && environemnt(screenSize)}
+              environemnt={environemnt(screenSize)}
             ></Carousel.Slide>
           </Carousel>
           <Stack justify="center" w="300px">
