@@ -4,22 +4,32 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type UserInfoState = {
   data: {
-    id: string;
-    user_table_id: string;
-    username: string;
+    accessToken: string;
     email: string;
-    type: string;
+    id: number | null;
+    password: string;
+    refreshToken: string;
+    tokenKeyValue: string;
+    type: string; // "Local"과 같은 특정 문자열 값을 원할 경우, literal type으로도 정의 가능
+    username: string;
+    userprofile: string;
+    _id: string;
   };
   status: number | null;
 };
 
 const initialState: UserInfoState = {
   data: {
-    id: "",
-    user_table_id: "",
-    username: "",
+    accessToken: "",
     email: "",
-    type: "",
+    id: null,
+    password: "",
+    refreshToken: "",
+    tokenKeyValue: "",
+    type: "", // "Local"과 같은 특정 문자열 값을 원할 경우, literal type으로도 정의 가능
+    username: "",
+    userprofile: "",
+    _id: "",
   },
   status: null,
 };
@@ -30,8 +40,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     getUserInfoSuccess: (state, action) => {
+      console.log("action", action.payload);
       state.status = action.payload.status;
-      state.data = action.payload.result;
+      state.data = action.payload.userInfo;
     },
     getUserInfoFail: () => {
       return {

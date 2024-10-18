@@ -2,7 +2,10 @@ export type GetUserInfoByObjectIdSaga = {
   type: string;
   _id: string;
 };
-
+export type GetUserInfoByUserTableIdSaga = {
+  type: string;
+  users_table_id: string;
+};
 export type UpdateProfileImageSaga = {
   type: string;
   formData: FormData;

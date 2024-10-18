@@ -21,6 +21,7 @@ import {
 } from "@/src/app/lib/features/user/userSlice";
 import {
   GetUserInfoByObjectIdSaga,
+  GetUserInfoByUserTableIdSaga,
   UpdateProfileImageSaga,
   UpdateUserNameSaga,
   UpdateUserPasswordSaga,
@@ -35,11 +36,14 @@ function* getUserInfoByObjectIdSaga(action: GetUserInfoByObjectIdSaga): any {
   } catch (err) {}
 }
 
-function* getUserInfoByUserTableIdSaga(action: any): any {
+function* getUserInfoByUserTableIdSaga(
+  action: GetUserInfoByUserTableIdSaga
+): any {
   try {
     const data = yield call(getUserInfoByUserTableId, action.users_table_id);
     const result = data.data;
-    yield put(getUserInfoSuccess(result.userInfo));
+    console.log("result", result);
+    yield put(getUserInfoSuccess(result));
   } catch (err) {
     yield put(getUserInfoFail());
   }
