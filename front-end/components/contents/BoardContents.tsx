@@ -34,22 +34,13 @@ function BoardContents({ data }: DefaultPortPolioProps) {
     }
 
     // diaUSER_FIND_BY_USER_TABLE_ID
-    console.log("친구추가를 합니다");
     const userInfo = await getUserInfoByUserTableId(user_table_id);
-    console.log("userInfo", userInfo);
-
-    // console.log("user정보", userInfo.data.userInfo);
-    // dispatch({
-    //   type: "USER_FIND_BY_USER_TABLE_ID",
-    //   users_table_id: user_table_id,
-    // });
   };
 
   const handleMessage = () => {
     if (!useAuthSelector.isLogin) {
       alert("로그인을 먼저 해주세요");
     }
-    console.log("메세지 보내기");
   };
 
   // const handleBookMark = (portfoliodId: string) => {

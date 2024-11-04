@@ -1,8 +1,9 @@
-import React, { ChangeEvent, SetStateAction } from "react";
-import classNames from "classnames/bind";
-import styles from "./DropdownInput.module.css";
+import DownArrowIcon from "@/public/icons/DownArrowIcon";
 import { TextInput } from "@mantine/core";
-import DownArrow from "@/public/icons/DownArrow";
+import classNames from "classnames/bind";
+import React, { ChangeEvent, SetStateAction } from "react";
+import styles from "./DropdownInput.module.css";
+// import DownArrow from "@/public/icons/DownArrow";
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +27,7 @@ function DropdownInput({
         size="lg"
         value={statusValue}
         rightSectionPointerEvents="none"
-        rightSection={<DownArrow style={{ width: "12px" }} />}
+        rightSection={<DownArrowIcon style={{ width: "12px" }} />}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setStatusValue(event.target.value);
         }}

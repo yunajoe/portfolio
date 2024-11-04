@@ -1,10 +1,10 @@
 import React from "react";
 
-type DownArrowProps = {
+type DownArrowIconProps = {
   style?: React.CSSProperties;
 };
 
-function DownArrow({ style }: DownArrowProps) {
+function DownArrowIcon({ style }: DownArrowIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ function DownArrow({ style }: DownArrowProps) {
   );
 }
 
-export default DownArrow;
+export default DownArrowIcon;

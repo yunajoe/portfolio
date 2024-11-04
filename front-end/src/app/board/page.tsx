@@ -8,7 +8,7 @@ async function getDefaultPortPolios() {
   return result.data;
 }
 
-export default async function Page() {
+async function Page() {
   const data = await getDefaultPortPolios();
   return (
     <Suspense>

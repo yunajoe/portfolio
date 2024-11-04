@@ -1,7 +1,7 @@
 import MyProfileEditModalLayout from "@/components/layout/MyProfileEditModalLayout";
 import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditModalContent";
 import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
-import DownArrow from "@/public/icons/DownArrow";
+import DownArrowIcon from "@/public/icons/DownArrowIcon";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { User } from "@/types/api";
 import { Text, UnstyledButton } from "@mantine/core";
@@ -62,7 +62,7 @@ function WithDrawlModal({ userData, title, close }: WithDrawlModalProps) {
                 <option>기타의견</option>
               </select>
               <div className={cx("icon_container")}>
-                <DownArrow style={{ width: "15px", color: "gray" }} />
+                <DownArrowIcon style={{ width: "15px", color: "gray" }} />
               </div>
             </div>
             <textarea

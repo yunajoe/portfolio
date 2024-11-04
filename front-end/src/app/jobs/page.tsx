@@ -1,5 +1,14 @@
-function Page() {
-  return <div>jobs리스트입니다앙아</div>;
+import { getHiringDetailList } from "@/api/hiring";
+import HiringContents from "@/components/contents/HiringContents";
+
+async function getHiringList() {
+  const result = await getHiringDetailList();
+  return result.data;
 }
 
-export default Page;
+async function HiringPage() {
+  const data = await getHiringList();
+  return <HiringContents data={data} />;
+}
+
+export default HiringPage;

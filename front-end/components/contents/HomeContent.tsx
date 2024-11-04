@@ -16,7 +16,6 @@ import { useContext, useState } from "react";
 import styles from "./HomeContent.module.scss";
 
 const cx = classNames.bind(styles);
-// https://oapi.saramin.co.kr/guide/job-search
 const cards = [
   {
     image:

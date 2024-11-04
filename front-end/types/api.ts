@@ -53,3 +53,37 @@ export type User = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type Recruitment = {
+  _id: string;
+  recrutPblntSn: number;
+  pblntInstCd: string;
+  pbadmsStdInstCd: string;
+  instNm: string;
+  ncsCdLst: string;
+  ncsCdNmLst: string;
+  hireTypeLst: string;
+  hireTypeNmLst: string;
+  workRgnLst: string;
+  workRgnNmLst: string;
+  recrutSe: string;
+  recrutSeNm: string;
+  prefCondCn: string;
+  recrutNope: number;
+  pbancBgngYmd: string;
+  pbancEndYmd: string;
+  recrutPbancTtl: string;
+  srcUrl: string;
+  replmprYn: "Y" | "N";
+  aplyQlfcCn: string;
+  disqlfcRsn: string;
+  scrnprcdrMthdExpln: string;
+  prefCn: string;
+  acbgCondLst: string;
+  acbgCondNmLst: string;
+  nonatchRsn: string | null;
+  ongoingYn: "Y" | "N";
+  decimalDay: number;
+  files: string[];
+  steps: any[];
+};

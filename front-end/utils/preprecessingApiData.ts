@@ -1,4 +1,4 @@
-import { CompanyItem, MajorItem, SchoolItem } from "@/types/api";
+import { CompanyItem, MajorItem, Recruitment, SchoolItem } from "@/types/api";
 
 export const removeDuplicatedSchool = (arr: SchoolItem[]) => {
   if (arr.length > 0) {
@@ -25,7 +25,7 @@ export const preprocessingMajor = (arr: MajorItem[]) => {
   return [];
 };
 
-// 회사관련
+// search하는 회사관련
 export const replaceLetterCompany = (arr: CompanyItem[]) => {
   return arr.map((item) => item.afilCmpyNm.replace("(주)", ""));
 };
@@ -43,3 +43,10 @@ export const preprocessingCompany = (arr: CompanyItem[]) => {
   }
   return [];
 };
+
+// hiring 회사 관련
+
+export const filterCompanyByCategory = (
+  data: Recruitment[],
+  cateogry: string[]
+) => {};

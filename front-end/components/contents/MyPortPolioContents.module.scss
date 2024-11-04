@@ -4,12 +4,11 @@
   position: relative;
   z-index: 1;
   top: 100px;
-  // left: 50%;
-  // transform: translateX(-80%);
+
   display: grid;
   row-gap: 10px;
   width: 80%;
-  margin: 0 auto;  
+  margin: 0 auto;
   grid-template-columns: repeat(1, 1fr); // 기본 1열 설정
 
   @include mobile {

@@ -1,0 +1,13 @@
+.container {
+  background-color: blue;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10%;
+}
+.button_container {
+  display: flex;
+  width: 350px;
+
+  column-gap: 15px;
+}
