@@ -16,9 +16,11 @@ const app: Express = express();
 const MongoClient = require("mongodb").MongoClient;
 
 export const client = new MongoClient(process.env.MONGO_URI);
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors());
 app.use(express.json());
+
 // app.use(multer({ storage: fileStorage, fileFilter: fileFilter }));
 
 app.use((req, res, next) => {

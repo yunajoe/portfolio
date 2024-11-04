@@ -9,3 +9,12 @@ export const getCompanyListQuery = async () => {
     throw err;
   }
 };
+
+export const getHiringCompanyListQuery = async () => {
+  try {
+    const result = await db.collection("hiring_companies").find().toArray();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};

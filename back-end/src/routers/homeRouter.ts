@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { Request, Response, Router } from "express";
-import { getCompanyListQuery } from "../db/career";
+import { getCompanyListQuery, getHiringCompanyListQuery } from "../db/career";
 import { getMajorListQuery, getSchoolListQuery } from "../db/school";
 const crypto = require("crypto");
 
@@ -46,6 +46,18 @@ homeRouter.get("/major/list", async (req: Request, res: Response) => {
 homeRouter.get("/company/list", async (req: Request, res: Response) => {
   try {
     const result = await getCompanyListQuery();
+    return res.status(200).send(result);
+  } catch (err) {
+    return res.status(500).send("internal server error");
+  }
+});
+
+// 채용 회사
+
+// 채용회사 list
+homeRouter.get("/hiring/company/list", async (req: Request, res: Response) => {
+  try {
+    const result = await getHiringCompanyListQuery();
     return res.status(200).send(result);
   } catch (err) {
     return res.status(500).send("internal server error");
