@@ -43,14 +43,6 @@ function BoardContents({ data }: DefaultPortPolioProps) {
     }
   };
 
-  // const handleBookMark = (portfoliodId: string) => {
-  //   console.log("북마크를 합니당", portfoliodId);
-
-  //   dispatch({
-  //     type: "UPDATE_BOOK_MARK_REQUEST",
-  //     portfolio_id: portfoliodId,
-  //   });
-  // };
   useEffect(() => {
     router.refresh();
   }, []);
@@ -85,13 +77,6 @@ function BoardContents({ data }: DefaultPortPolioProps) {
                 <MessageIcon />
               </div>
             </div>
-            {/* <div
-              className={cx("bookmark")}
-              role="button"
-              onClick={() => handleBookMark(item.portpolioId)}
-            >
-              <BookmarkIcon fill={false} />
-            </div> */}
           </div>
         );
       })}
