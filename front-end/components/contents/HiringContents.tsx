@@ -1,8 +1,10 @@
 "use client";
+import FilterTag from "@/components/tag/FilterTag";
 import DownChevronIcon from "@/public/icons/DownChevronIcon";
 import { Recruitment } from "@/types/api";
 import { Button } from "@mantine/core";
 import classNames from "classnames/bind";
+import { useState } from "react";
 import styles from "./HiringContents.module.scss";
 
 const cx = classNames.bind(styles);
@@ -15,10 +17,13 @@ type HiringContentsProps = {
 function HiringContents({ data }: HiringContentsProps) {
   //   filterCompanyByCategory(data, hiringCompanyCategory);
   console.log("data", data);
+  const [region, setRegion] = useState("전체");
+  const [position, setPosition] = useState("정규직");
+  const [education, setEducation] = useState("학력무관");
 
   return (
     <div className={cx("container")}>
-      <section>
+      <section className={cx("button_section")}>
         <div className={cx("button_container")}>
           <Button
             justify="center"
@@ -41,13 +46,13 @@ function HiringContents({ data }: HiringContentsProps) {
         </div>
       </section>
       {/* 태그 */}
-      <section>
-        <div>지역태그(서울, 부산, 경기)</div>
-        <div>정규직, 비정규직</div>
-        <div>최소학력(학력무관, 고졸, 고졸(2~3년), 대졸(4년))</div>
+      <section className={cx("tag_section")}>
+        <FilterTag tag={region} />
+        <FilterTag tag={position} />
+        <FilterTag tag={education} width="140px" />
       </section>
       {/* data리스트 */}
-      <section></section>
+      <section className={cx("")}></section>
 
       {/*  페이지네이션*/}
       <div></div>

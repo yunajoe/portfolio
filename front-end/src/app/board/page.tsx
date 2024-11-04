@@ -8,7 +8,7 @@ async function getDefaultPortPolios() {
   return result.data;
 }
 
-async function Page() {
+async function BoardPage() {
   const data = await getDefaultPortPolios();
   return (
     <Suspense>
@@ -17,3 +17,5 @@ async function Page() {
     </Suspense>
   );
 }
+
+export default BoardPage;
