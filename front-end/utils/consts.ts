@@ -73,3 +73,6 @@ export const positionStatus = [
   "청년인턴(체험형)",
   "청년인턴(채용형)",
 ];
+
+export const imageSrcUrl =
+  "https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?q=80&w=1137&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";

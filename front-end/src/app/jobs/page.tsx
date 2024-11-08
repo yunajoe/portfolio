@@ -1,5 +1,6 @@
 import { getHiringDetailList } from "@/api/hiring";
 import HiringContents from "@/components/contents/HiringContents";
+import { Suspense } from "react";
 
 async function getHiringList() {
   const result = await getHiringDetailList();
@@ -8,7 +9,11 @@ async function getHiringList() {
 
 async function HiringPage() {
   const data = await getHiringList();
-  return <HiringContents data={data} />;
+  return (
+    <Suspense>
+      <HiringContents data={data} />;
+    </Suspense>
+  );
 }
 
 export default HiringPage;

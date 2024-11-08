@@ -5,7 +5,7 @@ import path from "path";
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "https://unsplash.com"],
     remotePatterns: [
       {
         protocol: "https",

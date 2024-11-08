@@ -1,3 +1,4 @@
+import MainNavBar from "@/components/navbar/MainNavBar";
 import classNames from "classnames/bind";
 import React from "react";
 import styles from "./layout.module.scss";
@@ -8,7 +9,12 @@ type BoardPageLayoutProps = {
 };
 
 function BoardPageLayout({ children }: BoardPageLayoutProps) {
-  return <div className={cx("container")}>{children}</div>;
+  return (
+    <div className={cx("container")}>
+      <MainNavBar />
+      {children}
+    </div>
+  );
 }
 
 export default BoardPageLayout;
