@@ -31,7 +31,7 @@
 
 # 프론트 배포주소
 
-https://portfolio-front-cdtfb34op-ddds-projects-1f96b341.vercel.app/ (프론트)
+https://portfolio-frontend-ddds-projects-1f96b341.vercel.app (프론트)
 
 # 프론트 INSTALL
 
