@@ -1,12 +1,13 @@
 import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import BoardSideBar from "@/components/sidebar/BoardSideBar";
-import { User } from "@/types/api";
+
+import { GetUserResponse } from "@/schemas/user";
 import classNames from "classnames/bind";
 import { RefObject } from "react";
 import styles from "./BoardSideNavBar.module.scss";
 const cx = classNames.bind(styles);
 type BoardSideNavBarProps = {
-  userData: User;
+  userData: GetUserResponse;
   mergedRefs: [
     { homeRef: RefObject<HTMLElement> | null },
     { aboutMeRef: RefObject<HTMLElement> | null },
