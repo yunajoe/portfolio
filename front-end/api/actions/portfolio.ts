@@ -1,4 +1,5 @@
 import privateAPI from "@/api/private";
+import publicAPI from "@/api/public";
 import { CompanyListItem, SchoolListItem } from "@/schemas/portfolio";
 
 // SAVE 포폴
@@ -73,7 +74,7 @@ export const getPortPolioDetailList = async (data: GetPortPolioDetailList) => {
 
 // Detail 포폴
 export const getDetailPortPolio = async (portpolio_id: string) => {
-  const response = await privateAPI.get("portpolio/detail", {
+  const response = await publicAPI.get("portpolio/detail", {
     params: {
       portpolio_id: portpolio_id,
     },
@@ -119,12 +120,6 @@ export const updatePortPolioName = async (data: UpdatePortPolioName) => {
   return response;
 };
 
-// default 포폴 list로  가져오기
-export const getDefaultPortPolioList = async () => {
-  const response = await privateAPI.get("portpolio/default/list");
-  return response;
-};
-
 // porpotlioId업데이뜌!
 export const updatePortPolioIds = async (data: UpdatePortPolioIds) => {
   const { users_table_id, portpolio_ids } = data;
@@ -134,6 +129,12 @@ export const updatePortPolioIds = async (data: UpdatePortPolioIds) => {
       portpolio_ids,
     },
   });
+  return response;
+};
+
+// default 포폴 list로  가져오기
+export const getDefaultPortPolioList = async () => {
+  const response = await publicAPI.get("portpolio/default/list");
   return response;
 };
 

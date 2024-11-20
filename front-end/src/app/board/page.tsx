@@ -1,4 +1,4 @@
-import { getDefaultPortPolioList } from "@/api/portpolio";
+import { getDefaultPortPolioList } from "@/api/actions/portfolio";
 import BoardContents from "@/components/contents/BoardContents";
 import { Suspense } from "react";
 

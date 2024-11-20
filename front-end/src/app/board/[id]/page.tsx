@@ -1,5 +1,5 @@
-import { getDetailPortPolio } from "@/api/portpolio";
-import { getUserInfoByUserObjectId } from "@/api/user";
+import { getDetailPortPolio } from "@/api/actions/portfolio";
+import { getUserInfoByUserObjectId } from "@/api/actions/user";
 import BoardDetailContents from "@/components/contents/BoardDetailContents";
 
 async function getPortPolioData(portpolioId: string) {

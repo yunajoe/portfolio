@@ -1,10 +1,10 @@
 "use client";
-import { getUserInfoByUserTableId } from "@/api/user";
+import { getUserInfoByUserTableId } from "@/api/actions/user";
 import FriendIcon from "@/public/icons/FriendIcon";
 import MessageIcon from "@/public/icons/MessageIcon";
+import { Item } from "@/schemas/portfolio";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -21,8 +21,6 @@ function BoardContents({ data }: DefaultPortPolioProps) {
 
   const dispatch = useAppDispatch();
   const useAuthSelector = useAppSelector(selectAuth);
-  // const useUserSelector = useAppSelector(selectUser);
-  // console.log("userUserSelectr", useUserSelector);
 
   const handleClick = (portpolioId: string) => {
     router.push(`/board/${portpolioId}`);
@@ -50,7 +48,7 @@ function BoardContents({ data }: DefaultPortPolioProps) {
   return (
     <div className={cx("container")}>
       {data.map((item, index) => {
-        // console.log("item", item);
+        console.log("item", item);
         return (
           <div className={cx("item_container")} key={index}>
             <div
