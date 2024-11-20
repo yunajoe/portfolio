@@ -1,9 +1,9 @@
-import { EducationType } from "@/types/portpolio";
+import { SchoolListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 import styles from "./EnrolledDate.module.scss";
 const cx = classNames.bind(styles);
 type EnrolledDateProps = {
-  item: EducationType;
+  item: SchoolListItem;
 };
 
 function EnrolledSchoolDate({ item }: EnrolledDateProps) {
