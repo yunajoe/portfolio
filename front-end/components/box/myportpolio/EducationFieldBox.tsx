@@ -1,5 +1,4 @@
 "use client";
-import { searchSchoolByName } from "@/api/search";
 
 import EducationDate from "@/components/date/EducationDate";
 import ModalInput from "@/components/input/ModalInput";
@@ -14,12 +13,13 @@ import {
   educationFieldEdit,
 } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { SchoolItem } from "@/types/api";
 import { removeDuplicatedSchool } from "@/utils/preprecessingApiData";
 import { Flex, Stack, TextInput } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 
+import { searchSchoolByName } from "@/api/actions/search";
 import EducationFieldDeleteModal from "@/components/modal/type/EducationFieldDeleteModal";
+import { SchoolListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import styles from "./FieldBox.module.scss";
@@ -33,7 +33,7 @@ type FieldBoxProps = {
 };
 function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState<SchoolItem[]>([]);
+  const [searchResult, setSearchResult] = useState<SchoolListItem[]>([]);
 
   // 전공
   const [searchMajorValue, setSearchMajorValue] = useState("");

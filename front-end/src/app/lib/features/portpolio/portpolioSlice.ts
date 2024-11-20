@@ -141,18 +141,13 @@ const portPolioSlice = createSlice({
         educationList,
       } = action.payload;
 
-      // user_table_id
       state.userTableId = users_table_id;
 
-      //portpolioId
       state.portpolioId = portpolioId;
 
-      // portpolioname
       state.portpolioName = portpolio_name;
-      // introText
       state.introText = introText;
 
-      // careerList
       if (careerList.length === 0) {
         state.careerList = [];
         state.careerIdNumber = 0;
@@ -161,7 +156,6 @@ const portPolioSlice = createSlice({
         state.careerIdNumber = lastElement.id;
         state.careerList = careerList;
       }
-      // educatoinalList
       if (educationList.length === 0) {
         state.educationList = [];
         state.educationIdNumber = 0;
@@ -171,21 +165,18 @@ const portPolioSlice = createSlice({
         state.educationList = educationList;
       }
 
-      // defaultResumse
       state.defaultResume = action.payload.defaultResume;
 
-      // date
       state.createdAt = action.payload.createdAt;
       state.updatedAt = action.payload.updatedAt;
     },
-    //
+
     portpolioDetailFail: () => {
       return {
         ...initialState,
       };
     },
 
-    // 포폴 리셋 하기
     portpolioReset: () => {
       return {
         ...initialState,
