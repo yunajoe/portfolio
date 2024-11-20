@@ -3,8 +3,9 @@ import ContactSection from "@/components/section/ContactSection";
 import HomeSection from "@/components/section/HomeSection";
 import PortFolioSection from "@/components/section/PortFolioSection";
 import ResumeSection from "@/components/section/ResumeSection";
-import { User } from "@/types/api";
-import { Item } from "@/types/portpolio";
+
+import { Item } from "@/schemas/portfolio";
+import { GetUserResponse } from "@/schemas/user";
 import { getTargetRef } from "@/utils/preprocessing";
 import classNames from "classnames/bind";
 import { RefObject } from "react";
@@ -12,7 +13,7 @@ import styles from "./BoardDetailMainBox.module.scss";
 const cx = classNames.bind(styles);
 
 type BoardDetailMainBoxProps = {
-  userData: User;
+  userData: GetUserResponse;
   portpolioData: Item;
   mergedRefs: [
     { homeRef: RefObject<HTMLElement> | null },
