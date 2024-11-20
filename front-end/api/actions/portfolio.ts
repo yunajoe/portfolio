@@ -1,12 +1,13 @@
-import { CareerType, EducationType } from "@/types/portpolio";
-import instance from ".";
+import privateAPI from "@/api/private";
+import { CompanyListItem, SchoolListItem } from "@/schemas/portfolio";
+
 // SAVE 포폴
 export type SavePortPolio = {
   type: string;
   portpolioId: string;
   introText: string;
-  careerList: CareerType[];
-  educationList: EducationType[];
+  careerList: CompanyListItem[];
+  educationList: SchoolListItem[];
 };
 
 type GetPortPolioDetailList = {
@@ -33,10 +34,6 @@ type UpdatePortPolioIds = {
   users_table_id: string;
   portpolio_ids: string[];
 };
-type UpdatePortFolioBookMark = {
-  type: string;
-  portfolio_id: string;
-};
 
 type DeletePortPolio = {
   type: string;
@@ -46,13 +43,13 @@ type DeletePortPolio = {
 
 // CREATE 포폴
 export const createPortPolio = async () => {
-  const response = await instance.get("createPortPolio");
+  const response = await privateAPI.get("createPortPolio");
   return response;
 };
 
 export const savePortPolio = async (data: SavePortPolio) => {
   const { portpolioId, introText, careerList, educationList } = data;
-  const response = await instance.post("portpolio/save", {
+  const response = await privateAPI.post("portpolio/save", {
     data: {
       portpolioId,
       introText,
@@ -66,7 +63,7 @@ export const savePortPolio = async (data: SavePortPolio) => {
 // Detail List 포폴
 export const getPortPolioDetailList = async (data: GetPortPolioDetailList) => {
   const { users_table_id } = data;
-  const response = await instance.get("portpolio/detail/list", {
+  const response = await privateAPI.get("portpolio/detail/list", {
     params: {
       users_table_id: users_table_id,
     },
@@ -76,7 +73,7 @@ export const getPortPolioDetailList = async (data: GetPortPolioDetailList) => {
 
 // Detail 포폴
 export const getDetailPortPolio = async (portpolio_id: string) => {
-  const response = await instance.get("portpolio/detail", {
+  const response = await privateAPI.get("portpolio/detail", {
     params: {
       portpolio_id: portpolio_id,
     },
@@ -87,7 +84,7 @@ export const getDetailPortPolio = async (portpolio_id: string) => {
 // 포폴삭제하기
 export const deletePortPolio = async (data: DeletePortPolio) => {
   const { users_table_id, portpolio_id } = data;
-  const response = await instance.delete("portpolio/delete", {
+  const response = await privateAPI.delete("portpolio/delete", {
     data: {
       users_table_id,
       portpolio_id,
@@ -99,7 +96,7 @@ export const deletePortPolio = async (data: DeletePortPolio) => {
 // default 포폴로 업데이트
 export const updateDefaultPortPolio = async (data: UpdateDefaultPortPolio) => {
   const { users_table_id, portpolio_id } = data;
-  const response = await instance.post("portpolio/changeToDefaultResume", {
+  const response = await privateAPI.post("portpolio/changeToDefaultResume", {
     data: {
       users_table_id,
       portpolio_id,
@@ -112,7 +109,7 @@ export const updateDefaultPortPolio = async (data: UpdateDefaultPortPolio) => {
 export const updatePortPolioName = async (data: UpdatePortPolioName) => {
   const { users_table_id, portpolio_id, portpolio_name } = data;
 
-  const response = await instance.post("portpolio/editPortPolioName", {
+  const response = await privateAPI.post("portpolio/editPortPolioName", {
     data: {
       users_table_id,
       portpolio_id,
@@ -124,14 +121,14 @@ export const updatePortPolioName = async (data: UpdatePortPolioName) => {
 
 // default 포폴 list로  가져오기
 export const getDefaultPortPolioList = async () => {
-  const response = await instance.get("portpolio/default/list");
+  const response = await privateAPI.get("portpolio/default/list");
   return response;
 };
 
 // porpotlioId업데이뜌!
 export const updatePortPolioIds = async (data: UpdatePortPolioIds) => {
   const { users_table_id, portpolio_ids } = data;
-  const response = await instance.post("portpolio/update/portpolioIds", {
+  const response = await privateAPI.post("portpolio/update/portpolioIds", {
     data: {
       users_table_id,
       portpolio_ids,
@@ -142,7 +139,7 @@ export const updatePortPolioIds = async (data: UpdatePortPolioIds) => {
 
 // 해당 user의 default 가져오기
 export const getUserDefaultPortPolio = async (_id: string) => {
-  const response = await instance.get("portpolio/default", {
+  const response = await privateAPI.get("portpolio/default", {
     params: {
       _id: _id,
     },

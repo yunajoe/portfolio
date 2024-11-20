@@ -32,7 +32,6 @@ export const getUserInfoByRefreshToken = async (refreshToken: string) => {
   return response;
 };
 
-// 이미지 업로드 API
 export const uploadUserProfileImage = async (formData: FormData) => {
   try {
     const response = await axios.post(

@@ -1,6 +1,6 @@
-import instance from ".";
+import publicAPI from "@/api/public";
 
 export const getHiringDetailList = async () => {
-  const response = await instance.get("hiring/company/list");
+  const response = await publicAPI.get("hiring/company/list");
   return response;
 };
