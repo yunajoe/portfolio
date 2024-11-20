@@ -2,7 +2,8 @@ import CareerConfirmButton from "@/components/button/CareerConfirmButton";
 import StatusDropdown from "@/components/dropdown/StatusDropdown";
 import SearchInput from "@/components/input/SearchInput";
 import CompanySearchResult from "@/components/search/CompanySearchResult";
-import { CareerType } from "@/types/portpolio";
+
+import { CompanyListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 import React, { ChangeEvent, SetStateAction } from "react";
 import DropdownInput from "../../input/DropdownInput";
@@ -12,7 +13,7 @@ const cx = classNames.bind(styles);
 
 export type CompanySearchBaPropsTypes = {
   data: string[];
-  item: CareerType;
+  item: CompanyListItem;
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
   statusValue: string;

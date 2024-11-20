@@ -1,11 +1,11 @@
-import { SchoolItem } from "@/types/api";
+import { GetSchoolResponse } from "@/schemas/school";
 import { List, ScrollArea, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import React, { SetStateAction, useCallback, useState } from "react";
 import styles from "./CompanySearchResult.module.scss";
 const cx = classNames.bind(styles);
 type SchoolSearchResultProps = {
-  data: SchoolItem[];
+  data: GetSchoolResponse[];
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;

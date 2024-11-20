@@ -8,7 +8,8 @@ import {
   updateUserPasswordStatusReset,
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import { User } from "@/types/api";
+
+import { GetUserResponse } from "@/schemas/user";
 import {
   doubleCheckNewPassword,
   passwordRegexFunc,
@@ -20,7 +21,7 @@ import styles from "./PassWordChangeModal.module.scss";
 const cx = classNames.bind(styles);
 
 type PassWordChangeModalProps = {
-  userData: User;
+  userData: GetUserResponse;
   title: string;
   close: () => void;
 };

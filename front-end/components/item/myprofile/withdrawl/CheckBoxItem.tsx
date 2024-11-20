@@ -59,9 +59,7 @@ function CheckBoxItem({
         className={cx("checkbox_input")}
       />
       <div>
-        <p>
-          {text}
-        </p>
+        <p>{text}</p>
       </div>
     </div>
   );

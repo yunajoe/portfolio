@@ -1,8 +1,8 @@
 import SearchIcon from "@/public/icons/SearchIcon";
 import { TextInput } from "@mantine/core";
-import React, { ChangeEvent, SetStateAction } from "react";
 import classNames from "classnames/bind";
-import styles from "./SearchInput.module.css";
+import React, { ChangeEvent, SetStateAction } from "react";
+import styles from "./SearchInput.module.scss";
 
 const cx = classNames.bind(styles);
 type SearchInputTypes = {

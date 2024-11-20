@@ -9,11 +9,12 @@ import { career, intro, school } from "@/constant/text";
 import useFieldAdd from "@/hooks/useFieldAdd";
 import useToast from "@/hooks/useToast";
 import AddIcon from "@/public/icons/AddIcon";
+import { GetCompanyResponse } from "@/schemas/company";
+import { GetMajorResponse } from "@/schemas/school";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectPortPolio } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { selectStatus } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import { CompanyItem, MajorItem } from "@/types/api";
 import {
   preprocessingCompany,
   preprocessingMajor,
@@ -27,8 +28,8 @@ import styles from "./MyPortPolioEditContents.module.scss";
 const cx = classNames.bind(styles);
 
 type MyPortPolioEditContents = {
-  majorList: MajorItem[];
-  companyList: CompanyItem[];
+  majorList: GetMajorResponse[];
+  companyList: GetCompanyResponse[];
 };
 
 function MyPortPolioEditContents({

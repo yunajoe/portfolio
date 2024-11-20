@@ -2,8 +2,7 @@ import DownArrowIcon from "@/public/icons/DownArrowIcon";
 import { TextInput } from "@mantine/core";
 import classNames from "classnames/bind";
 import React, { ChangeEvent, SetStateAction } from "react";
-import styles from "./DropdownInput.module.css";
-// import DownArrow from "@/public/icons/DownArrow";
+import styles from "./DropdownInput.module.scss";
 
 const cx = classNames.bind(styles);
 

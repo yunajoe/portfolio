@@ -1,4 +1,4 @@
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
 import { Pill, Text } from "@mantine/core";
 
 type PortPolioCardHeaderProps = {
@@ -7,9 +7,7 @@ type PortPolioCardHeaderProps = {
 
 function PortPolioCardHeader({ data }: PortPolioCardHeaderProps) {
   return (
-    <Text>
-      {data.defaultResume && <Pill radius={5}>기본이력서</Pill>}
-    </Text>
+    <Text>{data.defaultResume && <Pill radius={5}>기본이력서</Pill>}</Text>
   );
 }
 

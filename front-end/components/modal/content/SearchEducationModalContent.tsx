@@ -1,8 +1,9 @@
 import ConfirmButton from "@/components/button/ConfirmButton";
 import SearchInput from "@/components/input/SearchInput";
 import SchoolSearchResult from "@/components/search/SchoolSearchResult";
-import { SchoolItem } from "@/types/api";
-import { EducationType } from "@/types/portpolio";
+
+import { SchoolListItem } from "@/schemas/portfolio";
+import { GetSchoolResponse } from "@/schemas/school";
 import classNames from "classnames/bind";
 import React, { ChangeEvent, SetStateAction } from "react";
 import styles from "./SearchModalContent.module.scss";
@@ -10,11 +11,11 @@ import styles from "./SearchModalContent.module.scss";
 const cx = classNames.bind(styles);
 
 export type SearchEducationModalContentPropsTypes = {
-  data: SchoolItem[];
-  item: EducationType;
+  data: GetSchoolResponse[];
+  item: SchoolListItem;
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
-  setSearchResult: React.Dispatch<SetStateAction<SchoolItem[]>>;
+  setSearchResult: React.Dispatch<SetStateAction<SchoolListItem[]>>;
   handleChangeFunc: (event: ChangeEvent<HTMLInputElement>) => void;
   isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;

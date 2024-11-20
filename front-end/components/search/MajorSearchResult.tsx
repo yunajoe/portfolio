@@ -1,6 +1,7 @@
 import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { EducationType } from "@/types/portpolio";
+
+import { SchoolListItem } from "@/schemas/portfolio";
 import { List, ScrollArea, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import React, { SetStateAction, useCallback, useState } from "react";
@@ -9,7 +10,7 @@ const cx = classNames.bind(styles);
 
 type MajorSearchResultProps = {
   data: string[];
-  item: EducationType;
+  item: SchoolListItem;
   searchMajorValue: string;
   setSearchMajorValue: React.Dispatch<SetStateAction<string>>;
   setIsMajorMenuClick: React.Dispatch<SetStateAction<boolean>>;

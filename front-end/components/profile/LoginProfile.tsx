@@ -1,11 +1,12 @@
 import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import LinkButton from "@/components/button/LinkButton";
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
+
 import Link from "next/link";
 
 type LoginProfileProps = {
   isLogin: boolean;
-  userData: User;
+  userData: GetUserResponse;
 };
 
 function LoginProfile({ isLogin, userData }: LoginProfileProps) {

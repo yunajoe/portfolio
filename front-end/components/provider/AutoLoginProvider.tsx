@@ -1,12 +1,13 @@
 "use client";
 
+import { GetAutoLoginUserResponse } from "@/schemas/user";
 import { loginSuccess } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { ReactNode, useEffect } from "react";
 
 type AutoLoginProvider = {
   children: ReactNode;
-  user: any;
+  user: GetAutoLoginUserResponse;
 };
 
 function AutoLoginProvider({ children, user }: AutoLoginProvider) {

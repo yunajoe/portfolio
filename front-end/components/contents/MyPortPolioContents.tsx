@@ -9,6 +9,7 @@ import useDragAndDrop from "@/hooks/useDragAndDrop";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import useModal from "@/hooks/useModal";
 import useToast from "@/hooks/useToast";
+import { Item } from "@/schemas/portfolio";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { selectPortPolioResult } from "@/src/app/lib/features/portpolio/portpolioResultSlice";
 import {
@@ -16,7 +17,6 @@ import {
   selectStatus,
 } from "@/src/app/lib/features/status/statusSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

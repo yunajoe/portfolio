@@ -1,12 +1,12 @@
 import AutoTypeWriter from "@/components/style/AutoTypeWriter";
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import classNames from "classnames/bind";
 import { RefObject } from "react";
 import styles from "./HomeSection.module.scss";
 const cx = classNames.bind(styles);
 
 type HomeSectionProps = {
-  userData: User;
+  userData: GetUserResponse;
   homeRef: RefObject<HTMLElement> | null;
 };
 

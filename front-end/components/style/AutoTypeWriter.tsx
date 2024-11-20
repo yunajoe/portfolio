@@ -1,10 +1,10 @@
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import styles from "./AutoTypeWriter.module.scss";
 const cx = classNames.bind(styles);
 type AutoTypeWriterProps = {
-  userData: User;
+  userData: GetUserResponse;
 };
 
 function AutoTypeWriter({ userData }: AutoTypeWriterProps) {

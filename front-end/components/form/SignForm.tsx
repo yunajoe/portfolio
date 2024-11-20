@@ -6,10 +6,7 @@ import useCustomForm from "@/hooks/useCustomForm";
 import { authReset } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
-import classNames from "classnames/bind";
 import { memo, SetStateAction, useCallback } from "react";
-import styles from "./SignForm.module.scss";
-const cx = classNames.bind(styles);
 type SignFormProps = {
   type: string;
   emailLabel: string;
@@ -37,7 +34,6 @@ const SignForm = memo(function SignForm({
 
   const form = useCustomForm(type);
 
-  // 로그인하기 버튼
   const handleSubmit = async (values: FormValue) => {
     const { username, email, password } = values;
     if (type === "login") {

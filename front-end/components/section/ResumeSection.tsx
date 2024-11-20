@@ -2,7 +2,8 @@ import EnrolledCareerDate from "@/components/date/EnrolledCareerDate";
 import EnrolledSchoolDate from "@/components/date/EnrolledSchoolDate";
 import SectionHead from "@/components/section/SectionHead";
 import ResumeIcon from "@/public/icons/ResumeIcon";
-import { Item } from "@/types/portpolio";
+
+import { Item } from "@/schemas/portfolio";
 import { ScrollArea } from "@mantine/core";
 import classNames from "classnames/bind";
 import { RefObject } from "react";

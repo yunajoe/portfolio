@@ -2,8 +2,8 @@ import MyProfileEditModalLayout from "@/components/layout/MyProfileEditModalLayo
 import MyProfileEditModalContent from "@/components/modal/content/MyProfileEditModalContent";
 import MyProfileEditModalHeader from "@/components/modal/header/MyProfileEditModalHeader";
 import DownArrowIcon from "@/public/icons/DownArrowIcon";
+import { GetUserResponse } from "@/schemas/user";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { User } from "@/types/api";
 import { Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import styles from "./WithDrawlModal.module.scss";
 const cx = classNames.bind(styles);
 
 type WithDrawlModalProps = {
-  userData: User;
+  userData: GetUserResponse;
   title: string;
   close: () => void;
 };

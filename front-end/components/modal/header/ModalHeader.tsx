@@ -5,8 +5,6 @@ import React, { SetStateAction } from "react";
 import styles from "./ModalHeader.module.scss";
 const cx = classNames.bind(styles);
 
-// title과 close버튼을 prop으로 받는다
-
 type ModalHeaderProps = {
   title: string;
   close: () => void;
@@ -35,7 +33,6 @@ function ModalHeader({
         <span className={cx("title")}>{title}</span>
         <UnstyledButton onClick={handleClose}>
           <CloseIcon
-            // close={handleClose}
             style={{
               width: "20px",
               position: "absolute",

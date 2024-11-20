@@ -1,8 +1,9 @@
 import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
 import SectionHead from "@/components/section/SectionHead";
 import PersonIcon from "@/public/icons/PersonIcon";
-import { User } from "@/types/api";
-import { Item } from "@/types/portpolio";
+
+import { Item } from "@/schemas/portfolio";
+import { GetUserResponse } from "@/schemas/user";
 import { ScrollArea } from "@mantine/core";
 import classNames from "classnames/bind";
 import { RefObject } from "react";
@@ -10,7 +11,7 @@ import styles from "./AboutMeSection.module.scss";
 const cx = classNames.bind(styles);
 
 type AboutMeSectionProps = {
-  userData: User;
+  userData: GetUserResponse;
   portpolioData: Item;
   aboutMeRef: RefObject<HTMLElement> | null;
 };

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const companyItemSchema = z.object({
+const getCompanyResponseSchema = z.object({
   _id: z.string(),
   basDt: z.string(),
   crno: z.string(),
@@ -9,4 +9,4 @@ const companyItemSchema = z.object({
   lstgYn: z.string(),
 });
 
-export type CompanyItem = z.infer<typeof companyItemSchema>;
+export type GetCompanyResponse = z.infer<typeof getCompanyResponseSchema>;

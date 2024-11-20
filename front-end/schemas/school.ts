@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const schoolItemSchema = z.object({
+const getSchoolResponseSchema = z.object({
   _id: z.string(),
   campusName: z.string(),
   collegeinfourl: z.string(),
@@ -15,7 +15,7 @@ const schoolItemSchema = z.object({
   seq: z.string(),
 });
 
-const majorItemSchema = z.object({
+const getMajorResponseSchema = z.object({
   _id: z.string(),
   facilName: z.string(),
   lClass: z.string(),
@@ -24,5 +24,5 @@ const majorItemSchema = z.object({
   totalCount: z.string(),
 });
 
-export type SchoolItem = z.infer<typeof schoolItemSchema>;
-export type MajorItem = z.infer<typeof majorItemSchema>;
+export type GetSchoolResponse = z.infer<typeof getSchoolResponseSchema>;
+export type GetMajorResponse = z.infer<typeof getMajorResponseSchema>;

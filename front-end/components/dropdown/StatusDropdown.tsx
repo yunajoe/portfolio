@@ -5,15 +5,11 @@ import styles from "./StatusDropdown.module.scss";
 const cx = classNames.bind(styles);
 
 type StatusDropdownProps = {
-  // item: CareerType;
-  // statusValue: string;
   setStatusValue: React.Dispatch<SetStateAction<string>>;
   setIsStatusClick: React.Dispatch<SetStateAction<boolean>>;
 };
 
 function StatusDropdown({
-  // item,
-  // statusValue,
   setStatusValue,
   setIsStatusClick,
 }: StatusDropdownProps) {

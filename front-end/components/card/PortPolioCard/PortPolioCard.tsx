@@ -2,9 +2,9 @@ import PortPolioCardBody from "@/components/card/PortPolioCard/PortPolioCardBody
 import PortPolioCardBottom from "@/components/card/PortPolioCard/PortPolioCardBottom";
 import PortPolioCardHeader from "@/components/card/PortPolioCard/PortPolioCardHeader";
 import Divider from "@/components/divider/Divider";
+import { Item } from "@/schemas/portfolio";
 import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/lib/hooks";
-import { Item } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { SetStateAction, useRef } from "react";
 import styles from "./PortPolioCard.module.scss";
@@ -18,7 +18,6 @@ type PortPolioCardProps = {
   setIsResumeNameEdit: React.Dispatch<SetStateAction<boolean>>;
   setIsEditAndDeleteDropDown: React.Dispatch<SetStateAction<boolean>>;
 
-  // for 드래그앤드롭
   draggingIndex: number;
   newDataList: Item[];
   handleUpdateDataList: (dragIndex: number, index: number) => void;
@@ -49,12 +48,10 @@ function PortPolioCard({
     e.dataTransfer.setData("cardIndex", String(draggingIndex));
   };
 
-  // 요소나 텍스트 블록을 적합한 드롭 대상 위로 위로갈떄
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
 
-  // 원하는 위치에 드랍했을떄
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     e.preventDefault();
     const sourceIndex = Number(e.dataTransfer.getData("cardIndex"));

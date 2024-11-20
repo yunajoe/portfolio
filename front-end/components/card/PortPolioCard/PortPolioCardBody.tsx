@@ -1,6 +1,6 @@
 import PortPolioDate from "@/components/card/PortPolioCard/PortPolioDate";
 import PortPolioName from "@/components/card/PortPolioCard/PortPolioName";
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
 import { Text } from "@mantine/core";
 import { SetStateAction } from "react";
 type PortPolioCardBodyProps = {

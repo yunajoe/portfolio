@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./ModalInput.module.css";
+import styles from "./ModalInput.module.scss";
 
-import classNames from "classnames/bind";
 import { UnstyledButton } from "@mantine/core";
+import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type ModalInputProps = {

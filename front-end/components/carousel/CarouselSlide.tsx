@@ -1,4 +1,4 @@
-import { Responsive } from "@/types/carousel";
+import { Responsive } from "@/schemas/carousel";
 import { cardSize, responsive } from "@/utils/carousel";
 import classNames from "classnames/bind";
 import Image from "next/image";

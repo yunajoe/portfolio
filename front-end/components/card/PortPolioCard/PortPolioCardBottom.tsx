@@ -1,5 +1,5 @@
 import HamburgerIcon from "@/public/icons/HamburgerIcon";
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
 import { Flex } from "@mantine/core";
 import classNames from "classnames/bind";
 import { SetStateAction } from "react";

@@ -14,3 +14,11 @@ const getUserResponseSchema = z.object({
 });
 
 export type GetUserResponse = z.infer<typeof getUserResponseSchema>;
+
+export type GetAutoLoginUserResponse = {
+  status: number;
+  message: string;
+  access_token: string;
+  refresh_token: string;
+  user_data: GetUserResponse;
+};
