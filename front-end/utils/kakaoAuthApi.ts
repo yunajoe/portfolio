@@ -1,5 +1,3 @@
-//AuthCode 받기
-
 import axios from "axios";
 
 export const KaKaoInstance = axios.create();

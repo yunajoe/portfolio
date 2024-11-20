@@ -1,4 +1,4 @@
-import { Responsive } from "@/types/carousel";
+import { Responsive } from "@/schemas/carousel";
 
 export const responsive: Responsive = {
   desktop: {
@@ -35,7 +35,6 @@ export const environemnt = (size: number | undefined) => {
       return "mobile";
     }
   }
-  // size가 undefined일때 그냥 desktop으로 해놈 흠
   return "desktop";
 };
 type Environment = "desktop" | "laptop" | "tablet" | "mobile";

@@ -1,4 +1,4 @@
-import { EducationType } from "@/types/portpolio";
+import { SchoolListItem } from "@/schemas/portfolio";
 
 export const changeTimeFormat = (time: string) => {
   const date = new Date(time);
@@ -12,9 +12,9 @@ export const changeTimeFormat = (time: string) => {
   };
 };
 
-export const sortById = (arr: EducationType[]) => {
+export const sortById = (arr: SchoolListItem[]) => {
   if (arr.length > 2) {
-    arr.sort((a: EducationType, b: EducationType) => {
+    arr.sort((a: SchoolListItem, b: SchoolListItem) => {
       return b.id - a.id;
     });
   }

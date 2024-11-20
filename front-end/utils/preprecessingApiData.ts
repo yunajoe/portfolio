@@ -1,6 +1,8 @@
-import { CompanyItem, MajorItem, Recruitment, SchoolItem } from "@/types/api";
+import { GetCompanyResponse } from "@/schemas/company";
+import { GetRecruitmentResponse } from "@/schemas/recruitment";
+import { GetMajorResponse, GetSchoolResponse } from "@/schemas/school";
 
-export const removeDuplicatedSchool = (arr: SchoolItem[]) => {
+export const removeDuplicatedSchool = (arr: GetSchoolResponse[]) => {
   if (arr.length > 0) {
     const newArr = [arr[0]];
     arr.forEach((item, idx) => {
@@ -16,7 +18,7 @@ export const removeDuplicatedSchool = (arr: SchoolItem[]) => {
   }
 };
 
-export const preprocessingMajor = (arr: MajorItem[]) => {
+export const preprocessingMajor = (arr: GetMajorResponse[]) => {
   if (arr.length > 0) {
     const filteredArr = arr.map((item) => item.mClass);
     const result = removeDuplicatedElements(filteredArr);
@@ -26,7 +28,7 @@ export const preprocessingMajor = (arr: MajorItem[]) => {
 };
 
 // search하는 회사관련
-export const replaceLetterCompany = (arr: CompanyItem[]) => {
+export const replaceLetterCompany = (arr: GetCompanyResponse[]) => {
   return arr.map((item) => item.afilCmpyNm.replace("(주)", ""));
 };
 
@@ -35,7 +37,7 @@ export const removeDuplicatedElements = (arr: string[]) => {
   return [...set];
 };
 
-export const preprocessingCompany = (arr: CompanyItem[]) => {
+export const preprocessingCompany = (arr: GetCompanyResponse[]) => {
   if (arr.length > 0) {
     const replacedCompany = replaceLetterCompany(arr);
     const result = removeDuplicatedElements(replacedCompany);
@@ -47,6 +49,6 @@ export const preprocessingCompany = (arr: CompanyItem[]) => {
 // hiring 회사 관련
 
 export const filterCompanyByCategory = (
-  data: Recruitment[],
+  data: GetRecruitmentResponse[],
   cateogry: string[]
 ) => {};
