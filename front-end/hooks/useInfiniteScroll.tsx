@@ -1,7 +1,7 @@
 "use client";
 import useClient from "@/hooks/useClient";
 import useScrollPosition from "@/hooks/useScrollPosition";
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
 import { CardHeight, CardRowGap } from "@/utils/consts";
 import {
   MutableRefObject,
