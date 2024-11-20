@@ -1,27 +1,22 @@
 "use client";
+import { Item } from "@/schemas/portfolio";
 import { RootState } from "@/src/app/lib/store";
-import { Item } from "@/types/portpolio";
+
 import { createSlice } from "@reduxjs/toolkit";
 type PortPolioResultState = {
-  //
   current_portpolio_id: string | null;
-  // portpolio_list_request
   _id: string;
   users_table_id: string;
   username: string;
   email: string;
   portpolio_ids: string[];
   type: string;
-  // portpolio_detail_request
   portpolio_detail_arr: Item[];
-
-  // default poporlio
   default_portpolio: Item;
 };
 
 const initialState: PortPolioResultState = {
   current_portpolio_id: null,
-
   // popolist_list request
   _id: "",
   users_table_id: "",
@@ -52,7 +47,6 @@ const portPolioResultSlice = createSlice({
   name: "portpolioResult",
   initialState,
   reducers: {
-    // 포폴 생성 성공여부
     portpolioCreateSuccess: (state, action) => {
       state.current_portpolio_id = action.payload.key;
     },

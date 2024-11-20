@@ -34,7 +34,6 @@ const initialState: UserInfoState = {
   status: null,
 };
 
-// unshift나 push나 똑같은 이유는?
 const userSlice = createSlice({
   name: "user",
   initialState,

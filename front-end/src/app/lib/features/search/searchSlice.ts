@@ -1,11 +1,13 @@
 "use client";
+import { GetCompanyResponse } from "@/schemas/company";
+import { GetMajorResponse } from "@/schemas/school";
 import { RootState } from "@/src/app/lib/store";
-import { CompanyItem, MajorItem } from "@/types/api";
+
 import { createSlice } from "@reduxjs/toolkit";
 
 type PortPolioState = {
-  majorData: MajorItem[];
-  companyData: CompanyItem[];
+  majorData: GetMajorResponse[];
+  companyData: GetCompanyResponse[];
   status: number | null;
 };
 
