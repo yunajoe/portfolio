@@ -1,4 +1,4 @@
-import { CareerType, EducationType } from "@/types/portpolio";
+import { CompanyListItem, SchoolListItem } from "@/schemas/portfolio";
 
 export type GetPortPolioDetailListSaga = {
   type: string;
@@ -51,6 +51,6 @@ export type SavePortPolioSaga = {
   type: string;
   portpolioId: string;
   introText: string;
-  careerList: CareerType[];
-  educationList: EducationType[];
+  careerList: CompanyListItem[];
+  educationList: SchoolListItem[];
 };
