@@ -1,4 +1,4 @@
-import { getUserInfoByRefreshToken } from "@/api/user";
+import { getUserInfoByRefreshToken } from "@/api/actions/user";
 import AutoLoginProvider from "@/components/provider/AutoLoginProvider";
 import { TransLationProvider } from "@/context/TransLationContext";
 import { notoSansKrMedium } from "@/public/fonts/notoSansKr";
