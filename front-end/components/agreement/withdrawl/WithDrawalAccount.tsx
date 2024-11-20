@@ -1,11 +1,11 @@
 import ConditionCusTomAvatar from "@/components/avatar/ConditionCusTomAvatar";
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import classNames from "classnames/bind";
 import styles from "./WithDrawalAccount.module.scss";
 const cx = classNames.bind(styles);
 
 type WidthDrawlAccountProps = {
-  userData: User;
+  userData: GetUserResponse;
 };
 
 function WithDrawalAccount({ userData }: WidthDrawlAccountProps) {
