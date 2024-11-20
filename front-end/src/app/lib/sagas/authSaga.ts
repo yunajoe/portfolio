@@ -6,7 +6,7 @@ import {
   logout,
   registerLocal,
   withDrawal,
-} from "@/api/auth";
+} from "@/api/actions/auth";
 import {
   loginFail,
   loginSuccess,
@@ -73,8 +73,6 @@ function* withDrawalUser(action: WithDrawlUserSaga): any {
     yield put(deleteUserStatus(error.data));
   }
 }
-
-// refresh토큰으로 accessToken
 
 export function* authSaga() {
   yield takeEvery("KAKAO_LOGIN_REQUEST", kakaoLoginUser);

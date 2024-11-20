@@ -1,4 +1,4 @@
-import { getHiringDetailList } from "@/api/hiring";
+import { getHiringDetailList } from "@/api/actions/hiring";
 import HiringContents from "@/components/contents/HiringContents";
 import { Suspense } from "react";
 

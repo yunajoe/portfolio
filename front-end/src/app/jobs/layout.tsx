@@ -6,10 +6,10 @@ type JobsPageLayoutProps = {
 
 function JobsPageLayout({ children }: JobsPageLayoutProps) {
   return (
-    <div>
+    <>
       <MainNavBar />
       {children}
-    </div>
+    </>
   );
 }
 

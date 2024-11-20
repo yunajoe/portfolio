@@ -1,11 +1,12 @@
 "use client";
+
 import {
   getUserInfoByUserObjectId,
   getUserInfoByUserTableId,
   updateUserName,
   updateUserPassword,
   uploadUserProfileImage,
-} from "@/api/user";
+} from "@/api/actions/user";
 import {
   userNameUpdateSuccess,
   userProfileImageUpdateSuccess,
@@ -42,7 +43,6 @@ function* getUserInfoByUserTableIdSaga(
   try {
     const data = yield call(getUserInfoByUserTableId, action.users_table_id);
     const result = data.data;
-    console.log("result", result);
     yield put(getUserInfoSuccess(result));
   } catch (err) {
     yield put(getUserInfoFail());
