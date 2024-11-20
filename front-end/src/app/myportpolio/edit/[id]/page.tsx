@@ -1,4 +1,4 @@
-import { searchCompany, searchMajor } from "@/api/search";
+import { searchCompany, searchMajor } from "@/api/actions/search";
 import MyPortPolioEditContents from "@/components/contents/MyPortPolioEditContents";
 
 async function getMajorList() {
