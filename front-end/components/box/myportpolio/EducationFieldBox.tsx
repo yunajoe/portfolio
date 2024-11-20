@@ -8,10 +8,7 @@ import SearchModal from "@/components/modal/type/SearchModal";
 import MajorSearchResult from "@/components/search/MajorSearchResult";
 
 import useModal from "@/hooks/useModal";
-import {
-  EducationType,
-  educationFieldEdit,
-} from "@/src/app/lib/features/portpolio/portpolioSlice";
+import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
 import { removeDuplicatedSchool } from "@/utils/preprecessingApiData";
 import { Flex, Stack, TextInput } from "@mantine/core";
@@ -20,22 +17,21 @@ import { IconX } from "@tabler/icons-react";
 import { searchSchoolByName } from "@/api/actions/search";
 import EducationFieldDeleteModal from "@/components/modal/type/EducationFieldDeleteModal";
 import { SchoolListItem } from "@/schemas/portfolio";
+import { GetSchoolResponse } from "@/schemas/school";
 import classNames from "classnames/bind";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import styles from "./FieldBox.module.scss";
 const cx = classNames.bind(styles);
 
 type FieldBoxProps = {
-  item: EducationType;
+  item: SchoolListItem;
   index: number;
   portpolioId: string;
   majorList: string[];
 };
 function EducationFieldBox({ item, index, majorList }: FieldBoxProps) {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState<SchoolListItem[]>([]);
-
-  // 전공
+  const [searchResult, setSearchResult] = useState<GetSchoolResponse[]>([]);
   const [searchMajorValue, setSearchMajorValue] = useState("");
   const [isClick, setIsClick] = useState(false);
   const [isSchoolItemClick, setIsSchoolItemClick] = useState(false);

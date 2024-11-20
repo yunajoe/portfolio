@@ -1,8 +1,6 @@
 import useDate from "@/hooks/useDate";
-import {
-  educationFieldEdit,
-  EducationType,
-} from "@/src/app/lib/features/portpolio/portpolioSlice";
+import { SchoolListItem } from "@/schemas/portfolio";
+import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import classNames from "classnames/bind";
 import { useDispatch } from "react-redux";
 import styles from "./DateBox.module.scss";
@@ -10,7 +8,7 @@ import styles from "./DateBox.module.scss";
 const cx = classNames.bind(styles);
 
 type DataBoxProps = {
-  item: EducationType;
+  item: SchoolListItem;
 };
 
 function EducationDate({ item }: DataBoxProps) {

@@ -15,7 +15,7 @@ export type SearchEducationModalContentPropsTypes = {
   item: SchoolListItem;
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
-  setSearchResult: React.Dispatch<SetStateAction<SchoolListItem[]>>;
+  setSearchResult: React.Dispatch<SetStateAction<GetSchoolResponse[]>>;
   handleChangeFunc: (event: ChangeEvent<HTMLInputElement>) => void;
   isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;
@@ -60,12 +60,10 @@ function SearchEducationModalContent({
         />
       )}
       <ConfirmButton
-        // isClick={isClick}
         setIsClick={setIsClick}
         isSchoolItemClick={isSchoolItemClick}
         setIsSchoolItemClick={setIsSchoolItemClick}
         close={close}
-        // searchValue={searchValue}
         setSearchValue={setSearchValue}
         setSearchResult={setSearchResult}
         item={item}

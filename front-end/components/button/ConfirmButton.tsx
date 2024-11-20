@@ -5,6 +5,7 @@ import React, { SetStateAction } from "react";
 import styles from "./CareerConfirmButton.module.scss";
 
 import { SchoolListItem } from "@/schemas/portfolio";
+import { GetSchoolResponse } from "@/schemas/school";
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
@@ -14,7 +15,7 @@ type ConFirmButtonProps = {
   setIsSchoolItemClick: React.Dispatch<SetStateAction<boolean>>;
   close: () => void;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
-  setSearchResult: React.Dispatch<SetStateAction<SchoolListItem[]>>;
+  setSearchResult: React.Dispatch<SetStateAction<GetSchoolResponse[]>>;
   item: SchoolListItem;
   schoolName: string;
   setSearchId: React.Dispatch<SetStateAction<number | null>>;
