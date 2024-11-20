@@ -1,9 +1,9 @@
 import CusTomAvatar from "@/components/avatar/CusTomAvatar";
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import Image from "next/image";
 
 type ConditionCusTomAvatarProps = {
-  userData: User;
+  userData: GetUserResponse;
   borderRadius?: string;
   width?: number;
   height?: number;

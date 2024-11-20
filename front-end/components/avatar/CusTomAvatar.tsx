@@ -1,9 +1,9 @@
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import { avatarColor, convertAvatarLetter } from "@/utils/user";
 import { Avatar } from "@mantine/core";
 
 type CusTomAvatarProps = {
-  userData: User;
+  userData: GetUserResponse;
   size?: string;
 };
 
