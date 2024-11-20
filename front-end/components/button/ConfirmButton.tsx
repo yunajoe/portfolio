@@ -1,35 +1,30 @@
 import { educationFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { EducationType } from "@/types/portpolio";
 import { UnstyledButton } from "@mantine/core";
 import React, { SetStateAction } from "react";
 import styles from "./CareerConfirmButton.module.scss";
 
-import { SchoolItem } from "@/types/api";
+import { SchoolListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type ConFirmButtonProps = {
-  // isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;
   isSchoolItemClick: boolean;
   setIsSchoolItemClick: React.Dispatch<SetStateAction<boolean>>;
   close: () => void;
-  // searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
-  setSearchResult: React.Dispatch<SetStateAction<SchoolItem[]>>;
-  item: EducationType;
+  setSearchResult: React.Dispatch<SetStateAction<SchoolListItem[]>>;
+  item: SchoolListItem;
   schoolName: string;
   setSearchId: React.Dispatch<SetStateAction<number | null>>;
 };
 
 function ConfirmButton({
-  // isClick,
   setIsClick,
   isSchoolItemClick,
   setIsSchoolItemClick,
   close,
-  // searchValue,
   setSearchValue,
   setSearchResult,
   item,

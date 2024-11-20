@@ -1,6 +1,7 @@
 "use client";
 import ExternalImage from "@/components/image/ExternalImage";
-import { Recruitment } from "@/types/api";
+
+import { GetRecruitmentResponse } from "@/schemas/recruitment";
 import { imageSrcUrl } from "@/utils/consts";
 import classNames from "classnames/bind";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import styles from "./HiringCard.module.scss";
 
 const cx = classNames.bind(styles);
 type HiringCardProps = {
-  item: Recruitment;
+  item: GetRecruitmentResponse;
 };
 function HiringCard({ item }: HiringCardProps) {
   return (

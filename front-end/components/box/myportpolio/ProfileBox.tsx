@@ -1,8 +1,8 @@
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import { Text } from "@mantine/core";
 
 type ProfileBoxProps = {
-  userData: User;
+  userData: GetUserResponse;
 };
 
 function ProfileBox({ userData }: ProfileBoxProps) {

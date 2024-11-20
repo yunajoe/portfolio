@@ -3,7 +3,7 @@ import HiringCard from "@/components/card/HiringCard/HiringCard";
 import FilterTag from "@/components/tag/FilterTag";
 import DownChevronIcon from "@/public/icons/DownChevronIcon";
 // import { Recruitment } from "@/types/api";
-import { Recruitment } from "@/schemas/recruitment";
+import { GetRecruitmentResponse } from "@/schemas/recruitment";
 import { Button } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import styles from "./HiringContents.module.scss";
 const cx = classNames.bind(styles);
 
 type HiringContentsProps = {
-  data: Recruitment[];
+  data: GetRecruitmentResponse[];
 };
 
 //

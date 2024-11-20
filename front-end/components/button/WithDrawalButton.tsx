@@ -2,7 +2,7 @@
 
 import ModalPortal from "@/components/modal/ModalPortal";
 import WithDrawlModal from "@/components/modal/type/WithDrawlModal";
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ type WithDrawalButtonProps = {
   agreeSelectOptions: { first_option: boolean; second_option: boolean };
   withDrawlButton: boolean;
   setWithDrawlButton: React.Dispatch<SetStateAction<boolean>>;
-  userData: User;
+  userData: GetUserResponse;
 };
 
 const cx = classNames.bind(styles);

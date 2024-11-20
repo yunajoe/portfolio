@@ -1,14 +1,14 @@
 import FieldAddButtonLayout from "@/components/layout/FieldAddButtonLayout";
 import useCustomNavigation from "@/hooks/useCustomNavigation";
 import AddIcon from "@/public/icons/AddIcon";
+import { GetUserResponse } from "@/schemas/user";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { User } from "@/types/api";
 import { Text, UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import styles from "./CareerAddButton.module.scss";
 const cx = classNames.bind(styles);
 type CareerAddButtonProps = {
-  userData: User;
+  userData: GetUserResponse;
 };
 function CareerAddButton({ userData }: CareerAddButtonProps) {
   const dispatch = useAppDispatch();

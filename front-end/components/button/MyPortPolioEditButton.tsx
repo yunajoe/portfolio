@@ -1,4 +1,4 @@
-import { CareerType, EducationType } from "@/types/portpolio";
+import { CompanyListItem, SchoolListItem } from "@/schemas/portfolio";
 import { UnstyledButton } from "@mantine/core";
 import classNames from "classnames/bind";
 import styles from "./MyPortPolioEditButton.module.scss";
@@ -6,8 +6,8 @@ const cx = classNames.bind(styles);
 type MyPortPolioEditButtonProps = {
   onClick: () => void;
   introText: string;
-  careerList: CareerType[];
-  educationList: EducationType[];
+  careerList: CompanyListItem[];
+  educationList: SchoolListItem[];
 };
 
 function MyPortPolioEditButton({

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const recruitmentSchema = z.object({
+export const getRecruitmentResponseSchema = z.object({
   _id: z.string(),
   recrutPblntSn: z.number(),
   pblntInstCd: z.string(),
@@ -34,4 +34,6 @@ export const recruitmentSchema = z.object({
   steps: z.array(z.unknown()),
 });
 
-export type Recruitment = z.infer<typeof recruitmentSchema>;
+export type GetRecruitmentResponse = z.infer<
+  typeof getRecruitmentResponseSchema
+>;
