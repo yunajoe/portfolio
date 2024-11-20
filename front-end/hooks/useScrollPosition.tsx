@@ -22,7 +22,6 @@ function useScrollPosition() {
       });
     };
 
-    // throttle(updatePosition, 1000))
     window.addEventListener("scroll", throttle(updatePosition, 1000));
     return () => window.removeEventListener("scroll", updatePosition);
   }, []);

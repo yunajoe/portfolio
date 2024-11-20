@@ -1,18 +1,17 @@
 "use client";
 
-import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
-import { useAppSelector } from "@/src/app/lib/hooks";
-import classNames from "classnames/bind";
-import Link from "next/link";
-import styles from "./MainNavBar.module.scss";
-
 import { t } from "@/components/language";
 import MultiLanguage from "@/components/language/MultiLanguage";
 import { TransLationContext } from "@/context/TransLationContext";
 import useClient from "@/hooks/useClient";
 import SearchIcon from "@/public/icons/SearchIcon";
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { useAppSelector } from "@/src/app/lib/hooks";
+import classNames from "classnames/bind";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useContext } from "react";
+import styles from "./MainNavBar.module.scss";
 
 const cx = classNames.bind(styles);
 

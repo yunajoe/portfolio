@@ -1,4 +1,4 @@
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
 import { useEffect, useState } from "react";
 
 function useDragAndDrop(data: Item[]) {
