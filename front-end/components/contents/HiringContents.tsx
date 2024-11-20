@@ -2,7 +2,6 @@
 import HiringCard from "@/components/card/HiringCard/HiringCard";
 import FilterTag from "@/components/tag/FilterTag";
 import DownChevronIcon from "@/public/icons/DownChevronIcon";
-// import { Recruitment } from "@/types/api";
 import { GetRecruitmentResponse } from "@/schemas/recruitment";
 import { Button } from "@mantine/core";
 import classNames from "classnames/bind";
@@ -15,7 +14,6 @@ type HiringContentsProps = {
   data: GetRecruitmentResponse[];
 };
 
-//
 function HiringContents({ data }: HiringContentsProps) {
   //   filterCompanyByCategory(data, hiringCompanyCategory);
   const sampleData = data.slice(0, 20);

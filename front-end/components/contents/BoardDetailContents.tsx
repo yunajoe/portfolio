@@ -2,12 +2,13 @@
 import BoardDetailMainBox from "@/components/box/boarddetail/BoardDetailMainBox";
 import FloatingButton from "@/components/button/FloatingButton";
 import BoardSideNavBar from "@/components/navbar/BoardSideNavBar";
-import { User } from "@/types/api";
-import { Item } from "@/types/portpolio";
+import { Item } from "@/schemas/portfolio";
+import { GetUserResponse } from "@/schemas/user";
+
 import { useRef } from "react";
 
 type BoardDetailContentsProps = {
-  userData: User;
+  userData: GetUserResponse;
   portpolioData: Item;
 };
 
