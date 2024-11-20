@@ -1,10 +1,10 @@
-import { User } from "@/types/api";
+import { GetUserResponse } from "@/schemas/user";
 import classNames from "classnames/bind";
 import styles from "./MyProfileName.module.scss";
 
 const cx = classNames.bind(styles);
 type MyProfileNameProps = {
-  userData: User;
+  userData: GetUserResponse;
 };
 
 function MyProfileName({ userData }: MyProfileNameProps) {
