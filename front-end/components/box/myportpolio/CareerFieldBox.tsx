@@ -8,18 +8,18 @@ import SearchModal from "@/components/modal/type/SearchModal";
 import useModal from "@/hooks/useModal";
 import { careerFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { CareerType } from "@/types/portpolio";
 import { Box, Flex, Pill, Stack, TextInput } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 
 import CareerFieldDeleteModal from "@/components/modal/type/CareerFieldDeleteModal";
+import { CompanyListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 import { ChangeEvent, useCallback, useState } from "react";
 import styles from "./FieldBox.module.scss";
 const cx = classNames.bind(styles);
 
 type FieldBoxProps = {
-  item: CareerType;
+  item: CompanyListItem;
   index: number;
   companyList: string[];
 };

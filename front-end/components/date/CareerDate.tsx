@@ -1,6 +1,6 @@
 import useDate from "@/hooks/useDate";
+import { CompanyListItem } from "@/schemas/portfolio";
 import { careerFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
-import { CareerType } from "@/types/portpolio";
 import classNames from "classnames/bind";
 import { useDispatch } from "react-redux";
 import styles from "./DateBox.module.scss";
@@ -8,7 +8,7 @@ import styles from "./DateBox.module.scss";
 const cx = classNames.bind(styles);
 
 type DataBoxProps = {
-  item: CareerType;
+  item: CompanyListItem;
 };
 
 function CareerDate({ item }: DataBoxProps) {

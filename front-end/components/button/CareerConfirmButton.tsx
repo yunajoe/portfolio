@@ -1,32 +1,28 @@
 import { careerFieldEdit } from "@/src/app/lib/features/portpolio/portpolioSlice";
 import { useAppDispatch } from "@/src/app/lib/hooks";
-import { CareerType } from "@/types/portpolio";
 import { UnstyledButton } from "@mantine/core";
 import React, { SetStateAction } from "react";
 import styles from "./CareerConfirmButton.module.scss";
 
+import { CompanyListItem } from "@/schemas/portfolio";
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 type CareerConfirmButtonProps = {
-  // isClick: boolean;
   setIsClick: React.Dispatch<SetStateAction<boolean>>;
   isCompanyItemClick: boolean;
-  // setIsCompanyItemClick: React.Dispatch<SetStateAction<boolean>>;
   close: () => void;
   searchValue: string;
   setSearchValue: React.Dispatch<SetStateAction<string>>;
   statusValue: string;
   setSearchResult: React.Dispatch<SetStateAction<string[]>>;
-  item: CareerType;
+  item: CompanyListItem;
   setSearchId: React.Dispatch<SetStateAction<number | null>>;
 };
 
 function CareerConfirmButton({
-  // isClick,
   setIsClick,
   isCompanyItemClick,
-  // setIsCompanyItemClick,
   close,
   searchValue,
   setSearchValue,

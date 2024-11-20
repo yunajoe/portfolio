@@ -1,9 +1,6 @@
 .textarea {
   color: rgb(59, 61, 64);
-  /* height: 34px; */
-  /* margin: 30px; */
-  /* border: none; */
-  /* outline: none; */
+
   max-height: 100px;
   resize: none;
   width: 100%;
