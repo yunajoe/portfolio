@@ -9,6 +9,7 @@
   border: 3px solid gray;
   height: 300px;
   overflow: hidden;
+  position: relative;
 }
 
 .image_container {
@@ -30,6 +31,13 @@
 
 .image:hover {
   width: 100%;
-
   transform: scale(1.3);
+}
+
+// bookmark 버튼
+
+.bookmark_button {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
 }

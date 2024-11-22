@@ -17,7 +17,7 @@ const FilterTag = memo(function FilterTag({
       justify="center"
       fullWidth
       rightSection={<DownChevronIcon />}
-      variant="gradient"
+      variant="filled"
       mt="md"
     >
       {tag}

@@ -15,7 +15,7 @@ type HiringContentsProps = {
 };
 
 function HiringContents({ data }: HiringContentsProps) {
-  //   filterCompanyByCategory(data, hiringCompanyCategory);
+  // filterCompanyByCategory(data, hiringCompanyCategory);
   const sampleData = data.slice(0, 20);
   const [region, setRegion] = useState("전체(지역)");
   const [position, setPosition] = useState("정규직");
