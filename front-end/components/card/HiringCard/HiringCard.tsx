@@ -1,8 +1,11 @@
 "use client";
 import ExternalImage from "@/components/image/ExternalImage";
 
-import BookMarkButton from "@/components/button/BookMarkButton";
+import BookmarkIcon from "@/public/icons/BookmarkIcon";
 import { GetRecruitmentResponse } from "@/schemas/recruitment";
+import { selectAuth } from "@/src/app/lib/features/auth/authSlice";
+import { useAppSelector } from "@/src/app/lib/hooks";
+import { Alert } from "@mantine/core";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import styles from "./HiringCard.module.scss";
@@ -12,6 +15,17 @@ type HiringCardProps = {
   item: GetRecruitmentResponse;
 };
 function HiringCard({ item }: HiringCardProps) {
+  const useAuthSelector = useAppSelector(selectAuth);
+
+  const handleBookmark = () => {
+    if (!useAuthSelector.isLogin) {
+      return (
+        <Alert variant="light" color="red" title="sasdasd">
+          로그인을 해야 즐겨찾기에 등록이 됩니다
+        </Alert>
+      );
+    }
+  };
   return (
     <li className={cx("container")}>
       <div className={cx("card")}>
@@ -21,7 +35,8 @@ function HiringCard({ item }: HiringCardProps) {
               <ExternalImage src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
             </div>
             <div className={cx("bookmark_button")}>
-              <BookMarkButton />
+              {/* <BookMarkButton onClick={handleBookmark} /> */}
+              <BookmarkIcon onClick={handleBookmark} />;
             </div>
           </div>
           <div className={cx("companyInfo_container")}>
@@ -31,6 +46,9 @@ function HiringCard({ item }: HiringCardProps) {
             <p>{item.workRgnNmLst}</p>
           </div>
         </Link>
+        <Alert variant="light" color="red" title="sasdasd">
+          로그인을 해야 즐겨찾기에 등록이 됩니다
+        </Alert>
       </div>
     </li>
   );
