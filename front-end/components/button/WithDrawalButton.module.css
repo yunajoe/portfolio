@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  margin-bottom: 20px;
+}
+
+.button {
+  color: rgba(55, 56, 60, 0.16);
+  background-color: var(--blue-button-background);
+  color: #fff;
+  border: none;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 5px;
+  text-align: center;
+}
+.button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

@@ -1,7 +1,7 @@
 type BookMarkIconsProps = {
   style?: React.CSSProperties;
-  fill?: boolean;
-  onClick?: () => void;
+  fill: boolean;
+  onClick: () => void;
 };
 function BookmarkIcon({ style, fill = false, onClick }: BookMarkIconsProps) {
   return (

@@ -1,0 +1,9 @@
+.button {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 2px;
+  text-align: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: transparent;
+}

@@ -37,3 +37,7 @@ export const getRecruitmentResponseSchema = z.object({
 export type GetRecruitmentResponse = z.infer<
   typeof getRecruitmentResponseSchema
 >;
+
+export type GetRecruitmentResponseWithFavoite = GetRecruitmentResponse & {
+  isFavorite: boolean;
+};

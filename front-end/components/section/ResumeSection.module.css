@@ -1,0 +1,68 @@
+.section {
+  height: 100vh;
+  overflow: visible !important;
+}
+
+.overlay_container {
+  height: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  outline: none;
+}
+
+.overlay {
+  background: rgba(44, 62, 80, 0.5);
+  height: 100%;
+}
+
+.contents {
+  height: 100%;
+  margin: auto;
+  background-color: #4a5167;
+}
+
+.scroll_area {
+  height: 1500px;
+}
+
+.education_and_work_container {
+  display: flex;
+  padding: 10px;
+}
+
+.education_container {
+  flex: 1;
+  list-style: none;
+  padding: 10px;
+}
+
+.work_container {
+  flex: 1;
+  list-style: none;
+  padding: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #3a4a5d;
+  margin-bottom: 30px;
+}
+
+.school_name {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.major {
+  font-weight: 700;
+}
+
+.company_name {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.position {
+  font-weight: 700;
+}

@@ -1,0 +1,5 @@
+.carousel_slide {
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}

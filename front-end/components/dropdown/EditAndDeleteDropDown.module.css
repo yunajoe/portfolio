@@ -1,0 +1,32 @@
+.container {
+  position: absolute;
+  right: 0;
+  bottom: -76px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid hsla(225, 5%, 46%, 0.22);
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 10px 5px;
+}
+
+.menu {
+  height: 26px;
+  border: none;
+  color: #171719;
+  text-align: left;
+  padding: 3px 15px;
+  font-size: 14px;
+}
+
+.menu:last-child {
+  color: #ff4242;
+}
+
+.menu:hover {
+  border-radius: 3px;
+  background: #f4f4f5;
+}

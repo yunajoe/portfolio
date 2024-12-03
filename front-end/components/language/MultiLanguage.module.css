@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+}

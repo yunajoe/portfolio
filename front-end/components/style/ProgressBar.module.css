@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.container::-webkit-progress-bar {
+  background-color: rgba(112, 115, 124, 0.08);
+}
+
+.container::-webkit-progress-value {
+  background-color: green;
+}

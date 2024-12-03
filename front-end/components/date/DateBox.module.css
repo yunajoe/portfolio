@@ -1,0 +1,41 @@
+@charset "UTF-8";
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.date {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.start_date {
+  width: 100px;
+}
+
+.end_date {
+  width: 100px;
+}
+
+.input_year {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  resize: none;
+  background-color: transparent;
+  outline: none;
+  width: 50px; /* 수정된 부분 */
+  text-align: center;
+}
+
+.input_month {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  resize: none;
+  background-color: transparent;
+  outline: none;
+  width: 30px; /* 수정된 부분 */
+  text-align: center;
+}
